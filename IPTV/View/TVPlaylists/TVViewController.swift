@@ -36,10 +36,10 @@ class IPTVViewController: UIViewController, ObservableObject, Identifiable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let url = URL(string: appSettings.m3uFileLink) {
+        if let url = URL(string: appSettings.IPTVLink) {
             do {
                 let fileContents = try String(contentsOf: url, encoding: .ascii)
-                mediaList = ParseHelper().parseM3U(contentsOfFile: fileContents)
+                mediaList = MediaItem.parseM3U(contentsOfFile: fileContents)!
                 listTableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell().reuseIdentifier!)
                 listTableView.delegate = self
                 listTableView.dataSource = self

@@ -7,36 +7,47 @@
 
 import Foundation
 
-struct MediaItem: Codable {
+struct MediaItem: Identifiable {
+    
+    var id = UUID()
     var duration: Int?
     var title: String?
     var urlString: String?
-}
 
-class ParseHelper {
-    func parseM3U(contentsOfFile: String) -> [MediaItem] {
+    static func parseM3U(contentsOfFile: String) -> [MediaItem]? {
         var mediaItems = [MediaItem]()
-        
         contentsOfFile.enumerateLines(invoking: { line, stop in
-            
             if line.hasPrefix("#EXTINF:") {
-                
                 let infoLine = line.replacingOccurrences(of: "#EXTINF:", with: "")
-                
-                let infos = Array(infoLine.components(separatedBy: ","))
-                
-                if let durationString = infos.first, let duration = Int(durationString) {
-                    let mediaItem = MediaItem(duration: duration, title: infos.last?.trimmingCharacters(in: .whitespaces), urlString: nil)
+                let infos = Array(infoLine.split(separator: ","))
+
+                let durationString = String(infos.first ?? "")
+                if let duration = Int(durationString) {
+
+                    let mediaItem = MediaItem(
+                        duration: duration,
+                        title: String(infos.last ?? ""),
+                        urlString: nil
+                    )
                     mediaItems.append(mediaItem)
-                    
                 }
             } else {
-                
                 if mediaItems.count > 0 {
-                    mediaItems[mediaItems.count].urlString = line
+                    var item = mediaItems.last
+                    item?.urlString = line
                 }
             }
         })
         return mediaItems
+    }
+
+    static func getDefault() {
+
+        if
+            let path = Bundle.main.path(forResource: "playlist", ofType: "m3u"),
+            let contentsOfFile = try? String(contentsOfFile: path, encoding: String.Encoding(rawValue: NSUTF8StringEncoding)) {
+            dump(MediaItem.parseM3U(contentsOfFile: contentsOfFile))
+        }
+
     }
 }

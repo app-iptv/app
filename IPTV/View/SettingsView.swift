@@ -8,10 +8,6 @@
 import SwiftUI
 import M3UKit
 
-class AppSettings: ObservableObject {
-    @State var m3uFileLink = ""
-}
-
 struct SettingsView: View {
     
     @State var enteredURL = ""
@@ -22,15 +18,20 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section(header: Text("Playlist URL")) {
+                    #if DEBUG
                     HStack {
                         TextField("Enter Playlist URL", text: $enteredURL)
                             .disableAutocorrection(true)
                         Spacer()
                         Button("Reload Playlist") {
-                            appSettings.m3uFileLink = enteredURL
+                            appSettings.IPTVLink = enteredURL
                             viewModel.loadMediaList()
                         }
                     }
+                    Button("Print Playlist") {
+                        print(appSettings.IPTVLink)
+                    }
+                    #endif
                 }
             }
             .navigationBarTitle("Settings")

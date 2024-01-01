@@ -9,14 +9,28 @@ import SwiftUI
 import AVKit
 
 struct TVView: View {
+    
+    @State var showFullscreen = false
+    
     @ObservedObject private var viewModel = TVViewModel(appSettings: AppSettings())
+    
     var body: some View {
         NavigationView {
-            List(viewModel.mediaList.indices) { index in
-                let mediaItem = viewModel.mediaList[index]
-                NavigationLink(destination: VideoPlayerView(urlString: mediaItem.urlString ?? "")) {
-                    Text(mediaItem.title ?? "Unknown Title")
+            List {
+                ForEach(viewModel.mediaList) { media in
+                    NavigationLink {
+                        VideoPlayerView(urlString: media.urlString ?? "")
+                    } label: {
+                        Text(media.title ?? "Unknown Title")
+                            .font(.headline)
+                    }
                 }
+                NavigationLink {
+                    VideoPlayer(player: AVPlayer(url: URL(string: "http://sample.vodobox.net/skate_phantom_flex_4k/skate_phantom_flex_4k.m3u8")!))
+                } label: {
+                    Text("Test")
+                }
+
             }
             .navigationBarTitle("TV Channels")
         }
@@ -27,6 +41,9 @@ struct TVView: View {
 }
 
 struct VideoPlayerView: View {
+    
+    @State var showFullscreen = false
+    
     var urlString: String
 
     var body: some View {
@@ -51,7 +68,7 @@ class TVViewModel: ObservableObject {
     }
     
     func loadMediaList() {
-        guard let url = URL(string: appSettings.m3uFileLink) else {
+        guard let url = URL(string: appSettings.IPTVLink) else {
             print("Invalid URL")
             return
         }
@@ -64,7 +81,7 @@ class TVViewModel: ObservableObject {
             
             if let data = data, let fileContents = String(data: data, encoding: .ascii) {
                 DispatchQueue.main.async {
-                    self.mediaList = ParseHelper().parseM3U(contentsOfFile: fileContents)
+                    self.mediaList = MediaItem.parseM3U(contentsOfFile: fileContents)!
                 }
             }
         }

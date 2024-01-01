@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+class AppSettings: ObservableObject {
+    @State var IPTVLink = "http://boxdigital.xyz:8080/get.php?username=portenolatino&password=Irf5g4nXop&type=m3u_plus"
+}
+
 struct ContentView: View {
     @StateObject private var appSettings = AppSettings()
     
