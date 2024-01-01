@@ -16,7 +16,6 @@
 		2FB75B9D2B41AF0E00A16501 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB75B9C2B41AF0E00A16501 /* FavoritesView.swift */; };
 		2FB75BA12B41AF5D00A16501 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB75BA02B41AF5D00A16501 /* SettingsView.swift */; };
 		2FB75BA82B41B16D00A16501 /* TVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB75BA72B41B16D00A16501 /* TVView.swift */; };
-		2FE6026E2B41C70100B61F75 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE6026D2B41C70100B61F75 /* M3UKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FE6026E2B41C70100B61F75 /* M3UKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,7 +121,6 @@
 			);
 			name = IPTV;
 			packageProductDependencies = (
-				2FE6026D2B41C70100B61F75 /* M3UKit */,
 			);
 			productName = IPTV;
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV.app */;
@@ -154,7 +151,6 @@
 			);
 			mainGroup = 2FB75B782B41A9FE00A16501;
 			packageReferences = (
-				2FE6026C2B41C70100B61F75 /* XCRemoteSwiftPackageReference "M3UKit" */,
 			);
 			productRefGroup = 2FB75B822B41A9FE00A16501 /* Products */;
 			projectDirPath = "";
@@ -411,25 +407,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		2FE6026C2B41C70100B61F75 /* XCRemoteSwiftPackageReference "M3UKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/omaralbeik/M3UKit.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.8.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2FE6026D2B41C70100B61F75 /* M3UKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FE6026C2B41C70100B61F75 /* XCRemoteSwiftPackageReference "M3UKit" */;
-			productName = M3UKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2FB75B792B41A9FE00A16501 /* Project object */;
 }
