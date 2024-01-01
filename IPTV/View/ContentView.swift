@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var appSettings = AppSettings()
+    
     var body: some View {
         TabView {
             TVView()
-                .tabItem { Label(
-                    title: { Text("TV") },
-                    icon: { Image(systemName: "play.tv") }
-                ) }
-            FavoritesView()
-                .tabItem { Label(
-                    title: { Text("Favorites") },
-                    icon: { Image(systemName: "star") }
-                ) }
+                .tabItem {
+                    Text("TV")
+                    Image(systemName: "tv")
+                }
+
             SettingsView()
-                .tabItem { Image(systemName: "gear") }
+                .tabItem {
+                    Text("Settings")
+                    Image(systemName: "gear")
+                }
         }
+        .environmentObject(appSettings)
     }
 }
 

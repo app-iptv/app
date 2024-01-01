@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "M3UKit",
+        "repositoryURL": "https://github.com/omaralbeik/M3UKit.git",
+        "state": {
+          "branch": null,
+          "revision": "a84b4d72ddb3f6fcce78752bddd9ac8fe91bf94e",
+          "version": "0.8.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

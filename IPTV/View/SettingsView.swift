@@ -6,10 +6,35 @@
 //
 
 import SwiftUI
+import M3UKit
+
+class AppSettings: ObservableObject {
+    @State var m3uFileLink = ""
+}
 
 struct SettingsView: View {
+    
+    @State var enteredURL = ""
+    @StateObject private var appSettings = AppSettings()
+    let viewModel = TVViewModel(appSettings: AppSettings())
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            Form {
+                Section(header: Text("Playlist URL")) {
+                    HStack {
+                        TextField("Enter Playlist URL", text: $enteredURL)
+                            .disableAutocorrection(true)
+                        Spacer()
+                        Button("Reload Playlist") {
+                            appSettings.m3uFileLink = enteredURL
+                            viewModel.loadMediaList()
+                        }
+                    }
+                }
+            }
+            .navigationBarTitle("Settings")
+        }
     }
 }
 
