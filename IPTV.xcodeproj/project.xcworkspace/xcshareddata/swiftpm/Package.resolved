@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "azvideoplayer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adamzarn/AZVideoPlayer.git",
+      "state" : {
+        "revision" : "e2dde8754ee34706cc69fa640cde85506e239742",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "m3ukit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/omaralbeik/M3UKit",
+      "state" : {
+        "revision" : "a84b4d72ddb3f6fcce78752bddd9ac8fe91bf94e",
+        "version" : "0.8.1"
+      }
+    }
+  ],
+  "version" : 2
+}

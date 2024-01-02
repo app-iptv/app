@@ -6,32 +6,29 @@
 //
 
 import SwiftUI
-
-class AppSettings: ObservableObject {
-    @State var IPTVLink = "http://boxdigital.xyz:8080/get.php?username=portenolatino&password=Irf5g4nXop&type=m3u_plus"
-}
+import M3UKit
 
 struct ContentView: View {
-    @StateObject private var appSettings = AppSettings()
+    
+    @Binding var parsedPlaylist: Playlist?
     
     var body: some View {
         TabView {
-            TVView()
+            TVView(parsedPlaylist: $parsedPlaylist)
                 .tabItem {
                     Text("TV")
                     Image(systemName: "tv")
                 }
+                .navigationTitle("TV Channels")
 
             SettingsView()
                 .tabItem {
                     Text("Settings")
+                    #if os(tvOS)
+                    #else
                     Image(systemName: "gear")
+                    #endif
                 }
         }
-        .environmentObject(appSettings)
     }
-}
-
-#Preview {
-    ContentView()
 }

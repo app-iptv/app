@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import Foundation
+import M3UKit
 
 @main
 struct IPTVApp: App {
+    
+    @State var parsedPlaylist: Playlist? = nil
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(parsedPlaylist: $parsedPlaylist)
         }
     }
 }
