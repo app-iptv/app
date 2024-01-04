@@ -11,13 +11,14 @@ import Foundation
 
 struct SettingsView: View {
     
-    @State var playlistToParse = "https://iptv-org.github.io/iptv/index.m3u"
+    @State var playlistToParse = "https://iptv-org.github.io/iptv/countries/pt.m3u"
     
     let parser = PlaylistParser()
 
-    @State private var parsedPlaylist: Playlist?
+    @Binding var parsedPlaylist: Playlist?
 
     func parsePlaylist() {
+        print("Parsing Playlist...")
         parser.parse(URL(string: playlistToParse)!) { result in
             switch result {
             case .success(let playlist):
@@ -65,8 +66,4 @@ struct SettingsView: View {
             }
         }
     }
-}
-
-#Preview {
-    SettingsView()
 }

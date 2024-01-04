@@ -19,9 +19,8 @@ struct ContentView: View {
                     Text("TV")
                     Image(systemName: "tv")
                 }
-                .navigationTitle("TV Channels")
 
-            SettingsView()
+            SettingsView(parsedPlaylist: $parsedPlaylist)
                 .tabItem {
                     Text("Settings")
                     #if os(tvOS)

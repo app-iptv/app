@@ -10,7 +10,6 @@ import AVKit
 import M3UKit
 import AZVideoPlayer
 
-
 struct TVView: View {
     
     @State var showVideoPlayer = false
@@ -85,6 +84,7 @@ struct TVView: View {
                 }
             }
         }
+        .navigationTitle("Live")
     }
     
     var series: some View {
@@ -143,6 +143,7 @@ struct TVView: View {
                 }
             }
         }
+        .navigationTitle("Series")
     }
     
     var unknown: some View {
@@ -201,6 +202,7 @@ struct TVView: View {
                 }
             }
         }
+        .navigationTitle("Unknown")
     }
     
     var movies: some View {
@@ -259,44 +261,75 @@ struct TVView: View {
                 }
             }
         }
+        .navigationTitle("Movies")
     }
     
     var body: some View {
         NavigationStack {
             List {
-                NavigationLink {
-                    live
-                } label: {
-                    Label(
-                        title: { Text("Live TV") },
-                        icon: { Image(systemName: "tv") }
-                    )
+                Section {
+                    NavigationLink {
+                        live
+                    } label: {
+                        Label(
+                            title: { Text("Live TV") },
+                            icon: { Image(systemName: "tv") }
+                        )
+                        #if os(tvOS)
+                        .padding()
+                        #endif
+                    }
+                    NavigationLink {
+                        series
+                    } label: {
+                        Label(
+                            title: { Text("TV Shows") },
+                            icon: { Image(systemName: "play.rectangle") }
+                        )
+                        #if os(tvOS)
+                        .padding()
+                        #endif
+                    }
+                    NavigationLink {
+                        movies
+                    } label: {
+                        Label(
+                            title: { Text("Movies") },
+                            icon: { Image(systemName: "movieclapper") }
+                        )
+                        #if os(tvOS)
+                        .padding()
+                        #endif
+                    }
+                    NavigationLink {
+                        unknown
+                    } label: {
+                        Label(
+                            title: { Text("Unknown") },
+                            icon: { Image(systemName: "questionmark") }
+                        )
+                        #if os(tvOS)
+                        .padding()
+                        #endif
+                    }
+                } header: {
+                    Text("Stream Kind")
                 }
-                NavigationLink {
-                    series
-                } label: {
-                    Label(
-                        title: { Text("TV Shows") },
-                        icon: { Image(systemName: "play.rectangle") }
-                    )
+                
+                #if DEBUG
+                Section {
+                    Button(action: {print("\($parsedPlaylist)")}, label: {
+                        Label(
+                            title: { Text("Print Parsed Playlist") },
+                            icon: { Image(systemName: "printer") }
+                        )
+                    })
+                } header: {
+                    Text("Debug")
                 }
-                NavigationLink {
-                    movies
-                } label: {
-                    Label(
-                        title: { Text("Movies") },
-                        icon: { Image(systemName: "movieclapper") }
-                    )
-                }
-                NavigationLink {
-                    unknown
-                } label: {
-                    Label(
-                        title: { Text("Unknown") },
-                        icon: { Image(systemName: "questionmark") }
-                    )
-                }
-            }.navigationTitle("IPTV")
+                #endif
+
+            }.navigationTitle("Stream Kind")
         }
     }
 }
