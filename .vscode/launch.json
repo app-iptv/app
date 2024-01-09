@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug",
+            "preLaunchTask": "Debug",
+            "program": "${workspaceFolder}/build/Debug/Tick Tack.app",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Release",
+            "preLaunchTask": "Release",
+            "program": "${workspaceFolder}/build/Release/Tick Tack.app",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

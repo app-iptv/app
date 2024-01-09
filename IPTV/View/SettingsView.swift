@@ -46,19 +46,6 @@ struct SettingsView: View {
                             }
                         }
                         .buttonStyle(.bordered)
-                        #if DEBUG
-                        Spacer()
-                        Button {
-                            print(parsedPlaylist)
-                        } label: {
-                            Label {
-                                Text("Print Playlist")
-                            } icon: {
-                                Image(systemName: "printer")
-                            }
-                        }
-                        .buttonStyle(.bordered)
-                        #endif
                     }
                 } header: {
                      Text("M3U Settings")

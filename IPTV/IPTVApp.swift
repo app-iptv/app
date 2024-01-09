@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import M3UKit
+import SwiftData
 
 @main
 struct IPTVApp: App {

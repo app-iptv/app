@@ -13,6 +13,9 @@ struct ContentView: View {
     @Binding var parsedPlaylist: Playlist?
     
     var body: some View {
+        #if targetEnvironment(macCatalyst)
+        TVView(parsedPlaylist: $parsedPlaylist)
+        #else
         TabView {
             TVView(parsedPlaylist: $parsedPlaylist)
                 .tabItem {
@@ -29,5 +32,6 @@ struct ContentView: View {
                     #endif
                 }
         }
+        #endif
     }
 }
