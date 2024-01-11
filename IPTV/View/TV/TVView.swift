@@ -11,7 +11,8 @@ import M3UKit
 import AZVideoPlayer
 
 struct TVView: View {
-     
+    
+    /*
     enum SidebarItems: String, CaseIterable {
         case live, series, movies, unknown
         
@@ -35,6 +36,8 @@ struct TVView: View {
     }
     
     @State var selectedItem: SidebarItems?
+     
+    */
     
     @State var showingPopover = false
     
@@ -43,37 +46,50 @@ struct TVView: View {
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach(SidebarItems.allCases, id: \.rawValue) { item in
-                    NavigationLink(value: item) {
-                        Label {
-                            Text(item.name)
-                        } icon: {
-                            Image(systemName: item.iconName)
-                        }
-                    }
+                NavigationLink {
+                    TVFilteredView(parsedPlaylist: $parsedPlaylist).live
+                } label: {
+                    Label(
+                        title: { Text("Live TV") },
+                        icon: { Image(systemName: "tv") }
+                    )
+                }
+                NavigationLink {
+                    TVFilteredView(parsedPlaylist: $parsedPlaylist).movies
+                } label: {
+                    Label(
+                        title: { Text("Movies") },
+                        icon: { Image(systemName: "movieclapper") }
+                    )
+                }
+                NavigationLink {
+                    TVFilteredView(parsedPlaylist: $parsedPlaylist).series
+                } label: {
+                    Label(
+                        title: { Text("TV Shows") },
+                        icon: { Image(systemName: "play.rectangle") }
+                    )
+                }
+                NavigationLink {
+                    TVFilteredView(parsedPlaylist: $parsedPlaylist).unknown
+                } label: {
+                    Label(
+                        title: { Text("Unknown") },
+                        icon: { Image(systemName: "questionmark") }
+                    )
                 }
             }
             .navigationTitle("Stream Kind")
         } content: { 
-            switch SidebarItems(rawValue: "") {
-            case .live:
-                TVFilteredView(parsedPlaylist: $parsedPlaylist).live
-            case .movies:
-                TVFilteredView(parsedPlaylist: $parsedPlaylist).movies
-            case .series:
-                TVFilteredView(parsedPlaylist: $parsedPlaylist).series
-            case .unknown:
-                TVFilteredView(parsedPlaylist: $parsedPlaylist).unknown
-            case .none:
-                Text("Select Item")
-            }
+            
         } detail: { }
             .popover(isPresented: $showingPopover) {
                 SettingsView(parsedPlaylist: $parsedPlaylist)
             }
     }
 }
-
+     
+/*
 struct MediaItemView: View {
     
     var player: AVPlayer?
@@ -146,3 +162,4 @@ struct MediaItemView: View {
         .buttonStyle(.plain)
     }
 }
+*/
