@@ -31,26 +31,22 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        NavigationView {
-            List {
-                Section {
+        List {
+            Section {
+                HStack {
                     TextField("M3U Playlist", text: $playlistToParse)
-                    HStack {
-                        Button {
-                            parsePlaylist()
-                        } label: {
-                            Label {
-                                Text("Parse Playlist")
-                            } icon: {
-                                Image(systemName: "arrow.clockwise")
-                            }
-                        }
-                        .buttonStyle(.bordered)
+                    Button {
+                        parsePlaylist()
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
                     }
-                } header: {
-                     Text("M3U Settings")
+                    .buttonStyle(.plain)
                 }
+            } header: {
+                Text("M3U Settings")
             }
         }
+        .listStyle(.plain)
+        .navigationTitle("Setttings")
     }
 }

@@ -12,7 +12,6 @@ import AZVideoPlayer
 
 struct TVView: View {
     
-    /*
     enum SidebarItems: String, CaseIterable {
         case live, series, movies, unknown
         
@@ -35,60 +34,56 @@ struct TVView: View {
         }
     }
     
-    @State var selectedItem: SidebarItems?
-     
-    */
-    
     @State var showingPopover = false
     
     @Binding var parsedPlaylist: Playlist?
     
+    @Binding var searchText: String
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                NavigationLink {
-                    TVFilteredView(parsedPlaylist: $parsedPlaylist).live
-                } label: {
+        NavigationStack {
+            List(SidebarItems.allCases, id: \.self) { item in
+                NavigationLink(value: item.self) {
                     Label(
-                        title: { Text("Live TV") },
-                        icon: { Image(systemName: "tv") }
+                        title: { Text(item.name) },
+                        icon: { Image(systemName: item.iconName) }
                     )
                 }
-                NavigationLink {
-                    TVFilteredView(parsedPlaylist: $parsedPlaylist).movies
-                } label: {
-                    Label(
-                        title: { Text("Movies") },
-                        icon: { Image(systemName: "movieclapper") }
-                    )
-                }
-                NavigationLink {
-                    TVFilteredView(parsedPlaylist: $parsedPlaylist).series
-                } label: {
-                    Label(
-                        title: { Text("TV Shows") },
-                        icon: { Image(systemName: "play.rectangle") }
-                    )
-                }
-                NavigationLink {
-                    TVFilteredView(parsedPlaylist: $parsedPlaylist).unknown
-                } label: {
-                    Label(
-                        title: { Text("Unknown") },
-                        icon: { Image(systemName: "questionmark") }
-                    )
+                .navigationDestination(for: SidebarItems.self) { item in
+                    switch item {
+                    case .live:
+                        TVFilteredView(parsedPlaylist: $parsedPlaylist, searchText: $searchText).live
+                            .searchable(text: $searchText)
+                    case .movies:
+                        TVFilteredView(parsedPlaylist: $parsedPlaylist, searchText: $searchText).movies
+                            .searchable(text: $searchText)
+                    case .series:
+                        TVFilteredView(parsedPlaylist: $parsedPlaylist, searchText: $searchText).series
+                            .searchable(text: $searchText)
+                    case .unknown:
+                        TVFilteredView(parsedPlaylist: $parsedPlaylist, searchText: $searchText).unknown
+                            .searchable(text: $searchText)
+                    }
                 }
             }
+            .listStyle(.inset)
             .navigationTitle("Stream Kind")
-        } content: { 
-            
-        } detail: { }
-            .popover(isPresented: $showingPopover) {
-                SettingsView(parsedPlaylist: $parsedPlaylist)
+            #if targetEnvironment(macCatalyst)
+            HStack {
+                NavigationLink {
+                    SettingsView(parsedPlaylist: $parsedPlaylist)
+                } label: {
+                    Image(systemName: "gear")
+                }
+                .buttonStyle(.borderless)
+                .padding()
+                Spacer()
             }
+            #endif
+        }
     }
 }
-     
+
 /*
 struct MediaItemView: View {
     

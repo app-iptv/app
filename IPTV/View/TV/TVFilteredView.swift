@@ -11,9 +11,21 @@ import AVKit
 import AZVideoPlayer
 import M3UKit
 
+/*
+extension Playlist.Media {
+    func isFavorite(_ set: Bool? = nil) -> Bool {
+        if let set {
+            UserDefaults.standard.set(Bool.self, forKey: "\(self.name)_isFavorite")
+        }
+        return UserDefaults.standard.bool(forKey: "\(self.name)_isFavorite")
+    }
+}
+*/
+
 struct TVFilteredView: View {
     
     var player: AVPlayer?
+    
     @State var willBeginFullScreenPresentation: Bool = false
     
     func willBeginFullScreen(_ playerViewController: AVPlayerViewController,
@@ -32,9 +44,19 @@ struct TVFilteredView: View {
     
     @Binding var parsedPlaylist: Playlist?
     
+    @Binding var searchText: String
+    
+    var searchResults: [Playlist.Media] {
+        if searchText.isEmpty {
+            return parsedPlaylist?.medias ?? []
+        } else {
+            return parsedPlaylist?.medias.filter { $0.name.contains(searchText) } ?? []
+        }
+    }
+    
     var live: some View {
         List {
-            ForEach(parsedPlaylist?.medias ?? [], id: \.self) { media in
+            ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.live {
                     NavigationLink {
                         AZVideoPlayer(player: AVPlayer(url: media.url),
@@ -76,8 +98,28 @@ struct TVFilteredView: View {
                             .frame(width: 60, height: 60)
                             Text(media.name)
                                 .font(.headline)
+                            
+                            /*
+                            
                             Spacer()
-                            Text(media.attributes.groupTitle ?? "")
+                             
+                            Button {
+                                if media.isFavorite() == false {
+                                    media.isFavorite(true)
+                                } else {
+                                    media.isFavorite(false)
+                                }
+                            } label: {
+                                if media.isFavorite() == false {
+                                    Image(systemName: "heart")
+                                } else {
+                                    Image(systemName: "heart.fill")
+                                }
+                            }
+                             
+                            */
+                            Text(media.attributes.groupTitle ?? "Unknown Category")
+                            Spacer()
                             Text(media.attributes.channelNumber ?? "")
                         }
                     }
@@ -87,17 +129,12 @@ struct TVFilteredView: View {
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
             .onMove { parsedPlaylist?.medias.move(fromOffsets: $0, toOffset: $1) }
         }
-        .toolbarRole(.browser)
+        .listStyle(.inset)
+        .toolbarRole(.navigationStack)
         .toolbar {
             ToolbarItem {
                 EditButton()
-            }
-            ToolbarItem {
-                NavigationLink {
-                    SettingsView(parsedPlaylist: $parsedPlaylist)
-                } label: {
-                    Image(systemName: "gear")
-                }
+                    .buttonStyle(.borderless)
             }
         }
         .navigationTitle("Live")
@@ -105,7 +142,7 @@ struct TVFilteredView: View {
     
     var series: some View {
         List {
-            ForEach(parsedPlaylist?.medias ?? [], id: \.self) { media in
+            ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.series {
                     NavigationLink {
                         AZVideoPlayer(player: AVPlayer(url: media.url),
@@ -158,17 +195,12 @@ struct TVFilteredView: View {
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
             .onMove { parsedPlaylist?.medias.move(fromOffsets: $0, toOffset: $1) }
         }
-        .toolbarRole(.browser)
+        .listStyle(.inset)
+        .toolbarRole(.navigationStack)
         .toolbar {
             ToolbarItem {
                 EditButton()
-            }
-            ToolbarItem {
-                NavigationLink {
-                    SettingsView(parsedPlaylist: $parsedPlaylist)
-                } label: {
-                    Image(systemName: "gear")
-                }
+                    .buttonStyle(.borderless)
             }
         }
         .navigationTitle("Series")
@@ -176,7 +208,7 @@ struct TVFilteredView: View {
     
     var unknown: some View {
         List {
-            ForEach(parsedPlaylist?.medias ?? [], id: \.self) { media in
+            ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.unknown {
                     NavigationLink {
                         AZVideoPlayer(player: AVPlayer(url: media.url),
@@ -229,17 +261,12 @@ struct TVFilteredView: View {
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
             .onMove { parsedPlaylist?.medias.move(fromOffsets: $0, toOffset: $1) }
         }
-        .toolbarRole(.browser)
+        .listStyle(.inset)
+        .toolbarRole(.navigationStack)
         .toolbar {
             ToolbarItem {
                 EditButton()
-            }
-            ToolbarItem {
-                NavigationLink {
-                    SettingsView(parsedPlaylist: $parsedPlaylist)
-                } label: {
-                    Image(systemName: "gear")
-                }
+                    .buttonStyle(.borderless)
             }
         }
         .navigationTitle("Unknown")
@@ -247,7 +274,7 @@ struct TVFilteredView: View {
     
     var movies: some View {
         List {
-            ForEach(parsedPlaylist?.medias ?? [], id: \.self) { media in
+            ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.movie {
                     NavigationLink {
                         AZVideoPlayer(player: AVPlayer(url: media.url),
@@ -300,20 +327,16 @@ struct TVFilteredView: View {
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
             .onMove { parsedPlaylist?.medias.move(fromOffsets: $0, toOffset: $1) }
         }
-        .toolbarRole(.browser)
+        .listStyle(.inset)
+        .toolbarRole(.navigationStack)
         .toolbar {
             ToolbarItem {
                 EditButton()
-            }
-            ToolbarItem {
-                NavigationLink {
-                    SettingsView(parsedPlaylist: $parsedPlaylist)
-                } label: {
-                    Image(systemName: "gear")
-                }
+                    .buttonStyle(.borderless)
             }
         }
         .navigationTitle("Movies")
+        
     }
     
     var body: some View {
