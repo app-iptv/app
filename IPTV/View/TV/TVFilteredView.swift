@@ -11,17 +11,6 @@ import AVKit
 import AZVideoPlayer
 import M3UKit
 
-/*
-extension Playlist.Media {
-    func isFavorite(_ set: Bool? = nil) -> Bool {
-        if let set {
-            UserDefaults.standard.set(Bool.self, forKey: "\(self.name)_isFavorite")
-        }
-        return UserDefaults.standard.bool(forKey: "\(self.name)_isFavorite")
-    }
-}
-*/
-
 struct TVFilteredView: View {
     
     var player: AVPlayer?
@@ -40,8 +29,6 @@ struct TVFilteredView: View {
         AZVideoPlayer.continuePlayingIfPlaying(player, coordinator)
     }
     
-    @State var showingPopover = false
-    
     @Binding var parsedPlaylist: Playlist?
     
     @Binding var searchText: String
@@ -58,85 +45,13 @@ struct TVFilteredView: View {
         List {
             ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.live {
-                    NavigationLink {
-                        AZVideoPlayer(player: AVPlayer(url: media.url),
-                                      willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen,
-                                      willEndFullScreenPresentationWithAnimationCoordinator: willEndFullScreen)
-                        .aspectRatio(16/9, contentMode: .fit)
-                        // Adding .shadow(radius: 0) is necessary if
-                        // your player will be in a List on iOS 16.
-                        .shadow(radius: 0)
-                        .onDisappear {
-                            // onDisappear is called when full screen presentation begins, but the view is
-                            // not actually disappearing in this case so we don't want to reset the player
-                            guard !willBeginFullScreenPresentation else {
-                                willBeginFullScreenPresentation = false
-                                return
-                            }
-                            player?.pause()
-                            player?.seek(to: .zero)
-                        }
-                    } label: {
-                        HStack {
-                            AsyncImage(url: URL(string: media.attributes.logo!)) { phase in
-                                switch phase {
-                                case .empty:
-                                    Image(systemName: "photo")
-                                        .frame(width: 60, height: 60)
-                                case .success(let image):
-                                    image.resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(maxWidth: 60, maxHeight: 60)
-                                case .failure:
-                                    Image(systemName: "photo")
-                                        .frame(width: 60, height: 60)
-                                @unknown default:
-                                    EmptyView()
-                                        .frame(width: 60, height: 60)
-                                }
-                            }
-                            .frame(width: 60, height: 60)
-                            Text(media.name)
-                                .font(.headline)
-                            
-                            /*
-                            
-                            Spacer()
-                             
-                            Button {
-                                if media.isFavorite() == false {
-                                    media.isFavorite(true)
-                                } else {
-                                    media.isFavorite(false)
-                                }
-                            } label: {
-                                if media.isFavorite() == false {
-                                    Image(systemName: "heart")
-                                } else {
-                                    Image(systemName: "heart.fill")
-                                }
-                            }
-                             
-                            */
-                            Text(media.attributes.groupTitle ?? "Unknown Category")
-                            Spacer()
-                            Text(media.attributes.channelNumber ?? "")
-                        }
-                    }
-                    .buttonStyle(.plain)
+                    TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
                 }
             }
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
             .onMove { parsedPlaylist?.medias.move(fromOffsets: $0, toOffset: $1) }
         }
-        .listStyle(.inset)
-        .toolbarRole(.navigationStack)
-        .toolbar {
-            ToolbarItem {
-                EditButton()
-                    .buttonStyle(.borderless)
-            }
-        }
+        .listStyle(.plain)
         .navigationTitle("Live")
     }
     
@@ -144,65 +59,13 @@ struct TVFilteredView: View {
         List {
             ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.series {
-                    NavigationLink {
-                        AZVideoPlayer(player: AVPlayer(url: media.url),
-                                      willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen,
-                                      willEndFullScreenPresentationWithAnimationCoordinator: willEndFullScreen)
-                        .aspectRatio(16/9, contentMode: .fit)
-                        // Adding .shadow(radius: 0) is necessary if
-                        // your player will be in a List on iOS 16.
-                        .shadow(radius: 0)
-                        .onDisappear {
-                            // onDisappear is called when full screen presentation begins, but the view is
-                            // not actually disappearing in this case so we don't want to reset the player
-                            guard !willBeginFullScreenPresentation else {
-                                willBeginFullScreenPresentation = false
-                                return
-                            }
-                            player?.pause()
-                            player?.seek(to: .zero)
-                        }
-                    } label: {
-                        HStack {
-                            AsyncImage(url: URL(string: media.attributes.logo!)) { phase in
-                                switch phase {
-                                case .empty:
-                                    Image(systemName: "photo")
-                                        .frame(width: 60, height: 60)
-                                case .success(let image):
-                                    image.resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(maxWidth: 60, maxHeight: 60)
-                                case .failure:
-                                    Image(systemName: "photo")
-                                        .frame(width: 60, height: 60)
-                                @unknown default:
-                                    EmptyView()
-                                        .frame(width: 60, height: 60)
-                                }
-                            }
-                            .frame(width: 60, height: 60)
-                            Text(media.name)
-                                .font(.headline)
-                            Spacer()
-                            Text(media.attributes.groupTitle ?? "")
-                            Text(media.attributes.channelNumber ?? "")
-                        }
-                    }
-                    .buttonStyle(.plain)
+                    TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
                 }
             }
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
             .onMove { parsedPlaylist?.medias.move(fromOffsets: $0, toOffset: $1) }
         }
-        .listStyle(.inset)
-        .toolbarRole(.navigationStack)
-        .toolbar {
-            ToolbarItem {
-                EditButton()
-                    .buttonStyle(.borderless)
-            }
-        }
+        .listStyle(.plain)
         .navigationTitle("Series")
     }
     
@@ -210,65 +73,13 @@ struct TVFilteredView: View {
         List {
             ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.unknown {
-                    NavigationLink {
-                        AZVideoPlayer(player: AVPlayer(url: media.url),
-                                      willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen,
-                                      willEndFullScreenPresentationWithAnimationCoordinator: willEndFullScreen)
-                        .aspectRatio(16/9, contentMode: .fit)
-                        // Adding .shadow(radius: 0) is necessary if
-                        // your player will be in a List on iOS 16.
-                        .shadow(radius: 0)
-                        .onDisappear {
-                            // onDisappear is called when full screen presentation begins, but the view is
-                            // not actually disappearing in this case so we don't want to reset the player
-                            guard !willBeginFullScreenPresentation else {
-                                willBeginFullScreenPresentation = false
-                                return
-                            }
-                            player?.pause()
-                            player?.seek(to: .zero)
-                        }
-                    } label: {
-                        HStack {
-                            AsyncImage(url: URL(string: media.attributes.logo!)) { phase in
-                                switch phase {
-                                case .empty:
-                                    Image(systemName: "photo")
-                                        .frame(width: 60, height: 60)
-                                case .success(let image):
-                                    image.resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(maxWidth: 60, maxHeight: 60)
-                                case .failure:
-                                    Image(systemName: "photo")
-                                        .frame(width: 60, height: 60)
-                                @unknown default:
-                                    EmptyView()
-                                        .frame(width: 60, height: 60)
-                                }
-                            }
-                            .frame(width: 60, height: 60)
-                            Text(media.name)
-                                .font(.headline)
-                            Spacer()
-                            Text(media.attributes.groupTitle ?? "")
-                            Text(media.attributes.channelNumber ?? "")
-                        }
-                    }
-                    .buttonStyle(.plain)
+                    TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
                 }
             }
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
             .onMove { parsedPlaylist?.medias.move(fromOffsets: $0, toOffset: $1) }
         }
-        .listStyle(.inset)
-        .toolbarRole(.navigationStack)
-        .toolbar {
-            ToolbarItem {
-                EditButton()
-                    .buttonStyle(.borderless)
-            }
-        }
+        .listStyle(.plain)
         .navigationTitle("Unknown")
     }
     
@@ -276,65 +87,13 @@ struct TVFilteredView: View {
         List {
             ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.movie {
-                    NavigationLink {
-                        AZVideoPlayer(player: AVPlayer(url: media.url),
-                                      willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen,
-                                      willEndFullScreenPresentationWithAnimationCoordinator: willEndFullScreen)
-                        .aspectRatio(16/9, contentMode: .fit)
-                        // Adding .shadow(radius: 0) is necessary if
-                        // your player will be in a List on iOS 16.
-                        .shadow(radius: 0)
-                        .onDisappear {
-                            // onDisappear is called when full screen presentation begins, but the view is
-                            // not actually disappearing in this case so we don't want to reset the player
-                            guard !willBeginFullScreenPresentation else {
-                                willBeginFullScreenPresentation = false
-                                return
-                            }
-                            player?.pause()
-                            player?.seek(to: .zero)
-                        }
-                    } label: {
-                        HStack {
-                            AsyncImage(url: URL(string: media.attributes.logo!)) { phase in
-                                switch phase {
-                                case .empty:
-                                    Image(systemName: "photo")
-                                        .frame(width: 60, height: 60)
-                                case .success(let image):
-                                    image.resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(maxWidth: 60, maxHeight: 60)
-                                case .failure:
-                                    Image(systemName: "photo")
-                                        .frame(width: 60, height: 60)
-                                @unknown default:
-                                    EmptyView()
-                                        .frame(width: 60, height: 60)
-                                }
-                            }
-                            .frame(width: 60, height: 60)
-                            Text(media.name)
-                                .font(.headline)
-                            Spacer()
-                            Text(media.attributes.groupTitle ?? "")
-                            Text(media.attributes.channelNumber ?? "")
-                        }
-                    }
-                    .buttonStyle(.plain)
+                    TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
                 }
             }
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
             .onMove { parsedPlaylist?.medias.move(fromOffsets: $0, toOffset: $1) }
         }
-        .listStyle(.inset)
-        .toolbarRole(.navigationStack)
-        .toolbar {
-            ToolbarItem {
-                EditButton()
-                    .buttonStyle(.borderless)
-            }
-        }
+        .listStyle(.plain)
         .navigationTitle("Movies")
         
     }
@@ -343,3 +102,4 @@ struct TVFilteredView: View {
         EmptyView()
     }
 }
+

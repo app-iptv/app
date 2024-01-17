@@ -40,7 +40,8 @@ struct SettingsView: View {
                     } label: {
                         Image(systemName: "arrow.clockwise")
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(.bordered
+                    )
                 }
             } header: {
                 Text("M3U Settings")
