@@ -33,23 +33,26 @@ struct TVListItem: View {
         AZVideoPlayer.continuePlayingIfPlaying(player, coordinator)
     }
     
+    var playerView: some View {
+        AZVideoPlayer(player: AVPlayer(url: mediaURL),
+                      willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen,
+                      willEndFullScreenPresentationWithAnimationCoordinator: willEndFullScreen)
+        .aspectRatio(16/9, contentMode: .fit)
+        // Adding .shadow(radius: 0) is necessary if your player will be in a List on iOS 16.
+        .shadow(radius: 0)
+        .onDisappear {
+            // onDisappear is called when full screen presentation begins, but the view is not actually disappearing in this case so we don't want to reset the player
+            guard !willBeginFullScreenPresentation else {
+                willBeginFullScreenPresentation = false
+                return
+            }
+            player?.pause()
+        }
+    }
+    
     var body: some View {
         NavigationLink {
-            AZVideoPlayer(player: AVPlayer(url: mediaURL),
-                          willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen,
-                          willEndFullScreenPresentationWithAnimationCoordinator: willEndFullScreen)
-            .aspectRatio(16/9, contentMode: .fit)
-            // Adding .shadow(radius: 0) is necessary if your player will be in a List on iOS 16.
-            .shadow(radius: 0)
-            .onDisappear {
-                // onDisappear is called when full screen presentation begins, but the view is not actually disappearing in this case so we don't want to reset the player
-                guard !willBeginFullScreenPresentation else {
-                    willBeginFullScreenPresentation = false
-                    return
-                }
-                player?.pause()
-                player?.seek(to: .zero)
-            }
+            playerView
         } label: {
             HStack {
                 AsyncImage(url: URL(string: mediaLogo!)) { phase in
@@ -65,7 +68,7 @@ struct TVListItem: View {
                         Image(systemName: "photo")
                             .frame(width: 60, height: 60)
                     @unknown default:
-                        EmptyView()
+                        Image(systemName: "photo")
                             .frame(width: 60, height: 60)
                     }
                 }

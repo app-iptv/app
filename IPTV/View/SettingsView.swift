@@ -11,12 +11,12 @@ import Foundation
 
 struct SettingsView: View {
     
-    @State var playlistToParse = "https://iptv-org.github.io/iptv/countries/pt.m3u"
-    
     let parser = PlaylistParser()
+    
+    @State var playlistToParse = ""
 
     @Binding var parsedPlaylist: Playlist?
-
+    
     func parsePlaylist() {
         print("Parsing Playlist...")
         parser.parse(URL(string: playlistToParse)!) { result in
@@ -32,7 +32,7 @@ struct SettingsView: View {
     
     var body: some View {
         List {
-            Section {
+            Section(header: Text("M3U Settings")) {
                 HStack {
                     TextField("M3U Playlist", text: $playlistToParse)
                     Button {
@@ -40,14 +40,11 @@ struct SettingsView: View {
                     } label: {
                         Image(systemName: "arrow.clockwise")
                     }
-                    .buttonStyle(.bordered
-                    )
+                    .buttonStyle(.bordered)
                 }
-            } header: {
-                Text("M3U Settings")
             }
         }
-        .listStyle(.plain)
+        .listStyle(.insetGrouped)
         .navigationTitle("Setttings")
     }
 }

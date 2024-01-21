@@ -46,6 +46,11 @@ struct TVFilteredView: View {
             ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.live {
                     TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
+                        .contextMenu {
+                            ShareLink(item: media.url)
+                        } preview: {
+                            TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
+                        }
                 }
             }
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
@@ -60,6 +65,11 @@ struct TVFilteredView: View {
             ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.series {
                     TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
+                        .contextMenu {
+                            ShareLink(item: media.url)
+                        } preview: {
+                            TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
+                        }
                 }
             }
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
@@ -74,6 +84,11 @@ struct TVFilteredView: View {
             ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.unknown {
                     TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
+                        .contextMenu {
+                            ShareLink(item: media.url)
+                        } preview: {
+                            TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
+                        }
                 }
             }
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }
@@ -88,6 +103,11 @@ struct TVFilteredView: View {
             ForEach(searchResults, id: \.self) { media in
                 if media.kind == Playlist.Media.Kind.movie {
                     TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
+                        .contextMenu {
+                            ShareLink(item: media.url)
+                        } preview: {
+                            TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
+                        }
                 }
             }
             .onDelete { parsedPlaylist?.medias.remove(atOffsets: $0) }

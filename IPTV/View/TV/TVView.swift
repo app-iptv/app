@@ -40,8 +40,6 @@ struct TVView: View {
     
     @Binding var searchText: String
     
-    @State var refreshID = UUID()
-    
     var body: some View {
         NavigationSplitView {
             List(SidebarItem.allCases, id: \.self, selection: $sidebarSelection) { item in
@@ -64,16 +62,20 @@ struct TVView: View {
                 Spacer()
             }
             #endif
-        } content: {
+        } detail: {
             switch sidebarSelection {
             case .live:
                 TVFilteredView(parsedPlaylist: $parsedPlaylist, searchText: $searchText).live
+                    .searchable(text: $searchText, prompt: "Search Streams")
             case .series:
                 TVFilteredView(parsedPlaylist: $parsedPlaylist, searchText: $searchText).series
+                    .searchable(text: $searchText, prompt: "Search Streams")
             case .movies:
                 TVFilteredView(parsedPlaylist: $parsedPlaylist, searchText: $searchText).movies
+                    .searchable(text: $searchText, prompt: "Search Streams")
             case .unknown:
                 TVFilteredView(parsedPlaylist: $parsedPlaylist, searchText: $searchText).unknown
+                    .searchable(text: $searchText, prompt: "Search Streams")
             case nil:
                 ContentUnavailableView {
                     Label("Select Media Type", systemImage: "tv")
@@ -81,6 +83,6 @@ struct TVView: View {
                     Text("Once you select the media type, you can enjoy your selected content.")
                 }
             }
-        } detail: { }.searchable(text: $searchText, prompt: "Search Streams")
+        }
     }
 }
