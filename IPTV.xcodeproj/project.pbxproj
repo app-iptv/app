@@ -3,19 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F19A8392B42F91E00ADEDBD /* TVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F19A8382B42F91E00ADEDBD /* TVView.swift */; };
-		2F47D1362B4D8C31009CE4E8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F19A83D2B43025E00ADEDBD /* SettingsView.swift */; };
-		2FAE4C6E2B53FA6F000B12E6 /* AZVideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 2FAE4C6D2B53FA6F000B12E6 /* AZVideoPlayer */; };
-		2FAE4C712B53FA7F000B12E6 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FAE4C702B53FA7F000B12E6 /* M3UKit */; };
+		2F19A8392B42F91E00ADEDBD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F19A8382B42F91E00ADEDBD /* HomeView.swift */; };
+		2F26706F2B6029D400DB9F61 /* TVListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F26706E2B6029D400DB9F61 /* TVListItem.swift */; };
 		2FB75B852B41A9FE00A16501 /* IPTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB75B842B41A9FE00A16501 /* IPTVApp.swift */; };
 		2FB75B892B41A9FF00A16501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FB75B882B41A9FF00A16501 /* Assets.xcassets */; };
-		2FB75B962B41AC3C00A16501 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB75B952B41AC3C00A16501 /* ContentView.swift */; };
-		2FBFF3932B4DCBF900BB6E28 /* TVFilteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBFF3922B4DCBF900BB6E28 /* TVFilteredView.swift */; };
-		2FCBE64A2B570136004D135A /* TVListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBE6492B570136004D135A /* TVListItem.swift */; };
+		2FD3E44F2B650AC700AB6510 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD3E44E2B650AC700AB6510 /* M3UKit */; };
+		2FD3E4522B650AF400AB6510 /* AZVideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD3E4512B650AF400AB6510 /* AZVideoPlayer */; };
+		2FD3E4552B650B0E00AB6510 /* SavedPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3E4542B650B0E00AB6510 /* SavedPlaylist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,15 +30,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2F19A8382B42F91E00ADEDBD /* TVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVView.swift; sourceTree = "<group>"; };
-		2F19A83D2B43025E00ADEDBD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2F19A8382B42F91E00ADEDBD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2F26706E2B6029D400DB9F61 /* TVListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVListItem.swift; sourceTree = "<group>"; };
 		2FB75B812B41A9FE00A16501 /* IPTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IPTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FB75B842B41A9FE00A16501 /* IPTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPTVApp.swift; sourceTree = "<group>"; };
 		2FB75B882B41A9FF00A16501 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FB75B8A2B41A9FF00A16501 /* IPTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IPTV.entitlements; sourceTree = "<group>"; };
-		2FB75B952B41AC3C00A16501 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2FBFF3922B4DCBF900BB6E28 /* TVFilteredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFilteredView.swift; sourceTree = "<group>"; };
-		2FCBE6492B570136004D135A /* TVListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVListItem.swift; sourceTree = "<group>"; };
+		2FD3E4542B650B0E00AB6510 /* SavedPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlaylist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,8 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FAE4C6E2B53FA6F000B12E6 /* AZVideoPlayer in Frameworks */,
-				2FAE4C712B53FA7F000B12E6 /* M3UKit in Frameworks */,
+				2FD3E4522B650AF400AB6510 /* AZVideoPlayer in Frameworks */,
+				2FD3E44F2B650AC700AB6510 /* M3UKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,28 +55,20 @@
 		2F33E8712B449ACB008B112A /* TV */ = {
 			isa = PBXGroup;
 			children = (
-				2F19A8382B42F91E00ADEDBD /* TVView.swift */,
-				2FBFF3922B4DCBF900BB6E28 /* TVFilteredView.swift */,
-				2FCBE6492B570136004D135A /* TVListItem.swift */,
+				2F26706E2B6029D400DB9F61 /* TVListItem.swift */,
 			);
 			path = TV;
-			sourceTree = "<group>";
-		};
-		2F6C235C2B4C6AA900B27866 /* IPTV */ = {
-			isa = PBXGroup;
-			children = (
-				2FB75B992B41AE8B00A16501 /* View */,
-				2FB75B842B41A9FE00A16501 /* IPTVApp.swift */,
-				2FB75B882B41A9FF00A16501 /* Assets.xcassets */,
-				2FB75B8A2B41A9FF00A16501 /* IPTV.entitlements */,
-			);
-			path = IPTV;
 			sourceTree = "<group>";
 		};
 		2FB75B782B41A9FE00A16501 = {
 			isa = PBXGroup;
 			children = (
-				2F6C235C2B4C6AA900B27866 /* IPTV */,
+				2FD3E4532B650B0000AB6510 /* Source */,
+				2FB75B992B41AE8B00A16501 /* View */,
+				2F19A8382B42F91E00ADEDBD /* HomeView.swift */,
+				2FB75B842B41A9FE00A16501 /* IPTVApp.swift */,
+				2FB75B882B41A9FF00A16501 /* Assets.xcassets */,
+				2FB75B8A2B41A9FF00A16501 /* IPTV.entitlements */,
 				2FB75B822B41A9FE00A16501 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,10 +85,16 @@
 			isa = PBXGroup;
 			children = (
 				2F33E8712B449ACB008B112A /* TV */,
-				2FB75B952B41AC3C00A16501 /* ContentView.swift */,
-				2F19A83D2B43025E00ADEDBD /* SettingsView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2FD3E4532B650B0000AB6510 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2FD3E4542B650B0E00AB6510 /* SavedPlaylist.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,8 +115,8 @@
 			);
 			name = IPTV;
 			packageProductDependencies = (
-				2FAE4C6D2B53FA6F000B12E6 /* AZVideoPlayer */,
-				2FAE4C702B53FA7F000B12E6 /* M3UKit */,
+				2FD3E44E2B650AC700AB6510 /* M3UKit */,
+				2FD3E4512B650AF400AB6510 /* AZVideoPlayer */,
 			);
 			productName = IPTV;
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV.app */;
@@ -144,7 +138,7 @@
 				};
 			};
 			buildConfigurationList = 2FB75B7C2B41A9FE00A16501 /* Build configuration list for PBXProject "IPTV" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -153,8 +147,8 @@
 			);
 			mainGroup = 2FB75B782B41A9FE00A16501;
 			packageReferences = (
-				2FAE4C6C2B53FA6F000B12E6 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */,
-				2FAE4C6F2B53FA7F000B12E6 /* XCRemoteSwiftPackageReference "M3UKit" */,
+				2FD3E44D2B650AC700AB6510 /* XCRemoteSwiftPackageReference "M3UKit" */,
+				2FD3E4502B650AF400AB6510 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */,
 			);
 			productRefGroup = 2FB75B822B41A9FE00A16501 /* Products */;
 			projectDirPath = "";
@@ -181,12 +175,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FB75B962B41AC3C00A16501 /* ContentView.swift in Sources */,
-				2F47D1362B4D8C31009CE4E8 /* SettingsView.swift in Sources */,
 				2FB75B852B41A9FE00A16501 /* IPTVApp.swift in Sources */,
-				2F19A8392B42F91E00ADEDBD /* TVView.swift in Sources */,
-				2FCBE64A2B570136004D135A /* TVListItem.swift in Sources */,
-				2FBFF3932B4DCBF900BB6E28 /* TVFilteredView.swift in Sources */,
+				2F19A8392B42F91E00ADEDBD /* HomeView.swift in Sources */,
+				2FD3E4552B650B0E00AB6510 /* SavedPlaylist.swift in Sources */,
+				2F26706F2B6029D400DB9F61 /* TVListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,8 +314,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = IPTV/IPTV.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = IPTV.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -369,8 +361,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = IPTV/IPTV.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = IPTV.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -435,34 +427,34 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2FAE4C6C2B53FA6F000B12E6 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/adamzarn/AZVideoPlayer.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		2FAE4C6F2B53FA7F000B12E6 /* XCRemoteSwiftPackageReference "M3UKit" */ = {
+		2FD3E44D2B650AC700AB6510 /* XCRemoteSwiftPackageReference "M3UKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/omaralbeik/M3UKit";
 			requirement = {
-				kind = upToNextMinorVersion;
+				kind = upToNextMajorVersion;
 				minimumVersion = 0.8.1;
+			};
+		};
+		2FD3E4502B650AF400AB6510 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamzarn/AZVideoPlayer.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2FAE4C6D2B53FA6F000B12E6 /* AZVideoPlayer */ = {
+		2FD3E44E2B650AC700AB6510 /* M3UKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2FAE4C6C2B53FA6F000B12E6 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */;
-			productName = AZVideoPlayer;
-		};
-		2FAE4C702B53FA7F000B12E6 /* M3UKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FAE4C6F2B53FA7F000B12E6 /* XCRemoteSwiftPackageReference "M3UKit" */;
+			package = 2FD3E44D2B650AC700AB6510 /* XCRemoteSwiftPackageReference "M3UKit" */;
 			productName = M3UKit;
+		};
+		2FD3E4512B650AF400AB6510 /* AZVideoPlayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FD3E4502B650AF400AB6510 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */;
+			productName = AZVideoPlayer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

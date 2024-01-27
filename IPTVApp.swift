@@ -12,14 +12,10 @@ import SwiftData
 
 @main
 struct IPTVApp: App {
-    
-    @State var parsedPlaylist: Playlist? = nil
-    
-    @State var searchText: String = ""
-    
     var body: some Scene {
         WindowGroup {
-            ContentView(parsedPlaylist: $parsedPlaylist, searchText: $searchText)
+            HomeView()
         }
+        .modelContainer(for: SavedPlaylist.self)
     }
 }
