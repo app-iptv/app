@@ -27,11 +27,8 @@ struct TVListItem: View {
     func willEndFullScreen(_ playerViewController: AVPlayerViewController, _ coordinator: UIViewControllerTransitionCoordinator) { AZVideoPlayer.continuePlayingIfPlaying(player, coordinator) }
     
     var playerView: some View {
-        AZVideoPlayer(player: AVPlayer(url: mediaURL),
-                      willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen,
-                      willEndFullScreenPresentationWithAnimationCoordinator: willEndFullScreen)
+        AZVideoPlayer(player: AVPlayer(url: mediaURL), willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen, willEndFullScreenPresentationWithAnimationCoordinator: willEndFullScreen)
         .aspectRatio(16/9, contentMode: .fit)
-        // Adding .shadow(radius: 0) is necessary if your player will be in a List on iOS 16.
         .shadow(radius: 0)
         .onDisappear {
             guard !willBeginFullScreenPresentation else { willBeginFullScreenPresentation = false; return }
