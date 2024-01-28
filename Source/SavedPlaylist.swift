@@ -15,7 +15,7 @@ class SavedPlaylist: Identifiable {
     var name: String
     var playlist: Playlist?
     
-    init(id: UUID, name: String, playlist: Playlist? = nil) {
+    init(id: UUID = UUID(), name: String = "", playlist: Playlist? = nil) {
         self.id = id
         self.name = name
         self.playlist = playlist

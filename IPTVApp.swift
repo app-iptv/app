@@ -12,7 +12,9 @@ import SwiftData
 
 @main
 struct IPTVApp: App {
+    
     var body: some Scene {
+        
         WindowGroup {
             HomeView()
         }

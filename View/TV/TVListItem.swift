@@ -61,8 +61,10 @@ struct TVListItem: View {
                         Image(systemName: "photo")
                             .frame(width: 60, height: 60)
                     case .success(let image):
-                        image.resizable()
+                        image
+                            .resizable()
                             .aspectRatio(contentMode: .fit)
+                            .padding(5)
                             .frame(maxWidth: 60, maxHeight: 60)
                     case .failure:
                         Image(systemName: "photo")

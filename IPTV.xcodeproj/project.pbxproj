@@ -37,6 +37,7 @@
 		2FB75B882B41A9FF00A16501 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FB75B8A2B41A9FF00A16501 /* IPTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IPTV.entitlements; sourceTree = "<group>"; };
 		2FD3E4542B650B0E00AB6510 /* SavedPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlaylist.swift; sourceTree = "<group>"; };
+		2FDD48092B6687A2009D100B /* IPTV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "IPTV-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +64,7 @@
 		2FB75B782B41A9FE00A16501 = {
 			isa = PBXGroup;
 			children = (
+				2FDD48092B6687A2009D100B /* IPTV-Info.plist */,
 				2FD3E4532B650B0000AB6510 /* Source */,
 				2FB75B992B41AE8B00A16501 /* View */,
 				2F19A8382B42F91E00ADEDBD /* HomeView.swift */,
@@ -318,13 +320,14 @@
 				CODE_SIGN_ENTITLEMENTS = IPTV.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 98PM4FCU49;
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "IPTV-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = IPTV;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -341,7 +344,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pedrocordeiro.IPTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -365,13 +368,14 @@
 				CODE_SIGN_ENTITLEMENTS = IPTV.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 98PM4FCU49;
 				ENABLE_HARDENED_RUNTIME = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "IPTV-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = IPTV;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -388,7 +392,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pedrocordeiro.IPTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
