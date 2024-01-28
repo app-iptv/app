@@ -17,25 +17,43 @@ struct HomeView: View {
     
     @Query var parsedPlaylists: [SavedPlaylist]
     
+    var isDisabled: Bool {
+        if tempPlaylistName == "" {
+            return true
+        } else if tempPlaylistURL == "" {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    var searchResults: [SavedPlaylist] {
+        if searchText == "" {
+            return parsedPlaylists
+        } else {
+            return parsedPlaylists.filter { $0.name.contains(searchText) }
+        }
+    }
+
     let parser = PlaylistParser()
     
     @State var isPresented: Bool = false
     
-    @State var playlistToParse = ""
-    
     @State var searchText = ""
+    @State var mediaSearchText = ""
     
-    @State var tempParsedPlaylist: Playlist = Playlist(medias: [])
     @State var tempPlaylistName: String = ""
+    @State var tempPlaylistURL = ""
+    @State var tempPlaylist: Playlist = Playlist(medias: [])
     
     func parsePlaylist() async {
         print("Parsing Playlist...")
         await withCheckedContinuation { continuation in
-            parser.parse(URL(string: playlistToParse)!) { result in
+            parser.parse(URL(string: tempPlaylistURL)!) { result in
                 switch result {
                 case .success(let playlist):
                     print("Success")
-                    self.tempParsedPlaylist = playlist
+                    self.tempPlaylist = playlist
                     continuation.resume()
                 case .failure(let error):
                     print("Error: \(error)")
@@ -48,12 +66,12 @@ struct HomeView: View {
     func addPlaylist() {
         Task {
             await parsePlaylist()
+
             // This code runs after parsePlaylist is complete
-            
-            context.insert(SavedPlaylist(id: UUID(), name: tempPlaylistName, playlist: tempParsedPlaylist))
+            context.insert(SavedPlaylist(id: UUID(), name: tempPlaylistName, playlist: tempPlaylist))
             self.tempPlaylistName = ""
-            self.tempParsedPlaylist = Playlist(medias: [])
-            isPresented.toggle()
+            self.tempPlaylistURL = ""
+            self.tempPlaylist = Playlist(medias: [])
         }
     }
     
@@ -68,65 +86,44 @@ struct HomeView: View {
     }
     
     var sidebar: some View {
-        List {
-            ForEach(parsedPlaylists) { playlist in
-                NavigationLink(playlist.name) {
-                    List {
-                        
-                        var searchResults: [Playlist.Media] {
-                            if searchText == "" {
-                                return playlist.playlist?.medias ?? []
-                            } else {
-                                return playlist.playlist?.medias.filter { $0.name.contains(searchText) } ?? []
-                            }
+        List(searchResults) { playlist in
+            NavigationLink(playlist.name) {
+                List {
+                    var mediaSearchResults: [Playlist.Media] {
+                        if mediaSearchText == "" {
+                            return playlist.playlist?.medias ?? []
+                        } else {
+                            return playlist.playlist?.medias.filter { $0.name.contains(mediaSearchText) } ?? []
                         }
-                        
-                        ForEach(searchResults, id: \.self) { media in
-                            TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
-                        }
-                        .onDelete { playlist.playlist?.medias.remove(atOffsets: $0) }
-                        .onMove { playlist.playlist?.medias.move(fromOffsets: $0, toOffset: $1) }
                     }
-                    .searchable(text: $searchText, prompt: "Search Streams")
-                    .navigationTitle("Streams")
-                }
-                .swipeActions {
-                    Button("Delete", systemImage: "trash", role: .destructive) {
-                        context.delete(playlist)
+                    ForEach(mediaSearchResults, id: \.self) { media in
+                        TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
+                            .contextMenu { ShareLink(item: media.url) }
+                            .swipeActions(edge: .leading) { ShareLink(item: media.url) }
                     }
+                    .onDelete { playlist.playlist?.medias.remove(atOffsets: $0) }
+                    .onMove { playlist.playlist?.medias.move(fromOffsets: $0, toOffset: $1) }
                 }
+                .listStyle(.plain)
+                .searchable(text: $mediaSearchText, prompt: "Search Streams")
+                .navigationTitle(playlist.name)
+                .toolbar { EditButton() }
+            }
+            .swipeActions {
+                Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) }
             }
         }
         .navigationTitle("Playlists")
-        .sheet(isPresented: $isPresented) {
-            Form {
-                TextField("Playlist Name", text: $tempPlaylistName)
-                TextField("Playlist URL", text: $playlistToParse)
-                
-                Button {
-                    addPlaylist()
-                } label: {
-                    Label("Add Playlist", systemImage: "plus")
-                }
-            }
-            .toolbar {
-                ToolbarItem {
-                    Button {
-                        isPresented.toggle()
-                    } label: {
-                        Image(systemName: "xmark.circle")
-                    }
-                }
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigation) {
-                Button {
-                    isPresented.toggle()
-                } label: {
-                    Image(systemName: "plus")
-                }
-            }
-        }
+        .alert("Add Playlist", isPresented: $isPresented) {
+            TextField("Playlist Name", text: $tempPlaylistName)
+            TextField("Playlist URL", text: $tempPlaylistURL)
+            
+            Button("Add") { addPlaylist() }
+                .disabled(isDisabled)
+            
+            Button("Cancel", role: .cancel) { }
+            
+        } message: { Text("Add your playlist details.") }
+        .toolbar { ToolbarItem(id: "ADD_BUTTON", placement: .primaryAction) { Button { isPresented.toggle() } label: { Image(systemName: "plus") } } }
     }
 }

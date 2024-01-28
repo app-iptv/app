@@ -22,16 +22,9 @@ struct TVListItem: View {
     
     @State var willBeginFullScreenPresentation: Bool = false
     
-    func willBeginFullScreen(_ playerViewController: AVPlayerViewController,
-                             _ coordinator: UIViewControllerTransitionCoordinator) {
-        willBeginFullScreenPresentation = true
-    }
+    func willBeginFullScreen(_ playerViewController: AVPlayerViewController, _ coordinator: UIViewControllerTransitionCoordinator) { willBeginFullScreenPresentation = true }
     
-    func willEndFullScreen(_ playerViewController: AVPlayerViewController,
-                           _ coordinator: UIViewControllerTransitionCoordinator) {
-        // This is a static helper method provided by AZVideoPlayer to keep the video playing if it was playing when full screen presentation ended
-        AZVideoPlayer.continuePlayingIfPlaying(player, coordinator)
-    }
+    func willEndFullScreen(_ playerViewController: AVPlayerViewController, _ coordinator: UIViewControllerTransitionCoordinator) { AZVideoPlayer.continuePlayingIfPlaying(player, coordinator) }
     
     var playerView: some View {
         AZVideoPlayer(player: AVPlayer(url: mediaURL),
@@ -41,11 +34,7 @@ struct TVListItem: View {
         // Adding .shadow(radius: 0) is necessary if your player will be in a List on iOS 16.
         .shadow(radius: 0)
         .onDisappear {
-            // onDisappear is called when full screen presentation begins, but the view is not actually disappearing in this case so we don't want to reset the player
-            guard !willBeginFullScreenPresentation else {
-                willBeginFullScreenPresentation = false
-                return
-            }
+            guard !willBeginFullScreenPresentation else { willBeginFullScreenPresentation = false; return }
             player?.pause()
         }
     }
@@ -61,8 +50,10 @@ struct TVListItem: View {
                         Image(systemName: "photo")
                             .frame(width: 60, height: 60)
                     case .success(let image):
-                        image.resizable()
+                        image
+                            .resizable()
                             .aspectRatio(contentMode: .fit)
+                            .padding(5)
                             .frame(maxWidth: 60, maxHeight: 60)
                     case .failure:
                         Image(systemName: "photo")
