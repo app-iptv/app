@@ -98,8 +98,12 @@ struct HomeView: View {
                     }
                     ForEach(mediaSearchResults, id: \.self) { media in
                         TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
-                            .contextMenu { ShareLink(item: media.url) }
-                            .swipeActions(edge: .leading) { ShareLink(item: media.url) }
+                            .contextMenu {
+                                ShareLink(item: media.url)
+                            }
+                            .swipeActions(edge: .leading) {
+                                ShareLink(item: media.url)
+                            }
                     }
                     .onDelete { playlist.playlist?.medias.remove(atOffsets: $0) }
                     .onMove { playlist.playlist?.medias.move(fromOffsets: $0, toOffset: $1) }
@@ -107,7 +111,12 @@ struct HomeView: View {
                 .listStyle(.plain)
                 .searchable(text: $mediaSearchText, prompt: "Search Streams")
                 .navigationTitle(playlist.name)
-                .toolbar { EditButton() }
+                .toolbar {
+                    #if targetEnvironment(macCatalyst)
+                    #else
+                    EditButton()
+                    #endif
+                }
             }
             .swipeActions {
                 Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) }
