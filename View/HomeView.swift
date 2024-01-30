@@ -12,10 +12,12 @@ import AZVideoPlayer
 import SwiftData
 
 struct HomeView: View {
-
+    
     @Environment(\.modelContext) var context
     
     @Query var savedPlaylists: [SavedPlaylist]
+    
+    @State var selectedGroup: String = ""
     
     var isDisabled: Bool {
         if tempPlaylistName == "" {
@@ -66,8 +68,7 @@ struct HomeView: View {
     func addPlaylist() {
         Task {
             await parsePlaylist()
-
-            // This code runs after parsePlaylist is complete
+            
             context.insert(SavedPlaylist(id: UUID(), name: tempPlaylistName, playlist: tempPlaylist))
             self.tempPlaylistName = ""
             self.tempPlaylistURL = ""
@@ -76,27 +77,71 @@ struct HomeView: View {
     }
     
     var body: some View {
+        if savedPlaylists.isEmpty {
+            ContentUnavailableView(label: {
+                Label("No Playlists", systemImage: "list.and.film")
+            }, description: {
+                Text("Playlists that you add will appear here.")
+            }, actions: {
+                Button { isPresented.toggle() } label: { Label("Add Playlist", systemImage: "plus") }
+            })
+            .alert("Add Playlist", isPresented: $isPresented) {
+                TextField("Playlist Name", text: $tempPlaylistName)
+                TextField("Playlist URL", text: $tempPlaylistURL)
+                
+                Button("Add") { addPlaylist() }
+                    .disabled(isDisabled)
+                
+                Button("Cancel", role: .cancel) {
+                    tempPlaylist = Playlist(medias: [])
+                    tempPlaylistURL = ""
+                    tempPlaylistName = ""
+                }
+            } message: { Text("Add your playlist details.") }
+        } else {
+            NavigationSplitView {
+                sidebar
+                    .navigationTitle("Playlists")
+            } detail: { }
+                .alert("Add Playlist", isPresented: $isPresented) {
+                    TextField("Playlist Name", text: $tempPlaylistName)
+                    TextField("Playlist URL", text: $tempPlaylistURL)
+                    
+                    Button("Add") { addPlaylist() }
+                        .disabled(isDisabled)
+                    
+                    Button("Cancel", role: .cancel) {
+                        tempPlaylist = Playlist(medias: [])
+                        tempPlaylistURL = ""
+                        tempPlaylistName = ""
+                    }
+                } message: { Text("Add your playlist details.") }
+        }
+        
+        // Deprecated:
+        
+        /*
         NavigationSplitView {
-            VStack {
-                if savedPlaylists.isEmpty {
-                    ContentUnavailableView(label: {
-                        Label("No Playlists", systemImage: "list.and.film")
-                    }, description: {
-                        Text("Playlists that you add will appear here.")
-                    }, actions: {
-                        Button { isPresented.toggle() } label: { Label("Add Playlist", systemImage: "plus") }
-                    })
-                } else {
-                    sidebar
-                }
-            }
-            .toolbar {
-                ToolbarItem {
-                    Button { isPresented.toggle() } label: { Image(systemName: "plus") }
-                }
-                ToolbarItem {
-                    NavigationLink { SettingsView() } label: { Image(systemName: "gear") }
-                }
+            if savedPlaylists.isEmpty {
+                ContentUnavailableView(label: {
+                    Label("No Playlists", systemImage: "list.and.film")
+                }, description: {
+                    Text("Playlists that you add will appear here.")
+                }, actions: {
+                    Button { isPresented.toggle() } label: { Label("Add Playlist", systemImage: "plus") }
+                })
+            } else {
+                sidebar
+                    .navigationTitle("Playlists")
+                    .toolbarRole(.editor)
+                    .toolbar {
+                        ToolbarItem {
+                            Button { isPresented.toggle() } label: { Image(systemName: "plus") }
+                        }
+                        ToolbarItem {
+                            NavigationLink { SettingsView() } label: { Image(systemName: "gear") }
+                        }
+                    }
             }
         } detail: { }
             .alert("Add Playlist", isPresented: $isPresented) {
@@ -106,10 +151,17 @@ struct HomeView: View {
                 Button("Add") { addPlaylist() }
                     .disabled(isDisabled)
                 
-                Button("Cancel", role: .cancel) { }
+                Button("Cancel", role: .cancel) {
+                    tempPlaylist = Playlist(medias: [])
+                    tempPlaylistURL = ""
+                    tempPlaylistName = ""
+                }
                 
             } message: { Text("Add your playlist details.") }
+        */
     }
+    
+    @State var outerGroups: [String] = [""]
     
     var sidebar: some View {
         List(searchResults) { playlist in
@@ -122,32 +174,69 @@ struct HomeView: View {
                             return playlist.playlist?.medias.filter { $0.name.contains(mediaSearchText) } ?? []
                         }
                     }
-                    ForEach(mediaSearchResults, id: \.self) { media in
-                        NavigationLink {
-                            TVListItem(mediaURL: media.url)
-                        } label: {
-                            TVListItem(mediaURL: media.url, mediaName: media.name, mediaLogo: media.attributes.logo, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)).buttonCover
+                    
+                    var groups: [String] {
+                        var allGroups = Set(mediaSearchResults.compactMap { $0.attributes.groupTitle })
+                        allGroups.insert("All")
+                        return allGroups.sorted()
+                    }
+                    
+                    var filteredMedias: [Playlist.Media] {
+                        if selectedGroup == "All" {
+                            mediaSearchResults
+                        } else {
+                            mediaSearchResults.filter { $0.attributes.groupTitle == selectedGroup }
                         }
-                        .buttonStyle(.plain)
-                        .contextMenu { ShareLink(item: media.url) }
-                        .swipeActions(edge: .leading) { ShareLink(item: media.url) }
+                    }
+                    
+                    let _ = outerGroups = groups
+                    
+                    ForEach(filteredMedias, id: \.self) { media in
+                        let tvListItem = TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
+                        NavigationLink { tvListItem } label: { tvListItem.buttonCover }
+                            .buttonStyle(.plain)
+                            .contextMenu { ShareLink(item: media.url) }
+                            .swipeActions(edge: .leading) { ShareLink(item: media.url) }
                     }
                     .onDelete { playlist.playlist?.medias.remove(atOffsets: $0) }
                     .onMove { playlist.playlist?.medias.move(fromOffsets: $0, toOffset: $1) }
                 }
                 .listStyle(.plain)
                 .searchable(text: $mediaSearchText, prompt: "Search Streams")
-                .navigationTitle(playlist.name)
-                .toolbar { EditButton() }
+                .navigationTitle(playlist.name).contextMenu { Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) } }
+                .toolbarRole(.editor)
+                .toolbar(id: "playlistToolbar") {
+                    ToolbarItem(id: "Picker") {
+                        Picker("Select Group", selection: $selectedGroup) {
+                            ForEach(outerGroups, id: \.self) { group in
+                                if group == "All" {
+                                    Label {
+                                        Text(group)
+                                    } icon: {
+                                        Image(systemName: "tray.full")
+                                    }
+                                    .labelStyle(.titleAndIcon)
+                                    .tag(group)
+                                } else {
+                                    Text(group).tag(group)
+                                }
+                            }
+                        }
+                    }
+                    ToolbarItem(id: "addPlaylist") { Button { isPresented.toggle() } label: { Image(systemName: "plus") } }
+                    ToolbarItem(id: "settings") { NavigationLink { SettingsView() } label: { Image(systemName: "gear") } }
+                    #if targetEnvironment(macCatalyst)
+                    #else
+                    ToolbarItem(id: "editButton") { EditButton() }
+                    #endif
+                }
             } label: {
                 HStack {
                     Text(playlist.name)
                 }
             }
-            .swipeActions(edge: .trailing) {
-                Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) }
-            }
+            .swipeActions(edge: .trailing) { Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) } }
+            .contextMenu { Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) } }
         }
-        .navigationTitle("Playlists")
     }
 }
