@@ -15,7 +15,7 @@ struct HomeView: View {
 
     @Environment(\.modelContext) var context
     
-    @Query var parsedPlaylists: [SavedPlaylist]
+    @Query var savedPlaylists: [SavedPlaylist]
     
     var isDisabled: Bool {
         if tempPlaylistName == "" {
@@ -29,9 +29,9 @@ struct HomeView: View {
 
     var searchResults: [SavedPlaylist] {
         if searchText == "" {
-            return parsedPlaylists
+            return savedPlaylists
         } else {
-            return parsedPlaylists.filter { $0.name.contains(searchText) }
+            return savedPlaylists.filter { $0.name.contains(searchText) }
         }
     }
 
@@ -77,8 +77,38 @@ struct HomeView: View {
     
     var body: some View {
         NavigationSplitView {
-            sidebar
-        } content: { } detail: { }
+            VStack {
+                if savedPlaylists.isEmpty {
+                    ContentUnavailableView(label: {
+                        Label("No Playlists", systemImage: "list.and.film")
+                    }, description: {
+                        Text("Playlists that you add will appear here.")
+                    }, actions: {
+                        Button { isPresented.toggle() } label: { Label("Add Playlist", systemImage: "plus") }
+                    })
+                } else {
+                    sidebar
+                }
+            }
+            .toolbar {
+                ToolbarItem {
+                    Button { isPresented.toggle() } label: { Image(systemName: "plus") }
+                }
+                ToolbarItem {
+                    NavigationLink { SettingsView() } label: { Image(systemName: "gear") }
+                }
+            }
+        } detail: { }
+            .alert("Add Playlist", isPresented: $isPresented) {
+                TextField("Playlist Name", text: $tempPlaylistName)
+                TextField("Playlist URL", text: $tempPlaylistURL)
+                
+                Button("Add") { addPlaylist() }
+                    .disabled(isDisabled)
+                
+                Button("Cancel", role: .cancel) { }
+                
+            } message: { Text("Add your playlist details.") }
     }
     
     var sidebar: some View {
@@ -93,9 +123,14 @@ struct HomeView: View {
                         }
                     }
                     ForEach(mediaSearchResults, id: \.self) { media in
-                        TVListItem(mediaURL: media.url, mediaLogo: media.attributes.logo, mediaName: media.name, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)
-                            .contextMenu { ShareLink(item: media.url) }
-                            .swipeActions(edge: .leading) { ShareLink(item: media.url) }
+                        NavigationLink {
+                            TVListItem(mediaURL: media.url)
+                        } label: {
+                            TVListItem(mediaURL: media.url, mediaName: media.name, mediaLogo: media.attributes.logo, mediaGroupTitle: media.attributes.groupTitle, mediaChannelNumber: media.attributes.channelNumber)).buttonCover
+                        }
+                        .buttonStyle(.plain)
+                        .contextMenu { ShareLink(item: media.url) }
+                        .swipeActions(edge: .leading) { ShareLink(item: media.url) }
                     }
                     .onDelete { playlist.playlist?.medias.remove(atOffsets: $0) }
                     .onMove { playlist.playlist?.medias.move(fromOffsets: $0, toOffset: $1) }
@@ -114,20 +149,5 @@ struct HomeView: View {
             }
         }
         .navigationTitle("Playlists")
-        .alert("Add Playlist", isPresented: $isPresented) {
-            TextField("Playlist Name", text: $tempPlaylistName)
-            TextField("Playlist URL", text: $tempPlaylistURL)
-            
-            Button("Add") { addPlaylist() }
-                .disabled(isDisabled)
-            
-            Button("Cancel", role: .cancel) { }
-            
-        } message: { Text("Add your playlist details.") }
-        .toolbar {
-            ToolbarItem(id: "ADD_BUTTON", placement: .primaryAction) {
-                Button { isPresented.toggle() } label: { Image(systemName: "plus") }
-            }
-        }
     }
 }

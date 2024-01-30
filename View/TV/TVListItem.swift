@@ -26,7 +26,7 @@ struct TVListItem: View {
     
     func willEndFullScreen(_ playerViewController: AVPlayerViewController, _ coordinator: UIViewControllerTransitionCoordinator) { AZVideoPlayer.continuePlayingIfPlaying(player, coordinator) }
     
-    var playerView: some View {
+    var body: some View {
         AZVideoPlayer(player: AVPlayer(url: mediaURL), willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen, willEndFullScreenPresentationWithAnimationCoordinator: willEndFullScreen)
         .aspectRatio(16/9, contentMode: .fit)
         .shadow(radius: 0)
@@ -36,38 +36,33 @@ struct TVListItem: View {
         }
     }
     
-    var body: some View {
-        NavigationLink {
-            playerView
-        } label: {
-            HStack {
-                AsyncImage(url: URL(string: mediaLogo!)) { phase in
-                    switch phase {
-                    case .empty:
-                        Image(systemName: "photo")
-                            .frame(width: 60, height: 60)
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .padding(5)
-                            .frame(maxWidth: 60, maxHeight: 60)
-                    case .failure:
-                        Image(systemName: "photo")
-                            .frame(width: 60, height: 60)
-                    @unknown default:
-                        Image(systemName: "photo")
-                            .frame(width: 60, height: 60)
-                    }
+    var buttonCover: some View {
+        HStack {
+            AsyncImage(url: URL(string: mediaLogo!)) { phase in
+                switch phase {
+                case .empty:
+                    Image(systemName: "photo")
+                        .frame(width: 60, height: 60)
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(5)
+                        .frame(maxWidth: 60, maxHeight: 60)
+                case .failure:
+                    Image(systemName: "photo")
+                        .frame(width: 60, height: 60)
+                @unknown default:
+                    Image(systemName: "photo")
+                        .frame(width: 60, height: 60)
                 }
-                .frame(width: 60, height: 60)
-                Text(mediaName)
-                    .font(.headline)
-                Spacer()
-                Text(mediaGroupTitle ?? "")
-                Text(mediaChannelNumber ?? "")
             }
+            .frame(width: 60, height: 60)
+            Text(mediaName)
+                .font(.headline)
+            Spacer()
+            Text(mediaGroupTitle ?? "")
+            Text(mediaChannelNumber ?? "")
         }
-        .buttonStyle(.plain)
     }
 }

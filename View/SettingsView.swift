@@ -12,13 +12,11 @@ struct SettingsView: View {
     
     @Environment(\.modelContext) var context
     
-    @Query var parsedPlaylists: [SavedPlaylist]
-    
-    @State private var isExpanded: Bool = false
+    @Query var savedPlaylists: [SavedPlaylist]
     
     var body: some View {
-        List(parsedPlaylists) { playlist in
-            DisclosureGroup(playlist.name, isExpanded: $isExpanded) {
+        List(savedPlaylists) { playlist in
+            DisclosureGroup(" \(playlist.name)") {
                 
             }
         }
