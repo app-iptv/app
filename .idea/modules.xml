@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/IPTV.iml" filepath="$PROJECT_DIR$/.idea/IPTV.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/IPTV2.iml" filepath="$PROJECT_DIR$/.idea/IPTV2.iml" />
     </modules>
   </component>
 </project>

@@ -11,19 +11,20 @@ import SwiftData
 import PhotosUI
 import Photos
 import Foundation
+import EmojiPicker
 
 @Model
 class SavedPlaylist: Identifiable {
     @Attribute(.unique) var id: UUID
     var name: String
     var playlist: Playlist?
-    @Attribute(.externalStorage) var imageData: Data?
+    var emoji: Emoji?
     
-    init(id: UUID = UUID(), name: String = "", playlist: Playlist? = nil, imageData: Data? = nil) {
+    init(id: UUID = UUID(), name: String = "", playlist: Playlist? = nil, emoji: Emoji? = nil) {
         self.id = id
         self.name = name
         self.playlist = playlist
-        self.imageData = imageData
+        self.emoji = emoji
     }
 }
 
