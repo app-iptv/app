@@ -9,8 +9,8 @@ import SwiftUI
 import AVKit
 import M3UKit
 import SwiftData
-import EmojiPicker
 
+// MARK: HomeView
 struct HomeView: View {
     
     @Environment(\.modelContext) var context
@@ -42,89 +42,57 @@ struct HomeView: View {
     @State var outerGroups: [String] = []
     @State var selectedGroup: String = "All"
 
-    @State var searchText = ""
-    @State var mediaSearchText = ""
+    @State var searchText: String = ""
+    @State var mediaSearchText: String = ""
     
     @State var tempPlaylistName: String = ""
-    @State var tempPlaylistURL = ""
+    @State var tempPlaylistURL: String = ""
     @State var tempPlaylist: Playlist = Playlist(medias: [])
-    @State var tempPlaylistEmojiSelection: Emoji? = nil
     
-    func parsePlaylist() async {
-        print("Parsing Playlist...")
-        await withCheckedContinuation { continuation in
-            parser.parse(URL(string: tempPlaylistURL)!) { result in
-                switch result {
-                case .success(let playlist):
-                    print("Success")
-                    self.tempPlaylist = playlist
-                    continuation.resume()
-                case .failure(let error):
-                    print("Error: \(error)")
-                    continuation.resume()
-                }
-            }
-        }
-    }
-
-    func addPlaylist() {
-        Task {
-            await parsePlaylist()
-            
-            context.insert(SavedPlaylist(id: UUID(), name: tempPlaylistName, playlist: tempPlaylist, emoji: tempPlaylistEmojiSelection))
-            self.tempPlaylistName = ""
-            self.tempPlaylistURL = ""
-            self.tempPlaylist = Playlist(medias: [])
-            self.tempPlaylistEmojiSelection = nil
-            self.isPresented.toggle()
-        }
-    }
+    @State var playerPresented: Bool = false
     
-    struct AVPlayerView: UIViewControllerRepresentable { // i have no fucking idea what im doing
+    @State var parserDidFail: Bool = false
+    @State var parserError: String = ""
 
-        var videoURL: URL
-
-        private var player: AVPlayer {
-            return AVPlayer(url: videoURL)
-        }
-
-        func updateUIViewController(_ playerController: AVPlayerViewController, context: Context) {
-
-            playerController.player = player
-            playerController.player?.play()
-        }
-
-        func makeUIViewController(context: Context) -> AVPlayerViewController {
-            return AVPlayerViewController()
-        }
-    }
-
+    // MARK: NavigationSplitView
     var body: some View {
-        if savedPlaylists.isEmpty {
-            ContentUnavailableView(label: {
-                Label("No Playlists", systemImage: "list.and.film")
-            }, description: {
-                Text("Playlists that you add will appear here.")
-            }, actions: {
-                Button { isPresented.toggle() } label: { Label("Add Playlist", systemImage: "plus") }
-            })
-            .sheet(isPresented: $isPresented) {
-                alertView
+        VStack {
+            if savedPlaylists.isEmpty {
+                ContentUnavailableView(label: {
+                    Label("No Playlists", systemImage: "list.and.film")
+                }, description: {
+                    Text("Playlists that you add will appear here.")
+                }, actions: {
+                    Button { isPresented.toggle() } label: { Label("Add Playlist", systemImage: "plus") }
+                })
+                
+            } else {
+                NavigationSplitView {
+                    sidebar
+                        .navigationTitle("Playlists")
+                        .toolbar {
+                            ToolbarItem(id: "addPlaylist") { Button(action: {isPresented.toggle()}, label: { Image(systemName: "plus") }) }
+                            #if os(iOS)
+                            ToolbarItem(placement: .navigation) { NavigationLink { SettingsView() } label: { Label("Settings", systemImage: "gear") } }
+                            #endif
+                        }
+                } detail: { }
+                
             }
-        } else {
-            NavigationSplitView {
-                sidebar
-                    .navigationTitle("Playlists")
-                    .toolbar { ToolbarItem(id: "addPlaylist") { Button(action: addPlaylist, label: { Image(systemName: "plus") }).controlSize(.large) } }
-            } detail: { }
-                .sheet(isPresented: $isPresented) {
-                    alertView
-                }
+        }
+        .sheet(isPresented: $isPresented) {
+            addPlaylistView
+        }
+        .sheet(isPresented: $parserDidFail) {
+            errorSheetView
         }
     }
     
+    // MARK: Sidebar
     var sidebar: some View {
         List(searchResults) { playlist in
+            
+            // MARK: PlaylistItem
             NavigationLink {
                 List {
                     var mediaSearchResults: [Playlist.Media] {
@@ -141,8 +109,6 @@ struct HomeView: View {
                         return allGroups.sorted()
                     }
                     
-                    var _ = self.outerGroups = groups
-                    
                     var filteredMedias: [Playlist.Media] {
                         if selectedGroup == "All" {
                             mediaSearchResults
@@ -151,25 +117,20 @@ struct HomeView: View {
                         }
                     }
                     
+                    // MARK: MediaItem
                     ForEach(filteredMedias, id: \.self) { media in
                         NavigationLink {
-                            AVPlayerView(videoURL: media.url)
+                            PlayerView(videoURL: media.url)
                         } label: {
                             HStack {
-                                AsyncImage(url: URL(string: media.attributes.logo!)) { phase in
+                                AsyncImage(url: URL(string: media.attributes.logo ?? "")) { phase in
                                     switch phase {
-                                    case .empty:
-                                        Image(systemName: "photo")
-                                            .frame(width: 60, height: 60)
                                     case .success(let image):
                                         image
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .padding(5)
                                             .frame(maxWidth: 60, maxHeight: 60)
-                                    case .failure:
-                                        Image(systemName: "photo")
-                                            .frame(width: 60, height: 60)
                                     @unknown default:
                                         Image(systemName: "photo")
                                             .frame(width: 60, height: 60)
@@ -181,21 +142,13 @@ struct HomeView: View {
                                 Spacer()
                                 Text(media.attributes.groupTitle ?? "")
                                 Text(media.attributes.channelNumber ?? "")
-                                
-                                /*
-                                @State var buttonImageFavorite: String {
-                                    if media.isFavorited {
-                                        return "star.fill"
-                                    } else {
-                                        return "star"
-                                    }
-                                }
-                                */
                             }
                             .onAppear { self.outerGroups = groups } // This makes shit really slow. but without it, it wont work
                         }
                         .buttonStyle(.plain)
-                        .contextMenu { ShareLink(item: media.url) }
+                        .contextMenu {
+                            ShareLink(item: media.url)
+                        }
                         .swipeActions(edge: .leading) { ShareLink(item: media.url) }
                     }
                     .onDelete { playlist.playlist?.medias.remove(atOffsets: $0) }
@@ -203,7 +156,7 @@ struct HomeView: View {
                 }
                 .listStyle(.plain)
                 .searchable(text: $mediaSearchText, prompt: "Search Streams")
-                .navigationTitle(playlist.name).contextMenu { Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) } }
+                .navigationTitle(playlist.name)
                 .toolbarRole(.editor)
                 .toolbar(id: "playlistToolbar") {
                     ToolbarItem(id: "groupPicker") {
@@ -217,83 +170,96 @@ struct HomeView: View {
                             }
                         }.pickerStyle(.menu)
                     }
-                    ToolbarItem(id: "settings") { NavigationLink { SettingsView() } label: { Image(systemName: "gear") } }
-                    #if !targetEnvironment(macCatalyst)
+                    #if !os(macOS)
                     ToolbarItem(id: "editButton") { EditButton() }
                     #endif
                 }
             } label: {
-                HStack {
-                    Text(playlist.emoji?.value ?? "")
-                    Text(playlist.name)
-                }
+                Text(playlist.name)
             }
             .swipeActions(edge: .trailing) { Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) } }
             .contextMenu { Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) } }
         }
     }
     
-    var alertView: some View {
-        VStack {
-            #if targetEnvironment(macCatalyst)
-            VStack {
-                Text("Add Playlist")
-                    .font(.largeTitle)
-                    .padding()
-                
-                HStack {
-                    VStack {
-                        TextField("Playlist Name", text: $tempPlaylistName)
-                        Divider()
-                        TextField("Playlist URL", text: $tempPlaylistURL)
-                    }
-                    EmojiPickerView(selectedEmoji: $tempPlaylistEmojiSelection, searchEnabled: true)
-                        .frame(maxHeight: 300)
-                }
-                HStack(alignment: .center) {
-                    Button("Add") { addPlaylist() }
-                        .disabled(isDisabled)
-                    Button("Cancel") {
-                        isPresented.toggle()
-                        tempPlaylist = Playlist(medias: [])
-                        tempPlaylistURL = ""
-                        tempPlaylistName = ""
-                        tempPlaylistEmojiSelection = nil
-                    }
-                }
-            }.padding()
-            #else
-            VStack {
-                Text("Add Playlist")
-                    .font(.largeTitle)
-                    .padding()
-                VStack {
-                    TextField("Playlist Name", text: $tempPlaylistName)
-                    Divider()
-                    TextField("Playlist URL", text: $tempPlaylistURL)
-                }
-                EmojiPickerView(selectedEmoji: $tempPlaylistEmojiSelection, searchEnabled: true)
-                    .frame(maxHeight: 300)
-                    .padding()
-                HStack(alignment: .center) {
-                    Button("Add") { addPlaylist() }
-                        .disabled(isDisabled)
-                    Button("Cancel") {
-                        isPresented.toggle()
-                        tempPlaylist = Playlist(medias: [])
-                        tempPlaylistURL = ""
-                        tempPlaylistName = ""
-                        tempPlaylistEmojiSelection = nil
-                    }
+    public func parsePlaylist() async {
+        print("Parsing Playlist...")
+        await withCheckedContinuation { continuation in
+            parser.parse(URL(string: tempPlaylistURL)!) { result in
+                switch result {
+                case .success(let playlist):
+                    print("Success")
+                    self.tempPlaylist = playlist
+                    self.parserDidFail = false
+                    continuation.resume()
+                case .failure(let error):
+                    print("Error: \(error)")
+                    self.parserError = "\(error)"
+                    self.parserDidFail = true
+                    continuation.resume()
                 }
             }
-            #endif
         }
     }
-}
-
-extension Playlist.Media {
-    var isFavorited: Bool {
-        return false
+    
+    public func addPlaylist() {
+        Task {
+            await parsePlaylist()
+            
+            if parserDidFail {
+                self.tempPlaylistName = ""
+                self.tempPlaylistURL = ""
+                self.tempPlaylist = Playlist(medias: [])
+                self.isPresented.toggle()
+            } else {
+                context.insert(SavedPlaylist(id: UUID(), name: tempPlaylistName, playlist: tempPlaylist))
+                self.tempPlaylistName = ""
+                self.tempPlaylistURL = ""
+                self.tempPlaylist = Playlist(medias: [])
+                self.isPresented.toggle()
+            }
+        }
+    }
+    
+    // MARK: AlertSheetView
+    var addPlaylistView: some View {
+        VStack {
+            Text("Add Playlist")
+                .font(.largeTitle)
+                .bold()
+                .padding()
+            
+            VStack {
+                TextField("Playlist Name", text: $tempPlaylistName)
+                Divider()
+                TextField("Playlist URL", text: $tempPlaylistURL)
+            }
+            
+            HStack(alignment: .center) {
+                Button("Add") {
+                    addPlaylist()
+                }.disabled(isDisabled).buttonStyle(.borderedProminent)
+                
+                Spacer().frame(width: 20)
+                
+                Button("Cancel") {
+                    isPresented.toggle()
+                    tempPlaylist = Playlist(medias: [])
+                    tempPlaylistURL = ""
+                    tempPlaylistName = ""
+                }
+            }.padding()
+        }.padding().presentationDetents([.medium, .large])
+    }
+    
+    // MARK: ErrorSheetView
+    var errorSheetView: some View {
+        ContentUnavailableView {
+            Label("Error Parsing Playlist", systemImage: "exclamationmark.circle.fill")
+        } description: {
+            Text(parserError)
+        } actions: {
+            Button("Close") { parserDidFail.toggle() }
+        } .padding()
     }
 }

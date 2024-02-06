@@ -33,7 +33,10 @@ struct SettingsView: View {
     @State var tempPlaylistURL: String = ""
     @State var tempPlaylist: Playlist = Playlist(medias: [])
     
-    func parsePlaylist() async {
+    @State var parserDidFail: Bool = false
+    @State var parserError: String = ""
+    
+    public func parsePlaylist() async {
         print("Parsing Playlist...")
         await withCheckedContinuation { continuation in
             parser.parse(URL(string: tempPlaylistURL)!) { result in
@@ -41,70 +44,100 @@ struct SettingsView: View {
                 case .success(let playlist):
                     print("Success")
                     self.tempPlaylist = playlist
+                    self.parserDidFail = false
                     continuation.resume()
                 case .failure(let error):
                     print("Error: \(error)")
+                    self.parserError = "\(error)"
+                    self.parserDidFail = true
                     continuation.resume()
                 }
             }
         }
     }
     
-    func addPlaylist() {
+    public func addPlaylist() {
         Task {
             await parsePlaylist()
             
-            context.insert(SavedPlaylist(id: UUID(), name: tempPlaylistName, playlist: tempPlaylist))
-            self.tempPlaylistName = ""
-            self.tempPlaylistURL = ""
-            self.tempPlaylist = Playlist(medias: [])
+            if parserDidFail {
+                self.tempPlaylistName = ""
+                self.tempPlaylistURL = ""
+                self.tempPlaylist = Playlist(medias: [])
+                self.isPresented.toggle()
+            } else {
+                context.insert(SavedPlaylist(id: UUID(), name: tempPlaylistName, playlist: tempPlaylist))
+                self.tempPlaylistName = ""
+                self.tempPlaylistURL = ""
+                self.tempPlaylist = Playlist(medias: [])
+                self.isPresented.toggle()
+            }
         }
     }
     
     var body: some View {
-        VStack {
-            List(savedPlaylists) { playlist in
-                #if targetEnvironment(macCatalyst)
-                DisclosureGroup(" \(playlist.name)") {
-                    
-                }
-                #else
-                DisclosureGroup(playlist.name) {
-                    
-                }
-                #endif
-            }
-            .listStyle(.plain)
-            HStack {
-                Button {
-                    isPresented.toggle()
+        Form {
+            ForEach(savedPlaylists) { playlist in
+                NavigationLink {
+                    Text(playlist.name)
                 } label: {
-                    Label(
-                        title: { Text("Add Playlist") },
-                        icon: { Image(systemName: "plus.circle") }
-                    )
+                    Text(playlist.name)
                 }
-                .buttonStyle(.borderless)
-                Spacer()
+                
             }
-            .padding()
         }
-        .alert("Add Playlist", isPresented: $isPresented) {
-            TextField("Playlist Name", text: $tempPlaylistName)
-            TextField("Playlist URL", text: $tempPlaylistURL)
-            
-            Button("Add") { addPlaylist() }
-                .disabled(isDisabled)
-            
-            Button("Cancel", role: .cancel) {
-                tempPlaylist = Playlist(medias: [])
-                tempPlaylistURL = ""
-                tempPlaylistName = ""
-            }
-        } message: { Text("Add your playlist details.") }
+        .frame(width: 500)
+        .padding()
+        .toolbar {
+            ToolbarItem(id: "addPlaylist") { Button(action: {isPresented.toggle()}, label: { Image(systemName: "plus") }) }
+        }
+        .sheet(isPresented: $isPresented) {
+            addPlaylistView
+        }
+        .sheet(isPresented: $isPresented) {
+            errorSheetView
+        }
     }
-}
-
-#Preview("Settings View") {
-    SettingsView()
+    
+    // MARK: AlertSheetView
+    var addPlaylistView: some View {
+        VStack {
+            Text("Add Playlist")
+                .font(.largeTitle)
+                .bold()
+                .padding()
+            
+            VStack {
+                TextField("Playlist Name", text: $tempPlaylistName)
+                Divider()
+                TextField("Playlist URL", text: $tempPlaylistURL)
+            }
+            
+            HStack(alignment: .center) {
+                Button("Add") {
+                    addPlaylist()
+                }.disabled(isDisabled).buttonStyle(.borderedProminent)
+                
+                Spacer().frame(width: 20)
+                
+                Button("Cancel") {
+                    isPresented.toggle()
+                    tempPlaylist = Playlist(medias: [])
+                    tempPlaylistURL = ""
+                    tempPlaylistName = ""
+                }
+            }.padding()
+        }.padding().presentationDetents([.height(200)])
+    }
+    
+    // MARK: ErrorSheetView
+    var errorSheetView: some View {
+        ContentUnavailableView {
+            Label("Error Parsing Playlist", systemImage: "exclamationmark.circle.fill")
+        } description: {
+            Text(parserError)
+        } actions: {
+            Button("Close") { parserDidFail.toggle() }
+        }
+    }
 }

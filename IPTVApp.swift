@@ -12,10 +12,17 @@ import SwiftData
 
 @main
 struct IPTVApp: App {
+    
     var body: some Scene {
+        
         WindowGroup {
             HomeView()
-                .modelContainer(for: SavedPlaylist.self)
-        }
+        }.modelContainer(for: [SavedPlaylist.self])
+        
+        #if os(macOS)
+        Settings {
+            SettingsView()
+        }.modelContainer(for: [SavedPlaylist.self])
+        #endif
     }
 }

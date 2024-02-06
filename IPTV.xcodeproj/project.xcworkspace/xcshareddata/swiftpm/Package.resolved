@@ -1,30 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "emojipicker",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kelvas09/EmojiPicker.git",
-      "state" : {
-        "revision" : "d787591e2121b617209172ad6a8ebf2975f605ae",
-        "version" : "1.0.1"
-      }
-    },
-    {
       "identity" : "m3ukit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/omaralbeik/M3UKit",
       "state" : {
         "revision" : "a84b4d72ddb3f6fcce78752bddd9ac8fe91bf94e",
         "version" : "0.8.1"
-      }
-    },
-    {
-      "identity" : "smile",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/onmyway133/Smile",
-      "state" : {
-        "revision" : "40604722a7a56f735124e069fcbb58307637744b",
-        "version" : "2.1.0"
       }
     }
   ],
