@@ -37,7 +37,7 @@ struct HomeView: View {
 
     let parser = PlaylistParser()
     
-    @State var isPresented: Bool = false
+    @Binding var isPresented: Bool
     
     @State var outerGroups: [String] = []
     @State var selectedGroup: String = "All"
