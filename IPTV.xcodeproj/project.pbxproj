@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2F10D8952B70053B00C6847C /* AVPlayerViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F10D8942B70053B00C6847C /* AVPlayerViewControllerRepresentable.swift */; };
+		2F648F4A2B73BE9D00779E71 /* PlaylistViewingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F648F492B73BE9D00779E71 /* PlaylistViewingViewModel.swift */; };
 		2F73C7CB2B69390600547B76 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7C92B69390600547B76 /* SettingsView.swift */; };
 		2F73C7CC2B69390600547B76 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CA2B69390600547B76 /* HomeView.swift */; };
 		2F73C7CE2B69396C00547B76 /* SavedPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CD2B69396C00547B76 /* SavedPlaylist.swift */; };
+		2FB2C4712B753614007E7301 /* MediaRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2C4702B753614007E7301 /* MediaRow.swift */; };
+		2FB2C4732B753CBD007E7301 /* SidebarList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2C4722B753CBD007E7301 /* SidebarList.swift */; };
 		2FB75B852B41A9FE00A16501 /* IPTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB75B842B41A9FE00A16501 /* IPTVApp.swift */; };
 		2FB75B892B41A9FF00A16501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FB75B882B41A9FF00A16501 /* Assets.xcassets */; };
 		2FD3E44F2B650AC700AB6510 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD3E44E2B650AC700AB6510 /* M3UKit */; };
@@ -30,12 +33,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2F10D8942B70053B00C6847C /* AVPlayerViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerViewControllerRepresentable.swift; sourceTree = "<group>"; };
-		2F73C7C92B69390600547B76 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		2F73C7CA2B69390600547B76 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		2F73C7CD2B69396C00547B76 /* SavedPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylist.swift; sourceTree = "<group>"; };
+		2F10D8942B70053B00C6847C /* AVPlayerViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerViewControllerRepresentable.swift; sourceTree = "<group>"; usesTabs = 1; };
+		2F648F492B73BE9D00779E71 /* PlaylistViewingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewingViewModel.swift; sourceTree = "<group>"; usesTabs = 1; };
+		2F73C7C92B69390600547B76 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; usesTabs = 1; };
+		2F73C7CA2B69390600547B76 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; usesTabs = 1; };
+		2F73C7CD2B69396C00547B76 /* SavedPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylist.swift; sourceTree = "<group>"; usesTabs = 1; };
+		2FB2C4702B753614007E7301 /* MediaRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRow.swift; sourceTree = "<group>"; usesTabs = 1; };
+		2FB2C4722B753CBD007E7301 /* SidebarList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarList.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2FB75B812B41A9FE00A16501 /* IPTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IPTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2FB75B842B41A9FE00A16501 /* IPTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPTVApp.swift; sourceTree = "<group>"; };
+		2FB75B842B41A9FE00A16501 /* IPTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPTVApp.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2FB75B882B41A9FF00A16501 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FB75B8A2B41A9FF00A16501 /* IPTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IPTV.entitlements; sourceTree = "<group>"; };
 		2FDD48092B6687A2009D100B /* IPTV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "IPTV-Info.plist"; sourceTree = "<group>"; };
@@ -53,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FB2C46F2B753604007E7301 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2FB2C4702B753614007E7301 /* MediaRow.swift */,
+				2FB2C4722B753CBD007E7301 /* SidebarList.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		2FB75B782B41A9FE00A16501 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +92,7 @@
 		2FB75B992B41AE8B00A16501 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2FB2C46F2B753604007E7301 /* ViewModel */,
 				2F73C7CA2B69390600547B76 /* HomeView.swift */,
 				2F73C7C92B69390600547B76 /* SettingsView.swift */,
 			);
@@ -88,6 +104,7 @@
 			children = (
 				2F73C7CD2B69396C00547B76 /* SavedPlaylist.swift */,
 				2F10D8942B70053B00C6847C /* AVPlayerViewControllerRepresentable.swift */,
+				2F648F492B73BE9D00779E71 /* PlaylistViewingViewModel.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -169,9 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F648F4A2B73BE9D00779E71 /* PlaylistViewingViewModel.swift in Sources */,
 				2F10D8952B70053B00C6847C /* AVPlayerViewControllerRepresentable.swift in Sources */,
+				2FB2C4732B753CBD007E7301 /* SidebarList.swift in Sources */,
 				2F73C7CE2B69396C00547B76 /* SavedPlaylist.swift in Sources */,
 				2FB75B852B41A9FE00A16501 /* IPTVApp.swift in Sources */,
+				2FB2C4712B753614007E7301 /* MediaRow.swift in Sources */,
 				2F73C7CB2B69390600547B76 /* SettingsView.swift in Sources */,
 				2F73C7CC2B69390600547B76 /* HomeView.swift in Sources */,
 			);
@@ -345,13 +365,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
 				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Debug;
@@ -397,13 +417,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
 				TVOS_DEPLOYMENT_TARGET = 17.0;
 			};
 			name = Release;
