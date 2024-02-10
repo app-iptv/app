@@ -60,6 +60,9 @@ struct HomeView: View {
 	@State var parserDidFail: Bool = false
 	@State var parserError: String = ""
 	
+	@State var selectedPlaylist: Playlist = Playlist(medias: [])
+	@State var selectedMedia: Playlist.Media = Playlist.Media(duration: 0, attributes: Playlist.Media.Attributes(), kind: Playlist.Media.Kind.unknown, name: "", url: URL(string: "")!)
+	
 	// MARK: ParsePlaylistFunc
 	func parsePlaylist() async {
 		print("Parsing Playlist...")
@@ -122,7 +125,6 @@ struct HomeView: View {
 			}
 			
 		} else {
-			#if os(macOS)
 			NavigationStack {
 				List(searchResults) { playlist in
 					PlaylistRow(playlist: playlist, mediaSearchText: $mediaSearchText, selectedGroup: $selectedGroup, outerGroups: $outerGroups, selectedSortingOption: $selectedSortingOption)
@@ -179,145 +181,69 @@ struct HomeView: View {
 					}
 					.navigationDestination(for: Playlist.Media.self) { media in
 						PlayerView(playlistName: playlist.name, media: media)
-#if os(macOS)
+							#if os(macOS)
 							.navigationTitle(playlist.name)
 							.navigationSubtitle(media.name)
-#else
+							#else
 							.navigationTitle(media.name)
 							.navigationBarTitleDisplayMode(.inline)
-#endif
+							#endif
 					}
-					.id(mediaSearchText)
 					.navigationSplitViewColumnWidth(min: 200, ideal: 150, max: 300)
 					.navigationTitle(playlist.name)
 					.listStyle(.plain)
-					.searchable(text: $mediaSearchText, prompt: "Search Streams")
+					.searchable(text: $mediaSearchText, prompt: "Search Streams").id(UUID())
 					.onAppear { self.outerGroups = groups }
 					.toolbar(id: "playlistToolbar") {
-						ToolbarItem(id: "groupPicker") {
-							Picker("Select Groups", selection: $selectedGroup) {
-								ForEach(outerGroups, id: \.self) { group in
-									if group == "All" {
-										Label(group, systemImage: "tray.full").tag(group)
-									} else {
-										Text(group).tag(group)
-									}
-								}
-							}.pickerStyle(.menu)
-						}
-						ToolbarItem(id: "sortingOptionsPicker") {
-							Picker("Sort", selection: $selectedSortingOption) {
-								ForEach(SortingOption.allCases) { option in
-									option.label
-										.tag(option)
-								}
-							}.pickerStyle(.segmented)
-						}
-#if !os(macOS)
-						ToolbarItem(id: "editButton") { EditButton() }
-#endif
-					}
-				}
-				.listStyle(.sidebar)
-				.navigationTitle("Playlists")
-				.navigationSplitViewColumnWidth(min: 175, ideal: 200, max: 300)
-				.toolbar {
-					ToolbarItem(id: "addPlaylist") { Button("Add Playlist", systemImage: "plus") { isPresented.toggle() } }
-				}
-			}
-			#else
-			NavigationStack {
-				List(searchResults) { playlist in
-					PlaylistRow(playlist: playlist, mediaSearchText: $mediaSearchText, selectedGroup: $selectedGroup, outerGroups: $outerGroups, selectedSortingOption: $selectedSortingOption)
-				}
-				.navigationDestination(for: SavedPlaylist.self) { playlist in
-					var mediaSearchResults: [Playlist.Media] {
-						if mediaSearchText == "" {
-							return playlist.playlist?.medias ?? []
-						} else {
-							return playlist.playlist?.medias.filter { $0.name.lowercased().contains(mediaSearchText.lowercased()) } ?? []
-						}
-					}
-					
-					var groups: [String] {
-						var allGroups = Set(mediaSearchResults.compactMap { $0.attributes.groupTitle })
-						allGroups.insert("All")
-						return allGroups.sorted()
-					}
-					
-					var sortedMedias: [Playlist.Media] {
-						switch selectedSortingOption {
-							case .country:
-								return mediaSearchResults.sorted { $0.attributes.country ?? "Z" < $1.attributes.country ?? "Z" }
-							case .alphabetical:
-								return mediaSearchResults.sorted { $0.name < $1.name }
-							case .language:
-								return mediaSearchResults.sorted { $0.attributes.language ?? "Z" < $1.attributes.language ?? "Z" }
-							case .kind:
-								return mediaSearchResults.sorted { $0.attributes.groupTitle ?? "Z" < $1.attributes.groupTitle ?? "Z" }
-							case .normal:
-								return mediaSearchResults
-						}
-					}
-					
-					var filteredMedias: [Playlist.Media] {
-						if selectedGroup == "All" {
-							sortedMedias
-						} else {
-							sortedMedias.filter { $0.attributes.groupTitle == selectedGroup }
-						}
-					}
-					
-					List(filteredMedias, id: \.self) { media in
-						
-						// MARK: MediaItem
-						MediaRow(media: media, navigationTitle: playlist.name, playlistName: playlist.name)
-							.buttonStyle(.plain)
-							.contextMenu {
-								ShareLink(item: media.url, preview: SharePreview(media.name, image: media.attributes.logo ?? ""))
-							}
-							.swipeActions(edge: .leading) {
-								ShareLink(item: media.url, preview: SharePreview(media.name, image: media.attributes.logo ?? ""))
-							}
-					}
-					.navigationDestination(for: Playlist.Media.self) { media in
-						PlayerView(playlistName: playlist.name, media: media)
-#if os(macOS)
-							.navigationTitle(playlistName)
-							.navigationSubtitle(media.name)
-#else
-							.navigationTitle(media.name)
-							.navigationBarTitleDisplayMode(.inline)
-#endif
-					}
-					.id(mediaSearchText)
-					.navigationSplitViewColumnWidth(min: 200, ideal: 150, max: 300)
-					.navigationTitle(playlist.name)
-					.listStyle(.plain)
-					.searchable(text: $mediaSearchText, prompt: "Search Streams")
-					.onAppear { self.outerGroups = groups }
-					.toolbar(id: "playlistToolbar") {
-						ToolbarItem(id: "groupPicker") {
-							Picker("Select Groups", selection: $selectedGroup) {
-								ForEach(outerGroups, id: \.self) { group in
-									if group == "All" {
-										Label(group, systemImage: "tray.full").tag(group)
-									} else {
-										Text(group).tag(group)
-									}
-								}
-							}.pickerStyle(.menu)
-						}
-						ToolbarItem(id: "sortingOptionsPicker") {
-							Picker("Sort", selection: $selectedSortingOption) {
-								ForEach(SortingOption.allCases) { option in
-									option.label
-										.tag(option)
-								}
-							}.pickerStyle(.segmented)
-						}
 						#if !os(macOS)
+						ToolbarItem(id: "groupPicker", placement: .topBarLeading) {
+							Menu {
+								Picker("Group", selection: $selectedGroup) {
+									ForEach(outerGroups, id: \.self) { group in
+										if group == "All" {
+											Label(group, systemImage: "tray.full").tag(group)
+										} else {
+											Text(group).tag(group)
+										}
+									}
+								}
+							} label: {
+								if selectedGroup == "All" {
+									Label("All", systemImage: "tray.full")
+								} else {
+									Label("Group", systemImage: "tray")
+								}
+							}
+						}
+						ToolbarItem(id: "sortingOptionsPicker", placement: .status) {
+							Picker("Sort", selection: $selectedSortingOption) {
+								ForEach(SortingOption.allCases) { option in
+									option.label
+										.tag(option)
+								}
+							}.pickerStyle(.segmented)
+						}
 						ToolbarItem(id: "editButton") { EditButton() }
+						#else
+						ToolbarItem(id: "groupPicker") {
+							Picker("Select Groups", selection: $selectedGroup) {
+								ForEach(outerGroups, id: \.self) { group in
+									if group == "All" {
+										Label(group, systemImage: "tray.full").tag(group)
+									} else {
+										Text(group).tag(group)
+									}
+								}
+							}.pickerStyle(.menu)
+						}
+						ToolbarItem(id: "sortingOptionsPicker") {
+							Picker("Sort", selection: $selectedSortingOption) {
+								ForEach(SortingOption.allCases) { option in
+									option.label
+										.tag(option)
+								}
+							}.pickerStyle(.segmented)
+						}
 						#endif
 					}
 				}
@@ -328,7 +254,6 @@ struct HomeView: View {
 					ToolbarItem(id: "addPlaylist") { Button("Add Playlist", systemImage: "plus") { isPresented.toggle() } }
 				}
 			}
-			#endif
 		}
 	}
 	

@@ -93,9 +93,9 @@
 			children = (
 				2FB2C46F2B753604007E7301 /* ViewModel */,
 				2FB2C4702B753614007E7301 /* MediaRow.swift */,
+				2FD56BBD2B78014D00D34079 /* PlaylistRow.swift */,
 				2F73C7CA2B69390600547B76 /* HomeView.swift */,
 				2F73C7C92B69390600547B76 /* SettingsView.swift */,
-				2FD56BBD2B78014D00D34079 /* PlaylistRow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
