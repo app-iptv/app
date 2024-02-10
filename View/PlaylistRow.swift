@@ -20,8 +20,10 @@ struct PlaylistRow: View {
 	@Binding var selectedSortingOption: SortingOption
 	
 	var body: some View {
-		NavigationLink(value: playlist) {
-			Text(playlist.name)
+		LazyVStack(alignment: .leading) {
+			NavigationLink(value: playlist) {
+				Text(playlist.name)
+			}
 		}
 		.swipeActions(edge: .trailing) { Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) } }
 		.contextMenu { Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) } }
