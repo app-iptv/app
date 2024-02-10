@@ -17,16 +17,31 @@ struct IPTVApp: App {
 	
 	var body: some Scene {
 		
-		WindowGroup(id: "main") {
+		#if os(macOS)
+		Window("IPTV", id: "main") {
 			HomeView(isPresented: $isPresented)
-				.modelContainer(for: [SavedPlaylist.self])
-		}.commands {
+		}
+		.modelContainer(for: [SavedPlaylist.self])
+		.commands {
 			CommandGroup(replacing: .newItem) {
 				Button("New Playlist") {
 					isPresented.toggle()
-				}.keyboardShortcut("N", modifiers: [.command, .shift])
+				}.keyboardShortcut("N", modifiers: [.command])
 			}
 		}
+		#else
+		WindowGroup(id: "main") {
+			HomeView(isPresented: $isPresented)
+		}
+		.modelContainer(for: [SavedPlaylist.self])
+		.commands {
+			CommandGroup(replacing: .newItem) {
+				Button("New Playlist") {
+					isPresented.toggle()
+				}.keyboardShortcut("N", modifiers: [.command])
+			}
+		}
+		#endif
 		
 #if os(macOS)
 		Settings {
