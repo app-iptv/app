@@ -20,7 +20,7 @@ class SavedPlaylist: Identifiable {
 	init(id: UUID = UUID(), name: String = "", playlist: Playlist? = nil, m3uLink: String = "") {
 		self.id 		= id
 		self.name 		= name
-		self.playlist	= playlist
+		self.playlist 	= playlist
 		self.m3uLink 	= m3uLink
 	}
 }

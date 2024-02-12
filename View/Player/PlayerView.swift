@@ -1,5 +1,5 @@
 //
-//  AVPlayerViewControllerRepresentable.swift
+//  PlayerView.swift
 //  IPTV
 //
 //  Created by Pedro Cordeiro on 04/02/2024.
@@ -12,21 +12,15 @@ import M3UKit
 
 // MARK: AVPlayerViewControllerRepresentable
 #if os(macOS)
-struct PlayerView: NSViewRepresentable {
+struct PlayerView: NSViewRepresentable { // i have no fucking idea what im doing
 	
-	var playlistName: String
-	var media: Playlist.Media
+	@Binding var media: Playlist.Media?
 	
 	func updateNSView(_ nsView: AVPlayerView, context: Context) {
-		// Here you can update the player view if needed, based on your app's state
-	}
-	
-	func makeNSView(context: Context) -> AVPlayerView {
-		
-		let urlWithoutExtension: URL = media.url.deletingPathExtension()
+		let urlWithoutExtension: URL = (media?.url.deletingPathExtension()) ?? URL(string: "https://www.google.com/?client=safari")!
 		let dirAndURL: URL = URL(string: "\(urlWithoutExtension).m3u8")!
 		
-		print(media.url.absoluteString)
+		print(media?.url.absoluteString ?? "")
 		print(urlWithoutExtension)
 		print(dirAndURL.absoluteString)
 		
@@ -38,40 +32,50 @@ struct PlayerView: NSViewRepresentable {
 		
 		let playerItemTitleMetadata = AVMutableMetadataItem()
 		playerItemTitleMetadata.identifier = .commonIdentifierTitle
-		playerItemTitleMetadata.value = media.name as (NSCopying & NSObjectProtocol)?
+		playerItemTitleMetadata.value = (media?.name) as (NSCopying & NSObjectProtocol)?
 		
 		let playerItemSubtitleMetadata = AVMutableMetadataItem()
 		playerItemSubtitleMetadata.identifier = .commonIdentifierAlbumName
-		playerItemSubtitleMetadata.value = playlistName as (NSCopying & NSObjectProtocol)?
+		playerItemSubtitleMetadata.value = (media?.attributes.groupTitle) as (NSCopying & NSObjectProtocol)?
 		
 		playerView.player = player
 		playerView.showsFullScreenToggleButton = true
 		playerView.allowsPictureInPicturePlayback = true
 		
-		playerView.controlsStyle = .inline
-		
-		return playerView
+		playerView.controlsStyle = .floating
+	}
+	
+	func makeNSView(context: Context) -> AVPlayerView {
+		return AVPlayerView()
 	}
 	
 }
 #else
 struct PlayerView: UIViewControllerRepresentable { // i have no fucking idea what im doing
 	
-	var playlistName: String
-	var media: Playlist.Media
+	@Binding var media: Playlist.Media?
 	
 	func updateUIViewController(_ playerController: AVPlayerViewController, context: Context) {
-		let playerItem = AVPlayerItem(url: media.url)
+		let urlWithoutExtension: URL = (media?.url.deletingPathExtension()) ?? URL(string: "https://www.google.com/?client=safari")!
+		let dirAndURL: URL = URL(string: "\(urlWithoutExtension).m3u8")!
+		
+		print(media?.url.absoluteString ?? "")
+		print(urlWithoutExtension)
+		print(dirAndURL.absoluteString)
+		
+		// Initialize the AVPlayer with the video URL
+		let playerItem = AVPlayerItem(url: dirAndURL)
 		let player = AVPlayer(playerItem: playerItem)
+		// Create the AVPlayerView
 		playerController.player = player
 		
 		let playerItemTitleMetadata = AVMutableMetadataItem()
 		playerItemTitleMetadata.identifier = .commonIdentifierTitle
-		playerItemTitleMetadata.value = media.name as (NSCopying & NSObjectProtocol)?
+		playerItemTitleMetadata.value = (media?.name) as (NSCopying & NSObjectProtocol)?
 		
 		let playerItemSubtitleMetadata = AVMutableMetadataItem()
 		playerItemSubtitleMetadata.identifier = .iTunesMetadataTrackSubTitle
-		playerItemSubtitleMetadata.value = playlistName as (NSCopying & NSObjectProtocol)?
+		playerItemSubtitleMetadata.value = (media?.attributes.groupTitle) as (NSCopying & NSObjectProtocol)?
 		
 		playerItem.externalMetadata = [playerItemTitleMetadata, playerItemSubtitleMetadata]
 		

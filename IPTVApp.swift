@@ -34,6 +34,7 @@ struct IPTVApp: App {
 			HomeView(isPresented: $isPresented)
 		}
 		.modelContainer(for: [SavedPlaylist.self])
+		#if !os(tvOS)
 		.commands {
 			CommandGroup(replacing: .newItem) {
 				Button("New Playlist") {
@@ -42,12 +43,13 @@ struct IPTVApp: App {
 			}
 		}
 		#endif
+		#endif
 		
-#if os(macOS)
+		#if os(macOS)
 		Settings {
 			SettingsView()
 				.modelContainer(for: [SavedPlaylist.self])
 		}
-#endif
+		#endif
 	}
 }

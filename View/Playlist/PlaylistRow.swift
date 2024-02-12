@@ -14,18 +14,11 @@ struct PlaylistRow: View {
 	
 	let playlist: SavedPlaylist
 	
-	@Binding var mediaSearchText: String
-	@Binding var selectedGroup: String
-	@Binding var outerGroups: [String]
-	@Binding var selectedSortingOption: SortingOption
-	
 	var body: some View {
-		LazyVStack(alignment: .leading) {
-			NavigationLink(value: playlist) {
-				Text(playlist.name)
-			}
-		}
+		Text(playlist.name)
+		#if !os(tvOS)
 		.swipeActions(edge: .trailing) { Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) } }
+		#endif
 		.contextMenu { Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) } }
 	}
 }
