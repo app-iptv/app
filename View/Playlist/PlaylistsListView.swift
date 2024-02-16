@@ -57,15 +57,18 @@ struct PlaylistsListView: View {
 				// .sheet(isPresented: $isEditing) { EditPlaylistView(playlist: playlist, isEditing: $isEditing) }
 		}
 		.listStyle(.sidebar)
-		.navigationSplitViewColumnWidth(min: 250, ideal: 250)
+		.navigationSplitViewColumnWidth(min: 216, ideal: 216)
 		.navigationTitle("Playlists")
 		.toolbar(id: "playlistsToolbar") {
 			ToolbarItem(id: "addPlaylist") {
 				Button("Add Playlist", systemImage: "plus") { isPresented.toggle() }
 			}
 			ToolbarItem(id: "openSingleStream") {
-				Button("Open Stream", systemImage: "tv") { openedSingleStream.toggle() }
+				Button("Open Stream", systemImage: "play.fill") { openedSingleStream.toggle() }
 			}
+		}
+		.sheet(isPresented: $openedSingleStream) {
+			SingleStreamView()
 		}
 		#endif
     }

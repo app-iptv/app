@@ -28,9 +28,10 @@ struct SingleStreamView: View {
 			
 			TextField("Enter URL", text: $mediaURL)
 				.textFieldStyle(.roundedBorder)
-				.textInputAutocapitalization(.never)
 			#if os(macOS)
 				.frame(width: 300)
+			#else
+				.textInputAutocapitalization(.never)
 			#endif
 			
 			Button {
@@ -46,6 +47,9 @@ struct SingleStreamView: View {
 			SinglePlayerView(mediaGroup: $mediaGroup, mediaName: $mediaName, mediaURL: $mediaURL, playlistName: $playlistName)
 				.aspectRatio(16/9, contentMode: .fit)
 				.cornerRadius(10)
+			#if os(macOS)
+				.frame(width: 800, height: 500)
+			#endif
 				.padding()
 		}
 		.padding()
@@ -68,7 +72,7 @@ struct SinglePlayerView: NSViewRepresentable { // i have no fucking idea what im
 		#if DEBUG
 		print(mediaURL)
 		print(urlWithoutExtension)
-		print(dirAndURL.absoluteString)
+		print(dirAndURL)
 		#endif
 		
 		// Initialize the AVPlayer with the video URL
