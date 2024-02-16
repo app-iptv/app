@@ -11,13 +11,18 @@ import SwiftData
 import Foundation
 
 @Model
-class SavedPlaylist: Identifiable {
+final class SavedPlaylist: Identifiable {
 	@Attribute(.unique) var id: UUID
-	var name: String
+	@Attribute(.spotlight) var name: String
 	var playlist: Playlist?
 	var m3uLink: String
 	
-	init(id: UUID = UUID(), name: String = "", playlist: Playlist? = nil, m3uLink: String = "") {
+	init(
+		id: UUID,
+		name: String,
+		playlist: Playlist? = nil,
+		m3uLink: String
+	) {
 		self.id 		= id
 		self.name 		= name
 		self.playlist 	= playlist

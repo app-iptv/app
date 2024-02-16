@@ -15,28 +15,41 @@ import M3UKit
 struct PlayerView: NSViewRepresentable { // i have no fucking idea what im doing
 	
 	@Binding var media: Playlist.Media?
+	@Binding var playlistName: String
 	
 	func updateNSView(_ nsView: AVPlayerView, context: Context) {
 		let urlWithoutExtension: URL = (media?.url.deletingPathExtension()) ?? URL(string: "https://www.google.com/?client=safari")!
 		let dirAndURL: URL = URL(string: "\(urlWithoutExtension).m3u8")!
 		
+		#if DEBUG
 		print(media?.url.absoluteString ?? "")
 		print(urlWithoutExtension)
 		print(dirAndURL.absoluteString)
+		#endif
 		
 		// Initialize the AVPlayer with the video URL
-		let playerItem = AVPlayerItem(url: dirAndURL)
+		let playerItem = AVPlayerItem(url: media?.url ?? URL(string: "https://www.google.com/?client=safari")!)
 		let player = AVPlayer(playerItem: playerItem)
 		// Create the AVPlayerView
 		let playerView = AVPlayerView()
 		
-		let playerItemTitleMetadata = AVMutableMetadataItem()
-		playerItemTitleMetadata.identifier = .commonIdentifierTitle
-		playerItemTitleMetadata.value = (media?.name) as (NSCopying & NSObjectProtocol)?
+		let titleItem = AVMutableMetadataItem()
+		titleItem.identifier = .commonIdentifierTitle
+		titleItem.value = (media?.name) as (NSCopying & NSObjectProtocol)?
 		
-		let playerItemSubtitleMetadata = AVMutableMetadataItem()
-		playerItemSubtitleMetadata.identifier = .commonIdentifierAlbumName
-		playerItemSubtitleMetadata.value = (media?.attributes.groupTitle) as (NSCopying & NSObjectProtocol)?
+		let subTitleItem = AVMutableMetadataItem()
+		subTitleItem.identifier = .iTunesMetadataTrackSubTitle
+		subTitleItem.value = (media?.attributes.groupTitle) as (NSCopying & NSObjectProtocol)?
+		
+		let albumItem = AVMutableMetadataItem()
+		albumItem.identifier = .commonIdentifierAlbumName
+		albumItem.value = (media?.attributes.groupTitle) as (NSCopying & NSObjectProtocol)?
+		
+		let artistItem = AVMutableMetadataItem()
+		artistItem.identifier = .commonIdentifierArtist
+		artistItem.value = (playlistName) as (NSCopying & NSObjectProtocol)?
+		
+		// playerItem.externalMetadata = [titleItem, subTitleItem, albumItem, artistItem]
 		
 		playerView.player = player
 		playerView.showsFullScreenToggleButton = true
@@ -54,9 +67,10 @@ struct PlayerView: NSViewRepresentable { // i have no fucking idea what im doing
 struct PlayerView: UIViewControllerRepresentable { // i have no fucking idea what im doing
 	
 	@Binding var media: Playlist.Media?
+	@Binding var playlistName: String
 	
 	func updateUIViewController(_ playerController: AVPlayerViewController, context: Context) {
-		let urlWithoutExtension: URL = (media?.url.deletingPathExtension()) ?? URL(string: "https://www.google.com/?client=safari")!
+		let urlWithoutExtension: URL = (media?.url.deletingPathExtension())!
 		let dirAndURL: URL = URL(string: "\(urlWithoutExtension).m3u8")!
 		
 		print(media?.url.absoluteString ?? "")
@@ -69,17 +83,23 @@ struct PlayerView: UIViewControllerRepresentable { // i have no fucking idea wha
 		// Create the AVPlayerView
 		playerController.player = player
 		
-		let playerItemTitleMetadata = AVMutableMetadataItem()
-		playerItemTitleMetadata.identifier = .commonIdentifierTitle
-		playerItemTitleMetadata.value = (media?.name) as (NSCopying & NSObjectProtocol)?
+		let titleItem = AVMutableMetadataItem()
+		titleItem.identifier = .commonIdentifierTitle
+		titleItem.value = (media?.name) as (NSCopying & NSObjectProtocol)?
 		
-		let playerItemSubtitleMetadata = AVMutableMetadataItem()
-		playerItemSubtitleMetadata.identifier = .iTunesMetadataTrackSubTitle
-		playerItemSubtitleMetadata.value = (media?.attributes.groupTitle) as (NSCopying & NSObjectProtocol)?
+		let subTitleItem = AVMutableMetadataItem()
+		subTitleItem.identifier = .iTunesMetadataTrackSubTitle
+		subTitleItem.value = (media?.attributes.groupTitle) as (NSCopying & NSObjectProtocol)?
 		
-		playerItem.externalMetadata = [playerItemTitleMetadata, playerItemSubtitleMetadata]
+		let albumItem = AVMutableMetadataItem()
+		albumItem.identifier = .commonIdentifierAlbumName
+		albumItem.value = (media?.attributes.groupTitle) as (NSCopying & NSObjectProtocol)?
 		
-		playerController.player?.play()
+		let artistItem = AVMutableMetadataItem()
+		artistItem.identifier = .commonIdentifierArtist
+		artistItem.value = (playlistName) as (NSCopying & NSObjectProtocol)?
+		
+		playerItem.externalMetadata = [titleItem, subTitleItem, artistItem, albumItem]
 	}
 	
 	func makeUIViewController(context: Context) -> AVPlayerViewController {

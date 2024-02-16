@@ -19,104 +19,22 @@ struct HomeView: View {
 	
 	@Query var savedPlaylists: [SavedPlaylist]
 	
-	var isDisabled: Bool {
-		if tempPlaylistName == "" {
-			return true
-		} else if tempPlaylistURL == "" {
-			return true
-		} else {
-			return false
-		}
-	}
-	
-	// MARK: SearchResultsArray
-	var searchResults: [SavedPlaylist] {
-		if searchText == "" {
-			return savedPlaylists
-		} else {
-			return savedPlaylists.filter { $0.name.contains(searchText) }
-		}
-	}
-	
-	let parser = PlaylistParser()
-	
 	@Binding var isPresented: Bool
 	
-	@State var selectedSortingOption: SortingOption = .normal
-	@State var selectedViewingOption: ViewingOption = .list
+	@State var isBeingOrganisedByGroups: Bool = false
 	
-	@State var outerGroups: [String] = []
-	@State var selectedGroup: String = "All"
+	@ObservedObject var vm = ViewModel()
 	
-	@State var searchText: String = ""
-	@State var mediaSearchText: String = ""
+	@State var openedSingleStream: Bool = false
 	
-	@State var tempPlaylistName: String = ""
-	@State var tempPlaylistURL: String = ""
-	@State var tempPlaylist: Playlist = Playlist(medias: [])
-	
-	@State var playerPresented: Bool = false
-	
-	@State var parserDidFail: Bool = false
-	@State var parserError: String = ""
-	
-	@State var selectedPlaylist: SavedPlaylist? = nil
-	@State var selectedMedia: Playlist.Media? = nil
-
-	@State var sampleMedia: Playlist.Media = Playlist.Media(duration: 0, attributes: Playlist.Media.Attributes(), kind: Playlist.Media.Kind.unknown, name: "", url: URL(string: "https://www.google.com/?client=safari")!)
-	
-	// MARK: ParsePlaylistFunc
-	func parsePlaylist() async {
-		print("Parsing Playlist...")
-		await withCheckedContinuation { continuation in
-			isParsing.toggle()
-			isPresented.toggle()
-			parser.parse(URL(string: tempPlaylistURL)!) { result in
-				switch result {
-					case .success(let playlist):
-						print("Success")
-						self.tempPlaylist = playlist
-						self.parserDidFail = false
-						continuation.resume()
-					case .failure(let error):
-						print("Error: \(error)")
-						self.parserError = "\(error.localizedDescription)"
-						self.parserDidFail = true
-						continuation.resume()
-				}
-			}
-		}
-	}
-	
-	
-	// MARK: AddPlaylistFunc
-	func addPlaylist() {
-		Task {
-			await parsePlaylist()
-			
-			isParsing.toggle()
-			
-			if parserDidFail {
-				self.tempPlaylistName = ""
-				self.tempPlaylistURL = ""
-				self.tempPlaylist = Playlist(medias: [])
-			} else {
-				context.insert(SavedPlaylist(id: UUID(), name: tempPlaylistName, playlist: tempPlaylist, m3uLink: tempPlaylistURL))
-				self.tempPlaylistName = ""
-				self.tempPlaylistURL = ""
-				self.tempPlaylist = Playlist(medias: [])
-			}
-		}
-	}
+	let parser = PlaylistParser()
 	
 	// MARK: BodyNavigationSplitView
 	var body: some View {
 		if isParsing {
-			isParsingView
-		} else if isPresented {
-			addPlaylistView
-		} else if parserDidFail {
-			errorSheetView
+			LoadingView()
+		} else if vm.parserDidFail {
+			ErrorView()
 		} else if savedPlaylists.isEmpty {
 			ContentUnavailableView {
 				Label("No Playlists", systemImage: "list.and.film")
@@ -125,150 +43,39 @@ struct HomeView: View {
 			} actions: {
 				Button { isPresented.toggle() } label: { Label("Add Playlist", systemImage: "plus") }
 			}
-			
+			.sheet(isPresented: $isPresented) {
+				AddPlaylistView(isPresented: $isPresented, isParsing: $isParsing)
+			}
 		} else {
-			#if !os(macOS)
-			NavigationStack {
-				PlaylistsList(selectedPlaylist: $selectedPlaylist, isPresented: $isPresented, selectedMedia: $selectedMedia, selectedGroup: $selectedGroup, outerGroups: $outerGroups, selectedSortingOption: $selectedSortingOption)
-					.navigationTitle("Playlists")
-					.navigationDestination(for: SavedPlaylist.self) { playlist in
-						MediasList(selectedMedia: $selectedMedia, selectedPlaylist: playlist, selectedGroup: $selectedGroup, outerGroups: $outerGroups, selectedSortingOption: $selectedSortingOption)
-							.navigationDestination(for: Playlist.Media.self) { media in
-								MediaDetailView(selectedMedia: media)
-							}
-							.navigationTitle(playlist.name)
-							.toolbar(id: "mediasToolbar") {
-								ToolbarItem(id: "groupPicker") {
-									Picker("Select Groups", selection: $selectedGroup) {
-										ForEach(outerGroups, id: \.self) { group in
-											if group == "All" {
-												Label(group, systemImage: "tray.full").tag(group)
-											} else {
-												Text(group).tag(group)
-											}
-										}
-									}.pickerStyle(.menu)
-								}
-								ToolbarItem(id: "sortingOptionsPicker") {
-									Picker("Sort", selection: $selectedSortingOption) {
-										ForEach(SortingOption.allCases) { option in
-											option.label
-												.tag(option)
-										}
-									}.pickerStyle(.segmented)
-								}
-							}
-					}
-			}
-			#else
-			NavigationSplitView {
-				PlaylistsList(selectedPlaylist: $selectedPlaylist, isPresented: $isPresented, selectedMedia: $selectedMedia, selectedGroup: $selectedGroup, outerGroups: $outerGroups, selectedSortingOption: $selectedSortingOption)
-					.navigationTitle("Playlists")
-					.navigationSplitViewColumnWidth(min: 175, ideal: 200)
-			} content: {
-				MediasList(selectedMedia: $selectedMedia, selectedPlaylist: $selectedPlaylist, selectedGroup: $selectedGroup, outerGroups: $outerGroups, selectedSortingOption: $selectedSortingOption)
-					.navigationTitle(selectedPlaylist?.name ?? "")
-					.toolbar(id: "mediasToolbar") {
-						ToolbarItem(id: "groupPicker") {
-							Picker("Select Groups", selection: $selectedGroup) {
-								ForEach(outerGroups, id: \.self) { group in
-									if group == "All" {
-										Label(group, systemImage: "tray.full").tag(group)
-									} else {
-										Text(group).tag(group)
-									}
-								}
-							}.pickerStyle(.menu)
-						}
-						ToolbarItem(id: "sortingOptionsPicker") {
-							Picker("Sort", selection: $selectedSortingOption) {
-								ForEach(SortingOption.allCases) { option in
-									option.label
-										.tag(option)
-								}
-							}.pickerStyle(.segmented)
-						}
-					}
-			} detail: {
-				if selectedMedia != nil { MediaDetailView(selectedMedia: $selectedMedia) }
-			}
-			#endif
-		}
-	}
-	
-	// MARK: AddPlaylistView
-	var addPlaylistView: some View {
-		VStack {
-
-			Text("Add Playlist")
-				.font(.largeTitle)
-				.bold()
-				.padding()
-			
-			VStack {
-				TextField("Playlist Name", text: $tempPlaylistName)
-				#if !os(tvOS)
-					.textFieldStyle(.roundedBorder)
-				#endif
-				TextField("Playlist URL", text: $tempPlaylistURL)
-				#if !os(tvOS)
-					.textFieldStyle(.roundedBorder)
-				#endif
-			}
-			
-			HStack(alignment: .center) {
-				Button("Add") {
-					addPlaylist()
-				}.disabled(isDisabled).buttonStyle(.borderedProminent)
-				
-				Spacer().frame(width: 20)
-				
-				Button("Cancel") {
-					isPresented.toggle()
-					tempPlaylist = Playlist(medias: [])
-					tempPlaylistURL = ""
-					tempPlaylistName = ""
+			navigationView
+				.sheet(isPresented: $isPresented) {
+					AddPlaylistView(isPresented: $isPresented, isParsing: $isParsing)
 				}
-			}.padding()
 		}
-		#if os(macOS)
-		.frame(width: 200, height: 300)
-		#endif
-		.padding()
 	}
+}
+
+extension HomeView {
 	
-	// MARK: ErrorSheetView
-	var errorSheetView: some View {
-		ContentUnavailableView {
-			Label("Error", systemImage: "exclamationmark.triangle")
-		} description: {
-			Text(parserError)
-		} actions: {
-			Button("Close") { parserDidFail.toggle() }
+	var navigationView: some View {
+		#if !os(macOS)
+		NavigationStack {
+			PlaylistsListView(selection: $vm.selectedPlaylist, isPresented: $isPresented, openedSingleStream: $openedSingleStream)
 		}
-		#if os(macOS)
-		.frame(width: 200, height: 300)
-		#endif
-		.padding()
-	}
-	
-	// MARK: IsParsingView
-	var isParsingView: some View {
-		ZStack {
-			Rectangle()
-				.fill(.black)
-				.opacity(0.75)
-				.ignoresSafeArea()
-			
-			VStack(spacing: 20) {
-				ProgressView()
-				Text("Adding playlist...")
+		#else
+		NavigationSplitView {
+			PlaylistsListView(selection: $vm.selectedPlaylist, isPresented: $isPresented, openedSingleStream: $openedSingleStream)
+		} content: {
+			if let playlist = vm.selectedPlaylist {
+				MediaListView(media: playlist.playlist?.medias ?? [], selectedMedia: $vm.selectedMedia)
+					.navigationTitle(playlist.name)
+					.navigationSubtitle(vm.selectedMedia?.name ?? "")
 			}
-			.background {
-				RoundedRectangle(cornerRadius: 20)
-					.fill(.reversePrimary)
-					.frame(width: 200, height: 200)
+		} detail: {
+			if vm.selectedMedia != nil {
+				MediaDetailView(playlistName: vm.selectedPlaylist?.name ?? "", selectedMedia: $vm.selectedMedia)
 			}
 		}
+		#endif
 	}
 }

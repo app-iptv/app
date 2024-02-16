@@ -14,14 +14,15 @@ import SwiftData
 struct IPTVApp: App {
 	
 	@State var isPresented: Bool = false
+	@State var hasLoaded: Bool = false
 	
 	var body: some Scene {
 		
 		#if os(macOS)
 		Window("IPTV", id: "main") {
 			HomeView(isPresented: $isPresented)
+				.modelContainer(for: [SavedPlaylist.self])
 		}
-		.modelContainer(for: [SavedPlaylist.self])
 		.commands {
 			CommandGroup(replacing: .newItem) {
 				Button("New Playlist") {
@@ -31,9 +32,20 @@ struct IPTVApp: App {
 		}
 		#else
 		WindowGroup(id: "main") {
-			HomeView(isPresented: $isPresented)
+//			if self.hasLoaded {
+				HomeView(isPresented: $isPresented)
+					.modelContainer(for: [SavedPlaylist.self])
+//			} else {
+//				SplashView()
+//					.onAppear {
+//						DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+//							withAnimation {
+//								self.hasLoaded = true
+//							}
+//						}
+//					}
+//			}
 		}
-		.modelContainer(for: [SavedPlaylist.self])
 		#if !os(tvOS)
 		.commands {
 			CommandGroup(replacing: .newItem) {
@@ -43,13 +55,6 @@ struct IPTVApp: App {
 			}
 		}
 		#endif
-		#endif
-		
-		#if os(macOS)
-		Settings {
-			SettingsView()
-				.modelContainer(for: [SavedPlaylist.self])
-		}
 		#endif
 	}
 }
