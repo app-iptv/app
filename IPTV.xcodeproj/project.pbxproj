@@ -14,44 +14,23 @@
 		2F5E8F922B78E29700850659 /* PlaylistsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E8F912B78E29700850659 /* PlaylistsListView.swift */; };
 		2F73C7CC2B69390600547B76 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CA2B69390600547B76 /* HomeView.swift */; };
 		2F73C7CE2B69396C00547B76 /* SavedPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CD2B69396C00547B76 /* SavedPlaylist.swift */; };
+		2F8DF8512B825F7100883A31 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F8DF8502B825F7100883A31 /* M3UKit */; };
 		2FB2C4712B753614007E7301 /* MediaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2C4702B753614007E7301 /* MediaRowView.swift */; };
 		2FB75B852B41A9FE00A16501 /* IPTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB75B842B41A9FE00A16501 /* IPTVApp.swift */; };
 		2FB75B892B41A9FF00A16501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FB75B882B41A9FF00A16501 /* Assets.xcassets */; };
 		2FB8DE942B7E921800102C82 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB8DE932B7E921800102C82 /* ErrorView.swift */; };
 		2FB8DE962B7E92BB00102C82 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB8DE952B7E92BB00102C82 /* LoadingView.swift */; };
 		2FB8DE9E2B7EA12600102C82 /* BorderEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB8DE9D2B7EA12600102C82 /* BorderEdges.swift */; };
+		2FBB53A52B8261FD00F2D1FA /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FBB53A42B8261FD00F2D1FA /* M3UKit */; };
 		2FCC7E5E2B7ECE6300DCC105 /* EditPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCC7E5D2B7ECE6300DCC105 /* EditPlaylistView.swift */; };
 		2FD54E452B7FBC8500D20D05 /* SingleStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD54E442B7FBC8500D20D05 /* SingleStreamView.swift */; };
 		2FD56BBE2B78014D00D34079 /* PlaylistRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD56BBD2B78014D00D34079 /* PlaylistRowView.swift */; };
 		2FD589892B7F804F003228AB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD589882B7F804F003228AB /* Launch Screen.storyboard */; platformFilter = ios; };
 		2FEF5E852B7A510500AB0193 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5E842B7A510500AB0193 /* ViewModel.swift */; };
-		2FEF5E882B7A63A400AB0193 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FEF5E872B7A63A400AB0193 /* M3UKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2F01F3892B7EA6BB004514D3 /* AddPlaylistView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlaylistView.swift; sourceTree = "<group>"; };
-		2F03C8C32B7FA2D300FED1D8 /* MobileVLCKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MobileVLCKit.xcframework; path = Carthage/Build/MobileVLCKit.xcframework; sourceTree = "<group>"; };
-		2F03C8C42B7FA2D300FED1D8 /* VLCKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VLCKit.xcframework; path = Carthage/Build/VLCKit.xcframework; sourceTree = "<group>"; };
-		2F03C8C52B7FA2D300FED1D8 /* TVVLCKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TVVLCKit.xcframework; path = Carthage/Build/TVVLCKit.xcframework; sourceTree = "<group>"; };
-		2F05FE872B7F9FAA00AC0995 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FE892B7F9FAF00AC0995 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FE8B2B7F9FB500AC0995 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FE8D2B7F9FBD00AC0995 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FE8F2B7F9FC300AC0995 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FE912B7F9FCB00AC0995 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FE932B7F9FD100AC0995 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FE952B7F9FD900AC0995 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FE972B7F9FE900AC0995 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FE992B7F9FF900AC0995 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
-		2F05FE9A2B7FA00300AC0995 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
-		2F05FE9B2B7FA00C00AC0995 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/usr/lib/libiconv.tbd; sourceTree = DEVELOPER_DIR; };
-		2F05FE9C2B7FA01200AC0995 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/usr/lib/libxml2.tbd; sourceTree = DEVELOPER_DIR; };
-		2F05FE9D2B7FA01800AC0995 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/OpenGLES.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FE9F2B7FA02300AC0995 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FEA12B7FA02800AC0995 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FEA32B7FA02C00AC0995 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FEA52B7FA03200AC0995 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		2F05FEA72B7FA03600AC0995 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2F10D8942B70053B00C6847C /* PlayerView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		2F5E8F8C2B78DB0B00850659 /* MediaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailView.swift; sourceTree = "<group>"; };
 		2F5E8F8F2B78E1CE00850659 /* MediaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListView.swift; sourceTree = "<group>"; };
@@ -79,42 +58,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FEF5E882B7A63A400AB0193 /* M3UKit in Frameworks */,
+				2F8DF8512B825F7100883A31 /* M3UKit in Frameworks */,
+				2FBB53A52B8261FD00F2D1FA /* M3UKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F05FE862B7F9FAA00AC0995 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2F03C8C32B7FA2D300FED1D8 /* MobileVLCKit.xcframework */,
-				2F03C8C52B7FA2D300FED1D8 /* TVVLCKit.xcframework */,
-				2F03C8C42B7FA2D300FED1D8 /* VLCKit.xcframework */,
-				2F05FEA72B7FA03600AC0995 /* AppKit.framework */,
-				2F05FEA52B7FA03200AC0995 /* UIKit.framework */,
-				2F05FEA32B7FA02C00AC0995 /* VideoToolbox.framework */,
-				2F05FEA12B7FA02800AC0995 /* Security.framework */,
-				2F05FE9F2B7FA02300AC0995 /* QuartzCore.framework */,
-				2F05FE9D2B7FA01800AC0995 /* OpenGLES.framework */,
-				2F05FE9C2B7FA01200AC0995 /* libxml2.tbd */,
-				2F05FE9B2B7FA00C00AC0995 /* libiconv.tbd */,
-				2F05FE9A2B7FA00300AC0995 /* libc++.tbd */,
-				2F05FE992B7F9FF900AC0995 /* libbz2.tbd */,
-				2F05FE972B7F9FE900AC0995 /* Foundation.framework */,
-				2F05FE952B7F9FD900AC0995 /* CoreVideo.framework */,
-				2F05FE932B7F9FD100AC0995 /* CoreText.framework */,
-				2F05FE912B7F9FCB00AC0995 /* CoreMedia.framework */,
-				2F05FE8F2B7F9FC300AC0995 /* CoreGraphics.framework */,
-				2F05FE8D2B7F9FBD00AC0995 /* CoreFoundation.framework */,
-				2F05FE8B2B7F9FB500AC0995 /* CFNetwork.framework */,
-				2F05FE892B7F9FAF00AC0995 /* AVFoundation.framework */,
-				2F05FE872B7F9FAA00AC0995 /* AudioToolbox.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2F5D6FD52B78FCDF009E1468 /* Playlist */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +115,6 @@
 				2FD589882B7F804F003228AB /* Launch Screen.storyboard */,
 				2FB75B8A2B41A9FF00A16501 /* IPTV.entitlements */,
 				2FB75B822B41A9FE00A16501 /* Products */,
-				2F05FE862B7F9FAA00AC0995 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,7 +182,8 @@
 			);
 			name = IPTV;
 			packageProductDependencies = (
-				2FEF5E872B7A63A400AB0193 /* M3UKit */,
+				2F8DF8502B825F7100883A31 /* M3UKit */,
+				2FBB53A42B8261FD00F2D1FA /* M3UKit */,
 			);
 			productName = IPTV;
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV.app */;
@@ -264,7 +215,7 @@
 			);
 			mainGroup = 2FB75B782B41A9FE00A16501;
 			packageReferences = (
-				2FEF5E862B7A63A400AB0193 /* XCRemoteSwiftPackageReference "M3UKit" */,
+				2FBB53A32B8261FD00F2D1FA /* XCLocalSwiftPackageReference "../M3UKit-0.8.1" */,
 			);
 			productRefGroup = 2FB75B822B41A9FE00A16501 /* Products */;
 			projectDirPath = "";
@@ -567,21 +518,20 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		2FEF5E862B7A63A400AB0193 /* XCRemoteSwiftPackageReference "M3UKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/omaralbeik/M3UKit.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.8.1;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		2FBB53A32B8261FD00F2D1FA /* XCLocalSwiftPackageReference "../M3UKit-0.8.1" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../M3UKit-0.8.1";
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2FEF5E872B7A63A400AB0193 /* M3UKit */ = {
+		2F8DF8502B825F7100883A31 /* M3UKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2FEF5E862B7A63A400AB0193 /* XCRemoteSwiftPackageReference "M3UKit" */;
+			productName = M3UKit;
+		};
+		2FBB53A42B8261FD00F2D1FA /* M3UKit */ = {
+			isa = XCSwiftPackageProductDependency;
 			productName = M3UKit;
 		};
 /* End XCSwiftPackageProductDependency section */

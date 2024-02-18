@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import AVKit
 import M3UKit
 
 struct MediaRowView: View {
@@ -30,14 +29,20 @@ struct MediaRowView: View {
 								.frame(width: 60, height: 60)
 					}
 				}
+				#if !os(macOS)
 				.frame(width: 60, height: 60)
+				#else
+				.frame(width: 40, height: 40)
+				#endif
 				Text(media.name)
 					.lineLimit(1)
 					.font(.headline)
 				Spacer()
 				Text(media.attributes.groupTitle ?? "")
 					.lineLimit(1)
+				#if !os(macOS)
 					.font(.footnote)
+				#endif
 			}
 		}
 	}

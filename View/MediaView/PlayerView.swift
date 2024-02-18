@@ -28,7 +28,7 @@ struct PlayerView: NSViewRepresentable { // i have no fucking idea what im doing
 		#endif
 		
 		// Initialize the AVPlayer with the video URL
-		let playerItem = AVPlayerItem(url: media?.url ?? URL(string: "https://www.google.com/?client=safari")!)
+		let playerItem = AVPlayerItem(url: dirAndURL)
 		let player = AVPlayer(playerItem: playerItem)
 		// Create the AVPlayerView
 		let playerView = AVPlayerView()
@@ -56,6 +56,8 @@ struct PlayerView: NSViewRepresentable { // i have no fucking idea what im doing
 		playerView.allowsPictureInPicturePlayback = true
 		
 		playerView.controlsStyle = .floating
+		
+		player.play()
 	}
 	
 	func makeNSView(context: Context) -> AVPlayerView {
@@ -100,6 +102,8 @@ struct PlayerView: UIViewControllerRepresentable { // i have no fucking idea wha
 		artistItem.value = (playlistName) as (NSCopying & NSObjectProtocol)?
 		
 		playerItem.externalMetadata = [titleItem, subTitleItem, artistItem, albumItem]
+		
+		player.play()
 	}
 	
 	func makeUIViewController(context: Context) -> AVPlayerViewController {
