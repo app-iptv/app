@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import M3UKit
 
-struct MediaRowView: View {
+struct PlaylistView: View {
 	
 	var media: Playlist.Media
 	
@@ -43,6 +43,9 @@ struct MediaRowView: View {
 				#if !os(macOS)
 					.font(.footnote)
 				#endif
+//				Button("Favorite", systemImage: media.attributes.isFavorited ?? false ? "heart.fill" : "heart") {
+//					media.attributes.isFavorited?.toggle()
+//				}
 			}
 		}
 	}

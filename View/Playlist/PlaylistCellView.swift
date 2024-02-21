@@ -8,7 +8,7 @@
 import SwiftUI
 import M3UKit
 
-struct PlaylistRowView: View {
+struct PlaylistCellView: View {
 	
 	@Environment(\.modelContext) var context
 	
