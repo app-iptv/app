@@ -15,16 +15,16 @@
 		2F73C7CC2B69390600547B76 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CA2B69390600547B76 /* HomeView.swift */; };
 		2F73C7CE2B69396C00547B76 /* SavedPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CD2B69396C00547B76 /* SavedPlaylist.swift */; };
 		2F8DF8512B825F7100883A31 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F8DF8502B825F7100883A31 /* M3UKit */; };
-		2FB2C4712B753614007E7301 /* MediaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2C4702B753614007E7301 /* MediaRowView.swift */; };
+		2FB2C4712B753614007E7301 /* MediaCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB2C4702B753614007E7301 /* MediaCellView.swift */; };
 		2FB75B852B41A9FE00A16501 /* IPTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB75B842B41A9FE00A16501 /* IPTVApp.swift */; };
 		2FB75B892B41A9FF00A16501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FB75B882B41A9FF00A16501 /* Assets.xcassets */; };
 		2FB8DE942B7E921800102C82 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB8DE932B7E921800102C82 /* ErrorView.swift */; };
 		2FB8DE962B7E92BB00102C82 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB8DE952B7E92BB00102C82 /* LoadingView.swift */; };
-		2FB8DE9E2B7EA12600102C82 /* BorderEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB8DE9D2B7EA12600102C82 /* BorderEdges.swift */; };
 		2FBB53A52B8261FD00F2D1FA /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FBB53A42B8261FD00F2D1FA /* M3UKit */; };
+		2FBDF31B2B83EE8D005BCD27 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FBDF31A2B83EE8D005BCD27 /* M3UKit */; };
 		2FCC7E5E2B7ECE6300DCC105 /* EditPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCC7E5D2B7ECE6300DCC105 /* EditPlaylistView.swift */; };
 		2FD54E452B7FBC8500D20D05 /* SingleStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD54E442B7FBC8500D20D05 /* SingleStreamView.swift */; };
-		2FD56BBE2B78014D00D34079 /* PlaylistRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD56BBD2B78014D00D34079 /* PlaylistRowView.swift */; };
+		2FD56BBE2B78014D00D34079 /* PlaylistCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD56BBD2B78014D00D34079 /* PlaylistCellView.swift */; };
 		2FD589892B7F804F003228AB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD589882B7F804F003228AB /* Launch Screen.storyboard */; platformFilter = ios; };
 		2FEF5E852B7A510500AB0193 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5E842B7A510500AB0193 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -37,17 +37,16 @@
 		2F5E8F912B78E29700850659 /* PlaylistsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsListView.swift; sourceTree = "<group>"; };
 		2F73C7CA2B69390600547B76 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2F73C7CD2B69396C00547B76 /* SavedPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPlaylist.swift; sourceTree = "<group>"; usesTabs = 1; };
-		2FB2C4702B753614007E7301 /* MediaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRowView.swift; sourceTree = "<group>"; usesTabs = 1; };
+		2FB2C4702B753614007E7301 /* MediaCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCellView.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2FB75B812B41A9FE00A16501 /* IPTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IPTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FB75B842B41A9FE00A16501 /* IPTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPTVApp.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2FB75B882B41A9FF00A16501 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FB75B8A2B41A9FF00A16501 /* IPTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IPTV.entitlements; sourceTree = "<group>"; };
 		2FB8DE932B7E921800102C82 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		2FB8DE952B7E92BB00102C82 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		2FB8DE9D2B7EA12600102C82 /* BorderEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderEdges.swift; sourceTree = "<group>"; };
 		2FCC7E5D2B7ECE6300DCC105 /* EditPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlaylistView.swift; sourceTree = "<group>"; };
 		2FD54E442B7FBC8500D20D05 /* SingleStreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleStreamView.swift; sourceTree = "<group>"; };
-		2FD56BBD2B78014D00D34079 /* PlaylistRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistRowView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		2FD56BBD2B78014D00D34079 /* PlaylistCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		2FD589882B7F804F003228AB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		2FDD48092B6687A2009D100B /* IPTV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "IPTV-Info.plist"; sourceTree = "<group>"; };
 		2FEF5E842B7A510500AB0193 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -59,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F8DF8512B825F7100883A31 /* M3UKit in Frameworks */,
+				2FBDF31B2B83EE8D005BCD27 /* M3UKit in Frameworks */,
 				2FBB53A52B8261FD00F2D1FA /* M3UKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,7 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				2F5E8F912B78E29700850659 /* PlaylistsListView.swift */,
-				2FD56BBD2B78014D00D34079 /* PlaylistRowView.swift */,
+				2FD56BBD2B78014D00D34079 /* PlaylistCellView.swift */,
 				2FCC7E5D2B7ECE6300DCC105 /* EditPlaylistView.swift */,
 			);
 			path = Playlist;
@@ -80,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				2F5E8F8F2B78E1CE00850659 /* MediaListView.swift */,
-				2FB2C4702B753614007E7301 /* MediaRowView.swift */,
+				2FB2C4702B753614007E7301 /* MediaCellView.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -105,7 +105,6 @@
 		2FB75B782B41A9FE00A16501 = {
 			isa = PBXGroup;
 			children = (
-				2FB8DE9C2B7EA11600102C82 /* Extensions */,
 				2FB2C46F2B753604007E7301 /* ViewModels */,
 				2FD3E4532B650B0000AB6510 /* Models */,
 				2FB75B992B41AE8B00A16501 /* View */,
@@ -149,14 +148,6 @@
 			path = Overlays;
 			sourceTree = "<group>";
 		};
-		2FB8DE9C2B7EA11600102C82 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2FB8DE9D2B7EA12600102C82 /* BorderEdges.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		2FD3E4532B650B0000AB6510 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +175,7 @@
 			packageProductDependencies = (
 				2F8DF8502B825F7100883A31 /* M3UKit */,
 				2FBB53A42B8261FD00F2D1FA /* M3UKit */,
+				2FBDF31A2B83EE8D005BCD27 /* M3UKit */,
 			);
 			productName = IPTV;
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV.app */;
@@ -215,7 +207,7 @@
 			);
 			mainGroup = 2FB75B782B41A9FE00A16501;
 			packageReferences = (
-				2FBB53A32B8261FD00F2D1FA /* XCLocalSwiftPackageReference "../M3UKit-0.8.1" */,
+				2FBDF3192B83EE8D005BCD27 /* XCRemoteSwiftPackageReference "M3UKit" */,
 			);
 			productRefGroup = 2FB75B822B41A9FE00A16501 /* Products */;
 			projectDirPath = "";
@@ -248,14 +240,13 @@
 				2FCC7E5E2B7ECE6300DCC105 /* EditPlaylistView.swift in Sources */,
 				2FB75B852B41A9FE00A16501 /* IPTVApp.swift in Sources */,
 				2F5E8F922B78E29700850659 /* PlaylistsListView.swift in Sources */,
-				2FD56BBE2B78014D00D34079 /* PlaylistRowView.swift in Sources */,
+				2FD56BBE2B78014D00D34079 /* PlaylistCellView.swift in Sources */,
 				2FB8DE962B7E92BB00102C82 /* LoadingView.swift in Sources */,
 				2F01F38A2B7EA6BB004514D3 /* AddPlaylistView.swift in Sources */,
 				2F5E8F902B78E1CE00850659 /* MediaListView.swift in Sources */,
-				2FB2C4712B753614007E7301 /* MediaRowView.swift in Sources */,
+				2FB2C4712B753614007E7301 /* MediaCellView.swift in Sources */,
 				2FD54E452B7FBC8500D20D05 /* SingleStreamView.swift in Sources */,
 				2F5E8F8D2B78DB0B00850659 /* MediaDetailView.swift in Sources */,
-				2FB8DE9E2B7EA12600102C82 /* BorderEdges.swift in Sources */,
 				2FEF5E852B7A510500AB0193 /* ViewModel.swift in Sources */,
 				2FB8DE942B7E921800102C82 /* ErrorView.swift in Sources */,
 				2F73C7CC2B69390600547B76 /* HomeView.swift in Sources */,
@@ -518,12 +509,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		2FBB53A32B8261FD00F2D1FA /* XCLocalSwiftPackageReference "../M3UKit-0.8.1" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../M3UKit-0.8.1";
+/* Begin XCRemoteSwiftPackageReference section */
+		2FBDF3192B83EE8D005BCD27 /* XCRemoteSwiftPackageReference "M3UKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/omaralbeik/M3UKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.1;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		2F8DF8502B825F7100883A31 /* M3UKit */ = {
@@ -532,6 +527,11 @@
 		};
 		2FBB53A42B8261FD00F2D1FA /* M3UKit */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = M3UKit;
+		};
+		2FBDF31A2B83EE8D005BCD27 /* M3UKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FBDF3192B83EE8D005BCD27 /* XCRemoteSwiftPackageReference "M3UKit" */;
 			productName = M3UKit;
 		};
 /* End XCSwiftPackageProductDependency section */

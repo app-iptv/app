@@ -58,24 +58,21 @@ struct HomeView: View {
 extension HomeView {
 	
 	var navigationView: some View {
-		#if !os(macOS)
-		NavigationStack {
-			PlaylistsListView(selection: $vm.selectedPlaylist, isPresented: $isPresented, openedSingleStream: $openedSingleStream)
-		}
-		#else
 		NavigationSplitView {
 			PlaylistsListView(selection: $vm.selectedPlaylist, isPresented: $isPresented, openedSingleStream: $openedSingleStream)
 		} content: {
 			if let playlist = vm.selectedPlaylist {
 				MediaListView(media: playlist.playlist?.medias ?? [], selectedMedia: $vm.selectedMedia)
 					.navigationTitle(playlist.name)
+					#if os(macOS)
 					.navigationSubtitle(vm.selectedMedia?.name ?? "")
+					#endif
+					.navigationSplitViewColumnWidth(ideal: 300)
 			}
 		} detail: {
-			if vm.selectedMedia != nil {
-				MediaDetailView(playlistName: vm.selectedPlaylist?.name ?? "", selectedMedia: $vm.selectedMedia)
+			if let media = vm.selectedMedia {
+				MediaDetailView(playlistName: vm.selectedPlaylist?.name ?? "", selectedMedia: media)
 			}
 		}
-		#endif
 	}
 }

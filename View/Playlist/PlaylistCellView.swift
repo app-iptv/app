@@ -22,10 +22,8 @@ struct PlaylistCellView: View {
 			.swipeActions(edge: .trailing) {
 				Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) }
 			}
-			// .swipeActions(edge: .leading) { Button("Edit", systemImage: "pencil") { isEditing.toggle() } }
 			.contextMenu {
 				Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) }
-				// Button("Edit", systemImage: "pencil") { isEditing.toggle() }
 			}
 			#endif
 	}

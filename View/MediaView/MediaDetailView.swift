@@ -12,11 +12,7 @@ struct MediaDetailView: View {
 	
 	@State var playlistName: String
 	
-	#if os(macOS)
-	@Binding var selectedMedia: Playlist.Media?
-	#else
 	@State var selectedMedia: Playlist.Media?
-	#endif
 		
 	var body: some View {
 		ScrollView() {

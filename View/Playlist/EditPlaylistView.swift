@@ -14,7 +14,6 @@ struct EditPlaylistView: View {
 	
     var body: some View {
 		VStack {
-			
 			VStack(spacing: 5) {
 				Text("Edit Playlist")
 					.font(.largeTitle)
@@ -29,5 +28,7 @@ struct EditPlaylistView: View {
 			}
 			.padding()
 		}
+		.padding()
+
     }
 }
