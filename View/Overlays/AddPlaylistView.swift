@@ -84,8 +84,7 @@ struct AddPlaylistView: View {
 				TextField("Playlist URL", text: $vm.tempPlaylistURL)
 					#if !os(tvOS)
 					.textFieldStyle(.roundedBorder)
-					#endif
-					#if os(iOS)
+					#elseif os(iOS)
 					.textInputAutocapitalization(.never)
 					#endif
 			}
