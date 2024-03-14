@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>IPTV TV.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>IPTV-tvOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -30,7 +35,7 @@
 		<key>2FB75B802B41A9FE00A16501</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 	</dict>
 </dict>

@@ -1,0 +1,351 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Add" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar"
+          }
+        }
+      }
+    },
+    "Add Playlist" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nova Playlist"
+          }
+        }
+      }
+    },
+    "Adding playlist..." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionando playlist..."
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
+    },
+    "Close" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fechar"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completar"
+          }
+        }
+      }
+    },
+    "Edit Playlist" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar Playlist"
+          }
+        }
+      }
+    },
+    "Enter URL" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insira URL"
+          }
+        }
+      }
+    },
+    "Error" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erro"
+          }
+        }
+      }
+    },
+    "Get Started" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Começar"
+          }
+        }
+      }
+    },
+    "Hello 👋" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Olá 👋"
+          }
+        }
+      }
+    },
+    "New Playlist" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nova Playlist"
+          }
+        }
+      }
+    },
+    "No Medias" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mídias ausentes"
+          }
+        }
+      }
+    },
+    "No Playlists" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Playlists ausentes"
+          }
+        }
+      }
+    },
+    "Open" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir"
+          }
+        }
+      }
+    },
+    "Open Single Media" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir mídia unica"
+          }
+        }
+      }
+    },
+    "Open Single Stream" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir mídia unica"
+          }
+        }
+      }
+    },
+    "Open Stream" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir"
+          }
+        }
+      }
+    },
+    "Playlist Name" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome da Playlist"
+          }
+        }
+      }
+    },
+    "Playlist URL" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL da Playlist"
+          }
+        }
+      }
+    },
+    "Playlists" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Playlists"
+          }
+        }
+      }
+    },
+    "Playlists that you add will appear here." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Playlists que adiciona aparecerão aqui."
+          }
+        }
+      }
+    },
+    "Search Medias" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesquisar Medias"
+          }
+        }
+      }
+    },
+    "Select Group" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar Grupo"
+          }
+        }
+      }
+    },
+    "Select Groups" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar Grupos"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definições"
+          }
+        }
+      }
+    },
+    "Show Tips Again" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar Dicas Outra Vez"
+          }
+        }
+      }
+    },
+    "The selected playlist's channels will appear here." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As mídias da playlist selecionada aparecerão aqui."
+          }
+        }
+      }
+    },
+    "Welcome" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bem-vindo à IPTV"
+          }
+        }
+      }
+    },
+    "Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bem-vindo! Desfrute o acesso instantâneo a canais TV em direto do mundo inteiro, na ponta dos seus dedos. "
+          }
+        }
+      }
+    },
+    "Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips. You can create a new playlist by clicking 'New Playlist' in 'File' in the Menu Bar, or by clicking CMD + N" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bem-vindo! Desfrute o acesso instantâneo a canais TV em direto do mundo inteiro, na ponta dos seus dedos. Para criar uma nova playlist, clique em 'Nova Playlist', sobe 'Ficheiro' na barra de menu, ou clicando CMD + N"
+          }
+        }
+      }
+    },
+    "Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips. You can create a new playlist by clicking \"New Playlist\" in \"File\" in the Menu Bar, or by clicking CMD + N" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bem-vindo! Desfrute o acesso instantâneo a canais TV em direto do mundo inteiro, na ponta dos seus dedos. Para criar uma nova playlist, clique em \"Nova Playlist\", sobe \"Ficheiro\" na barra de menu, ou clicando CMD + N"
+          }
+        }
+      }
+    },
+    "You can show this screen again by clicking \"Show Tips Again\" in \"Settings\" in \"IPTV\" in the Menu Bar, or by clicking CMD + T" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pode mostrar este ecrã outra vez clicando em \"Mostrar Dicas Outra Vez\" em \"Definições\" em \"IPTV\" na Barra de Menus, ou clicando CMD+T"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

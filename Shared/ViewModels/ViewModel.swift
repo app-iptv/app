@@ -12,7 +12,6 @@ import Combine
 
 class ViewModel: ObservableObject {
 	@Published var selectedGroup: String = "All"
-	
 	@Published var mediaSearchText: String = ""
 	
 	@Published var tempPlaylistName: String = ""
@@ -23,6 +22,6 @@ class ViewModel: ObservableObject {
 	@Published var parserError: String = ""
 	@Published var isPresented: Bool = false
 	
-	@Published var selectedPlaylist: SavedPlaylist? = nil
+	@Published var selectedPlaylist: ModelPlaylist? = nil
 	@Published var selectedMedia: Playlist.Media? = nil
 }

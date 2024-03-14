@@ -34,7 +34,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2FAE4C772B545EDA000B12E6"
+               BlueprintIdentifier = "2FF1450F2B9DEA76006B2508"
                BuildableName = "IPTVUITests.xctest"
                BlueprintName = "IPTVUITests"
                ReferencedContainer = "container:IPTV.xcodeproj">
