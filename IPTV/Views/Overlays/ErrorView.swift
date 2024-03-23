@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct ErrorView: View {
-	@Binding var parserDidFail: Bool
-	@Binding var parserError: String
+	@Bindable var vm: ViewModel
+	
+	init(_ vm: ViewModel) {
+		self.vm = vm
+	}
 	
 	var body: some View {
 		ContentUnavailableView {
 			Label("Error", systemImage: "exclamationmark.triangle")
 		} description: {
-			Text(parserError)
+			Text(vm.parserError)
 		} actions: {
-			Button("Close") { parserDidFail.toggle() }
+			Button("Close") { vm.parserDidFail.toggle() }
 		}
 		#if os(macOS)
 		.frame(width: 200, height: 300)

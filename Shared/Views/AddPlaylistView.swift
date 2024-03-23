@@ -10,52 +10,53 @@ import M3UKit
 
 struct AddPlaylistView: View {
 	
-	@ObservedObject var vm = ViewModel()
 	@Environment(\.modelContext) var context
 	
-	@Binding var isPresented: Bool
-	@Binding var isParsing: Bool
-	@Binding var parserDidFail: Bool
-	@Binding var parserError: String
+	@Bindable var vm: ViewModel
+	
+	init(_ vm: ViewModel) {
+		self.vm = vm
+	}
 	
 	let parser = PlaylistParser()
 	
 	// MARK: ParsePlaylistFunc
-	func parsePlaylist() async {
+	private func parsePlaylist() async {
 		print("Parsing Playlist...")
 		await withCheckedContinuation { continuation in
-			parser.parse(URL(string: vm.tempPlaylistURL)!) { result in
+			parser.parse(vm.tempPlaylistURL) { result in
 				switch result {
 					case .success(let playlist):
 						print("Success")
 						vm.tempPlaylist = playlist
-						parserDidFail = false
+						vm.parserDidFail = false
+						vm.isParsing.toggle()
 						continuation.resume()
 					case .failure(let error):
 						print("Error: \(error)")
-						parserError = "\(error.localizedDescription)"
-						parserDidFail = true
+						vm.parserError = "\(error.localizedDescription)"
+						vm.parserDidFail = true
+						vm.isParsing.toggle()
 						continuation.resume()
 				}
 			}
-			isParsing.toggle()
-			isPresented.toggle()
+			vm.isPresented.toggle()
 		}
 	}
 	
 	// MARK: AddPlaylistFunc
-	func addPlaylist() {
+	private func addPlaylist() {
 		Task {
+			vm.isParsing.toggle()
+			
 			await parsePlaylist()
 			
-			isParsing.toggle()
-			
-			if parserDidFail {
+			if vm.parserDidFail {
 				vm.tempPlaylistName = ""
 				vm.tempPlaylistURL = ""
 				vm.tempPlaylist = Playlist(medias: [])
 			} else {
-				context.insert(ModelPlaylist(id: UUID(), name: vm.tempPlaylistName, medias: vm.tempPlaylist.medias, m3uLink: vm.tempPlaylistURL))
+				context.insert(ModelPlaylist(UUID(), vm.tempPlaylistName, vm.tempPlaylist.medias, vm.tempPlaylistURL))
 				vm.tempPlaylistName = ""
 				vm.tempPlaylistURL = ""
 				vm.tempPlaylist = Playlist(medias: [])
@@ -64,8 +65,8 @@ struct AddPlaylistView: View {
 	}
 	
 	// MARK: CancelPlaylistFunc
-	func cancel() {
-		isPresented.toggle()
+	private func cancel() {
+		vm.isPresented.toggle()
 		vm.tempPlaylist = Playlist(medias: [])
 		vm.tempPlaylistURL = ""
 		vm.tempPlaylistName = ""
@@ -97,7 +98,8 @@ struct AddPlaylistView: View {
 				
 				Button("Cancel") { cancel() }
 					.buttonStyle(.bordered)
-			}.padding()
+			}
+			.padding()
 		}
 		.padding()
 	}

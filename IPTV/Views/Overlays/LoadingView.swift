@@ -21,7 +21,7 @@ struct LoadingView: View {
 			}
 			.background {
 				RoundedRectangle(cornerRadius: 20)
-					.fill(.reversePrimary)
+					.fill(.background)
 					.frame(width: 200, height: 200)
 			}
 		}

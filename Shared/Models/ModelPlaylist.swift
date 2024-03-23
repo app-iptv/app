@@ -18,10 +18,10 @@ final class ModelPlaylist: Identifiable {
 	var m3uLink: String
 	
 	init(
-		id: 		UUID,
-		name: 		String,
-		medias: 	[Playlist.Media],
-		m3uLink: 	String
+		_ id: 		UUID,
+		_ name: 	String,
+		_ medias: 	[Playlist.Media],
+		_ m3uLink: 	String
 	) {
 		self.id 		= id
 		self.name 		= name

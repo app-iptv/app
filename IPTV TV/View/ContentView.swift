@@ -10,9 +10,7 @@ import SwiftData
 
 struct ContentView: View {
 	
-	@Query var modelPlaylists: [ModelPlaylist]
-	
-	@StateObject var vm: ViewModel = ViewModel()
+	@State var vm: ViewModel = ViewModel()
 	
 	@State var isParsing: Bool = false
 	
@@ -21,9 +19,13 @@ struct ContentView: View {
 			PlaylistsListView(vm: vm, isParsing: $isParsing)
 				.tabItem { Label("Playlists", systemImage: "tv") }
 			SettingsView(vm: vm)
-				.tabItem { Image(systemName: "gear") }
+				.tabItem { Label("Settings", systemImage: "gear") }
+			SearchView()
+				.tabItem { Image(systemName: "magnifyingglass") }
 		}
-		.sheet(isPresented: $vm.isPresented) { AddPlaylistView(isPresented: $vm.isPresented, isParsing: $isParsing, parserDidFail: $vm.parserDidFail, parserError: $vm.parserError) }
+		.sheet(isPresented: $vm.isPresented) {
+			AddPlaylistView(vm)
+		}
 		.sheet(isPresented: $isParsing) { ProgressView() }
 	}
 }

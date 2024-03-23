@@ -5,23 +5,26 @@
 //  Created by Pedro Cordeiro on 12/02/2024.
 //
 
-import Foundation
-import M3UKit
 import SwiftUI
-import Combine
+import M3UKit
+import Observation
 
-class ViewModel: ObservableObject {
-	@Published var selectedGroup: String = "All"
-	@Published var mediaSearchText: String = ""
+@Observable
+class ViewModel {
+	var selectedGroup: String = "All"
+	var mediaSearchText: String = ""
 	
-	@Published var tempPlaylistName: String = ""
-	@Published var tempPlaylistURL: String = ""
-	@Published var tempPlaylist: Playlist = Playlist(medias: [])
+	var tempPlaylistName: String = ""
+	var tempPlaylistURL: String = ""
+	var tempPlaylist: Playlist = Playlist(medias: [])
 	
-	@Published var parserDidFail: Bool = false
-	@Published var parserError: String = ""
-	@Published var isPresented: Bool = false
+	var parserDidFail: Bool = false
+	var parserError: String = ""
+	var isParsing: Bool = false
 	
-	@Published var selectedPlaylist: ModelPlaylist? = nil
-	@Published var selectedMedia: Playlist.Media? = nil
+	var isPresented: Bool = false
+	var openedSingleStream: Bool = false
+	
+	var selectedPlaylist: ModelPlaylist? = nil
+	var selectedMedia: Playlist.Media? = nil
 }

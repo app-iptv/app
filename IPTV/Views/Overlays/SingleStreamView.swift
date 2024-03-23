@@ -11,10 +11,15 @@ import AVKit
 
 struct SingleStreamView: View {
 	
-	@State var mediaURL: String = ""
-	@Binding var openedSingleStream: Bool
+	@State private var mediaURL: String = ""
 	
-	@State var isPresented: Bool = false
+	@Bindable var vm: ViewModel
+	
+	init(_ vm: ViewModel) {
+		self.vm = vm
+	}
+	
+	@State private var isPresented: Bool = false
 	
     var body: some View {
 		VStack {
@@ -28,10 +33,10 @@ struct SingleStreamView: View {
 				.textInputAutocapitalization(.never)
 			
 			HStack(spacing: 20) {
-				Button("Open", systemImage: "play.fill") { isPresented.toggle() }
+				Button("Open", systemImage: "play") { isPresented.toggle() }
 					.disabled(mediaURL.isEmpty)
 					.buttonStyle(.borderedProminent)
-				Button("Cancel") { openedSingleStream.toggle() }
+				Button("Cancel") { vm.openedSingleStream.toggle() }
 					.buttonStyle(.bordered)
 			}
 			.padding()
@@ -42,21 +47,23 @@ struct SingleStreamView: View {
     }
 	
 	var playerView: some View {
-		PlayerView(
-			media: Playlist.Media(
-				duration: 0,
-				attributes: Playlist.Media.Attributes(groupTitle: "Single Stream"),
-				kind: .unknown,
-				name: "Single Stream",
-				url: URL(string: mediaURL)!
-			),
-			playlistName: "Single Stream"
-		)
-		.aspectRatio(16/9, contentMode: .fit)
-		.cornerRadius(10)
-		#if os(macOS)
-		.frame(width: 800, height: 500)
-		#endif
-		.padding()
+		VStack {
+			PlayerView(
+				media: Playlist.Media(
+					duration: 0,
+					attributes: Playlist.Media.Attributes(groupTitle: String(localized: "Single Stream")),
+					kind: .unknown,
+					name: String(localized: "Single Stream"),
+					url: URL(string: mediaURL)!
+				),
+				playlistName: String(localized: "Single Stream")
+			)
+			.aspectRatio(16/9, contentMode: .fit)
+			.cornerRadius(10)
+			.padding()
+			
+			Button("Cancel") { isPresented.toggle() }
+				.buttonStyle(.bordered)
+		}
 	}
 }

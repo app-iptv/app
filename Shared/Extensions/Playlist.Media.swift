@@ -9,9 +9,5 @@ import Foundation
 import M3UKit
 
 extension Playlist.Media: Identifiable {
-	public var id: UUID {
-		return UUID()
-	}
-
-	public var isFavorited: Bool { get { false } set { } }
+	public var id: UUID { UUID() }
 }

@@ -13,33 +13,21 @@ struct PlaylistsListView: View {
 	
 	@Environment(\.horizontalSizeClass) var sizeClass
 	@Environment(\.modelContext) var context
-
-	@Query var modelPlaylists: [ModelPlaylist]
 	
-	@Binding var selection: ModelPlaylist?
-	@State var isEditing: Bool = false
+	@Bindable var vm: ViewModel
 	
-	@ObservedObject var vm = ViewModel()
-	@Binding var isPresented: Bool
-	
-	@Binding var openedSingleStream: Bool
-	
-	var body: some View {
-		List(modelPlaylists, selection: $selection) { playlist in
-			NavigationLink(playlist.name, value: playlist)
-				.contextMenu { contextMenu(playlist) }
-				.swipeActions(edge: .trailing) { contextMenu(playlist) }
-		}
-		.listStyle(.sidebar)
-		#if !targetEnvironment(macCatalyst)
-		.toolbar(id: "playlistsToolbar") {
-			ToolbarItem(id: "addPlaylist", placement: .topBarTrailing) { Button("Add Playlist", systemImage: "plus") { isPresented.toggle() } }
-			ToolbarItem(id: "openSingleStream", placement: .topBarLeading) { Button("Open Stream", systemImage: "play") { openedSingleStream.toggle() } }
-		}
-		#endif
+	init(_ vm: ViewModel) {
+		self.vm = vm
 	}
 	
-	private func contextMenu(_ playlist: ModelPlaylist) -> some View {
-		Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) }
+	@Query var modelPlaylists: [ModelPlaylist]
+	
+	var body: some View {
+		List(modelPlaylists, selection: $vm.selectedPlaylist) { playlist in
+			PlaylistCellView(playlist)
+				.badge(playlist.medias.count)
+		}
+		.id(UUID())
+		.listStyle(.sidebar)
 	}
 }

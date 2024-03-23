@@ -13,19 +13,18 @@ import SwiftData
 @main
 struct IPTVApp: App {
 	
-	@State var isPresented: Bool = false
-	
-	@State var openedSingleStream: Bool = false
+	@State var vm = ViewModel()
 	
 	@AppStorage("IS_FIRST_LAUNCH") var isFirstLaunch: Bool = true
+	@AppStorage("FAVORITED_MEDIAS") var favorites: [Playlist.Media] = []
 	
 	var newPlaylistAndOpenSingleStreamCommands: some Commands {
 		CommandGroup(replacing: .newItem) {
 			Button("New Playlist") {
-				isPresented.toggle()
+				vm.isPresented.toggle()
 			}.keyboardShortcut("N", modifiers: [.command])
 			Button("Open Single Stream") {
-				openedSingleStream.toggle()
+				vm.openedSingleStream.toggle()
 			}.keyboardShortcut("N", modifiers: [.command, .shift])
 		}
 	}
@@ -42,13 +41,19 @@ struct IPTVApp: App {
 	
 	var body: some Scene {
 		WindowGroup {
-			ContentView(isPresented: $isPresented, openedSingleStream: $openedSingleStream)
-				.sheet(isPresented: $isFirstLaunch) { FirstLaunchView(isFirstLaunch: $isFirstLaunch) }
+			TabView {
+				ContentView(vm: vm, favorites: $favorites)
+					.tabItem { Label("Home", systemImage: "play.house.fill") }
+				FavoritesView(favorites: $favorites)
+					.tabItem { Label("Favorites", systemImage: "star.fill") }
+			}
+			.sheet(isPresented: $isFirstLaunch) { FirstLaunchView(isFirstLaunch: $isFirstLaunch) }
+			.sheet(isPresented: $vm.isPresented) { AddPlaylistView(vm) }
+			.sheet(isPresented: $vm.openedSingleStream) { SingleStreamView(vm) }
+			.sheet(isPresented: $vm.isParsing) { LoadingView() }
+			.sheet(isPresented: $vm.parserDidFail) { ErrorView(vm) }
 		}
-		.modelContainer(for: [ModelPlaylist.self], isAutosaveEnabled: true, isUndoEnabled: true)
-		.commands {
-			newPlaylistAndOpenSingleStreamCommands
-			showTipsAgainCommands
-		}
+		.modelContainer(for: ModelPlaylist.self, inMemory: false, isAutosaveEnabled: true, isUndoEnabled: true)
+		.commands { newPlaylistAndOpenSingleStreamCommands ; showTipsAgainCommands }
 	}
 }

@@ -9,8 +9,13 @@ import SwiftUI
 
 struct EditPlaylistView: View {
 	
+	@Environment(\.dismiss) private var dismiss
+	
 	@Bindable var playlist: ModelPlaylist
-	@Binding var isEditing: Bool
+	
+	init(_ playlist: ModelPlaylist) {
+		self.playlist = playlist
+	}
 	
     var body: some View {
 		VStack {
@@ -24,11 +29,11 @@ struct EditPlaylistView: View {
 			
 			HStack(spacing: 10) {
 				TextField("Playlist Name", text: $playlist.name)
-				Button("Done", systemImage: "checkmark.circle", role: .cancel) { isEditing.toggle() }
+					.textFieldStyle(.roundedBorder)
+				Button("Done", systemImage: "checkmark.circle", role: .cancel) { dismiss() }
 			}
 			.padding()
 		}
 		.padding()
-
     }
 }

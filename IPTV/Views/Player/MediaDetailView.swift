@@ -7,12 +7,13 @@
 
 import SwiftUI
 import M3UKit
+import AVKit
 
 struct MediaDetailView: View {
 	
 	let playlistName: String
 	
-	let media: Playlist.Media?
+	let media: Playlist.Media
 		
 	var body: some View {
 		ScrollView() {
@@ -22,9 +23,11 @@ struct MediaDetailView: View {
 					.cornerRadius(10)
 				
 				VStack(alignment: .leading, spacing: 2.5) {
-					Text(media!.attributes.groupTitle!)
-						.font(.footnote)
-					Text(media!.name)
+					if let groupTitle = media.attributes.groupTitle {
+						Text(groupTitle)
+							.font(.footnote)
+					}
+					Text(media.name)
 						.font(.headline)
 				}
 			}

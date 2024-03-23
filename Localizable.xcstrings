@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
     "Add" : {
       "localizations" : {
         "pt-PT" : {
@@ -31,6 +41,16 @@
         }
       }
     },
+    "All" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todos"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "pt-PT" : {
@@ -51,12 +71,52 @@
         }
       }
     },
+    "Confirm Deletion" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirmar"
+          }
+        }
+      }
+    },
     "Delete" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apagar"
+          }
+        }
+      }
+    },
+    "DELETE ALL" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "APAGAR TODAS"
+          }
+        }
+      }
+    },
+    "Delete All Favorited Medias?" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar Todas as Mídias Favoritas?"
+          }
+        }
+      }
+    },
+    "Delete Playlist" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar Playlist"
           }
         }
       }
@@ -101,6 +161,26 @@
         }
       }
     },
+    "Favorite" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorito"
+          }
+        }
+      }
+    },
+    "Favorites" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoritos"
+          }
+        }
+      }
+    },
     "Get Started" : {
       "localizations" : {
         "pt-PT" : {
@@ -122,6 +202,16 @@
         }
       }
     },
+    "Home" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Início"
+          }
+        }
+      }
+    },
     "New Playlist" : {
       "localizations" : {
         "pt-PT" : {
@@ -132,12 +222,22 @@
         }
       }
     },
+    "No Favorited Medias" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mídias Favoritas Ausentes"
+          }
+        }
+      }
+    },
     "No Medias" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mídias ausentes"
+            "value" : "Mídias Ausentes"
           }
         }
       }
@@ -147,7 +247,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Playlists ausentes"
+            "value" : "Playlists Ausentes"
           }
         }
       }
@@ -232,12 +332,22 @@
         }
       }
     },
-    "Search Medias" : {
+    "Search" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pesquisar Medias"
+            "value" : "Pesquisar"
+          }
+        }
+      }
+    },
+    "Search Favorites" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesquisar Favoritos"
           }
         }
       }
@@ -248,17 +358,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecionar Grupo"
-          }
-        }
-      }
-    },
-    "Select Groups" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selecionar Grupos"
           }
         }
       }
@@ -283,12 +382,53 @@
         }
       }
     },
+    "Single Stream" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mídia Unica"
+          }
+        }
+      }
+    },
+    "The medias you favorite will appear here. To add some favorites, click on the star symbol next to a media." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As mídias que marcas como \"Favorito\" aparecerão aqui. Para adicionar alguns favoritos, clica na estrela perto da mídia"
+          }
+        }
+      }
+    },
     "The selected playlist's channels will appear here." : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "As mídias da playlist selecionada aparecerão aqui."
+          }
+        }
+      }
+    },
+    "Un-favorite" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desmarcar como Favorito"
+          }
+        }
+      }
+    },
+    "WARNING: You are about to delete all favorited medias. If you have deleted the source playlist for a media, you will have to add the playlist again to reclaim it." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AVISO: Estás prestes a apagar todas as mídias favoritas. Se apagas-te a playlist de alguma mídia, vais ter de voltar a adiciona-la para a recuperar."
           }
         }
       }
@@ -310,17 +450,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bem-vindo! Desfrute o acesso instantâneo a canais TV em direto do mundo inteiro, na ponta dos seus dedos. "
-          }
-        }
-      }
-    },
-    "Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips. You can create a new playlist by clicking 'New Playlist' in 'File' in the Menu Bar, or by clicking CMD + N" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bem-vindo! Desfrute o acesso instantâneo a canais TV em direto do mundo inteiro, na ponta dos seus dedos. Para criar uma nova playlist, clique em 'Nova Playlist', sobe 'Ficheiro' na barra de menu, ou clicando CMD + N"
           }
         }
       }

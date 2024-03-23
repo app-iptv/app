@@ -13,19 +13,12 @@ import SwiftData
 // MARK: ContentView
 struct ContentView: View {
 	
-	@State var isParsing: Bool = false
-	
 	@Environment(\.modelContext) var context
 	@Environment(\.horizontalSizeClass) var sizeClass
+	@Bindable var vm: ViewModel
 	
 	@Query var modelPlaylists: [ModelPlaylist]
-	
-	@Binding var isPresented: Bool
-	
-	@StateObject var vm = ViewModel()
-	
-	@Binding var openedSingleStream: Bool
-	@State var path = NavigationPath()
+	@Binding var favorites: [Playlist.Media]
 	
 	// MARK: BodyNavigationSplitView
 	var body: some View {
@@ -36,19 +29,22 @@ struct ContentView: View {
 						Label("No Playlists", systemImage: "list.and.film")
 					} description: {
 						Text("Playlists that you add will appear here.")
-					} actions: {
-						Button("Add Playlist", systemImage: "plus") { isPresented.toggle() }
-						Button("Open Single Stream", systemImage: "play") { openedSingleStream.toggle() }
 					}
 				} else {
-					PlaylistsListView(selection: $vm.selectedPlaylist, isPresented: $isPresented, openedSingleStream: $openedSingleStream)
+					PlaylistsListView(vm)
 				}
 			}
 			.navigationTitle("Playlists")
 			.navigationSplitViewColumnWidth(min: 216, ideal: 216)
+			#if !targetEnvironment(macCatalyst)
+			.toolbar(id: "playlistsToolbar") {
+				ToolbarItem(id: "addPlaylist", placement: .topBarTrailing) { Button("Add Playlist", systemImage: "plus") { vm.isPresented.toggle() } }
+				ToolbarItem(id: "openSingleStream", placement: .topBarLeading) { Button("Open Stream", systemImage: "play") { vm.openedSingleStream.toggle() } }
+			}
+			#endif
 		} detail: {
 			if let playlist = vm.selectedPlaylist {
-				MediaListView(media: playlist.medias, selectedMedia: $vm.selectedMedia, playlistName: playlist.name)
+				MediaListView(vm: vm, favorites: $favorites, playlist: playlist)
 					.navigationTitle(playlist.name)
 			} else {
 				ContentUnavailableView {
@@ -58,9 +54,5 @@ struct ContentView: View {
 				}
 			}
 		}
-		.sheet(isPresented: $isPresented) { AddPlaylistView(isPresented: $isPresented, isParsing: $isParsing, parserDidFail: $vm.parserDidFail, parserError: $vm.parserError) }
-		.sheet(isPresented: $openedSingleStream) { SingleStreamView(openedSingleStream: $openedSingleStream) }
-		.sheet(isPresented: $isParsing) { LoadingView() }
-		.sheet(isPresented: $vm.parserDidFail) { ErrorView(parserDidFail: $vm.parserDidFail, parserError: $vm.parserError) }
 	}
 }

@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import M3UKit
 import SwiftData
+import AVKit
 
 struct PlaylistsListView: View {
 	
 	@Query var modelPlaylists: [ModelPlaylist]
 	
-	@ObservedObject var vm: ViewModel
+	@Bindable var vm: ViewModel
 	
 	@State var openedSingleStream: Bool = false
 	@Binding var isParsing: Bool
-	
 	
     var body: some View {
 		NavigationStack {
@@ -35,6 +36,9 @@ struct PlaylistsListView: View {
 						NavigationLink(playlist.name, value: playlist)
 					}
 				}
+			}
+			.navigationDestination(for: ModelPlaylist.self) { playlist in
+				MediasListView(medias: playlist.medias, playlistName: playlist.name)
 			}
 		}
     }
