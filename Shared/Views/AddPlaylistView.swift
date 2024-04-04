@@ -11,66 +11,13 @@ import M3UKit
 struct AddPlaylistView: View {
 	
 	@Environment(\.modelContext) var context
+	@Environment(\.dismiss) var dismiss
 	
 	@Bindable var vm: ViewModel
 	
-	init(_ vm: ViewModel) {
-		self.vm = vm
-	}
+	init(_ vm: ViewModel) { self.vm = vm }
 	
 	let parser = PlaylistParser()
-	
-	// MARK: ParsePlaylistFunc
-	private func parsePlaylist() async {
-		print("Parsing Playlist...")
-		await withCheckedContinuation { continuation in
-			parser.parse(vm.tempPlaylistURL) { result in
-				switch result {
-					case .success(let playlist):
-						print("Success")
-						vm.tempPlaylist = playlist
-						vm.parserDidFail = false
-						vm.isParsing.toggle()
-						continuation.resume()
-					case .failure(let error):
-						print("Error: \(error)")
-						vm.parserError = "\(error.localizedDescription)"
-						vm.parserDidFail = true
-						vm.isParsing.toggle()
-						continuation.resume()
-				}
-			}
-			vm.isPresented.toggle()
-		}
-	}
-	
-	// MARK: AddPlaylistFunc
-	private func addPlaylist() {
-		Task {
-			vm.isParsing.toggle()
-			
-			await parsePlaylist()
-			
-			if vm.parserDidFail {
-				vm.tempPlaylistName = ""
-				vm.tempPlaylistURL = ""
-				vm.tempPlaylist = Playlist(medias: [])
-			} else {
-				context.insert(ModelPlaylist(UUID(), vm.tempPlaylistName, vm.tempPlaylist.medias, vm.tempPlaylistURL))
-				vm.tempPlaylistName = ""
-				vm.tempPlaylistURL = ""
-				vm.tempPlaylist = Playlist(medias: [])
-			}
-		}
-	}
-	
-	// MARK: CancelPlaylistFunc
-	private func cancel() {
-		vm.isPresented.toggle()
-		vm.tempPlaylist = Playlist(medias: [])
-		vm.tempPlaylistURL = ""
-		vm.tempPlaylistName = ""
-	}
 	
 	var body: some View {
 		VStack {
@@ -91,7 +38,7 @@ struct AddPlaylistView: View {
 					.textInputAutocapitalization(.never)
 			}
 			
-			HStack(spacing: 20) {
+			HStack(spacing: 10) {
 				Button("Add", systemImage: "plus") { addPlaylist() }
 					.disabled(vm.tempPlaylistName.isEmpty || vm.tempPlaylistURL.isEmpty)
 					.buttonStyle(.borderedProminent)
@@ -103,4 +50,57 @@ struct AddPlaylistView: View {
 		}
 		.padding()
 	}
+}
+
+extension AddPlaylistView {
+	
+	private func parsePlaylist() async {
+		print("Parsing Playlist...")
+		await withCheckedContinuation { continuation in
+			parser.parse(URL(string: vm.tempPlaylistURL)!) { result in
+				switch result {
+					case .success(let playlist):
+						print("Success")
+						vm.tempPlaylist = playlist
+						vm.parserDidFail = false
+						vm.isParsing.toggle()
+						continuation.resume()
+					case .failure(let error):
+						print("Error: \(error)")
+						vm.parserError = "\(error.localizedDescription)"
+						vm.parserDidFail = true
+						vm.isParsing.toggle()
+						continuation.resume()
+				}
+			}
+			vm.isPresented.toggle()
+		}
+	}
+	
+	private func addPlaylist() {
+		Task {
+			vm.isParsing.toggle()
+			
+			await parsePlaylist()
+			
+			if vm.parserDidFail {
+				vm.tempPlaylistName = ""
+				vm.tempPlaylistURL = ""
+				vm.tempPlaylist = Playlist(medias: [])
+			} else {
+				context.insert(ModelPlaylist(vm.tempPlaylistName, vm.tempPlaylist.medias, vm.tempPlaylistURL))
+				vm.tempPlaylistName = ""
+				vm.tempPlaylistURL = ""
+				vm.tempPlaylist = Playlist(medias: [])
+			}
+		}
+	}
+
+	private func cancel() {
+		dismiss()
+		vm.tempPlaylist = Playlist(medias: [])
+		vm.tempPlaylistURL = ""
+		vm.tempPlaylistName = ""
+	}
+	
 }

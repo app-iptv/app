@@ -11,6 +11,36 @@
         }
       }
     },
+    "A simple IPTV client" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uma aplicação simples IPTV"
+          }
+        }
+      }
+    },
+    "About" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobre"
+          }
+        }
+      }
+    },
+    "About IPTV App" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobre App IPTV"
+          }
+        }
+      }
+    },
     "Add" : {
       "localizations" : {
         "pt-PT" : {
@@ -71,7 +101,18 @@
         }
       }
     },
+    "Compact" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pequeno"
+          }
+        }
+      }
+    },
     "Confirm Deletion" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -112,6 +153,7 @@
       }
     },
     "Delete Playlist" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -126,7 +168,17 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Completar"
+            "value" : "Feito"
+          }
+        }
+      }
+    },
+    "Edit \"%@\"" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar \"%@\""
           }
         }
       }
@@ -212,6 +264,46 @@
         }
       }
     },
+    "https://www.github.com/pedrodsac/" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://www.github.com/pedrodsac/"
+          }
+        }
+      }
+    },
+    "IPTV App" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App IPTV"
+          }
+        }
+      }
+    },
+    "IPTV App is a free resource for the community so any finantial support is greatly appreciated!" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A App IPTV é um recurso grátis logo qualquer supporte financeiro é muito agradecido!"
+          }
+        }
+      }
+    },
+    "Large" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grande"
+          }
+        }
+      }
+    },
     "New Playlist" : {
       "localizations" : {
         "pt-PT" : {
@@ -258,6 +350,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir"
+          }
+        }
+      }
+    },
+    "Open Legacy Settings" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Settings \"Legacy\""
           }
         }
       }
@@ -332,6 +434,26 @@
         }
       }
     },
+    "Regular" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normal"
+          }
+        }
+      }
+    },
+    "Reset Favorites" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar Favoritos"
+          }
+        }
+      }
+    },
     "Search" : {
       "localizations" : {
         "pt-PT" : {
@@ -382,6 +504,16 @@
         }
       }
     },
+    "Show Wecome Screen Again" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar Ecrã de Início outra vez"
+          }
+        }
+      }
+    },
     "Single Stream" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -413,12 +545,42 @@
         }
       }
     },
+    "Tip Jar" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Milheiro"
+          }
+        }
+      }
+    },
     "Un-favorite" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desmarcar como Favorito"
+          }
+        }
+      }
+    },
+    "v%@ · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "v%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "Viewing Mode" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamanho de Canal"
           }
         }
       }

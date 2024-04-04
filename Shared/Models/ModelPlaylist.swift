@@ -14,13 +14,13 @@ import Foundation
 final class ModelPlaylist: Identifiable {
 	var id: UUID
 	var name: String
-	var medias: [Playlist.Media]
+	var medias: [Media]
 	var m3uLink: String
 	
 	init(
-		_ id: 		UUID,
+		id: 		UUID = UUID(),
 		_ name: 	String,
-		_ medias: 	[Playlist.Media],
+		_ medias: 	[Media],
 		_ m3uLink: 	String
 	) {
 		self.id 		= id

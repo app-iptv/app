@@ -26,5 +26,5 @@ class ViewModel {
 	var openedSingleStream: Bool = false
 	
 	var selectedPlaylist: ModelPlaylist? = nil
-	var selectedMedia: Playlist.Media? = nil
+	var selectedMedia: Media? = nil
 }

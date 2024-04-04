@@ -1,0 +1,154 @@
+{
+  "identifier" : "AE9F69D1",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "BDA57ABA",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Small Tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "",
+          "displayName" : "Pequena Gorgeta",
+          "locale" : "pt_PT"
+        }
+      ],
+      "productID" : "me.pedrocordeiro.IPTVapp.smallTip",
+      "referenceName" : "Small Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "8633A9B9",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Medium Tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "",
+          "displayName" : "Média Gorgeta",
+          "locale" : "pt_PT"
+        }
+      ],
+      "productID" : "me.pedrocordeiro.IPTVapp.mediumTip",
+      "referenceName" : "Medium Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "3993BB83",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Large Tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "",
+          "displayName" : "Grande Gorgeta",
+          "locale" : "pt_PT"
+        }
+      ],
+      "productID" : "me.pedrocordeiro.IPTVapp.largeTip",
+      "referenceName" : "Large Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "4078C0CF",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Tiny Tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "",
+          "displayName" : "Pequenina Gorgeta",
+          "locale" : "pt_PT"
+        }
+      ],
+      "productID" : "me.pedrocordeiro.IPTVapp.tinyTip",
+      "referenceName" : "Tiny Tip",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_askToBuyEnabled" : true,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "LUX",
+    "_storeKitErrors" : [
+      {
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : {
+          "index" : 1,
+          "type" : "purchase"
+        },
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
