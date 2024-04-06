@@ -14,7 +14,7 @@ struct MediaDetailView: View {
 	let playlistName: String
 	
 	let media: Media
-		
+
 	var body: some View {
 		ScrollView() {
 			VStack(alignment: .leading, spacing: 10) {
