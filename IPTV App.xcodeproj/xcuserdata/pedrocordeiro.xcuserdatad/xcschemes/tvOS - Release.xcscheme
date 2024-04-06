@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2F2AF40F2BB5838F008F08DA"
-               BuildableName = "IPTV tvOS.app"
-               BlueprintName = "IPTV tvOS"
+               BuildableName = "IPTV.app"
+               BlueprintName = "IPTV"
                ReferencedContainer = "container:IPTV App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2F2AF40F2BB5838F008F08DA"
-            BuildableName = "IPTV tvOS.app"
-            BlueprintName = "IPTV tvOS"
+            BuildableName = "IPTV.app"
+            BlueprintName = "IPTV"
             ReferencedContainer = "container:IPTV App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2F2AF40F2BB5838F008F08DA"
-            BuildableName = "IPTV tvOS.app"
-            BlueprintName = "IPTV tvOS"
+            BuildableName = "IPTV.app"
+            BlueprintName = "IPTV"
             ReferencedContainer = "container:IPTV App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -73,7 +73,6 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      revealArchiveInOrganizer = "YES"
-      allowsArchivingForSimulator = "YES">
+      revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

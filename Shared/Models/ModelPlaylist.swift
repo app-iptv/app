@@ -12,10 +12,10 @@ import Foundation
 
 @Model
 final class ModelPlaylist: Identifiable {
-	var id: UUID
-	var name: String
-	var medias: [Media]
-	var m3uLink: String
+	var id: UUID = UUID()
+	var name: String = ""
+	var medias: [Media] = []
+	var m3uLink: String = ""
 	
 	init(
 		id: 		UUID = UUID(),

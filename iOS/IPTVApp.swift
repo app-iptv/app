@@ -82,8 +82,6 @@ struct IPTVApp: App {
 		.commands { commands }
 		
 		#if targetEnvironment(macCatalyst)
-		WindowGroup(id: "TIP_JAR_WINDOW") { TipJarView() }
-		
 		WindowGroup(id: "ABOUT_WINDOW") { AboutView() }
 		
 		WindowGroup("Settings", id: "SETTINGS_WINDOW") { SettingsView(vm: vm, isRemovingAll: $isRemovingAll) }

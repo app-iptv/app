@@ -11,9 +11,9 @@ import SwiftUI
 enum ViewingMode: CaseIterable, Identifiable, RawRepresentable {
 	case compact, regular, large
 	
-	var id: String { name }
+	var id: Self { self }
 	
-	var name: String {
+	var name: LocalizedStringKey {
 		switch self {
 			case .large:
 				return "Large"

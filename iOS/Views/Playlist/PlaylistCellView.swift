@@ -11,11 +11,11 @@ import M3UKit
 
 struct PlaylistCellView: View {
 	
+	@Environment(\.modelContext) var context
+	
 	@Bindable var playlist: ModelPlaylist
 	
 	init(_ playlist: ModelPlaylist) { self.playlist = playlist }
-	
-	@Environment(\.modelContext) var context
 	
 	@State private var isEditing: Bool = false
 	

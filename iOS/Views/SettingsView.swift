@@ -44,7 +44,6 @@ struct SettingsView: View {
 				}
 				
 				Section {
-//					NavigationLink { TipJarView() } label: { Label("Tip Jar", systemImage: "hands.clap") }
 					NavigationLink { AboutView() } label: { Label("About", systemImage: "info.circle") }
 				}
 			}

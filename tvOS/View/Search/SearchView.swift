@@ -29,7 +29,9 @@ struct SearchView: View {
 	}
 	
 	var filteredMedias: [Media] {
-		return allMedias.filter { $0.name.localizedCaseInsensitiveContains(mediaSearchText) }
+		return allMedias.filter { media in
+			media.name.localizedCaseInsensitiveContains(mediaSearchText)
+		}
 	}
 	
     var body: some View {
@@ -47,5 +49,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView()
+	SearchView()
 }

@@ -19,7 +19,15 @@ struct AboutView: View {
 			HStack { content.fixedSize() }
 		}
 		#else
-		content
+		return content
+		#endif
+	}
+	
+	var frame: CGFloat {
+		#if targetEnvironment(macCatalyst)
+		100
+		#else
+		150
 		#endif
 	}
 	

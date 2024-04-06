@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2FB75B802B41A9FE00A16501"
-               BuildableName = "IPTV.app"
-               BlueprintName = "IPTV"
+               BuildableName = "IPTV App.app"
+               BlueprintName = "IPTV App"
                ReferencedContainer = "container:IPTV App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -58,8 +58,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2FB75B802B41A9FE00A16501"
-            BuildableName = "IPTV.app"
-            BlueprintName = "IPTV"
+            BuildableName = "IPTV App.app"
+            BlueprintName = "IPTV App"
             ReferencedContainer = "container:IPTV App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -79,8 +79,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2FB75B802B41A9FE00A16501"
-            BuildableName = "IPTV.app"
-            BlueprintName = "IPTV"
+            BuildableName = "IPTV App.app"
+            BlueprintName = "IPTV App"
             ReferencedContainer = "container:IPTV App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
