@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
 	
+	@Environment(\.modelContext) var context
+	
 	@AppStorage("SELECTED_TAB") var selectedTab: Tab = .home
 	@AppStorage("IS_FIRST_LAUNCH") var isFirstLaunch: Bool = true
 	@AppStorage("FAVORITED_MEDIAS") var favorites: [Media] = []
@@ -34,7 +36,7 @@ struct ContentView: View {
 			#endif
 		}
 		.sheet(isPresented: $isFirstLaunch) { FirstLaunchView(isFirstLaunch: $isFirstLaunch) }
-		.sheet(isPresented: $vm.isPresented) { AddPlaylistView(vm) }
+		.sheet(isPresented: $vm.isPresented) { AddPlaylistView(vm).modelContext(context) }
 		.sheet(isPresented: $vm.openedSingleStream) { SingleStreamView(vm) }
 		.sheet(isPresented: $vm.isParsing) { LoadingView() }
 		.sheet(isPresented: $vm.parserDidFail) { ErrorView(vm) }
