@@ -88,7 +88,7 @@ extension AddPlaylistView {
 				vm.tempPlaylistURL = ""
 				vm.tempPlaylist = Playlist(medias: [])
 			} else {
-				context.insert(ModelPlaylist(vm.tempPlaylistName, vm.tempPlaylist.medias, vm.tempPlaylistURL))
+				context.insert(ModelPlaylist(vm.tempPlaylistName, medias: vm.tempPlaylist.medias, m3uLink: vm.tempPlaylistURL))
 				vm.tempPlaylistName = ""
 				vm.tempPlaylistURL = ""
 				vm.tempPlaylist = Playlist(medias: [])

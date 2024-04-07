@@ -33,6 +33,6 @@ struct MediaDetailView: View {
 			}
 			.padding()
 		}
-		.navigationBarTitleDisplayMode(.inline)
+		.toolbarTitleDisplayMode(.inline)
 	}
 }

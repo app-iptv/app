@@ -48,7 +48,7 @@ struct MediaListView: View {
 					.pickerStyle(.menu)
 				}
 			}
-			.toolbarRole(.browser)
+			.toolbarRole(sizeClass!.toolbarRole)
 			.navigationDestination(for: Media.self) { media in
 				MediaDetailView(playlistName: playlistName, media: media)
 			}
@@ -57,7 +57,6 @@ struct MediaListView: View {
 }
 
 extension MediaListView {
-	
 	private var placement: ToolbarItemPlacement {
 		#if targetEnvironment(macCatalyst)
 		return .primaryAction

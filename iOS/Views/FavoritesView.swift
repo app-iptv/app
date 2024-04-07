@@ -44,8 +44,9 @@ struct FavoritesView: View {
 			.navigationDestination(for: Media.self) { media in
 				MediaDetailView(playlistName: "Favorites", media: media)
 			}
+			.toolbarRole(.browser)
 			.toolbar(id: "favoritesToolbar") {
-				ToolbarItem(id: "groupPicker") {
+				ToolbarItem(id: "groupPicker", placement: placement) {
 					Picker("Select Group", selection: $selectedGroup) {
 						ForEach(groups, id: \.self) { group in
 							Label(LocalizedStringKey(group), systemImage: group == "All" ? "tray.2" : "tray").tag(group)
