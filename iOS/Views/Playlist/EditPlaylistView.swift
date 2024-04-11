@@ -11,11 +11,11 @@ struct EditPlaylistView: View {
 	
 	@Environment(\.dismiss) private var dismiss
 	
-	@Bindable var playlist: ModelPlaylist
+	@Bindable var playlist: Playlist
 	
 	@State var newName: String = ""
 	
-	init(_ playlist: ModelPlaylist) { self.playlist = playlist }
+	init(_ playlist: Playlist) { self.playlist = playlist }
 	
     var body: some View {
 		VStack {

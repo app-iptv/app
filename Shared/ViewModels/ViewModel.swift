@@ -16,7 +16,7 @@ class ViewModel {
 	
 	var tempPlaylistName: String = ""
 	var tempPlaylistURL: String = ""
-	var tempPlaylist: Playlist = Playlist(medias: [])
+	var tempPlaylist: PlData? = nil
 	
 	var parserDidFail: Bool = false
 	var parserError: String = ""
@@ -25,6 +25,6 @@ class ViewModel {
 	var isPresented: Bool = false
 	var openedSingleStream: Bool = false
 	
-	var selectedPlaylist: ModelPlaylist? = nil
-	var selectedMedia: Media? = nil
+	var selectedPlaylist: Playlist? = nil
+	var selectedmedia: media? = nil
 }

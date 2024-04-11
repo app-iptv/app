@@ -10,7 +10,7 @@ import M3UKit
 
 struct FavoritesView: View {
 	
-	@AppStorage("FAVORITED_MEDIAS") var favorites: [Media] = []
+	@AppStorage("FAVORITED_CHANNELS") var favorites: [media] = []
 	
 	@State private var isDeletingAll: Bool = false
 	
@@ -23,16 +23,16 @@ struct FavoritesView: View {
 			Group {
 				if favorites.isEmpty {
 					ContentUnavailableView {
-						Label("No Favorited Medias", systemImage: "star.slash")
+						Label("No Favorited medias", systemImage: "star.slash")
 					} description: {
 						Text("The medias you favorite will appear here. To add some favorites, click on the star symbol next to a media.")
 					}
-				} else if filteredMediasForGroup.isEmpty {
+				} else if filteredmediasForGroup.isEmpty {
 					ContentUnavailableView.search(text: searchQuery)
 				} else {
-					List(filteredMediasForGroup) { media in
+					List(filteredmediasForGroup) { media in
 						NavigationLink(value: media) {
-							MediaCellView(media: media, playlistName: "Favorites")
+							mediaCellView(media: media, playlistName: "Favorites")
 						}.badge(favorites.firstIndex(of: media)!+1)
 					}
 					.id(UUID())
@@ -41,8 +41,8 @@ struct FavoritesView: View {
 			}
 			.navigationTitle("Favorites")
 			.searchable(text: $searchQuery, prompt: "Search Favorites")
-			.navigationDestination(for: Media.self) { media in
-				MediaDetailView(playlistName: "Favorites", media: media)
+			.navigationDestination(for: media.self) { media in
+				mediaDetailView(playlistName: "Favorites", media: media)
 			}
 			.toolbarRole(.browser)
 			.toolbar(id: "favoritesToolbar") {
@@ -68,22 +68,22 @@ extension FavoritesView {
 		#endif
 	}
 	
-	private var searchResults: [Media] {
+	private var searchResults: [media] {
 		guard !searchQuery.isEmpty else { return favorites }
 		return favorites.filter { media in
-			media.name.localizedCaseInsensitiveContains(searchQuery) ||
-			(media.attributes.groupTitle ?? "").localizedStandardContains(searchQuery)
+			media.title.localizedStandardContains(searchQuery) ||
+			(media.attributes["group-title"] ?? "Undefined").localizedCaseInsensitiveContains(searchQuery)
 		}
 	}
 	
 	private var groups: [String] {
-		var allGroups = Set(searchResults.compactMap { $0.attributes.groupTitle })
+		var allGroups = Set(searchResults.compactMap { $0.attributes["group-title"] })
 		allGroups.insert("All")
 		return allGroups.sorted()
 	}
 	
-	private var filteredMediasForGroup: [Media] {
-		guard selectedGroup == "All" else { return searchResults.filter { $0.attributes.groupTitle == selectedGroup } }
+	private var filteredmediasForGroup: [media] {
+		guard selectedGroup == "All" else { return searchResults.filter { $0.attributes["group-title"] == selectedGroup } }
 		return searchResults
 	}
 }

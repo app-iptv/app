@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -72,6 +73,7 @@
       }
     },
     "All" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -80,6 +82,9 @@
           }
         }
       }
+    },
+    "Blue" : {
+
     },
     "Cancel" : {
       "localizations" : {
@@ -90,6 +95,9 @@
           }
         }
       }
+    },
+    "Change App Icon" : {
+
     },
     "Close" : {
       "localizations" : {
@@ -122,6 +130,9 @@
         }
       }
     },
+    "Default" : {
+
+    },
     "Delete" : {
       "localizations" : {
         "pt-PT" : {
@@ -142,7 +153,22 @@
         }
       }
     },
+    "Delete All Favorited channels?" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar Todos os Canais Favoritos?"
+          }
+        }
+      }
+    },
+    "Delete All Favorited medias?" : {
+
+    },
     "Delete All Favorited Medias?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -213,6 +239,9 @@
         }
       }
     },
+    "Error Changing Icon" : {
+
+    },
     "Favorite" : {
       "localizations" : {
         "pt-PT" : {
@@ -242,6 +271,9 @@
           }
         }
       }
+    },
+    "Green" : {
+
     },
     "Hello 👋" : {
       "extractionState" : "manual",
@@ -315,7 +347,11 @@
         }
       }
     },
+    "No Favorited medias" : {
+
+    },
     "No Favorited Medias" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -325,7 +361,11 @@
         }
       }
     },
+    "No medias" : {
+
+    },
     "No Medias" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -365,7 +405,11 @@
         }
       }
     },
+    "Open Single media" : {
+
+    },
     "Open Single Media" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -434,6 +478,9 @@
           }
         }
       }
+    },
+    "Red" : {
+
     },
     "Regular" : {
       "localizations" : {
@@ -537,6 +584,7 @@
       }
     },
     "The selected playlist's channels will appear here." : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -545,6 +593,9 @@
           }
         }
       }
+    },
+    "The selected playlist's medias will appear here." : {
+
     },
     "Tip Jar" : {
       "localizations" : {
@@ -614,6 +665,7 @@
       }
     },
     "Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips." : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -633,6 +685,15 @@
           }
         }
       }
+    },
+    "Welcome! Enjoy instant access to live TV medias from around the world, right at your fingertips." : {
+
+    },
+    "Welcome! Enjoy instant access to live TV medias from around the world, right at your fingertips. You can create a new playlist by clicking \"New Playlist\" in \"File\" in the Menu Bar, or by clicking CMD + N" : {
+
+    },
+    "Yellow" : {
+
     },
     "You can show this screen again by clicking \"Show Tips Again\" in \"Settings\" in \"IPTV\" in the Menu Bar, or by clicking CMD + T" : {
       "localizations" : {

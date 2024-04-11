@@ -16,7 +16,7 @@ struct IPTVApp: App {
 	@State var vm = ViewModel()
 	
 	@AppStorage("IS_FIRST_LAUNCH") var isFirstLaunch: Bool = true
-	@AppStorage("FAVORITED_MEDIAS") var favorites: [Media] = []
+	@AppStorage("FAVORITED_CHANNELS") var favorites: [media] = []
 	@AppStorage("VIEWING_MODE") var viewingMode: ViewingMode = .regular
 	@AppStorage("SELECTED_TAB") var selectedTab: Tab = .home
 	
@@ -78,7 +78,7 @@ struct IPTVApp: App {
 		WindowGroup {
 			ContentView(isRemovingAll: $isRemovingAll, vm: vm)
 		}
-		.modelContainer(for: ModelPlaylist.self, inMemory: false, isAutosaveEnabled: true, isUndoEnabled: true)
+		.modelContainer(for: Playlist.self, inMemory: false, isAutosaveEnabled: true, isUndoEnabled: true)
 		.commands { commands }
 		
 		#if targetEnvironment(macCatalyst)

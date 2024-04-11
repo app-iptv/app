@@ -12,5 +12,53 @@
 		<string>audio</string>
 		<string>remote-notification</string>
 	</array>
+	<key>CFBundleAlternateIcons</key>
+	<dict>
+		<key>DefaultIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>DefaultIcon</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+		<key>RedIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>RedIcon</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+		<key>BlueIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>BlueIcon</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+		<key>GreenIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>GreenIcon</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+		<key>Yellow Icon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>YellowIcon</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+	</dict>
 </dict>
 </plist>

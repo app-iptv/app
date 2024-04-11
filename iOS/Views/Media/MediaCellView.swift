@@ -1,5 +1,5 @@
 //
-//  MediaRowView.swift
+//  mediaRowView.swift
 //  IPTV
 //
 //  Created by Pedro Cordeiro on 08/02/2024.
@@ -10,19 +10,19 @@ import SwiftUI
 import M3UKit
 import SDWebImageSwiftUI
 
-struct MediaCellView: View {
+struct mediaCellView: View {
 	
-	@AppStorage("FAVORITED_MEDIAS") var favorites: [Media] = []
+	@AppStorage("FAVORITED_CHANNELS") var favorites: [media] = []
 	
 	@AppStorage("VIEWING_MODE") var viewingMode: ViewingMode = .regular
 	
-	let media: Media
+	let media: media
 	
 	let playlistName: String
 	
 	var body: some View {
 		HStack {
-			WebImage(url: URL(string: media.attributes.logo ?? "")) { image in
+			WebImage(url: URL(string: media.attributes["tvg-logo"] ?? "")) { image in
 				image
 					.resizable()
 					.scaledToFit()
@@ -39,20 +39,20 @@ struct MediaCellView: View {
 					otherViewingMode
 			}
 		}
-		.swipeActions(edge: .leading) { ShareLink(item: media.url, preview: SharePreview(media.name)).tint(.pink) }
+		.swipeActions(edge: .leading) { ShareLink(item: media.url, preview: SharePreview(media.title)).tint(.pink) }
 		.swipeActions(edge: .trailing) { swipeActions }
 		.contextMenu { contextMenu }
 	}
 }
 
-extension MediaCellView {
+extension mediaCellView {
 	private var largeViewingMode: some View {
 		VStack(alignment: .leading, spacing: 5) {
-			Text(media.name)
+			Text(media.title)
 				.fontWeight(.semibold)
 				.lineLimit(1)
 			
-			Text(media.attributes.groupTitle ?? "")
+			Text(media.attributes["group-title"] ?? "Undefined")
 				.font(.caption)
 				.lineLimit(1)
 		}
@@ -60,13 +60,13 @@ extension MediaCellView {
 	
 	private var otherViewingMode: some View {
 		HStack {
-			Text(media.name)
+			Text(media.title)
 				.fontWeight(.semibold)
 				.lineLimit(1)
 			
 			Spacer()
 			
-			Text(media.attributes.groupTitle ?? "")
+			Text(media.attributes["group-title"] ?? "Undefined")
 				.font(.caption)
 				.lineLimit(1)
 		}
@@ -74,7 +74,7 @@ extension MediaCellView {
 	
 	private var contextMenu: some View {
 		VStack {
-			ShareLink(item: media.url, preview: SharePreview(media.name))
+			ShareLink(item: media.url, preview: SharePreview(media.title))
 			Button(favorites.contains(media) ? "Un-favorite" : "Favorite", systemImage: favorites.contains(media) ? "star.slash.fill" : "star", role: favorites.contains(media) ? .destructive : nil) {
 				if favorites.contains(media) {
 					favorites.remove(at: favorites.firstIndex(of: media)!)

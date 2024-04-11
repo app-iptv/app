@@ -1,5 +1,5 @@
 //
-//  MediaDetailView.swift
+//  mediaDetailView.swift
 //  IPTV
 //
 //  Created by Pedro Cordeiro on 11/02/2024.
@@ -9,11 +9,11 @@ import SwiftUI
 import M3UKit
 import AVKit
 
-struct MediaDetailView: View {
+struct mediaDetailView: View {
 	
 	let playlistName: String
 	
-	let media: Media
+	let media: media
 
 	var body: some View {
 		ScrollView() {
@@ -23,11 +23,11 @@ struct MediaDetailView: View {
 					.cornerRadius(10)
 				
 				VStack(alignment: .leading, spacing: 2.5) {
-					if let groupTitle = media.attributes.groupTitle {
+					if let groupTitle = media.attributes["groupTitle"] {
 						Text(groupTitle)
 							.font(.footnote)
 					}
-					Text(media.name)
+					Text(media.title)
 						.font(.headline)
 				}
 			}

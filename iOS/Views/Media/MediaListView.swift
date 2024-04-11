@@ -1,5 +1,5 @@
 //
-//  MediaListView.swift
+//  mediaListView.swift
 //  IPTV
 //
 //  Created by Pedro Cordeiro on 11/02/2024.
@@ -9,14 +9,14 @@ import SwiftUI
 import M3UKit
 import Foundation
 
-struct MediaListView: View {
+struct mediaListView: View {
 	
 	@Environment(\.horizontalSizeClass) var sizeClass
 	@Environment(\.isSearching) var searchState
 	
 	@Bindable var vm: ViewModel
 	
-	let medias: [Media]
+	let medias: [media]
 	let playlistName: String
 	
 	@State private var searchQuery: String = ""
@@ -24,12 +24,14 @@ struct MediaListView: View {
 	var body: some View {
 		NavigationStack {
 			Group {
-				if filteredMediasForGroup.isEmpty {
+				if filteredmediasForGroup.isEmpty {
 					ContentUnavailableView.search(text: searchQuery)
 				} else {
-					List(filteredMediasForGroup) { media in
-						NavigationLink(value: media) {
-							MediaCellView(media: media, playlistName: playlistName)
+					List(filteredmediasForGroup) { media in
+						NavigationLink {
+							mediaDetailView(playlistName: playlistName, media: media)
+						} label: {
+							mediaCellView(media: media, playlistName: playlistName)
 						}.badge(medias.firstIndex(of: media)!+1)
 					}
 					.id(UUID())
@@ -49,14 +51,12 @@ struct MediaListView: View {
 				}
 			}
 			.toolbarRole(sizeClass!.toolbarRole)
-			.navigationDestination(for: Media.self) { media in
-				MediaDetailView(playlistName: playlistName, media: media)
-			}
+			.toolbarTitleDisplayMode(.inline)
 		}
 	}
 }
 
-extension MediaListView {
+extension mediaListView {
 	private var placement: ToolbarItemPlacement {
 		#if targetEnvironment(macCatalyst)
 		return .primaryAction
@@ -65,22 +65,22 @@ extension MediaListView {
 		#endif
 	}
 	
-	private var searchResults: [Media] {
+	private var searchResults: [media] {
 		guard !searchQuery.isEmpty else { return medias }
 		return medias.filter { media in
-			media.name.localizedCaseInsensitiveContains(searchQuery) ||
-			(media.attributes.groupTitle ?? "Undefined").localizedStandardContains(searchQuery)
+			media.title.localizedStandardContains(searchQuery) ||
+			(media.attributes["group-title"] ?? "Undefined").localizedCaseInsensitiveContains(searchQuery)
 		}
 	}
 	
 	private var groups: [String] {
-		var allGroups = Set(searchResults.compactMap { $0.attributes.groupTitle })
+		var allGroups = Set(searchResults.compactMap { $0.attributes["group-title"] ?? "Undefined" })
 		allGroups.insert("All")
 		return allGroups.sorted()
 	}
 	
-	private var filteredMediasForGroup: [Media] {
-		guard vm.selectedGroup == "All" else { return searchResults.filter { $0.attributes.groupTitle == vm.selectedGroup } }
+	private var filteredmediasForGroup: [media] {
+		guard vm.selectedGroup == "All" else { return searchResults.filter { ($0.attributes["group-title"] ?? "Undefined") == vm.selectedGroup } }
 		return searchResults
 	}
 }

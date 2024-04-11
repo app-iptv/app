@@ -17,7 +17,7 @@ struct AddPlaylistView: View {
 	
 	init(_ vm: ViewModel) { self.vm = vm }
 	
-	let parser = PlaylistParser()
+	let decoder = M3UDecoder()
 	
 	var body: some View {
 		VStack {
@@ -49,56 +49,43 @@ struct AddPlaylistView: View {
 			.padding()
 		}
 		.padding()
+		.sheet(isPresented: $vm.isParsing) { LoadingView() }
 	}
 }
 
 extension AddPlaylistView {
 	
 	private func parsePlaylist() async {
-		print("Parsing Playlist...")
-		await withCheckedContinuation { continuation in
-			parser.parse(URL(string: vm.tempPlaylistURL)!) { result in
-				switch result {
-					case .success(let playlist):
-						print("Success")
-						vm.tempPlaylist = playlist
-						vm.parserDidFail = false
-						vm.isParsing.toggle()
-						continuation.resume()
-					case .failure(let error):
-						print("Error: \(error)")
-						vm.parserError = "\(error.localizedDescription)"
-						vm.parserDidFail = true
-						vm.isParsing.toggle()
-						continuation.resume()
-				}
-			}
-			vm.isPresented.toggle()
+		let url = URL(string: vm.tempPlaylistURL)!
+		
+		do {
+			let m3u = try decoder.decode(Data(contentsOf: url))
+			
+			vm.tempPlaylist = m3u
+		} catch {
+			print(error.localizedDescription)
+			vm.parserError = error.localizedDescription
+			vm.parserDidFail = true
 		}
 	}
 	
 	private func addPlaylist() {
 		Task {
 			vm.isParsing.toggle()
-			
 			await parsePlaylist()
+			vm.isParsing.toggle()
 			
-			if vm.parserDidFail {
-				vm.tempPlaylistName = ""
-				vm.tempPlaylistURL = ""
-				vm.tempPlaylist = Playlist(medias: [])
-			} else {
-				context.insert(ModelPlaylist(vm.tempPlaylistName, medias: vm.tempPlaylist.medias, m3uLink: vm.tempPlaylistURL))
-				vm.tempPlaylistName = ""
-				vm.tempPlaylistURL = ""
-				vm.tempPlaylist = Playlist(medias: [])
+			if !vm.parserDidFail {
+				context.insert(Playlist(vm.tempPlaylistName, medias: vm.tempPlaylist?.channels ?? [], m3uLink: vm.tempPlaylistURL))
 			}
+			
+			cancel()
 		}
 	}
 
 	private func cancel() {
 		dismiss()
-		vm.tempPlaylist = Playlist(medias: [])
+		vm.tempPlaylist = nil
 		vm.tempPlaylistURL = ""
 		vm.tempPlaylistName = ""
 	}

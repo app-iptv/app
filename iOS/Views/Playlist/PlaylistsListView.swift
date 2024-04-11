@@ -18,7 +18,7 @@ struct PlaylistsListView: View {
 	
 	init(_ vm: ViewModel) { self.vm = vm }
 	
-	@Query var modelPlaylists: [ModelPlaylist]
+	@Query var modelPlaylists: [Playlist]
 	
 	var body: some View {
 		Group {

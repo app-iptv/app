@@ -13,9 +13,9 @@ struct PlaylistCellView: View {
 	
 	@Environment(\.modelContext) var context
 	
-	@Bindable var playlist: ModelPlaylist
+	@Bindable var playlist: Playlist
 	
-	init(_ playlist: ModelPlaylist) { self.playlist = playlist }
+	init(_ playlist: Playlist) { self.playlist = playlist }
 	
 	@State private var isEditing: Bool = false
 	

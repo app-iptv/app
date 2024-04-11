@@ -21,7 +21,7 @@ struct SingleStreamView: View {
 	
     var body: some View {
 		VStack {
-			Text("Open Single Media")
+			Text("Open Single media")
 				.font(.largeTitle)
 				.bold()
 				.padding()
@@ -39,23 +39,14 @@ struct SingleStreamView: View {
 			}
 			.padding()
 		}
-		.navigationTitle("Open Single Media")
+		.navigationTitle("Open Single media")
 		.sheet(isPresented: $isPresented) { playerView }
 		.padding()
     }
 	
 	var playerView: some View {
 		VStack {
-			PlayerView(
-				media: Media(
-					duration: 0,
-					attributes: Attributes(groupTitle: String(localized: "Single Stream")),
-					kind: .unknown,
-					name: String(localized: "Single Stream"),
-					url: URL(string: mediaURL)!
-				),
-				playlistName: String(localized: "Single Stream")
-			)
+			SinglePlayerView(name: String(localized: "Single Stream"), url: mediaURL, group: String(localized: "Single Stream"), playlistName: String(localized: "Single Stream"))
 			.aspectRatio(16/9, contentMode: .fit)
 			.cornerRadius(10)
 			.padding()

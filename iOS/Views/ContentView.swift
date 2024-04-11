@@ -13,7 +13,7 @@ struct ContentView: View {
 	
 	@AppStorage("SELECTED_TAB") var selectedTab: Tab = .home
 	@AppStorage("IS_FIRST_LAUNCH") var isFirstLaunch: Bool = true
-	@AppStorage("FAVORITED_MEDIAS") var favorites: [Media] = []
+	@AppStorage("FAVORITED_mediaS") var favorites: [media] = []
 	
 	@Binding var isRemovingAll: Bool
 	
@@ -38,9 +38,8 @@ struct ContentView: View {
 		.sheet(isPresented: $isFirstLaunch) { FirstLaunchView(isFirstLaunch: $isFirstLaunch) }
 		.sheet(isPresented: $vm.isPresented) { AddPlaylistView(vm).modelContext(context) }
 		.sheet(isPresented: $vm.openedSingleStream) { SingleStreamView(vm) }
-		.sheet(isPresented: $vm.isParsing) { LoadingView() }
 		.sheet(isPresented: $vm.parserDidFail) { ErrorView(vm) }
-		.alert("Delete All Favorited Medias?", isPresented: $isRemovingAll) {
+		.alert("Delete All Favorited medias?", isPresented: $isRemovingAll) {
 			Button("Cancel", systemImage: "xmark.circle", role: .cancel) { isRemovingAll.toggle() }
 			Button("DELETE ALL", systemImage: "trash", role: .destructive) { favorites.removeAll() }
 		} message: {

@@ -8,6 +8,6 @@
 import Foundation
 import M3UKit
 
-typealias Media = Playlist.Media
+typealias PlData = M3U
 
-typealias Attributes = Media.Attributes
+typealias media = M3U.Channel
