@@ -18,6 +18,7 @@
 		2F5E8F8D2B78DB0B00850659 /* MediaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E8F8C2B78DB0B00850659 /* MediaDetailView.swift */; };
 		2F5E8F902B78E1CE00850659 /* MediaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E8F8F2B78E1CE00850659 /* MediaListView.swift */; };
 		2F5E8F922B78E29700850659 /* PlaylistsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E8F912B78E29700850659 /* PlaylistsListView.swift */; };
+		2F6799342BC86CB400A5780D /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6799332BC86CB400A5780D /* M3UKit */; };
 		2F73C7CC2B69390600547B76 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CA2B69390600547B76 /* HomeView.swift */; };
 		2F73C7CE2B69396C00547B76 /* ModelPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CD2B69396C00547B76 /* ModelPlaylist.swift */; };
 		2F7614BF2BBC53A900C53564 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7614BE2BBC53A900C53564 /* Bundle.swift */; };
@@ -102,6 +103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FFDFF562BA342C3001A0166 /* SDWebImageSwiftUI in Frameworks */,
+				2F6799342BC86CB400A5780D /* M3UKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +286,7 @@
 			name = "IPTV App";
 			packageProductDependencies = (
 				2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */,
+				2F6799332BC86CB400A5780D /* M3UKit */,
 			);
 			productName = IPTV;
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV App.app */;
@@ -318,6 +321,7 @@
 			mainGroup = 2FB75B782B41A9FE00A16501;
 			packageReferences = (
 				2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				2F6799322BC86CB300A5780D /* XCLocalSwiftPackageReference "M3UKit" */,
 			);
 			productRefGroup = 2FB75B822B41A9FE00A16501 /* Products */;
 			projectDirPath = "";
@@ -646,6 +650,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		2F6799322BC86CB300A5780D /* XCLocalSwiftPackageReference "M3UKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = M3UKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -658,6 +669,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2F6799332BC86CB400A5780D /* M3UKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = M3UKit;
+		};
 		2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
