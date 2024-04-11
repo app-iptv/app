@@ -1,15 +1,6 @@
 {
-  "originHash" : "7bd266eb5aa6b61da52b8232c9e4db5f54d34faf72355b235711761c5649333e",
+  "originHash" : "4afe3317e0d15d2489436da7b7a4d73a0275f042e903c27b0a4897e00b1c9084",
   "pins" : [
-    {
-      "identity" : "m3ukit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Rubenfer/M3UKit.git",
-      "state" : {
-        "revision" : "83c2a8e646f29829842fb780e0b4af7f85e0595b",
-        "version" : "0.1.2"
-      }
-    },
     {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",

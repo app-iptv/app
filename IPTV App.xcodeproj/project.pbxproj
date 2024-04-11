@@ -36,7 +36,6 @@
 		2FE23EB92B9C652C00579625 /* FirstLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE23EB82B9C652C00579625 /* FirstLaunchView.swift */; };
 		2FEA72B92BA9E21000F6CEA8 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEA72B82BA9E21000F6CEA8 /* FavoritesView.swift */; };
 		2FEF5E852B7A510500AB0193 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5E842B7A510500AB0193 /* ViewModel.swift */; };
-		2FF007CA2BC56C1F009013EB /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF007C92BC56C1F009013EB /* M3UKit */; };
 		2FF007D32BC70D4E009013EB /* ChangeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF007D22BC70D4E009013EB /* ChangeIconView.swift */; };
 		2FF1450A2B9DD2F7006B2508 /* SingleStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF145092B9DD2F7006B2508 /* SingleStreamView.swift */; };
 		2FFDFF562BA342C3001A0166 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */; };
@@ -68,6 +67,7 @@
 		2F5E8F8C2B78DB0B00850659 /* MediaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailView.swift; sourceTree = "<group>"; };
 		2F5E8F8F2B78E1CE00850659 /* MediaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListView.swift; sourceTree = "<group>"; };
 		2F5E8F912B78E29700850659 /* PlaylistsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsListView.swift; sourceTree = "<group>"; };
+		2F6799312BC86BE200A5780D /* M3UKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = M3UKit; sourceTree = "<group>"; };
 		2F73C7CA2B69390600547B76 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2F73C7CD2B69396C00547B76 /* ModelPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPlaylist.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2F7614BE2BBC53A900C53564 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
@@ -102,7 +102,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FFDFF562BA342C3001A0166 /* SDWebImageSwiftUI in Frameworks */,
-				2FF007CA2BC56C1F009013EB /* M3UKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +185,7 @@
 				2FDD48092B6687A2009D100B /* IPTV-Info.plist */,
 				2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */,
 				2FB07E3B2BC30C54004A6D1B /* PrivacyInfo.xcprivacy */,
+				2F6799312BC86BE200A5780D /* M3UKit */,
 				2F7AE6632B87B96300F2F8CB /* Shared */,
 				2F7AE6452B87B7F600F2F8CB /* iOS */,
 				2FB75B822B41A9FE00A16501 /* Products */,
@@ -284,7 +284,6 @@
 			name = "IPTV App";
 			packageProductDependencies = (
 				2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */,
-				2FF007C92BC56C1F009013EB /* M3UKit */,
 			);
 			productName = IPTV;
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV App.app */;
@@ -319,7 +318,6 @@
 			mainGroup = 2FB75B782B41A9FE00A16501;
 			packageReferences = (
 				2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				2FF007C82BC56C1F009013EB /* XCRemoteSwiftPackageReference "M3UKit" */,
 			);
 			productRefGroup = 2FB75B822B41A9FE00A16501 /* Products */;
 			projectDirPath = "";
@@ -649,14 +647,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2FF007C82BC56C1F009013EB /* XCRemoteSwiftPackageReference "M3UKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Rubenfer/M3UKit.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.1.2;
-			};
-		};
 		2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -668,11 +658,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2FF007C92BC56C1F009013EB /* M3UKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FF007C82BC56C1F009013EB /* XCRemoteSwiftPackageReference "M3UKit" */;
-			productName = M3UKit;
-		};
 		2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
