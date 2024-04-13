@@ -36,7 +36,7 @@ struct FirstLaunchView: View {
 				.padding(20)
 				
 				#if targetEnvironment(macCatalyst)
-				Text("Welcome! Enjoy instant access to live TV medias from around the world, right at your fingertips. You can create a new playlist by clicking \"New Playlist\" in \"File\" in the Menu Bar, or by clicking CMD + N")
+				Text("Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips. You can create a new playlist by clicking \"New Playlist\" in \"File\" in the Menu Bar, or by clicking CMD + N")
 					.multilineTextAlignment(.center)
 					.padding(.horizontal)
 				
@@ -54,7 +54,7 @@ struct FirstLaunchView: View {
 					.scaledToFit()
 					.padding(.trailing, 30)
 				#else
-				Text("Welcome! Enjoy instant access to live TV medias from around the world, right at your fingertips.")
+				Text("Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips.")
 					.multilineTextAlignment(.center)
 					.padding(.horizontal, 16)
 				#endif

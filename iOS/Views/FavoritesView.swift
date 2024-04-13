@@ -10,7 +10,7 @@ import M3UKit
 
 struct FavoritesView: View {
 	
-	@AppStorage("FAVORITED_CHANNELS") var favorites: [media] = []
+	@AppStorage("FAVORITED_CHANNELS") var favorites: [Media] = []
 	
 	@State private var isDeletingAll: Bool = false
 	
@@ -23,7 +23,7 @@ struct FavoritesView: View {
 			Group {
 				if favorites.isEmpty {
 					ContentUnavailableView {
-						Label("No Favorited medias", systemImage: "star.slash")
+						Label("No Favorited Medias", systemImage: "star.slash")
 					} description: {
 						Text("The medias you favorite will appear here. To add some favorites, click on the star symbol next to a media.")
 					}
@@ -32,7 +32,7 @@ struct FavoritesView: View {
 				} else {
 					List(filteredmediasForGroup) { media in
 						NavigationLink(value: media) {
-							mediaCellView(media: media, playlistName: "Favorites")
+							MediaCellView(media: media, playlistName: "Favorites")
 						}.badge(favorites.firstIndex(of: media)!+1)
 					}
 					.id(UUID())
@@ -41,8 +41,8 @@ struct FavoritesView: View {
 			}
 			.navigationTitle("Favorites")
 			.searchable(text: $searchQuery, prompt: "Search Favorites")
-			.navigationDestination(for: media.self) { media in
-				mediaDetailView(playlistName: "Favorites", media: media)
+			.navigationDestination(for: Media.self) { media in
+				MediaDetailView(playlistName: "Favorites", media: media)
 			}
 			.toolbarRole(.browser)
 			.toolbar(id: "favoritesToolbar") {
@@ -68,7 +68,7 @@ extension FavoritesView {
 		#endif
 	}
 	
-	private var searchResults: [media] {
+	private var searchResults: [Media] {
 		guard !searchQuery.isEmpty else { return favorites }
 		return favorites.filter { media in
 			media.title.localizedStandardContains(searchQuery) ||
@@ -82,7 +82,7 @@ extension FavoritesView {
 		return allGroups.sorted()
 	}
 	
-	private var filteredmediasForGroup: [media] {
+	private var filteredmediasForGroup: [Media] {
 		guard selectedGroup == "All" else { return searchResults.filter { $0.attributes["group-title"] == selectedGroup } }
 		return searchResults
 	}

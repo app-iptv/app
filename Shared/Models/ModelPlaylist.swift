@@ -14,12 +14,12 @@ import Foundation
 class Playlist: Identifiable {
 	var id: UUID = UUID()
 	var name: String = ""
-	var medias: [media] = []
+	var medias: [Media] = []
 	var m3uLink: String = ""
 	
 	init(
 		_ name: 	String,
-		medias:		[media],
+		medias:		[Media],
 		m3uLink: 	String
 	) {
 		self.name 		= name

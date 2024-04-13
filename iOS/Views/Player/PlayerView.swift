@@ -12,7 +12,7 @@ import M3UKit
 
 struct PlayerView: UIViewControllerRepresentable {
 	
-	let media: media
+	let media: Media
 	let playlistName: String
 	
 	func updateUIViewController(_ playerController: AVPlayerViewController, context: Context) {

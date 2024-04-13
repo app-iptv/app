@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import M3UKit
 
 struct AboutView: View {
 	
-	let version = Bundle.main.releaseVersionNumber ?? ""
+	let version = Bundle.main.releaseVersionNumber ?? "1.0"
 	
-	let build = Bundle.main.buildVersionNumber ?? ""
+	let build = Bundle.main.buildVersionNumber ?? "1"
 	
 	var body: some View {
 		#if targetEnvironment(macCatalyst)

@@ -84,7 +84,14 @@
       }
     },
     "Blue" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Azul"
+          }
+        }
+      }
     },
     "Cancel" : {
       "localizations" : {
@@ -97,7 +104,14 @@
       }
     },
     "Change App Icon" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mudar Logo da App"
+          }
+        }
+      }
     },
     "Close" : {
       "localizations" : {
@@ -131,7 +145,14 @@
       }
     },
     "Default" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original"
+          }
+        }
+      }
     },
     "Delete" : {
       "localizations" : {
@@ -164,11 +185,7 @@
         }
       }
     },
-    "Delete All Favorited medias?" : {
-
-    },
     "Delete All Favorited Medias?" : {
-      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -240,7 +257,14 @@
       }
     },
     "Error Changing Icon" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erro ao Mudar Logo"
+          }
+        }
+      }
     },
     "Favorite" : {
       "localizations" : {
@@ -273,7 +297,14 @@
       }
     },
     "Green" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verde"
+          }
+        }
+      }
     },
     "Hello 👋" : {
       "extractionState" : "manual",
@@ -347,11 +378,7 @@
         }
       }
     },
-    "No Favorited medias" : {
-
-    },
     "No Favorited Medias" : {
-      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -361,11 +388,7 @@
         }
       }
     },
-    "No medias" : {
-
-    },
     "No Medias" : {
-      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -405,11 +428,7 @@
         }
       }
     },
-    "Open Single media" : {
-
-    },
     "Open Single Media" : {
-      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -480,7 +499,14 @@
       }
     },
     "Red" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vermelho"
+          }
+        }
+      }
     },
     "Regular" : {
       "localizations" : {
@@ -589,13 +615,20 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "As mídias da playlist selecionada aparecerão aqui."
+            "value" : "Os canais da playlist selecionada aparecerão aqui."
           }
         }
       }
     },
     "The selected playlist's medias will appear here." : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As mídias da playlist selecionada aparecerão aqui."
+          }
+        }
+      }
     },
     "Tip Jar" : {
       "localizations" : {
@@ -665,7 +698,6 @@
       }
     },
     "Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips." : {
-      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -686,14 +718,15 @@
         }
       }
     },
-    "Welcome! Enjoy instant access to live TV medias from around the world, right at your fingertips." : {
-
-    },
-    "Welcome! Enjoy instant access to live TV medias from around the world, right at your fingertips. You can create a new playlist by clicking \"New Playlist\" in \"File\" in the Menu Bar, or by clicking CMD + N" : {
-
-    },
     "Yellow" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amarelo"
+          }
+        }
+      }
     },
     "You can show this screen again by clicking \"Show Tips Again\" in \"Settings\" in \"IPTV\" in the Menu Bar, or by clicking CMD + T" : {
       "localizations" : {

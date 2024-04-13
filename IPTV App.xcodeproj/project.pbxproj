@@ -58,7 +58,6 @@
 /* Begin PBXFileReference section */
 		2F01F3892B7EA6BB004514D3 /* AddPlaylistView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlaylistView.swift; sourceTree = "<group>"; };
 		2F10D8942B70053B00C6847C /* PlayerView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
-		2F1C43242BC06FC8009F725F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.4.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		2F2D108E2BB02F4E00578A3D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2F317E4A2BB3F857000FC7A4 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		2F3BB2122BAE0EE60085CF3A /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -89,8 +88,6 @@
 		2FD589882B7F804F003228AB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		2FDD48092B6687A2009D100B /* IPTV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IPTV-Info.plist"; sourceTree = "<group>"; };
 		2FE23EB82B9C652C00579625 /* FirstLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchView.swift; sourceTree = "<group>"; };
-		2FE896302BBB2999003135C2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		2FE896322BBB2999003135C2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		2FEA72B82BA9E21000F6CEA8 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		2FEF5E842B7A510500AB0193 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2FF007D22BC70D4E009013EB /* ChangeIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeIconView.swift; sourceTree = "<group>"; };
@@ -162,16 +159,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		2F7AE6662B87B9BF00F2F8CB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2F1C43242BC06FC8009F725F /* StoreKit.framework */,
-				2FE896302BBB2999003135C2 /* WidgetKit.framework */,
-				2FE896322BBB2999003135C2 /* SwiftUI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2FB2C46F2B753604007E7301 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,7 +178,6 @@
 				2F7AE6632B87B96300F2F8CB /* Shared */,
 				2F7AE6452B87B7F600F2F8CB /* iOS */,
 				2FB75B822B41A9FE00A16501 /* Products */,
-				2F7AE6662B87B9BF00F2F8CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -521,7 +507,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9TMMFKS9DW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -580,7 +566,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9TMMFKS9DW;
 				ENABLE_HARDENED_RUNTIME = YES;

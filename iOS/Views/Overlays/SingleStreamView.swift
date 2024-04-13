@@ -21,7 +21,7 @@ struct SingleStreamView: View {
 	
     var body: some View {
 		VStack {
-			Text("Open Single media")
+			Text("Open Single Media")
 				.font(.largeTitle)
 				.bold()
 				.padding()
@@ -39,7 +39,7 @@ struct SingleStreamView: View {
 			}
 			.padding()
 		}
-		.navigationTitle("Open Single media")
+		.navigationTitle("Open Single Media")
 		.sheet(isPresented: $isPresented) { playerView }
 		.padding()
     }

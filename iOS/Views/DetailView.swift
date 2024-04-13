@@ -16,11 +16,11 @@ struct DetailView: View {
 	
 	var body: some View {
 		if let playlist = vm.selectedPlaylist {
-			mediaListView(vm: vm, medias: playlist.medias, playlistName: playlist.name)
+			MediaListView(vm: vm, medias: playlist.medias, playlistName: playlist.name)
 				.navigationTitle(playlist.name)
 		} else {
 			ContentUnavailableView {
-				Label("No medias", systemImage: "list.and.film")
+				Label("No Medias", systemImage: "list.and.film")
 			} description: {
 				Text("The selected playlist's medias will appear here.")
 			}

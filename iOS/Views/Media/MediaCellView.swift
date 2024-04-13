@@ -10,13 +10,13 @@ import SwiftUI
 import M3UKit
 import SDWebImageSwiftUI
 
-struct mediaCellView: View {
+struct MediaCellView: View {
 	
-	@AppStorage("FAVORITED_CHANNELS") var favorites: [media] = []
+	@AppStorage("FAVORITED_CHANNELS") var favorites: [Media] = []
 	
 	@AppStorage("VIEWING_MODE") var viewingMode: ViewingMode = .regular
 	
-	let media: media
+	let media: Media
 	
 	let playlistName: String
 	
@@ -25,12 +25,13 @@ struct mediaCellView: View {
 			WebImage(url: URL(string: media.attributes["tvg-logo"] ?? "")) { image in
 				image
 					.resizable()
-					.scaledToFit()
+					.aspectRatio(contentMode: .fit)
+					.shadow(color: .primary, radius: 0.5)
 			} placeholder: {
 				Image(systemName: "photo")
 			}
-			.padding(.trailing, 5)
 			.frame(width: viewingMode.photoSize, height: viewingMode.photoSize)
+			.padding(.trailing, 5)
 			
 			switch viewingMode {
 				case .large:
@@ -45,7 +46,7 @@ struct mediaCellView: View {
 	}
 }
 
-extension mediaCellView {
+extension MediaCellView {
 	private var largeViewingMode: some View {
 		VStack(alignment: .leading, spacing: 5) {
 			Text(media.title)

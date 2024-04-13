@@ -9,11 +9,11 @@ import SwiftUI
 import M3UKit
 import AVKit
 
-struct mediaDetailView: View {
+struct MediaDetailView: View {
 	
 	let playlistName: String
 	
-	let media: media
+	let media: Media
 
 	var body: some View {
 		ScrollView() {

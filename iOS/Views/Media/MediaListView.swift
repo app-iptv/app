@@ -9,14 +9,14 @@ import SwiftUI
 import M3UKit
 import Foundation
 
-struct mediaListView: View {
+struct MediaListView: View {
 	
 	@Environment(\.horizontalSizeClass) var sizeClass
 	@Environment(\.isSearching) var searchState
 	
 	@Bindable var vm: ViewModel
 	
-	let medias: [media]
+	let medias: [Media]
 	let playlistName: String
 	
 	@State private var searchQuery: String = ""
@@ -29,9 +29,9 @@ struct mediaListView: View {
 				} else {
 					List(filteredmediasForGroup) { media in
 						NavigationLink {
-							mediaDetailView(playlistName: playlistName, media: media)
+							MediaDetailView(playlistName: playlistName, media: media)
 						} label: {
-							mediaCellView(media: media, playlistName: playlistName)
+							MediaCellView(media: media, playlistName: playlistName)
 						}.badge(medias.firstIndex(of: media)!+1)
 					}
 					.id(UUID())
@@ -56,7 +56,7 @@ struct mediaListView: View {
 	}
 }
 
-extension mediaListView {
+extension MediaListView {
 	private var placement: ToolbarItemPlacement {
 		#if targetEnvironment(macCatalyst)
 		return .primaryAction
@@ -65,7 +65,7 @@ extension mediaListView {
 		#endif
 	}
 	
-	private var searchResults: [media] {
+	private var searchResults: [Media] {
 		guard !searchQuery.isEmpty else { return medias }
 		return medias.filter { media in
 			media.title.localizedStandardContains(searchQuery) ||
@@ -79,7 +79,7 @@ extension mediaListView {
 		return allGroups.sorted()
 	}
 	
-	private var filteredmediasForGroup: [media] {
+	private var filteredmediasForGroup: [Media] {
 		guard vm.selectedGroup == "All" else { return searchResults.filter { ($0.attributes["group-title"] ?? "Undefined") == vm.selectedGroup } }
 		return searchResults
 	}

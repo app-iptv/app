@@ -16,7 +16,7 @@ struct IPTVApp: App {
 	@State var vm = ViewModel()
 	
 	@AppStorage("IS_FIRST_LAUNCH") var isFirstLaunch: Bool = true
-	@AppStorage("FAVORITED_CHANNELS") var favorites: [media] = []
+	@AppStorage("FAVORITED_CHANNELS") var favorites: [Media] = []
 	@AppStorage("VIEWING_MODE") var viewingMode: ViewingMode = .regular
 	@AppStorage("SELECTED_TAB") var selectedTab: Tab = .home
 	

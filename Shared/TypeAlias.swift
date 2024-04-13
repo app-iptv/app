@@ -10,4 +10,4 @@ import M3UKit
 
 typealias PlData = M3U
 
-typealias media = M3U.Channel
+typealias Media = M3U.Channel
