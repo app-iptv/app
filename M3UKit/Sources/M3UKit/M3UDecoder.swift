@@ -20,7 +20,21 @@ public class M3UDecoder {
 				.first!
 				.components(separatedBy: ":")
 				.last!
-			let channelURL = lines[i+1]
+			var channelURL: String {
+				if lines[i+1].hasPrefix("http") {
+					return lines[i+1]
+				} else if lines[i+2].hasPrefix("http") {
+					return lines[i+2]
+				} else if lines[i+3].hasPrefix("http") {
+					return lines[i+3]
+				} else if lines[i+4].hasPrefix("http") {
+					return lines[i+4]
+				} else if lines[i+5].hasPrefix("http") {
+					return lines[i+5]
+				} else {
+					return ""
+				}
+			}
 			var channel = M3U.Channel(title: channelTitle, attributes: channelAttributes, url: channelURL)
 			if let duration = Int(channelTime) {
 				channel.duration = duration
