@@ -88,37 +88,3 @@ struct IPTVApp: App {
 		#endif
 	}
 }
-
-enum Tab: String, CaseIterable {
-	case favorites
-	case home
-	case settings
-}
-
-extension Tab: RawRepresentable {
-	typealias RawValue = String
-	
-	init?(rawValue: RawValue) {
-		switch rawValue {
-			case "favorites":
-				self = .favorites
-			case "home":
-				self = .home
-			case "settings":
-				self = .settings
-			default:
-				return nil
-		}
-	}
-	
-	var rawValue: RawValue {
-		switch self {
-			case .favorites:
-				return "favorites"
-			case .home:
-				return "home"
-			case .settings:
-				return "settings"
-		}
-	}
-}

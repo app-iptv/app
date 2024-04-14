@@ -68,8 +68,7 @@ extension MediaListView {
 	private var searchResults: [Media] {
 		guard !searchQuery.isEmpty else { return medias }
 		return medias.filter { media in
-			media.title.localizedStandardContains(searchQuery) ||
-			(media.attributes["group-title"] ?? "Undefined").localizedCaseInsensitiveContains(searchQuery)
+			media.title.localizedStandardContains(searchQuery)
 		}
 	}
 	
