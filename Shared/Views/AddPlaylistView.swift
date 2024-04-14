@@ -26,25 +26,55 @@ struct AddPlaylistView: View {
 				.bold()
 				.padding()
 			
-			VStack {
+//			VStack {
+//				TextField("Playlist Name", text: $vm.tempPlaylistName)
+//					#if !os(tvOS)
+//					.textFieldStyle(.roundedBorder)
+//					#endif
+//				TextField("Playlist URL", text: $vm.tempPlaylistURL)
+//					#if !os(tvOS)
+//					.textFieldStyle(.roundedBorder)
+//					#endif
+//					.textInputAutocapitalization(.never)
+//			}
+//			
+//			HStack(spacing: 10) {
+//				Button("Add", systemImage: "plus") { addPlaylist() }
+//					.disabled(vm.tempPlaylistName.isEmpty || vm.tempPlaylistURL.isEmpty)
+//					.buttonStyle(.borderedProminent)
+//				
+//				Button("Cancel") { cancel() }
+//					.buttonStyle(.bordered)
+//			}
+//			.padding()
+			
+			VStack(spacing: 4) {
 				TextField("Playlist Name", text: $vm.tempPlaylistName)
-					#if !os(tvOS)
-					.textFieldStyle(.roundedBorder)
-					#endif
+					.textFieldStyle(.plain)
+					.padding(10)
+					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 8, bottomLeading: 2.5, bottomTrailing: 2.5, topTrailing: 8), style: .circular))
 				TextField("Playlist URL", text: $vm.tempPlaylistURL)
-					#if !os(tvOS)
-					.textFieldStyle(.roundedBorder)
-					#endif
+					.textFieldStyle(.plain)
 					.textInputAutocapitalization(.never)
+					.textContentType(.URL)
+					.autocorrectionDisabled()
+					.padding(10)
+					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 2.5, bottomLeading: 8, bottomTrailing: 8, topTrailing: 2.5), style: .circular))
 			}
 			
-			HStack(spacing: 10) {
+			HStack(spacing: 4) {
 				Button("Add", systemImage: "plus") { addPlaylist() }
 					.disabled(vm.tempPlaylistName.isEmpty || vm.tempPlaylistURL.isEmpty)
-					.buttonStyle(.borderedProminent)
+					.buttonStyle(.plain)
+					.padding(10)
+					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 8, bottomLeading: 8, bottomTrailing: 2.5, topTrailing: 2.5), style: .circular))
+					.foregroundStyle(Color.accentColor)
 				
 				Button("Cancel") { cancel() }
-					.buttonStyle(.bordered)
+					.buttonStyle(.plain)
+					.padding(10)
+					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 2.5, bottomLeading: 2.5, bottomTrailing: 8, topTrailing: 8), style: .circular))
+					.foregroundStyle(.red)
 			}
 			.padding()
 		}
@@ -90,4 +120,13 @@ extension AddPlaylistView {
 		vm.tempPlaylistName = ""
 	}
 	
+}
+
+extension Color {
+	init(hex: Int, opacity: Double = 1.0) {
+		let red = Double((hex & 0xff0000) >> 16) / 255.0
+		let green = Double((hex & 0xff00) >> 8) / 255.0
+		let blue = Double((hex & 0xff) >> 0) / 255.0
+		self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
+	}
 }

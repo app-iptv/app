@@ -52,17 +52,3 @@ struct ContentView: View {
 			}
 	}
 }
-
-#Preview("Content View") {
-	let config = ModelConfiguration(isStoredInMemoryOnly: true)
-	let container = try! ModelContainer(for: Playlist.self, configurations: config)
-	
-	return ContentView(isRemovingAll: .constant(false), vm: ViewModel())
-		.modelContainer(container)
-}
-
-extension View {
-	func tabForView(selection: Binding<Tab>, for view: Tab) -> some View {
-		self.tabItem { Label(view.name, systemImage: selection.wrappedValue == view ? view.fillImage : view.nonFillImage) }
-	}
-}

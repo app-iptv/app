@@ -13,6 +13,7 @@
 		2F317E4B2BB3F857000FC7A4 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F317E4A2BB3F857000FC7A4 /* TypeAlias.swift */; };
 		2F3BB2132BAE0EE60085CF3A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BB2122BAE0EE60085CF3A /* Array.swift */; };
 		2F3C5BCD2BB442B50000410B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3C5BCC2BB442B50000410B /* AboutView.swift */; };
+		2F50C4742BCBE9D700AE3E65 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F50C4732BCBE9D600AE3E65 /* View.swift */; };
 		2F588D522B9D962E009EB86B /* MediaCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F588D512B9D962E009EB86B /* MediaCellView.swift */; };
 		2F5A13FF2B9DF8C9005F270E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */; };
 		2F5E8F8D2B78DB0B00850659 /* MediaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E8F8C2B78DB0B00850659 /* MediaDetailView.swift */; };
@@ -63,6 +64,7 @@
 		2F317E4A2BB3F857000FC7A4 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		2F3BB2122BAE0EE60085CF3A /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2F3C5BCC2BB442B50000410B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		2F50C4732BCBE9D600AE3E65 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		2F588D512B9D962E009EB86B /* MediaCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCellView.swift; sourceTree = "<group>"; };
 		2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2F5E8F8C2B78DB0B00850659 /* MediaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailView.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				2F3BB2122BAE0EE60085CF3A /* Array.swift */,
 				2F7614BE2BBC53A900C53564 /* Bundle.swift */,
 				2FB4D8D52BC1C0160095355C /* UserInterfaceSizeClass.swift */,
+				2F50C4732BCBE9D600AE3E65 /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			files = (
 				2F10D8952B70053B00C6847C /* PlayerView.swift in Sources */,
 				2F7614BF2BBC53A900C53564 /* Bundle.swift in Sources */,
+				2F50C4742BCBE9D700AE3E65 /* View.swift in Sources */,
 				2F73C7CE2B69396C00547B76 /* ModelPlaylist.swift in Sources */,
 				2FA6AFA32BB9B64000A7D30E /* ViewingMode.swift in Sources */,
 				2FCC7E5E2B7ECE6300DCC105 /* EditPlaylistView.swift in Sources */,
@@ -511,7 +515,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 13;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9TMMFKS9DW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -570,7 +574,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 13;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9TMMFKS9DW;
 				ENABLE_HARDENED_RUNTIME = YES;
