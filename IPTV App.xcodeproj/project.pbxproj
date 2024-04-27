@@ -21,7 +21,10 @@
 		2F5E8F902B78E1CE00850659 /* MediaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E8F8F2B78E1CE00850659 /* MediaListView.swift */; };
 		2F5E8F922B78E29700850659 /* PlaylistsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E8F912B78E29700850659 /* PlaylistsListView.swift */; };
 		2F5FC9FF2BDD0FC900BD67A5 /* SWCompression in Frameworks */ = {isa = PBXBuildFile; productRef = 2F5FC9FE2BDD0FC900BD67A5 /* SWCompression */; };
-		2F6799342BC86CB400A5780D /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6799332BC86CB400A5780D /* M3UKit */; };
+		2F6B1C982BDD754B00D09A6A /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1C972BDD754B00D09A6A /* XMLTV */; };
+		2F6B1C9B2BDD755700D09A6A /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1C9A2BDD755700D09A6A /* XMLTV */; };
+		2F6B1C9E2BDD756400D09A6A /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1C9D2BDD756400D09A6A /* M3UKit */; };
+		2F6B1CA12BDD757400D09A6A /* LightXMLParser in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1CA02BDD757400D09A6A /* LightXMLParser */; };
 		2F73C7CC2B69390600547B76 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CA2B69390600547B76 /* HomeView.swift */; };
 		2F73C7CE2B69396C00547B76 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CD2B69396C00547B76 /* Playlist.swift */; };
 		2F741BD32BCBBED600C68D7D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F741BD22BCBBED600C68D7D /* Tab.swift */; };
@@ -45,11 +48,7 @@
 		2FF007D32BC70D4E009013EB /* ChangeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF007D22BC70D4E009013EB /* ChangeIconView.swift */; };
 		2FF1450A2B9DD2F7006B2508 /* SingleStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF145092B9DD2F7006B2508 /* SingleStreamView.swift */; };
 		2FFDFF562BA342C3001A0166 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */; };
-		2FFF3A3B2BDCE42500862E37 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFF3A3A2BDCE42500862E37 /* XMLTV */; };
 		2FFF3A3F2BDD015800862E37 /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFF3A3E2BDD015800862E37 /* Gzip */; };
-		2FFF3A472BDD04BF00862E37 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFF3A462BDD04BF00862E37 /* XMLTV */; };
-		2FFF3A4C2BDD04DB00862E37 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFF3A4B2BDD04DB00862E37 /* XMLTV */; };
-		2FFF3A512BDD050800862E37 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFF3A502BDD050800862E37 /* XMLTV */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,7 +78,9 @@
 		2F5E8F8C2B78DB0B00850659 /* MediaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDetailView.swift; sourceTree = "<group>"; };
 		2F5E8F8F2B78E1CE00850659 /* MediaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListView.swift; sourceTree = "<group>"; };
 		2F5E8F912B78E29700850659 /* PlaylistsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsListView.swift; sourceTree = "<group>"; };
-		2F6799312BC86BE200A5780D /* M3UKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = M3UKit; sourceTree = "<group>"; };
+		2F6B1C932BDD751E00D09A6A /* LightXMLParser */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LightXMLParser; sourceTree = "<group>"; };
+		2F6B1C942BDD751E00D09A6A /* M3UKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = M3UKit; sourceTree = "<group>"; };
+		2F6B1C952BDD751E00D09A6A /* XMLTV */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = XMLTV; sourceTree = "<group>"; };
 		2F73C7CA2B69390600547B76 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2F73C7CD2B69396C00547B76 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2F741BD22BCBBED600C68D7D /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
@@ -106,8 +107,6 @@
 		2FEF5E842B7A510500AB0193 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2FF007D22BC70D4E009013EB /* ChangeIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeIconView.swift; sourceTree = "<group>"; };
 		2FF145092B9DD2F7006B2508 /* SingleStreamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleStreamView.swift; sourceTree = "<group>"; };
-		2FFF3A482BDD04CA00862E37 /* LightXMLParser */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LightXMLParser; sourceTree = "<group>"; };
-		2FFF3A4E2BDD050100862E37 /* XMLTV */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = XMLTV; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,14 +114,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FFF3A4C2BDD04DB00862E37 /* XMLTV in Frameworks */,
+				2F6B1C982BDD754B00D09A6A /* XMLTV in Frameworks */,
+				2F6B1CA12BDD757400D09A6A /* LightXMLParser in Frameworks */,
+				2F6B1C9E2BDD756400D09A6A /* M3UKit in Frameworks */,
+				2F6B1C9B2BDD755700D09A6A /* XMLTV in Frameworks */,
 				2F5FC9FF2BDD0FC900BD67A5 /* SWCompression in Frameworks */,
-				2FFF3A3B2BDCE42500862E37 /* XMLTV in Frameworks */,
-				2FFF3A472BDD04BF00862E37 /* XMLTV in Frameworks */,
 				2FFDFF562BA342C3001A0166 /* SDWebImageSwiftUI in Frameworks */,
-				2FFF3A512BDD050800862E37 /* XMLTV in Frameworks */,
 				2FFF3A3F2BDD015800862E37 /* Gzip in Frameworks */,
-				2F6799342BC86CB400A5780D /* M3UKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,11 +196,11 @@
 				2FDD48092B6687A2009D100B /* IPTV-Info.plist */,
 				2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */,
 				2FB07E3B2BC30C54004A6D1B /* PrivacyInfo.xcprivacy */,
-				2FFF3A4E2BDD050100862E37 /* XMLTV */,
-				2FFF3A482BDD04CA00862E37 /* LightXMLParser */,
-				2F6799312BC86BE200A5780D /* M3UKit */,
 				2F7AE6632B87B96300F2F8CB /* Shared */,
 				2F7AE6452B87B7F600F2F8CB /* iOS */,
+				2F6B1C932BDD751E00D09A6A /* LightXMLParser */,
+				2F6B1C942BDD751E00D09A6A /* M3UKit */,
+				2F6B1C952BDD751E00D09A6A /* XMLTV */,
 				2FB75B822B41A9FE00A16501 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -300,13 +298,12 @@
 			name = "IPTV App";
 			packageProductDependencies = (
 				2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */,
-				2F6799332BC86CB400A5780D /* M3UKit */,
-				2FFF3A3A2BDCE42500862E37 /* XMLTV */,
 				2FFF3A3E2BDD015800862E37 /* Gzip */,
-				2FFF3A462BDD04BF00862E37 /* XMLTV */,
-				2FFF3A4B2BDD04DB00862E37 /* XMLTV */,
-				2FFF3A502BDD050800862E37 /* XMLTV */,
 				2F5FC9FE2BDD0FC900BD67A5 /* SWCompression */,
+				2F6B1C972BDD754B00D09A6A /* XMLTV */,
+				2F6B1C9A2BDD755700D09A6A /* XMLTV */,
+				2F6B1C9D2BDD756400D09A6A /* M3UKit */,
+				2F6B1CA02BDD757400D09A6A /* LightXMLParser */,
 			);
 			productName = IPTV;
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV App.app */;
@@ -341,10 +338,11 @@
 			mainGroup = 2FB75B782B41A9FE00A16501;
 			packageReferences = (
 				2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				2F6799322BC86CB300A5780D /* XCLocalSwiftPackageReference "M3UKit" */,
 				2FFF3A3D2BDD015800862E37 /* XCRemoteSwiftPackageReference "GzipSwift" */,
-				2FFF3A4F2BDD050800862E37 /* XCLocalSwiftPackageReference "XMLTV" */,
 				2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */,
+				2F6B1C992BDD755700D09A6A /* XCLocalSwiftPackageReference "XMLTV" */,
+				2F6B1C9C2BDD756400D09A6A /* XCLocalSwiftPackageReference "M3UKit" */,
+				2F6B1C9F2BDD757400D09A6A /* XCLocalSwiftPackageReference "LightXMLParser" */,
 			);
 			productRefGroup = 2FB75B822B41A9FE00A16501 /* Products */;
 			projectDirPath = "";
@@ -678,13 +676,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		2F6799322BC86CB300A5780D /* XCLocalSwiftPackageReference "M3UKit" */ = {
+		2F6B1C992BDD755700D09A6A /* XCLocalSwiftPackageReference "XMLTV" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = XMLTV;
+		};
+		2F6B1C9C2BDD756400D09A6A /* XCLocalSwiftPackageReference "M3UKit" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = M3UKit;
 		};
-		2FFF3A4F2BDD050800862E37 /* XCLocalSwiftPackageReference "XMLTV" */ = {
+		2F6B1C9F2BDD757400D09A6A /* XCLocalSwiftPackageReference "LightXMLParser" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = XMLTV;
+			relativePath = LightXMLParser;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -721,35 +723,31 @@
 			package = 2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */;
 			productName = SWCompression;
 		};
-		2F6799332BC86CB400A5780D /* M3UKit */ = {
+		2F6B1C972BDD754B00D09A6A /* XMLTV */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XMLTV;
+		};
+		2F6B1C9A2BDD755700D09A6A /* XMLTV */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XMLTV;
+		};
+		2F6B1C9D2BDD756400D09A6A /* M3UKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = M3UKit;
+		};
+		2F6B1CA02BDD757400D09A6A /* LightXMLParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LightXMLParser;
 		};
 		2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
-		2FFF3A3A2BDCE42500862E37 /* XMLTV */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = XMLTV;
-		};
 		2FFF3A3E2BDD015800862E37 /* Gzip */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2FFF3A3D2BDD015800862E37 /* XCRemoteSwiftPackageReference "GzipSwift" */;
 			productName = Gzip;
-		};
-		2FFF3A462BDD04BF00862E37 /* XMLTV */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = XMLTV;
-		};
-		2FFF3A4B2BDD04DB00862E37 /* XMLTV */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = XMLTV;
-		};
-		2FFF3A502BDD050800862E37 /* XMLTV */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = XMLTV;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
