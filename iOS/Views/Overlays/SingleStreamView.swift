@@ -13,9 +13,7 @@ struct SingleStreamView: View {
 	
 	@State private var mediaURL: String = ""
 	
-	@Bindable var vm: ViewModel
-	
-	init(_ vm: ViewModel) { self.vm = vm }
+	@State var vm = ViewModel.shared
 	
 	@State private var isPresented: Bool = false
 	

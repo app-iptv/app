@@ -13,9 +13,9 @@ struct AddPlaylistView: View {
 	@Environment(\.modelContext) var context
 	@Environment(\.dismiss) var dismiss
 	
-	@Bindable var vm: ViewModel
+	@State var vm = ViewModel.shared
 	
-	init(_ vm: ViewModel) { self.vm = vm }
+	@State var networkModel = NetworkModel()
 	
 	let decoder = M3UDecoder()
 	
@@ -59,6 +59,13 @@ struct AddPlaylistView: View {
 					.textContentType(.URL)
 					.autocorrectionDisabled()
 					.padding(10)
+					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 2.5, bottomLeading: 2.5, bottomTrailing: 2.5, topTrailing: 2.5), style: .circular))
+				TextField("Playlist EPG (optional)", text: $vm.tempPlaylistEPG)
+					.textFieldStyle(.plain)
+					.textInputAutocapitalization(.never)
+					.textContentType(.URL)
+					.autocorrectionDisabled()
+					.padding(10)
 					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 2.5, bottomLeading: 8, bottomTrailing: 8, topTrailing: 2.5), style: .circular))
 			}
 			
@@ -70,7 +77,7 @@ struct AddPlaylistView: View {
 					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 8, bottomLeading: 8, bottomTrailing: 2.5, topTrailing: 2.5), style: .circular))
 					.foregroundStyle(Color.accentColor)
 				
-				Button("Cancel") { cancel() }
+				Button("Cancel") { dismiss(); networkModel.cancel() }
 					.buttonStyle(.plain)
 					.padding(10)
 					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 2.5, bottomLeading: 2.5, bottomTrailing: 8, topTrailing: 8), style: .circular))
@@ -85,48 +92,22 @@ struct AddPlaylistView: View {
 
 extension AddPlaylistView {
 	
-	private func parsePlaylist() async {
-		let url = URL(string: vm.tempPlaylistURL)!
-		
-		do {
-			let m3u = try decoder.decode(Data(contentsOf: url))
-			
-			vm.tempPlaylist = m3u
-		} catch {
-			print(error.localizedDescription)
-			vm.parserError = error.localizedDescription
-			vm.parserDidFail = true
-		}
-	}
-	
 	private func addPlaylist() {
 		Task {
 			vm.isParsing.toggle()
-			await parsePlaylist()
+			await networkModel.parsePlaylist()
 			vm.isParsing.toggle()
 			
 			if !vm.parserDidFail {
-				context.insert(Playlist(vm.tempPlaylistName, medias: vm.tempPlaylist?.channels ?? [], m3uLink: vm.tempPlaylistURL))
+				context.insert(Playlist(vm.tempPlaylistName, medias: vm.tempPlaylist?.channels ?? [], m3uLink: vm.tempPlaylistURL, epgLink: vm.tempPlaylistEPG))
 			}
 			
-			cancel()
+			dismiss()
+			networkModel.cancel()
 		}
 	}
-
-	private func cancel() {
-		dismiss()
-		vm.tempPlaylist = nil
-		vm.tempPlaylistURL = ""
-		vm.tempPlaylistName = ""
-	}
-	
 }
 
-extension Color {
-	init(hex: Int, opacity: Double = 1.0) {
-		let red = Double((hex & 0xff0000) >> 16) / 255.0
-		let green = Double((hex & 0xff00) >> 8) / 255.0
-		let blue = Double((hex & 0xff) >> 0) / 255.0
-		self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
-	}
+#Preview {
+	AddPlaylistView()
 }

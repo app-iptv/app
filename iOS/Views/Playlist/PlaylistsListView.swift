@@ -14,9 +14,7 @@ struct PlaylistsListView: View {
 	@Environment(\.horizontalSizeClass) var sizeClass
 	@Environment(\.modelContext) var context
 	
-	@Bindable var vm: ViewModel
-	
-	init(_ vm: ViewModel) { self.vm = vm }
+	@State var vm = ViewModel.shared
 	
 	@Query var modelPlaylists: [Playlist]
 	

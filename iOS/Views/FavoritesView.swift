@@ -27,10 +27,10 @@ struct FavoritesView: View {
 					} description: {
 						Text("The medias you favorite will appear here. To add some favorites, click on the star symbol next to a media.")
 					}
-				} else if filteredmediasForGroup.isEmpty {
+				} else if filteredMediasForGroup.isEmpty {
 					ContentUnavailableView.search(text: searchQuery)
 				} else {
-					List(filteredmediasForGroup) { media in
+					List(filteredMediasForGroup) { media in
 						NavigationLink(value: media) {
 							MediaCellView(media: media, playlistName: "Favorites")
 						}.badge(favorites.firstIndex(of: media)!+1)
@@ -42,7 +42,7 @@ struct FavoritesView: View {
 			.navigationTitle("Favorites")
 			.searchable(text: $searchQuery, prompt: "Search Favorites")
 			.navigationDestination(for: Media.self) { media in
-				MediaDetailView(playlistName: "Favorites", media: media)
+				MediaDetailView(playlistName: "Favorites", media: media, epgLink: "")
 			}
 			.toolbarRole(.browser)
 			.toolbar(id: "favoritesToolbar") {
@@ -81,7 +81,7 @@ extension FavoritesView {
 		return allGroups.sorted()
 	}
 	
-	private var filteredmediasForGroup: [Media] {
+	private var filteredMediasForGroup: [Media] {
 		guard selectedGroup == "All" else { return searchResults.filter { $0.attributes["group-title"] == selectedGroup } }
 		return searchResults
 	}

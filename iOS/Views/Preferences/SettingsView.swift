@@ -13,7 +13,7 @@ struct SettingsView: View {
 	
 	@AppStorage("VIEWING_MODE") var viewingMode: ViewingMode = .regular
 	
-	@Bindable var vm: ViewModel
+	@State var vm = ViewModel.shared
 	
 	@Binding var isRemovingAll: Bool
 	

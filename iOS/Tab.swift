@@ -5,7 +5,7 @@
 //  Created by Pedro Cordeiro on 14/04/2024.
 //
 
-import Foundation
+import SwiftUI
 
 enum Tab: String, CaseIterable {
 	case favorites
@@ -34,7 +34,7 @@ enum Tab: String, CaseIterable {
 		}
 	}
 	
-	var name: String {
+	var name: LocalizedStringKey {
 		switch self {
 			case .favorites:
 				"Favorites"

@@ -8,28 +8,30 @@
 import SwiftUI
 import M3UKit
 import Foundation
+import XMLTV
 
 struct MediaListView: View {
 	
 	@Environment(\.horizontalSizeClass) var sizeClass
 	@Environment(\.isSearching) var searchState
 	
-	@Bindable var vm: ViewModel
+	@State var vm = ViewModel.shared
 	
 	let medias: [Media]
 	let playlistName: String
+	let epgLink: String
 	
 	@State private var searchQuery: String = ""
 	
 	var body: some View {
 		NavigationStack {
 			Group {
-				if filteredmediasForGroup.isEmpty {
+				if filteredMediasForGroup.isEmpty {
 					ContentUnavailableView.search(text: searchQuery)
 				} else {
-					List(filteredmediasForGroup) { media in
+					List(filteredMediasForGroup) { media in
 						NavigationLink {
-							MediaDetailView(playlistName: playlistName, media: media)
+							MediaDetailView(playlistName: playlistName, media: media, epgLink: epgLink)
 						} label: {
 							MediaCellView(media: media, playlistName: playlistName)
 						}.badge(medias.firstIndex(of: media)!+1)
@@ -78,7 +80,7 @@ extension MediaListView {
 		return allGroups.sorted()
 	}
 	
-	private var filteredmediasForGroup: [Media] {
+	private var filteredMediasForGroup: [Media] {
 		guard vm.selectedGroup == "All" else { return searchResults.filter { ($0.attributes["group-title"] ?? "Undefined") == vm.selectedGroup } }
 		return searchResults
 	}

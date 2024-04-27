@@ -18,21 +18,21 @@ struct ContentView: View {
 	
 	@Binding var isRemovingAll: Bool
 	
-	@Bindable var vm: ViewModel
+	@State var vm = ViewModel.shared
 	
 	var tabs: some View {
 		TabView(selection: $selectedTab) {
 			#if targetEnvironment(macCatalyst)
-			HomeView(vm).tag(Tab.home)
+			HomeView()
 				.tabForView(selection: $selectedTab, for: .home)
-			FavoritesView().tag(Tab.favorites)
+			FavoritesView()
 				.tabForView(selection: $selectedTab, for: .favorites)
 			#else
-			FavoritesView().tag(Tab.favorites)
+			FavoritesView()
 				.tabForView(selection: $selectedTab, for: .favorites)
-			HomeView(vm).tag(Tab.home)
+			HomeView()
 				.tabForView(selection: $selectedTab, for: .home)
-			SettingsView(vm: vm, isRemovingAll: $isRemovingAll).tag(Tab.settings)
+			SettingsView(isRemovingAll: $isRemovingAll)
 				.tabForView(selection: $selectedTab, for: .settings)
 			#endif
 		}
@@ -41,9 +41,9 @@ struct ContentView: View {
 	var body: some View {
 		tabs
 			.sheet(isPresented: $isFirstLaunch) { FirstLaunchView(isFirstLaunch: $isFirstLaunch) }
-			.sheet(isPresented: $vm.isPresented) { AddPlaylistView(vm).modelContext(context) }
-			.sheet(isPresented: $vm.openedSingleStream) { SingleStreamView(vm) }
-			.sheet(isPresented: $vm.parserDidFail) { ErrorView(vm) }
+			.sheet(isPresented: $vm.isPresented) { AddPlaylistView().modelContext(context) }
+			.sheet(isPresented: $vm.openedSingleStream) { SingleStreamView() }
+			.sheet(isPresented: $vm.parserDidFail) { ErrorView() }
 			.alert("Delete All Favorited Medias?", isPresented: $isRemovingAll) {
 				Button("Cancel", systemImage: "xmark.circle", role: .cancel) { isRemovingAll.toggle() }
 				Button("DELETE ALL", systemImage: "trash", role: .destructive) { favorites.removeAll() }

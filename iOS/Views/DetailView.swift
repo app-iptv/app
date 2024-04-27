@@ -7,16 +7,15 @@
 
 import SwiftUI
 import M3UKit
+import XMLTV
 
 struct DetailView: View {
 	
-	@Bindable var vm: ViewModel
-	
-	init(_ vm: ViewModel) { self.vm = vm }
+	@State var vm = ViewModel.shared
 	
 	var body: some View {
 		if let playlist = vm.selectedPlaylist {
-			MediaListView(vm: vm, medias: playlist.medias, playlistName: playlist.name)
+			MediaListView(medias: playlist.medias, playlistName: playlist.name, epgLink: playlist.epgLink)
 				.navigationTitle(playlist.name)
 		} else {
 			ContentUnavailableView {

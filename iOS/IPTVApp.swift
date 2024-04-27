@@ -13,7 +13,7 @@ import SwiftData
 @main
 struct IPTVApp: App {
 	
-	@State var vm = ViewModel()
+	@State var vm = ViewModel.shared
 	
 	@AppStorage("IS_FIRST_LAUNCH") var isFirstLaunch: Bool = true
 	@AppStorage("FAVORITED_CHANNELS") var favorites: [Media] = []
@@ -76,7 +76,7 @@ struct IPTVApp: App {
 	
 	var body: some Scene {
 		WindowGroup {
-			ContentView(isRemovingAll: $isRemovingAll, vm: vm)
+			ContentView(isRemovingAll: $isRemovingAll)
 		}
 		.modelContainer(for: Playlist.self, inMemory: false, isAutosaveEnabled: true, isUndoEnabled: true)
 		.commands { commands }
@@ -84,7 +84,7 @@ struct IPTVApp: App {
 		#if targetEnvironment(macCatalyst)
 		WindowGroup(id: "ABOUT_WINDOW") { AboutView() }
 		
-		WindowGroup("Settings", id: "SETTINGS_WINDOW") { SettingsView(vm: vm, isRemovingAll: $isRemovingAll) }
+		WindowGroup("Settings", id: "SETTINGS_WINDOW") { SettingsView(isRemovingAll: $isRemovingAll) }
 		#endif
 	}
 }

@@ -16,15 +16,18 @@ class ViewModel {
 	
 	var tempPlaylistName: String = ""
 	var tempPlaylistURL: String = ""
+	var tempPlaylistEPG: String = ""
 	var tempPlaylist: PlData? = nil
 	
 	var parserDidFail: Bool = false
-	var parserError: String = ""
+	var parserError: Error? = nil
 	var isParsing: Bool = false
 	
 	var isPresented: Bool = false
 	var openedSingleStream: Bool = false
 	
 	var selectedPlaylist: Playlist? = nil
-	var selectedmedia: Media? = nil
+	var selectedMedia: Media? = nil
+	
+	static var shared = ViewModel()
 }

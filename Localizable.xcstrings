@@ -1,17 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
     "A simple IPTV client" : {
       "localizations" : {
         "pt-PT" : {
@@ -133,17 +122,6 @@
         }
       }
     },
-    "Confirm Deletion" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Confirmar"
-          }
-        }
-      }
-    },
     "Default" : {
       "localizations" : {
         "pt-PT" : {
@@ -174,34 +152,12 @@
         }
       }
     },
-    "Delete All Favorited channels?" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apagar Todos os Canais Favoritos?"
-          }
-        }
-      }
-    },
     "Delete All Favorited Medias?" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apagar Todas as Mídias Favoritas?"
-          }
-        }
-      }
-    },
-    "Delete Playlist" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apagar Playlist"
           }
         }
       }
@@ -458,6 +414,16 @@
         }
       }
     },
+    "Playlist EPG (optional)" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EPG da Playlist (opcional)"
+          }
+        }
+      }
+    },
     "Playlist Name" : {
       "localizations" : {
         "pt-PT" : {
@@ -599,6 +565,16 @@
         }
       }
     },
+    "The EPG link provided does not include any programs for this channel." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O link EPG fornecido não inclui qualquer programa para este canal"
+          }
+        }
+      }
+    },
     "The medias you favorite will appear here. To add some favorites, click on the star symbol next to a media." : {
       "localizations" : {
         "pt-PT" : {
@@ -640,6 +616,16 @@
         }
       }
     },
+    "TV Guide is empty" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Guia TV está vazio"
+          }
+        }
+      }
+    },
     "Un-favorite" : {
       "localizations" : {
         "pt-PT" : {
@@ -649,6 +635,9 @@
           }
         }
       }
+    },
+    "Untitled" : {
+
     },
     "v%@ · %@" : {
       "localizations" : {

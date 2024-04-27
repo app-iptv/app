@@ -11,16 +11,11 @@ import M3UKit
 import SwiftData
 
 struct HomeView: View {
-	
-	@Bindable var vm: ViewModel
-	
-	init(_ vm: ViewModel) { self.vm = vm }
-	
 	var body: some View {
 		NavigationSplitView {
-			PlaylistsListView(vm)
+			PlaylistsListView()
 		} detail: {
-			DetailView(vm)
+			DetailView()
 		}
 	}
 }

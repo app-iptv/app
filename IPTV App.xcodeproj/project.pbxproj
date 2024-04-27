@@ -13,17 +13,20 @@
 		2F317E4B2BB3F857000FC7A4 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F317E4A2BB3F857000FC7A4 /* TypeAlias.swift */; };
 		2F3BB2132BAE0EE60085CF3A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BB2122BAE0EE60085CF3A /* Array.swift */; };
 		2F3C5BCD2BB442B50000410B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3C5BCC2BB442B50000410B /* AboutView.swift */; };
+		2F4259D72BDD3AA600B5D836 /* EPGProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4259D62BDD3AA600B5D836 /* EPGProgramView.swift */; };
 		2F50C4742BCBE9D700AE3E65 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F50C4732BCBE9D600AE3E65 /* View.swift */; };
 		2F588D522B9D962E009EB86B /* MediaCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F588D512B9D962E009EB86B /* MediaCellView.swift */; };
 		2F5A13FF2B9DF8C9005F270E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */; };
 		2F5E8F8D2B78DB0B00850659 /* MediaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E8F8C2B78DB0B00850659 /* MediaDetailView.swift */; };
 		2F5E8F902B78E1CE00850659 /* MediaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E8F8F2B78E1CE00850659 /* MediaListView.swift */; };
 		2F5E8F922B78E29700850659 /* PlaylistsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5E8F912B78E29700850659 /* PlaylistsListView.swift */; };
+		2F5FC9FF2BDD0FC900BD67A5 /* SWCompression in Frameworks */ = {isa = PBXBuildFile; productRef = 2F5FC9FE2BDD0FC900BD67A5 /* SWCompression */; };
 		2F6799342BC86CB400A5780D /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6799332BC86CB400A5780D /* M3UKit */; };
 		2F73C7CC2B69390600547B76 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CA2B69390600547B76 /* HomeView.swift */; };
-		2F73C7CE2B69396C00547B76 /* ModelPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CD2B69396C00547B76 /* ModelPlaylist.swift */; };
+		2F73C7CE2B69396C00547B76 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CD2B69396C00547B76 /* Playlist.swift */; };
 		2F741BD32BCBBED600C68D7D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F741BD22BCBBED600C68D7D /* Tab.swift */; };
 		2F7614BF2BBC53A900C53564 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7614BE2BBC53A900C53564 /* Bundle.swift */; };
+		2F7F832C2BDA9953004A3696 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7F832B2BDA9953004A3696 /* NetworkModel.swift */; };
 		2FA6AFA32BB9B64000A7D30E /* ViewingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6AFA22BB9B64000A7D30E /* ViewingMode.swift */; };
 		2FA6AFA72BB9C44100A7D30E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6AFA62BB9C44100A7D30E /* ContentView.swift */; };
 		2FB0A71C2BA76F7F0003AFB2 /* PlaylistCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB0A71B2BA76F7F0003AFB2 /* PlaylistCellView.swift */; };
@@ -42,6 +45,11 @@
 		2FF007D32BC70D4E009013EB /* ChangeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF007D22BC70D4E009013EB /* ChangeIconView.swift */; };
 		2FF1450A2B9DD2F7006B2508 /* SingleStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF145092B9DD2F7006B2508 /* SingleStreamView.swift */; };
 		2FFDFF562BA342C3001A0166 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */; };
+		2FFF3A3B2BDCE42500862E37 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFF3A3A2BDCE42500862E37 /* XMLTV */; };
+		2FFF3A3F2BDD015800862E37 /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFF3A3E2BDD015800862E37 /* Gzip */; };
+		2FFF3A472BDD04BF00862E37 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFF3A462BDD04BF00862E37 /* XMLTV */; };
+		2FFF3A4C2BDD04DB00862E37 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFF3A4B2BDD04DB00862E37 /* XMLTV */; };
+		2FFF3A512BDD050800862E37 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFF3A502BDD050800862E37 /* XMLTV */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +72,7 @@
 		2F317E4A2BB3F857000FC7A4 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		2F3BB2122BAE0EE60085CF3A /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2F3C5BCC2BB442B50000410B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		2F4259D62BDD3AA600B5D836 /* EPGProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGProgramView.swift; sourceTree = "<group>"; };
 		2F50C4732BCBE9D600AE3E65 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		2F588D512B9D962E009EB86B /* MediaCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCellView.swift; sourceTree = "<group>"; };
 		2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -72,9 +81,10 @@
 		2F5E8F912B78E29700850659 /* PlaylistsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsListView.swift; sourceTree = "<group>"; };
 		2F6799312BC86BE200A5780D /* M3UKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = M3UKit; sourceTree = "<group>"; };
 		2F73C7CA2B69390600547B76 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; usesTabs = 1; };
-		2F73C7CD2B69396C00547B76 /* ModelPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPlaylist.swift; sourceTree = "<group>"; usesTabs = 1; };
+		2F73C7CD2B69396C00547B76 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; usesTabs = 1; };
 		2F741BD22BCBBED600C68D7D /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		2F7614BE2BBC53A900C53564 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		2F7F832B2BDA9953004A3696 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		2FA6AFA22BB9B64000A7D30E /* ViewingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewingMode.swift; sourceTree = "<group>"; };
 		2FA6AFA62BB9C44100A7D30E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2FB07E3B2BC30C54004A6D1B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -96,6 +106,8 @@
 		2FEF5E842B7A510500AB0193 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2FF007D22BC70D4E009013EB /* ChangeIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeIconView.swift; sourceTree = "<group>"; };
 		2FF145092B9DD2F7006B2508 /* SingleStreamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleStreamView.swift; sourceTree = "<group>"; };
+		2FFF3A482BDD04CA00862E37 /* LightXMLParser */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LightXMLParser; sourceTree = "<group>"; };
+		2FFF3A4E2BDD050100862E37 /* XMLTV */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = XMLTV; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +115,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FFF3A4C2BDD04DB00862E37 /* XMLTV in Frameworks */,
+				2F5FC9FF2BDD0FC900BD67A5 /* SWCompression in Frameworks */,
+				2FFF3A3B2BDCE42500862E37 /* XMLTV in Frameworks */,
+				2FFF3A472BDD04BF00862E37 /* XMLTV in Frameworks */,
 				2FFDFF562BA342C3001A0166 /* SDWebImageSwiftUI in Frameworks */,
+				2FFF3A512BDD050800862E37 /* XMLTV in Frameworks */,
+				2FFF3A3F2BDD015800862E37 /* Gzip in Frameworks */,
 				2F6799342BC86CB400A5780D /* M3UKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +153,7 @@
 			children = (
 				2F10D8942B70053B00C6847C /* PlayerView.swift */,
 				2F5E8F8C2B78DB0B00850659 /* MediaDetailView.swift */,
+				2F4259D62BDD3AA600B5D836 /* EPGProgramView.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -179,6 +198,8 @@
 				2FDD48092B6687A2009D100B /* IPTV-Info.plist */,
 				2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */,
 				2FB07E3B2BC30C54004A6D1B /* PrivacyInfo.xcprivacy */,
+				2FFF3A4E2BDD050100862E37 /* XMLTV */,
+				2FFF3A482BDD04CA00862E37 /* LightXMLParser */,
 				2F6799312BC86BE200A5780D /* M3UKit */,
 				2F7AE6632B87B96300F2F8CB /* Shared */,
 				2F7AE6452B87B7F600F2F8CB /* iOS */,
@@ -245,7 +266,8 @@
 		2FD3E4532B650B0000AB6510 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2F73C7CD2B69396C00547B76 /* ModelPlaylist.swift */,
+				2F73C7CD2B69396C00547B76 /* Playlist.swift */,
+				2F7F832B2BDA9953004A3696 /* NetworkModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -279,6 +301,12 @@
 			packageProductDependencies = (
 				2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */,
 				2F6799332BC86CB400A5780D /* M3UKit */,
+				2FFF3A3A2BDCE42500862E37 /* XMLTV */,
+				2FFF3A3E2BDD015800862E37 /* Gzip */,
+				2FFF3A462BDD04BF00862E37 /* XMLTV */,
+				2FFF3A4B2BDD04DB00862E37 /* XMLTV */,
+				2FFF3A502BDD050800862E37 /* XMLTV */,
+				2F5FC9FE2BDD0FC900BD67A5 /* SWCompression */,
 			);
 			productName = IPTV;
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV App.app */;
@@ -314,6 +342,9 @@
 			packageReferences = (
 				2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				2F6799322BC86CB300A5780D /* XCLocalSwiftPackageReference "M3UKit" */,
+				2FFF3A3D2BDD015800862E37 /* XCRemoteSwiftPackageReference "GzipSwift" */,
+				2FFF3A4F2BDD050800862E37 /* XCLocalSwiftPackageReference "XMLTV" */,
+				2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */,
 			);
 			productRefGroup = 2FB75B822B41A9FE00A16501 /* Products */;
 			projectDirPath = "";
@@ -344,8 +375,9 @@
 			files = (
 				2F10D8952B70053B00C6847C /* PlayerView.swift in Sources */,
 				2F7614BF2BBC53A900C53564 /* Bundle.swift in Sources */,
+				2F7F832C2BDA9953004A3696 /* NetworkModel.swift in Sources */,
 				2F50C4742BCBE9D700AE3E65 /* View.swift in Sources */,
-				2F73C7CE2B69396C00547B76 /* ModelPlaylist.swift in Sources */,
+				2F73C7CE2B69396C00547B76 /* Playlist.swift in Sources */,
 				2FA6AFA32BB9B64000A7D30E /* ViewingMode.swift in Sources */,
 				2FCC7E5E2B7ECE6300DCC105 /* EditPlaylistView.swift in Sources */,
 				2FB75B852B41A9FE00A16501 /* IPTVApp.swift in Sources */,
@@ -371,6 +403,7 @@
 				2F73C7CC2B69390600547B76 /* HomeView.swift in Sources */,
 				2FF007D32BC70D4E009013EB /* ChangeIconView.swift in Sources */,
 				2FE23EB92B9C652C00579625 /* FirstLaunchView.swift in Sources */,
+				2F4259D72BDD3AA600B5D836 /* EPGProgramView.swift in Sources */,
 				2F2D108F2BB02F4E00578A3D /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,9 +682,21 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = M3UKit;
 		};
+		2FFF3A4F2BDD050800862E37 /* XCLocalSwiftPackageReference "XMLTV" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = XMLTV;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tsolomko/SWCompression.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.8.6;
+			};
+		};
 		2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -660,9 +705,22 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		2FFF3A3D2BDD015800862E37 /* XCRemoteSwiftPackageReference "GzipSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/1024jp/GzipSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2F5FC9FE2BDD0FC900BD67A5 /* SWCompression */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */;
+			productName = SWCompression;
+		};
 		2F6799332BC86CB400A5780D /* M3UKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = M3UKit;
@@ -671,6 +729,27 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		2FFF3A3A2BDCE42500862E37 /* XMLTV */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XMLTV;
+		};
+		2FFF3A3E2BDD015800862E37 /* Gzip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FFF3A3D2BDD015800862E37 /* XCRemoteSwiftPackageReference "GzipSwift" */;
+			productName = Gzip;
+		};
+		2FFF3A462BDD04BF00862E37 /* XMLTV */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XMLTV;
+		};
+		2FFF3A4B2BDD04DB00862E37 /* XMLTV */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XMLTV;
+		};
+		2FFF3A502BDD050800862E37 /* XMLTV */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = XMLTV;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
