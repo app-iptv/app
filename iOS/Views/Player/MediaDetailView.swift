@@ -50,7 +50,7 @@ struct MediaDetailView: View {
 			.safeAreaPadding([.horizontal, .top])
 			
 			Divider()
-				.ignoresSafeArea(.all)s8
+				.ignoresSafeArea(.all)
 			#if !targetEnvironment(macCatalyst)
 				.shadow(color: .primary, radius: 0.2, x: 0, y: 0.1)
 			#endif
