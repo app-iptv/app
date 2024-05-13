@@ -23,6 +23,8 @@ struct MediaListView: View {
 	
 	@State private var searchQuery: String = ""
 	
+	@State var xmlTV: XMLTV? = nil
+	
 	var body: some View {
 		NavigationStack {
 			Group {
@@ -30,17 +32,16 @@ struct MediaListView: View {
 					ContentUnavailableView.search(text: searchQuery)
 				} else {
 					List(filteredMediasForGroup) { media in
-						NavigationLink {
-							MediaDetailView(playlistName: playlistName, media: media, epgLink: epgLink)
-						} label: {
-							MediaCellView(media: media, playlistName: playlistName)
-						}.badge(medias.firstIndex(of: media)!+1)
+						MediaItemView(media: media, playlistName: playlistName, epgLink: epgLink, medias: medias, xmlTV: $xmlTV)
 					}
 					.id(UUID())
 					.listStyle(.plain)
 				}
 			}
+			.navigationTitle(playlistName)
 			.searchable(text: $searchQuery, prompt: "Search")
+			.toolbarRole(sizeClass!.toolbarRole)
+			.task { if xmlTV == nil { await fetchData() } }
 			.toolbar(id: "mediasToolbar") {
 				ToolbarItem(id: "groupPicker", placement: placement) {
 					Picker("Select Group", selection: $vm.selectedGroup) {
@@ -52,8 +53,6 @@ struct MediaListView: View {
 					.pickerStyle(.menu)
 				}
 			}
-			.toolbarRole(sizeClass!.toolbarRole)
-			.toolbarTitleDisplayMode(.inline)
 		}
 	}
 }
@@ -83,5 +82,15 @@ extension MediaListView {
 	private var filteredMediasForGroup: [Media] {
 		guard vm.selectedGroup == "All" else { return searchResults.filter { ($0.attributes["group-title"] ?? "Undefined") == vm.selectedGroup } }
 		return searchResults
+	}
+	
+	private func fetchData() async {
+		do {
+			xmlTV = try await EPGFetchingModel.shared.getPrograms(with: epgLink)
+			vm.isLoadingEPG = false
+		} catch {
+			vm.epgModelDidFail = true
+			vm.isLoadingEPG = false
+		}
 	}
 }

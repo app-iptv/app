@@ -43,12 +43,12 @@ struct ChangeIconView: View {
 	}
 	
 	private func setIcon(_ icon: Icon) {
-		selectedIcon = icon
-		
 		UIApplication.shared.setAlternateIconName(icon.iconName) { error in
 			if let error = error {
 				errorDidFail = true
 				errorDetail = error.localizedDescription
+			} else {
+				selectedIcon = icon
 			}
 		}
 	}

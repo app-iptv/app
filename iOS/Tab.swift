@@ -8,13 +8,13 @@
 import SwiftUI
 
 enum Tab: String, CaseIterable {
-	case favorites
+	case favourites
 	case home
 	case settings
 	
 	var fillImage: String {
 		switch self {
-			case .favorites:
+			case .favourites:
 				"star.fill"
 			case .home:
 				"play.fill"
@@ -25,7 +25,7 @@ enum Tab: String, CaseIterable {
 	
 	var nonFillImage: String {
 		switch self {
-			case .favorites:
+			case .favourites:
 				"star"
 			case .home:
 				"play"
@@ -36,8 +36,8 @@ enum Tab: String, CaseIterable {
 	
 	var name: LocalizedStringKey {
 		switch self {
-			case .favorites:
-				"Favorites"
+			case .favourites:
+				"Favourites"
 			case .home:
 				"Home"
 			case .settings:
@@ -51,8 +51,8 @@ extension Tab: RawRepresentable {
 	
 	init?(rawValue: RawValue) {
 		switch rawValue {
-			case "favorites":
-				self = .favorites
+			case "favourites":
+				self = .favourites
 			case "home":
 				self = .home
 			case "settings":
@@ -64,8 +64,8 @@ extension Tab: RawRepresentable {
 	
 	var rawValue: RawValue {
 		switch self {
-			case .favorites:
-				return "favorites"
+			case .favourites:
+				return "favourites"
 			case .home:
 				return "home"
 			case .settings:

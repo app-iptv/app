@@ -1,5 +1,5 @@
 //
-//  NetworkModel.swift
+//  PlaylistFetchingModel.swift
 //  IPTV App
 //
 //  Created by Pedro Cordeiro on 25/04/2024.
@@ -9,7 +9,7 @@ import Foundation
 import M3UKit
 
 @Observable
-class NetworkModel {
+class PlaylistFetchingModel {
 	var playlist: Playlist? = nil
 	var error: Error? = nil
 	

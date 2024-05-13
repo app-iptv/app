@@ -16,6 +16,7 @@ struct HomeView: View {
 			PlaylistsListView()
 		} detail: {
 			DetailView()
+				.toolbarBackground(.visible, for: .navigationBar)
 		}
 	}
 }

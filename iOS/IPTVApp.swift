@@ -6,21 +6,23 @@
 //
 
 import SwiftUI
-import Foundation
 import M3UKit
 import SwiftData
+import AVKit
 
 @main
 struct IPTVApp: App {
 	
-	@State var vm = ViewModel.shared
+	@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+	
+	@Environment(\.openWindow) var openWindow
 	
 	@AppStorage("IS_FIRST_LAUNCH") var isFirstLaunch: Bool = true
-	@AppStorage("FAVORITED_CHANNELS") var favorites: [Media] = []
+	@AppStorage("FAVORITED_CHANNELS") var favourites: [Media] = []
 	@AppStorage("VIEWING_MODE") var viewingMode: ViewingMode = .regular
 	@AppStorage("SELECTED_TAB") var selectedTab: Tab = .home
 	
-	@Environment(\.openWindow) var openWindow
+	@State var vm = ViewModel.shared
 	
 	@State var isRemovingAll: Bool = false
 	
@@ -56,7 +58,7 @@ struct IPTVApp: App {
 						}
 					}
 					
-					Button("Reset Favorites", systemImage: "trash", role: .destructive) {
+					Button("Reset Favourites", systemImage: "trash", role: .destructive) {
 						isRemovingAll.toggle()
 					}.keyboardShortcut(.delete, modifiers: .all)
 					
@@ -86,5 +88,19 @@ struct IPTVApp: App {
 		
 		WindowGroup("Settings", id: "SETTINGS_WINDOW") { SettingsView(isRemovingAll: $isRemovingAll) }
 		#endif
+	}
+}
+
+class AppDelegate: UIResponder, UIApplicationDelegate {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+		let session = AVAudioSession.sharedInstance()
+		
+		do {
+			try session.setCategory(.playback, mode: .moviePlayback)
+		} catch {
+			print(error.localizedDescription)
+		}
+		
+		return true
 	}
 }

@@ -9,10 +9,11 @@ import Foundation
 import SwiftUI
 import M3UKit
 import SDWebImageSwiftUI
+import XMLTV
 
 struct MediaCellView: View {
 	
-	@AppStorage("FAVORITED_CHANNELS") var favorites: [Media] = []
+	@AppStorage("FAVORITED_CHANNELS") var favourites: [Media] = []
 	
 	@AppStorage("VIEWING_MODE") var viewingMode: ViewingMode = .regular
 	
@@ -36,8 +37,10 @@ struct MediaCellView: View {
 			switch viewingMode {
 				case .large:
 					largeViewingMode
-				default:
-					otherViewingMode
+				case .regular:
+					regularViewingMode
+				case .compact:
+					compactViewingMode
 			}
 		}
 		.swipeActions(edge: .leading) { ShareLink(item: media.url, preview: SharePreview(media.title)).tint(.pink) }
@@ -59,7 +62,23 @@ extension MediaCellView {
 		}
 	}
 	
-	private var otherViewingMode: some View {
+	private var compactViewingMode: some View {
+		HStack {
+			HStack(spacing: 0) {
+				Text(media.title)
+					.fontWeight(.semibold)
+					.lineLimit(1)
+			}
+			
+			Spacer()
+			
+			Text(media.attributes["group-title"] ?? "Undefined")
+				.font(.caption)
+				.lineLimit(1)
+		}
+	}
+	
+	private var regularViewingMode: some View {
 		HStack {
 			Text(media.title)
 				.fontWeight(.semibold)
@@ -76,24 +95,24 @@ extension MediaCellView {
 	private var contextMenu: some View {
 		VStack {
 			ShareLink(item: media.url, preview: SharePreview(media.title))
-			Button(favorites.contains(media) ? "Un-favorite" : "Favorite", systemImage: favorites.contains(media) ? "star.slash.fill" : "star", role: favorites.contains(media) ? .destructive : nil) {
-				if favorites.contains(media) {
-					favorites.remove(at: favorites.firstIndex(of: media)!)
+			Button(favourites.contains(media) ? "Un-Favourite" : "Favourite", systemImage: favourites.contains(media) ? "star.slash.fill" : "star", role: favourites.contains(media) ? .destructive : nil) {
+				if favourites.contains(media) {
+					favourites.remove(at: favourites.firstIndex(of: media)!)
 				} else {
-					favorites.append(media)
+					favourites.append(media)
 				}
 			}
 		}
 	}
 	
 	private var swipeActions: some View {
-		Button(favorites.contains(media) ? "Un-favorite" : "Favorite", systemImage: favorites.contains(media) ? "star.slash" : "star") {
-			if favorites.contains(media) {
-				favorites.remove(at: favorites.firstIndex(of: media)!)
+		Button(favourites.contains(media) ? "Un-Favourite" : "Favourite", systemImage: favourites.contains(media) ? "star.slash" : "star") {
+			if favourites.contains(media) {
+				favourites.remove(at: favourites.firstIndex(of: media)!)
 			} else {
-				favorites.append(media)
+				favourites.append(media)
 			}
 		}
-		.tint(favorites.contains(media) ? .indigo : .yellow)
+		.tint(favourites.contains(media) ? .indigo : .yellow)
 	}
 }

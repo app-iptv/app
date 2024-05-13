@@ -1,6 +1,22 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@, %@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@ - %3$@"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@ - %3$@"
+          }
+        }
+      }
+    },
     "A simple IPTV client" : {
       "localizations" : {
         "pt-PT" : {
@@ -202,6 +218,48 @@
         }
       }
     },
+    "EPG_DATAFETCH_FAILED" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The data from the URL is invalid."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Os dados do link são invalidos"
+          }
+        }
+      }
+    },
+    "EPG_INVALID_EXTENSION" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A extensão do ficheiro EPG é invalida."
+          }
+        }
+      }
+    },
+    "EPG_INVALID_URL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The entered URL is invalid."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O link inserido é invalido."
+          }
+        }
+      }
+    },
     "Error" : {
       "localizations" : {
         "pt-PT" : {
@@ -222,7 +280,7 @@
         }
       }
     },
-    "Favorite" : {
+    "Favourite" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -232,7 +290,7 @@
         }
       }
     },
-    "Favorites" : {
+    "Favourites" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -303,17 +361,6 @@
         }
       }
     },
-    "IPTV App is a free resource for the community so any finantial support is greatly appreciated!" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A App IPTV é um recurso grátis logo qualquer supporte financeiro é muito agradecido!"
-          }
-        }
-      }
-    },
     "Large" : {
       "localizations" : {
         "pt-PT" : {
@@ -334,7 +381,7 @@
         }
       }
     },
-    "No Favorited Medias" : {
+    "No Favourited Medias" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -484,7 +531,7 @@
         }
       }
     },
-    "Reset Favorites" : {
+    "Reset Favourites" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -504,7 +551,7 @@
         }
       }
     },
-    "Search Favorites" : {
+    "Search Favourites" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -570,28 +617,17 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O link EPG fornecido não inclui qualquer programa para este canal"
+            "value" : "O link EPG fornecido não inclui qualquer programa para este canal."
           }
         }
       }
     },
-    "The medias you favorite will appear here. To add some favorites, click on the star symbol next to a media." : {
+    "The medias you favourites will appear here. To add some favourites, click on the star symbol next to a media." : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "As mídias que marcas como \"Favorito\" aparecerão aqui. Para adicionar alguns favoritos, clica na estrela perto da mídia"
-          }
-        }
-      }
-    },
-    "The selected playlist's channels will appear here." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Os canais da playlist selecionada aparecerão aqui."
+            "value" : "As mídias que marcas como \"Favorito\" aparecerão aqui. Para adicionar alguns favoritos, clica na estrela perto da mídia."
           }
         }
       }
@@ -616,6 +652,26 @@
         }
       }
     },
+    "Today" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoje"
+          }
+        }
+      }
+    },
+    "Tomorrow" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amanhã"
+          }
+        }
+      }
+    },
     "TV Guide is empty" : {
       "localizations" : {
         "pt-PT" : {
@@ -626,7 +682,7 @@
         }
       }
     },
-    "Un-favorite" : {
+    "Un-Favourite" : {
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -637,7 +693,14 @@
       }
     },
     "Untitled" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sem Título"
+          }
+        }
+      }
     },
     "v%@ · %@" : {
       "localizations" : {
@@ -713,6 +776,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Amarelo"
+          }
+        }
+      }
+    },
+    "Yesterday" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ontem"
           }
         }
       }

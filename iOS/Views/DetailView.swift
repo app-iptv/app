@@ -16,7 +16,6 @@ struct DetailView: View {
 	var body: some View {
 		if let playlist = vm.selectedPlaylist {
 			MediaListView(medias: playlist.medias, playlistName: playlist.name, epgLink: playlist.epgLink)
-				.navigationTitle(playlist.name)
 		} else {
 			ContentUnavailableView {
 				Label("No Medias", systemImage: "list.and.film")

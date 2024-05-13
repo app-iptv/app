@@ -42,11 +42,11 @@ struct PlayerView: UIViewControllerRepresentable {
 		subTitleItem.value = media.attributes["group-title"] as (NSCopying & NSObjectProtocol)?
 		
 		let albumItem = AVMutableMetadataItem()
-		albumItem.identifier = .commonIdentifierAlbumName
+		albumItem.identifier = .iTunesMetadataAlbum
 		albumItem.value = media.attributes["group-title"] as (NSCopying & NSObjectProtocol)?
 		
 		let artistItem = AVMutableMetadataItem()
-		artistItem.identifier = .commonIdentifierArtist
+		artistItem.identifier = .iTunesMetadataArtist
 		artistItem.value = playlistName as (NSCopying & NSObjectProtocol)?
 		
 		playerItem.externalMetadata = [titleItem, subTitleItem, artistItem, albumItem]
@@ -54,9 +54,7 @@ struct PlayerView: UIViewControllerRepresentable {
 		player.play()
 	}
 	
-	func makeUIViewController(context: Context) -> AVPlayerViewController {
-		return AVPlayerViewController()
-	}
+	func makeUIViewController(context: Context) -> AVPlayerViewController { AVPlayerViewController() }
 }
 
 struct SinglePlayerView: UIViewControllerRepresentable {
@@ -81,6 +79,8 @@ struct SinglePlayerView: UIViewControllerRepresentable {
 		let player = AVPlayer(playerItem: playerItem)
 		
 		playerController.allowsPictureInPicturePlayback = true
+		playerController.canStartPictureInPictureAutomaticallyFromInline = true
+		player.usesExternalPlaybackWhileExternalScreenIsActive = true
 		player.allowsExternalPlayback = true
 		playerController.player = player
 		
@@ -109,4 +109,3 @@ struct SinglePlayerView: UIViewControllerRepresentable {
 		return AVPlayerViewController()
 	}
 }
-

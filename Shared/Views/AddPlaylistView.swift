@@ -15,58 +15,33 @@ struct AddPlaylistView: View {
 	
 	@State var vm = ViewModel.shared
 	
-	@State var networkModel = NetworkModel()
-	
-	let decoder = M3UDecoder()
+	@State var networkModel = PlaylistFetchingModel()
 	
 	var body: some View {
 		VStack {
 			Text("Add Playlist")
 				.font(.largeTitle)
 				.bold()
-				.padding()
-			
-//			VStack {
-//				TextField("Playlist Name", text: $vm.tempPlaylistName)
-//					#if !os(tvOS)
-//					.textFieldStyle(.roundedBorder)
-//					#endif
-//				TextField("Playlist URL", text: $vm.tempPlaylistURL)
-//					#if !os(tvOS)
-//					.textFieldStyle(.roundedBorder)
-//					#endif
-//					.textInputAutocapitalization(.never)
-//			}
-//			
-//			HStack(spacing: 10) {
-//				Button("Add", systemImage: "plus") { addPlaylist() }
-//					.disabled(vm.tempPlaylistName.isEmpty || vm.tempPlaylistURL.isEmpty)
-//					.buttonStyle(.borderedProminent)
-//				
-//				Button("Cancel") { cancel() }
-//					.buttonStyle(.bordered)
-//			}
-//			.padding()
-			
+				.padding()			
 			VStack(spacing: 4) {
 				TextField("Playlist Name", text: $vm.tempPlaylistName)
 					.textFieldStyle(.plain)
 					.padding(10)
-					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 8, bottomLeading: 2.5, bottomTrailing: 2.5, topTrailing: 8), style: .circular))
+					.modifier(ElementViewModifier(for: .top))
 				TextField("Playlist URL", text: $vm.tempPlaylistURL)
 					.textFieldStyle(.plain)
 					.textInputAutocapitalization(.never)
 					.textContentType(.URL)
 					.autocorrectionDisabled()
 					.padding(10)
-					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 2.5, bottomLeading: 2.5, bottomTrailing: 2.5, topTrailing: 2.5), style: .circular))
+					.modifier(ElementViewModifier(for: .middle))
 				TextField("Playlist EPG (optional)", text: $vm.tempPlaylistEPG)
 					.textFieldStyle(.plain)
 					.textInputAutocapitalization(.never)
 					.textContentType(.URL)
 					.autocorrectionDisabled()
 					.padding(10)
-					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 2.5, bottomLeading: 8, bottomTrailing: 8, topTrailing: 2.5), style: .circular))
+					.modifier(ElementViewModifier(for: .bottom))
 			}
 			
 			HStack(spacing: 4) {
@@ -74,13 +49,12 @@ struct AddPlaylistView: View {
 					.disabled(vm.tempPlaylistName.isEmpty || vm.tempPlaylistURL.isEmpty)
 					.buttonStyle(.plain)
 					.padding(10)
-					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 8, bottomLeading: 8, bottomTrailing: 2.5, topTrailing: 2.5), style: .circular))
+					.modifier(ElementViewModifier(for: .left))
 					.foregroundStyle(Color.accentColor)
-				
 				Button("Cancel") { dismiss(); networkModel.cancel() }
 					.buttonStyle(.plain)
 					.padding(10)
-					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 2.5, bottomLeading: 2.5, bottomTrailing: 8, topTrailing: 8), style: .circular))
+					.modifier(ElementViewModifier(for: .right))
 					.foregroundStyle(.red)
 			}
 			.padding()

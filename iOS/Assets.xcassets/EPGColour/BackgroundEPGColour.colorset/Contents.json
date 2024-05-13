@@ -3,20 +3,7 @@
     {
       "color" : {
         "platform" : "ios",
-        "reference" : "systemGray5Color"
-      },
-      "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "color" : {
-        "platform" : "ios",
-        "reference" : "systemGray4Color"
+        "reference" : "secondaryLabelColor"
       },
       "idiom" : "universal"
     }

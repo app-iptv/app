@@ -1,5 +1,5 @@
 //
-//  FavoritesView.swift
+//  FavouritesView.swift
 //  IPTV
 //
 //  Created by Pedro Cordeiro on 19/03/2024.
@@ -8,9 +8,9 @@
 import SwiftUI
 import M3UKit
 
-struct FavoritesView: View {
+struct FavouritesView: View {
 	
-	@AppStorage("FAVORITED_CHANNELS") var favorites: [Media] = []
+	@AppStorage("FAVORITED_CHANNELS") var favourites: [Media] = []
 	
 	@State private var isDeletingAll: Bool = false
 	
@@ -21,31 +21,30 @@ struct FavoritesView: View {
 	var body: some View {
 		NavigationStack {
 			Group {
-				if favorites.isEmpty {
+				if favourites.isEmpty {
 					ContentUnavailableView {
-						Label("No Favorited Medias", systemImage: "star.slash")
+						Label("No Favourited Medias", systemImage: "star.slash")
 					} description: {
-						Text("The medias you favorite will appear here. To add some favorites, click on the star symbol next to a media.")
+						Text("The medias you favourites will appear here. To add some favourites, click on the star symbol next to a media.")
 					}
 				} else if filteredMediasForGroup.isEmpty {
 					ContentUnavailableView.search(text: searchQuery)
 				} else {
 					List(filteredMediasForGroup) { media in
 						NavigationLink(value: media) {
-							MediaCellView(media: media, playlistName: "Favorites")
-						}.badge(favorites.firstIndex(of: media)!+1)
+							MediaCellView(media: media, playlistName: "Favortites")
+						}.badge(favourites.firstIndex(of: media)!+1)
 					}
 					.id(UUID())
 					.listStyle(.plain)
 				}
 			}
-			.navigationTitle("Favorites")
-			.searchable(text: $searchQuery, prompt: "Search Favorites")
-			.navigationDestination(for: Media.self) { media in
-				MediaDetailView(playlistName: "Favorites", media: media, epgLink: "")
-			}
+			.navigationTitle("Favourites")
+			.toolbarBackground(.visible, for: .navigationBar)
+			.searchable(text: $searchQuery, prompt: "Search Favourites")
+			.navigationDestination(for: Media.self) { MediaDetailView(playlistName: "Favourites", media: $0, epgLink: "", xmlTV: .constant(nil)) }
 			.toolbarRole(.browser)
-			.toolbar(id: "favoritesToolbar") {
+			.toolbar(id: "favouritesToolbar") {
 				ToolbarItem(id: "groupPicker", placement: placement) {
 					Picker("Select Group", selection: $selectedGroup) {
 						ForEach(groups, id: \.self) { group in
@@ -59,7 +58,7 @@ struct FavoritesView: View {
 	}
 }
 
-extension FavoritesView {
+extension FavouritesView {
 	private var placement: ToolbarItemPlacement {
 		#if targetEnvironment(macCatalyst)
 		return .primaryAction
@@ -69,8 +68,8 @@ extension FavoritesView {
 	}
 	
 	private var searchResults: [Media] {
-		guard !searchQuery.isEmpty else { return favorites }
-		return favorites.filter { media in
+		guard !searchQuery.isEmpty else { return favourites }
+		return favourites.filter { media in
 			media.title.localizedStandardContains(searchQuery)
 		}
 	}

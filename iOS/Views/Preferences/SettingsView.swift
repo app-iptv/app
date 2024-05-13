@@ -47,7 +47,7 @@ struct SettingsView: View {
 				}
 				
 				Section {
-					Button("Reset Favorites", systemImage: "trash", role: .destructive) { isRemovingAll.toggle() }.foregroundStyle(.red)
+					Button("Reset Favourites", systemImage: "trash", role: .destructive) { isRemovingAll.toggle() }.foregroundStyle(.red)
 				}
 				
 				Section {
