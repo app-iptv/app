@@ -25,7 +25,7 @@ public class XMLTV: Codable, Hashable {
     }
     
     public func getChannels() -> [TVChannel] {
-        var channels: [TVChannel] = []
+		var channels: [TVChannel] = []
         
         let xmlChannels = xml.children(name: "channel")
         xmlChannels.forEach { channel in
@@ -41,7 +41,7 @@ public class XMLTV: Codable, Hashable {
     }
     
     public func getPrograms(channel: TVChannel) -> [TVProgram] {
-        var programs: [TVProgram] = []
+		var programs: [TVProgram] = []
         
         let xmlPrograms = xml.children.filter { $0.name == "programme" && $0.attributes["channel"] == channel.id }
         xmlPrograms.forEach { program in
@@ -56,7 +56,7 @@ public class XMLTV: Codable, Hashable {
             let categories = program.children(name: "category").map { $0.value }
             let country = program.children(name: "country").first?.value
             let credits = program.children(name: "credits").first?.children.reduce([String:String]()) { dict, credit -> [String:String] in
-                var dict = dict
+				var dict = dict
                 dict[credit.name] = credit.value
                 return dict
                 } ?? [:]

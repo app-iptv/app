@@ -8,6 +8,7 @@
 import SwiftUI
 import M3UKit
 import Observation
+import SwiftData
 
 @Observable
 class ViewModel {
@@ -28,6 +29,7 @@ class ViewModel {
 	
 	var selectedPlaylist: 	Playlist? = nil
 	var selectedMedia: 		Media? = nil
+	var selectedMovie:		Media? = nil
 	
 	var isLoadingEPG: 		Bool = true
 	var epgModelDidFail: 	Bool = false

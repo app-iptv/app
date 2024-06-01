@@ -12,18 +12,25 @@ import XMLTV
 
 struct MediaListView: View {
 	
-	@Environment(\.horizontalSizeClass) var sizeClass
-	@Environment(\.isSearching) var searchState
+	@Environment(\.horizontalSizeClass) private var sizeClass
+	@Environment(\.isSearching) private var searchState
 	
-	@State var vm = ViewModel.shared
+	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
 	
-	let medias: [Media]
-	let playlistName: String
-	let epgLink: String
-	
+	@State private var vm = ViewModel.shared
 	@State private var searchQuery: String = ""
 	
-	@State var xmlTV: XMLTV? = nil
+	private let medias: [Media]
+	private let playlistName: String
+	private let epgLink: String
+	private let index: Int
+	
+	internal init(medias: [Media], playlistName: String, epgLink: String, index: Int) {
+		self.medias = medias
+		self.playlistName = playlistName
+		self.epgLink = epgLink
+		self.index = index
+	}
 	
 	var body: some View {
 		NavigationStack {
@@ -32,16 +39,27 @@ struct MediaListView: View {
 					ContentUnavailableView.search(text: searchQuery)
 				} else {
 					List(filteredMediasForGroup) { media in
-						MediaItemView(media: media, playlistName: playlistName, epgLink: epgLink, medias: medias, xmlTV: $xmlTV)
+						#if os(tvOS)
+						MediaItemView(media: media, playlistName: playlistName)
+						#else
+						MediaItemView(media: media, playlistName: playlistName, epgLink: epgLink, medias: medias)
+						#endif
 					}
 					.id(UUID())
 					.listStyle(.plain)
 				}
 			}
-			.navigationTitle(playlistName)
 			.searchable(text: $searchQuery, prompt: "Search")
+			.onAppear {				
+				selectedPlaylist = index
+				
+				#if DEBUG
+				print("New Selected Playlist: \(index)")
+				#endif
+			}
+			#if !os(tvOS)
+			.navigationTitle(playlistName)
 			.toolbarRole(sizeClass!.toolbarRole)
-			.task { if xmlTV == nil { await fetchData() } }
 			.toolbar(id: "mediasToolbar") {
 				ToolbarItem(id: "groupPicker", placement: placement) {
 					Picker("Select Group", selection: $vm.selectedGroup) {
@@ -53,6 +71,7 @@ struct MediaListView: View {
 					.pickerStyle(.menu)
 				}
 			}
+			#endif
 		}
 	}
 }
@@ -82,15 +101,5 @@ extension MediaListView {
 	private var filteredMediasForGroup: [Media] {
 		guard vm.selectedGroup == "All" else { return searchResults.filter { ($0.attributes["group-title"] ?? "Undefined") == vm.selectedGroup } }
 		return searchResults
-	}
-	
-	private func fetchData() async {
-		do {
-			xmlTV = try await EPGFetchingModel.shared.getPrograms(with: epgLink)
-			vm.isLoadingEPG = false
-		} catch {
-			vm.epgModelDidFail = true
-			vm.isLoadingEPG = false
-		}
 	}
 }

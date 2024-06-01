@@ -36,7 +36,7 @@ public class XML: Codable, Hashable {
         self.addAttributes(attributes)
     }
     
-    public convenience init(data: Data) throws {
+	public convenience init(data: Data) throws {
         let parser = LightXMLParser(data: data)
         parser.parse()
         guard let xml = parser.root else { throw ParseError.unexpectedError }

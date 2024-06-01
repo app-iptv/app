@@ -10,21 +10,21 @@ import XMLTV
 import SDWebImageSwiftUI
 
 struct EPGProgramDetailView: View {
-	let program: TVProgram
+	private let program: TVProgram
 	
 	init(for program: TVProgram) {
 		self.program = program
 	}
 	
-    var body: some View {
+	var body: some View {
 		ScrollView {
 			VStack(alignment: .leading) {
 				HStack(spacing: 10) {
 					WebImage(url: URL(string: program.icon ?? "")) { image in
 						image
+							.resizable()
+							.aspectRatio(contentMode: .fit)
 					} placeholder: { Image(systemName: "photo.tv").imageScale(.large) }
-						.resizable()
-						.aspectRatio(contentMode: .fit)
 						.frame(width: 150, height: 150)
 					
 					VStack(alignment: .leading, spacing: 5) {

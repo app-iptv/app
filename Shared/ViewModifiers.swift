@@ -44,10 +44,13 @@ struct ElementViewModifier: ViewModifier {
 			case .middle:
 				content
 					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 2.5, bottomLeading: 2.5, bottomTrailing: 2.5, topTrailing: 2.5), style: .circular))
+			case .content:
+				content
+					.background(.ultraThickMaterial, in: UnevenRoundedRectangle(cornerRadii: RectangleCornerRadii(topLeading: 8, bottomLeading: 8, bottomTrailing: 8, topTrailing: 8), style: .circular))
 		}
 	}
 }
 
 enum ElementType {
-	case top, bottom, right, left, topLeft, topRight, bottomLeft, bottomRight, middle
+	case top, bottom, right, left, topLeft, topRight, bottomLeft, bottomRight, middle, content
 }

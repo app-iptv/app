@@ -6,16 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 import M3UKit
 import XMLTV
 
 struct DetailView: View {
 	
-	@State var vm = ViewModel.shared
+	@Query var modelPlaylists: [Playlist]
 	
-	var body: some View {
+	@State private var vm = ViewModel.shared
+	
+	 var body: some View {
 		if let playlist = vm.selectedPlaylist {
-			MediaListView(medias: playlist.medias, playlistName: playlist.name, epgLink: playlist.epgLink)
+			MediaListView(medias: playlist.medias, playlistName: playlist.name, epgLink: playlist.epgLink, index: modelPlaylists.firstIndex(of: playlist)!)
 		} else {
 			ContentUnavailableView {
 				Label("No Medias", systemImage: "list.and.film")

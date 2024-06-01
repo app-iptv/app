@@ -11,14 +11,14 @@ struct EditPlaylistView: View {
 	
 	@Environment(\.dismiss) private var dismiss
 	
-	@Bindable var playlist: Playlist
+	@Bindable private var playlist: Playlist
 	
-	@State var newName: String = ""
-	@State var newEPG: String = ""
+	@State private var newName: String = ""
+	@State private var newEPG: String = ""
 	
 	init(_ playlist: Playlist) { self.playlist = playlist }
 	
-    var body: some View {
+	var body: some View {
 		VStack {
 			Text("Edit \"\(playlist.name)\"")
 				.font(.largeTitle)

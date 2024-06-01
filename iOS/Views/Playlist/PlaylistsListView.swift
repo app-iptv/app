@@ -11,12 +11,12 @@ import M3UKit
 
 struct PlaylistsListView: View {
 	
-	@Environment(\.horizontalSizeClass) var sizeClass
-	@Environment(\.modelContext) var context
+	@Environment(\.horizontalSizeClass) private var sizeClass
+	@Environment(\.modelContext) private var context
 	
-	@State var vm = ViewModel.shared
+	@Query private var modelPlaylists: [Playlist]
 	
-	@Query var modelPlaylists: [Playlist]
+	@State private var vm = ViewModel.shared
 	
 	var body: some View {
 		Group {
@@ -29,13 +29,17 @@ struct PlaylistsListView: View {
 			} else {
 				List(modelPlaylists, selection: $vm.selectedPlaylist) { playlist in
 					PlaylistCellView(playlist)
+					#if !os(tvOS)
 						.badge(playlist.medias.count)
+					#endif
 				}
 			}
 		}
+		#if !os(tvOS)
 		.navigationTitle("Playlists")
+		#endif
 		.navigationSplitViewColumnWidth(min: 216, ideal: 216)
-		#if !targetEnvironment(macCatalyst)
+		#if !targetEnvironment(macCatalyst) && !os(tvOS)
 		.toolbar(id: "playlistsToolbar") {
 			ToolbarItem(id: "addPlaylist", placement: .topBarTrailing) {
 				Button("Add Playlist", systemImage: "plus") { vm.isPresented.toggle() }

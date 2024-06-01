@@ -11,7 +11,7 @@ struct ChangeIconView: View {
 	@State private var errorDidFail: Bool = false
 	@State private var errorDetail: String = ""
 	
-	@AppStorage("SELECTED_ICON") var selectedIcon: Icon = .original
+	@AppStorage("SELECTED_ICON") private var selectedIcon: Icon = .original
 	
 	let icons: [Icon] = [.blue, .red, .green, .yellow]
 	

@@ -8,9 +8,9 @@
 import SwiftUI
 
 extension View {
-	func tabForView(selection: Binding<Tab>, for tab: Tab) -> some View {
-		self
+	func tabForView(for tab: Tab) -> some View {
+		return self
 			.tag(tab)
-			.tabItem { Label(tab.name, systemImage: selection.wrappedValue == tab ? tab.fillImage : tab.nonFillImage) }
+			.tabItem { Label(tab.name, systemImage: tab.nonFillImage) }
 	}
 }

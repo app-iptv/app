@@ -11,9 +11,9 @@ import M3UKit
 
 struct PlaylistCellView: View {
 	
-	@Environment(\.modelContext) var context
+	@Environment(\.modelContext) private var context
 	
-	@Bindable var playlist: Playlist
+	@Bindable private var playlist: Playlist
 	
 	init(_ playlist: Playlist) { self.playlist = playlist }
 	
@@ -22,9 +22,11 @@ struct PlaylistCellView: View {
 	var body: some View {
 		NavigationLink(playlist.name, value: playlist)
 			.contextMenu { deleteButton; editButton }
+		#if !os(tvOS)
 			.swipeActions(edge: .trailing) { deleteButton }
 			.swipeActions(edge: .leading) { editButton }
 			.popover(isPresented: $isEditing) { EditPlaylistView(playlist) }
+		#endif
 	}
 }
 

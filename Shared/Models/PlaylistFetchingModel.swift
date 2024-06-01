@@ -27,7 +27,9 @@ class PlaylistFetchingModel {
 		}
 		
 		func catchError(_ error: Error?) {
+			#if DEBUG
 			if let desc = error?.localizedDescription { print(desc) }
+			#endif
 			ViewModel.shared.parserError = error
 			ViewModel.shared.parserDidFail = true
 		}

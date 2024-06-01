@@ -320,6 +320,16 @@
         }
       }
     },
+    "Guide" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guia TV"
+          }
+        }
+      }
+    },
     "Hello 👋" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -351,6 +361,17 @@
         }
       }
     },
+    "Info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informação"
+          }
+        }
+      }
+    },
     "IPTV App" : {
       "localizations" : {
         "pt-PT" : {
@@ -367,6 +388,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grande"
+          }
+        }
+      }
+    },
+    "Movies & Series" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filmes & Séries"
           }
         }
       }
@@ -668,6 +699,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Amanhã"
+          }
+        }
+      }
+    },
+    "TV" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TV"
           }
         }
       }

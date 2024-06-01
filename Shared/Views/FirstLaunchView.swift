@@ -9,7 +9,11 @@ import SwiftUI
 
 struct FirstLaunchView: View {
 	
-	@Binding var isFirstLaunch: Bool
+	@Binding private var isFirstLaunch: Bool
+	
+	internal init(isFirstLaunch: Binding<Bool>) {
+		self._isFirstLaunch = isFirstLaunch
+	}
 	
 	var body: some View {
 		ScrollView {

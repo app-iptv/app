@@ -20,11 +20,9 @@ struct EPGProgramView: View {
 	private var startInterval: TimeInterval { program.start?.timeIntervalSinceReferenceDate ?? 0 }
 	private var endInterval: TimeInterval { program.stop?.timeIntervalSinceReferenceDate ?? 0 }
 	
-	var progress: Double { ((currentInterval - startInterval) / (endInterval - startInterval)) * 100 }
+	private var progress: Double { ((currentInterval - startInterval) / (endInterval - startInterval)) * 100 }
 	
-	var color: Color { EPGFetchingModel.shared.isNowBetweenDates(program: program) ? .liveEPGColour : .backgroundEPGColour }
-	
-	var formatter: RelativeDateTimeFormatter {
+	private var formatter: RelativeDateTimeFormatter {
 		let formatter = RelativeDateTimeFormatter()
 		formatter.dateTimeStyle = .numeric
 		formatter.unitsStyle = .short
@@ -32,7 +30,7 @@ struct EPGProgramView: View {
 		return formatter
 	}
 	
-    var body: some View {
+	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
 			VStack(alignment: .leading) {
 				if let start = program.start, let stop = program.stop {
@@ -48,6 +46,7 @@ struct EPGProgramView: View {
 				}
 				
 				Text(LocalizedStringKey(program.title ?? "Untitled"))
+					.lineLimit(1)
 					.foregroundStyle(EPGFetchingModel.shared.isNowBetweenDates(program: program) ? .red : .primary)
 			}
 			.padding(.vertical, 2.5)
@@ -57,11 +56,11 @@ struct EPGProgramView: View {
 				ProgressView(value: progress, total: 100)
 					.progressViewStyle(SquaredProgressViewStyle())
 					.ignoresSafeArea(.all)
-				#if targetEnvironment(macCatalyst)
+					#if targetEnvironment(macCatalyst)
 					.padding(.bottom, -7)
-				#else
+					#else
 					.padding(.bottom, -7.5)
-				#endif
+					#endif
 			}
 			
 			Divider()

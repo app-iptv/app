@@ -8,26 +8,26 @@ Add XMLTV to your project using Swift Package Manager.
 XMLTV provides two structs representing channels and programs.
 
 ```swift
-public struct TVChannel {
-    public let id: String
-    public let name: String?
-    public let url: String?
-    public let icon: String?
+internal struct TVChannel {
+    internal let id: String
+    internal let name: String?
+    internal let url: String?
+    internal let icon: String?
 }
 
-public struct TVProgram {
-    public let start: Date?
-    public let stop: Date?
-    public let channel: TVChannel
-    public let title: String?
-    public let description: String?
-    public let credits: [String:String]
-    public let date: String?
-    public let categories: [String]
-    public let country: String?
-    public let episode: String?
-    public let icon: String?
-    public let rating: String?
+internal struct TVProgram {
+    internal let start: Date?
+    internal let stop: Date?
+    internal let channel: TVChannel
+    internal let title: String?
+    internal let description: String?
+    internal let credits: [String:String]
+    internal let date: String?
+    internal let categories: [String]
+    internal let country: String?
+    internal let episode: String?
+    internal let icon: String?
+    internal let rating: String?
 }
 ```
 
