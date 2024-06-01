@@ -2,7 +2,13 @@
   "images" : [
     {
       "filename" : "1x1.png",
-      "idiom" : "tv"
+      "idiom" : "tv",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "1x1 1.png",
+      "idiom" : "tv",
+      "scale" : "2x"
     }
   ],
   "info" : {
