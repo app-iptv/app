@@ -95,6 +95,8 @@
 		2FB85E852BFB311E0018723D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB85E842BFB311E0018723D /* SearchView.swift */; };
 		2FBE9A152BA09A6C0090C126 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE9A142BA09A6C0090C126 /* Media.swift */; };
 		2FD589892B7F804F003228AB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD589882B7F804F003228AB /* Launch Screen.storyboard */; platformFilter = ios; };
+		2FE0A5E02C0B901E003D3680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE0A5DF2C0B901E003D3680 /* Assets.xcassets */; };
+		2FE0A5E32C0B9057003D3680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE0A5E12C0B9046003D3680 /* Assets.xcassets */; };
 		2FEF5E852B7A510500AB0193 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5E842B7A510500AB0193 /* ViewModel.swift */; };
 		2FF09E532BF9C0E700C2CDCA /* PosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF09E522BF9C0E700C2CDCA /* PosterView.swift */; };
 		2FF09E552BF9C1F700C2CDCA /* TVMediaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF09E542BF9C1F700C2CDCA /* TVMediaItemView.swift */; };
@@ -176,6 +178,8 @@
 		2FBE9A142BA09A6C0090C126 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		2FD589882B7F804F003228AB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		2FDD48092B6687A2009D100B /* IPTV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IPTV-Info.plist"; sourceTree = "<group>"; };
+		2FE0A5DF2C0B901E003D3680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FE0A5E12C0B9046003D3680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FEF5E842B7A510500AB0193 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2FEFDC6B2BF8FEB70048827E /* IPTV TV App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IPTV TV App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FF09E522BF9C0E700C2CDCA /* PosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterView.swift; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 			children = (
 				2F1D0A382C0B840100A31C72 /* Views */,
 				2F9FDF252BF931CB00153524 /* TabView.swift */,
+				2FE0A5DF2C0B901E003D3680 /* Assets.xcassets */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				2F9FDF2A2BF932FC00153524 /* TabView.swift */,
 				2F6B99002BFA3C7300D3E8DE /* InfinitePagingScrollView.swift */,
 				2FB85E842BFB311E0018723D /* SearchView.swift */,
+				2FE0A5E12C0B9046003D3680 /* Assets.xcassets */,
 			);
 			path = tvOS;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 			files = (
 				2FD589892B7F804F003228AB /* Launch Screen.storyboard in Resources */,
 				2FB75B892B41A9FF00A16501 /* Assets.xcassets in Resources */,
+				2FE0A5E02C0B901E003D3680 /* Assets.xcassets in Resources */,
 				2F5A13FF2B9DF8C9005F270E /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,6 +582,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FE0A5E32C0B9057003D3680 /* Assets.xcassets in Resources */,
 				2F9FDF222BF9315A00153524 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -941,7 +949,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.pedrocordeiro.IPTVTVApp;
+				PRODUCT_BUNDLE_IDENTIFIER = me.pedrocordeiro.IPTVapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -971,7 +979,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.pedrocordeiro.IPTVTVApp;
+				PRODUCT_BUNDLE_IDENTIFIER = me.pedrocordeiro.IPTVapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
