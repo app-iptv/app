@@ -227,6 +227,7 @@
 		2F1D0A382C0B840100A31C72 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2F9FDF252BF931CB00153524 /* TabView.swift */,
 				2F9FDEB82BF92FA900153524 /* Playlist */,
 				2F1D0A3A2C0B844000A31C72 /* Preferences */,
 				2F9FDEB22BF92FA900153524 /* Media */,
@@ -386,7 +387,6 @@
 				2FB75B8A2B41A9FF00A16501 /* iOS.entitlements */,
 				2FDD48092B6687A2009D100B /* iOS.plist */,
 				2F1D0A382C0B840100A31C72 /* Views */,
-				2F9FDF252BF931CB00153524 /* TabView.swift */,
 				2FE0A5DF2C0B901E003D3680 /* Assets.xcassets */,
 			);
 			path = iOS;
@@ -397,13 +397,7 @@
 			children = (
 				2F6B99102BFA751400D3E8DE /* tvOS.plist */,
 				2F03A4382BF3CF9700A54AC3 /* tvOS.entitlements */,
-				2F6B990D2BFA744A00D3E8DE /* Guide */,
-				2F6B99042BFA5F0F00D3E8DE /* TV */,
-				2F6B99032BFA5EB900D3E8DE /* Media */,
-				2F6B99022BFA5EAE00D3E8DE /* Movies */,
-				2F9FDF2A2BF932FC00153524 /* TabView.swift */,
-				2F6B99002BFA3C7300D3E8DE /* InfinitePagingScrollView.swift */,
-				2FB85E842BFB311E0018723D /* SearchView.swift */,
+				2FE0A5E62C0B9990003D3680 /* Views */,
 				2FE0A5E12C0B9046003D3680 /* Assets.xcassets */,
 			);
 			path = tvOS;
@@ -464,6 +458,20 @@
 				2F2FD6182C09BBC000482ADD /* SwiftDataCoordinator.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2FE0A5E62C0B9990003D3680 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F6B990D2BFA744A00D3E8DE /* Guide */,
+				2F6B99042BFA5F0F00D3E8DE /* TV */,
+				2F6B99032BFA5EB900D3E8DE /* Media */,
+				2F6B99022BFA5EAE00D3E8DE /* Movies */,
+				2F9FDF2A2BF932FC00153524 /* TabView.swift */,
+				2F6B99002BFA3C7300D3E8DE /* InfinitePagingScrollView.swift */,
+				2FB85E842BFB311E0018723D /* SearchView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

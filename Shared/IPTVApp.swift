@@ -46,6 +46,12 @@ struct IPTVApp: App {
 					openWindow(id: "ABOUT_WINDOW")
 				}.keyboardShortcut("A", modifiers: [.command])
 			}
+			
+			CommandGroup(replacing: .appVisibility) {
+				Button("New Window") {
+					openWindow(id: "MainWindow")
+				}.keyboardShortcut("N", modifiers: [.command, .option])
+			}
 			#endif
 			
 			CommandGroup(replacing: .appSettings) {
@@ -65,9 +71,9 @@ struct IPTVApp: App {
 					}.keyboardShortcut(.delete, modifiers: .all)
 					
 					#if targetEnvironment(macCatalyst)
-					Button("Tip Jar", systemImage: "hands.clap") {
-						openWindow(id: "TIP_JAR_WINDOW")
-					}.keyboardShortcut("T", modifiers: [.command, .shift])
+//					Button("Tip Jar", systemImage: "hands.clap") {
+//						openWindow(id: "TIP_JAR_WINDOW")
+//					}.keyboardShortcut("T", modifiers: [.command, .shift])
 					
 					Button("Open Legacy Settings", systemImage: "gear") {
 						openWindow(id: "SETTINGS_WINDOW")
@@ -80,7 +86,7 @@ struct IPTVApp: App {
 	#endif
 	
 	var body: some Scene {
-		WindowGroup {
+		WindowGroup(id: "MainWindow") {
 			ContentView(isRemovingAll: $isRemovingAll)
 		}
 		.modelContainer(SwiftDataCoordinator.shared.persistenceContainer)

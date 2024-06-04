@@ -412,6 +412,16 @@
         }
       }
     },
+    "New Window" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nova Janela"
+          }
+        }
+      }
+    },
     "No Favourited Medias" : {
       "localizations" : {
         "pt-PT" : {
@@ -674,6 +684,7 @@
       }
     },
     "Tip Jar" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
