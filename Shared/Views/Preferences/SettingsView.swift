@@ -12,7 +12,7 @@ struct SettingsView: View {
 	
 	@Query private var modelPlaylists: [Playlist]
 	
-	@AppStorage("IS_FIRST_LAUNCH") private var isFirstLaunch: Bool = false
+	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = false
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
 	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
 	

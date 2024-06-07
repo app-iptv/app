@@ -1,6 +1,22 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ - %2$@"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ - %2$@"
+          }
+        }
+      }
+    },
     "%@, %@ - %@" : {
       "localizations" : {
         "en" : {
@@ -138,6 +154,9 @@
         }
       }
     },
+    "Continue" : {
+
+    },
     "Default" : {
       "localizations" : {
         "pt-PT" : {
@@ -178,6 +197,9 @@
         }
       }
     },
+    "Designed with accessibility in mind." : {
+
+    },
     "Done" : {
       "localizations" : {
         "pt-PT" : {
@@ -207,6 +229,19 @@
           }
         }
       }
+    },
+    "Either your playlist doesn't include movies, or you haven't yet added a playlist. You can do so in Settings." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ou a tua playlist não inclui filmes, ou ainda não adicionaste uma playlist. Podes faze-lo nas Definições."
+          }
+        }
+      }
+    },
+    "Electronic Program Guide" : {
+
     },
     "Enter URL" : {
       "localizations" : {
@@ -361,6 +396,12 @@
         }
       }
     },
+    "iCloud Sync" : {
+
+    },
+    "Import your playlists and watch TV and movies wherever you are." : {
+
+    },
     "Info" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -391,6 +432,9 @@
           }
         }
       }
+    },
+    "Learn more..." : {
+
     },
     "Movies & Series" : {
       "localizations" : {
@@ -438,6 +482,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mídias Ausentes"
+          }
+        }
+      }
+    },
+    "No Movies" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filmes Ausentes"
           }
         }
       }
@@ -653,6 +707,19 @@
         }
       }
     },
+    "Stay informed with EPG, a digital TV guide for all upcoming programs." : {
+
+    },
+    "The EPG link provided does not include any program for this channel." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O link da EPG fornecido não inclui a programação para este canal."
+          }
+        }
+      }
+    },
     "The EPG link provided does not include any programs for this channel." : {
       "localizations" : {
         "pt-PT" : {
@@ -790,6 +857,16 @@
         }
       }
     },
+    "Watch" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver"
+          }
+        }
+      }
+    },
     "Welcome" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -800,6 +877,9 @@
           }
         }
       }
+    },
+    "Welcome to" : {
+
     },
     "Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips." : {
       "localizations" : {
@@ -821,6 +901,9 @@
           }
         }
       }
+    },
+    "What your Movies or TV Channels" : {
+
     },
     "Yellow" : {
       "localizations" : {
@@ -851,6 +934,9 @@
           }
         }
       }
+    },
+    "Your playlists securely sync across all of your devices using iCloud." : {
+
     }
   },
   "version" : "1.0"

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2F107C532BECC68800648BE8 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F107C522BECC68800648BE8 /* ViewModifiers.swift */; };
+		2F197AEB2C137E5800A2E309 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 2F197AEA2C137E5800A2E309 /* UIOnboarding */; };
+		2F197AED2C137E7600A2E309 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F197AEC2C137E7600A2E309 /* OnboardingController.swift */; };
 		2F1D0A3C2C0B8A3300A31C72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEBE2BF92FA900153524 /* ContentView.swift */; };
 		2F1D0A3D2C0B8A5900A31C72 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEC12BF92FA900153524 /* FavouritesView.swift */; };
 		2F1D0A3E2C0B8A5900A31C72 /* FirstLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEC22BF92FA900153524 /* FirstLaunchView.swift */; };
@@ -34,6 +36,7 @@
 		2F6B99162BFA7ABF00D3E8DE /* GuideGroupDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6B99152BFA7ABF00D3E8DE /* GuideGroupDetailView.swift */; };
 		2F6B99182BFA957F00D3E8DE /* GuideForMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6B99172BFA957F00D3E8DE /* GuideForMediaView.swift */; };
 		2F6B991C2BFA995800D3E8DE /* GuideProgramItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6B991B2BFA995800D3E8DE /* GuideProgramItemView.swift */; };
+		2F6C75482C0F9B6E00B95013 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */; };
 		2F73C7CE2B69396C00547B76 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F73C7CD2B69396C00547B76 /* Playlist.swift */; };
 		2F741BD32BCBBED600C68D7D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F741BD22BCBBED600C68D7D /* Tab.swift */; };
 		2F7614BF2BBC53A900C53564 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7614BE2BBC53A900C53564 /* Bundle.swift */; };
@@ -121,6 +124,7 @@
 /* Begin PBXFileReference section */
 		2F03A4382BF3CF9700A54AC3 /* tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tvOS.entitlements; sourceTree = "<group>"; };
 		2F107C522BECC68800648BE8 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		2F197AEC2C137E7600A2E309 /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		2F2FD6182C09BBC000482ADD /* SwiftDataCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataCoordinator.swift; sourceTree = "<group>"; };
 		2F317E4A2BB3F857000FC7A4 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		2F3BB2122BAE0EE60085CF3A /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				2F6B1CA12BDD757400D09A6A /* LightXMLParser in Frameworks */,
 				2F6B1C9E2BDD756400D09A6A /* M3UKit in Frameworks */,
 				2F6B1C9B2BDD755700D09A6A /* XMLTV in Frameworks */,
+				2F197AEB2C137E5800A2E309 /* UIOnboarding in Frameworks */,
 				2F5FC9FF2BDD0FC900BD67A5 /* SWCompression in Frameworks */,
 				2FFDFF562BA342C3001A0166 /* SDWebImageSwiftUI in Frameworks */,
 			);
@@ -387,6 +392,7 @@
 				2FB75B8A2B41A9FF00A16501 /* iOS.entitlements */,
 				2FDD48092B6687A2009D100B /* iOS.plist */,
 				2F1D0A382C0B840100A31C72 /* Views */,
+				2F197AEC2C137E7600A2E309 /* OnboardingController.swift */,
 				2FE0A5DF2C0B901E003D3680 /* Assets.xcassets */,
 			);
 			path = iOS;
@@ -498,6 +504,7 @@
 				2F6B1C9A2BDD755700D09A6A /* XMLTV */,
 				2F6B1C9D2BDD756400D09A6A /* M3UKit */,
 				2F6B1CA02BDD757400D09A6A /* LightXMLParser */,
+				2F197AEA2C137E5800A2E309 /* UIOnboarding */,
 			);
 			productName = IPTV;
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV App.app */;
@@ -563,6 +570,7 @@
 				2F6B1C992BDD755700D09A6A /* XCLocalSwiftPackageReference "XMLTV" */,
 				2F6B1C9C2BDD756400D09A6A /* XCLocalSwiftPackageReference "M3UKit" */,
 				2F6B1C9F2BDD757400D09A6A /* XCLocalSwiftPackageReference "LightXMLParser" */,
+				2F197AE92C137E5800A2E309 /* XCRemoteSwiftPackageReference "UIOnboarding" */,
 			);
 			productRefGroup = 2FB75B822B41A9FE00A16501 /* Products */;
 			projectDirPath = "";
@@ -592,6 +600,7 @@
 			files = (
 				2FE0A5E32C0B9057003D3680 /* Assets.xcassets in Resources */,
 				2F9FDF222BF9315A00153524 /* Assets.xcassets in Resources */,
+				2F6C75482C0F9B6E00B95013 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +643,7 @@
 				2F9FDEDA2BF92FA900153524 /* HomeView.swift in Sources */,
 				2FB4D8D62BC1C0160095355C /* UserInterfaceSizeClass.swift in Sources */,
 				2FEF5E852B7A510500AB0193 /* ViewModel.swift in Sources */,
+				2F197AED2C137E7600A2E309 /* OnboardingController.swift in Sources */,
 				2F2FD6192C09BBC000482ADD /* SwiftDataCoordinator.swift in Sources */,
 				2F9FDECF2BF92FA900153524 /* PlaylistCellView.swift in Sources */,
 				2F9FDECB2BF92FA900153524 /* MediaItemView.swift in Sources */,
@@ -1048,6 +1058,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2F197AE92C137E5800A2E309 /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lascic/UIOnboarding.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 2.0.3;
+			};
+		};
 		2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tsolomko/SWCompression.git";
@@ -1067,6 +1085,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2F197AEA2C137E5800A2E309 /* UIOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F197AE92C137E5800A2E309 /* XCRemoteSwiftPackageReference "UIOnboarding" */;
+			productName = UIOnboarding;
+		};
 		2F5FC9FE2BDD0FC900BD67A5 /* SWCompression */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */;

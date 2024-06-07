@@ -19,7 +19,7 @@ struct IPTVApp: App {
 	@Environment(\.openWindow) private var openWindow
 	#endif
 	
-	@AppStorage("IS_FIRST_LAUNCH") private var isFirstLaunch: Bool = true
+	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = true
 	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
 	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
