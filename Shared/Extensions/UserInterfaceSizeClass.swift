@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if !os(tvOS)
+#if os(iOS)
 extension UserInterfaceSizeClass {
 	var toolbarRole: ToolbarRole {
 		if self == .compact {

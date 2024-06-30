@@ -29,25 +29,38 @@ struct PlaylistsListView: View {
 			} else {
 				List(modelPlaylists, selection: $vm.selectedPlaylist) { playlist in
 					PlaylistCellView(playlist)
-					#if !os(tvOS)
+						.tag(playlist)
 						.badge(playlist.medias.count)
-					#endif
 				}
 			}
 		}
-		#if !os(tvOS)
 		.navigationTitle("Playlists")
-		#endif
 		.navigationSplitViewColumnWidth(min: 216, ideal: 216)
-		#if !targetEnvironment(macCatalyst) && !os(tvOS)
 		.toolbar(id: "playlistsToolbar") {
-			ToolbarItem(id: "addPlaylist", placement: .topBarTrailing) {
+			ToolbarItem(id: "addPlaylist", placement: placement1) {
 				Button("Add Playlist", systemImage: "plus") { vm.isPresented.toggle() }
 			}
-			ToolbarItem(id: "openSingleStream", placement: .topBarLeading) {
+			ToolbarItem(id: "openSingleStream", placement: placement2) {
 				Button("Open Stream", systemImage: "play") { vm.openedSingleStream.toggle() }
 			}
 		}
+	}
+}
+
+extension PlaylistsListView {
+	private var placement1: ToolbarItemPlacement {
+		#if os(macOS)
+		.automatic
+		#else
+		.topBarTrailing
+		#endif
+	}
+	
+	private var placement2: ToolbarItemPlacement {
+		#if os(macOS)
+		.automatic
+		#else
+		.topBarLeading
 		#endif
 	}
 }

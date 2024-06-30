@@ -12,6 +12,7 @@ import M3UKit
 import XMLTV
 import SDWebImageSwiftUI
 
+#if os(iOS)
 struct PlayerViewControllerRepresentable: UIViewControllerRepresentable {
 	private let name: String
 	private let url: String
@@ -19,6 +20,8 @@ struct PlayerViewControllerRepresentable: UIViewControllerRepresentable {
 	private let playlistName: String
 	
 	@Binding private var currentProgram: TVProgram?
+	
+	@State var player: AVPlayer? = nil
 	
 	internal init(name: String, url: String, group: String?, playlistName: String, currentProgram: Binding<TVProgram?>) {
 		self.name = name
@@ -62,9 +65,17 @@ struct PlayerViewControllerRepresentable: UIViewControllerRepresentable {
 		
 		playerItem.externalMetadata = [titleItem, subTitleItem, artistItem, albumItem]
 		
+		#if os(iOS)
 		playerController.player = player
 		player.play()
 		return playerController
+		#else
+		self.player = player
+		
+		playerController.player = self.player
+		playerController.player?.play()
+		return playerController
+		#endif
 	}
 	
 	func updateUIViewController(_ playerController: AVPlayerViewController, context: Context) {
@@ -132,6 +143,54 @@ struct PlayerViewControllerRepresentable: UIViewControllerRepresentable {
 		}
 	}
 }
+#else
+struct PlayerViewControllerRepresentable: NSViewControllerRepresentable {
+	private let name: String
+	private let url: String
+	private let group: String?
+	private let playlistName: String
+	
+	@Binding private var currentProgram: TVProgram?
+	
+	@State var player: AVPlayer? = nil
+	
+	internal init(name: String, url: String, group: String?, playlistName: String, currentProgram: Binding<TVProgram?>) {
+		self.name = name
+		self.url = url
+		self.group = group
+		self.playlistName = playlistName
+		self._currentProgram = currentProgram
+	}
+	
+	func makeNSViewController(context: Context) -> NSViewController {
+		let url = URL(string: url)!
+		
+		let playerItem = AVPlayerItem(url: url)
+		let player = AVPlayer(playerItem: playerItem)
+		let playerController = AVPlayerView()
+		
+		playerController.allowsPictureInPicturePlayback = true
+		playerController.allowsMagnification = true
+		playerController.controlsStyle = .inline
+		playerController.showsFullScreenToggleButton = true
+		
+		player.allowsExternalPlayback = true
+		
+		self.player = player
+		
+		playerController.player = self.player
+		playerController.player?.play()
+		player.play()
+		
+		let vc = NSViewController()
+		vc.view = playerController
+		
+		return vc
+	}
+	
+	func updateNSViewController(_ nsViewController: NSViewControllerType, context: Context) { }
+}
+#endif
 
 extension PlayerViewControllerRepresentable {
 	init(media: Media, playlistName: String, currentProgram: Binding<TVProgram?>) {

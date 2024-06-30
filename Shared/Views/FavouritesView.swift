@@ -44,12 +44,14 @@ struct FavouritesView: View {
 					.listStyle(.plain)
 				}
 			}
+			#if os(iOS)
 			.toolbarBackground(.visible, for: .navigationBar)
+			.toolbarRole(.browser)
+			#endif
 			.searchable(text: $searchQuery, prompt: "Search Favourites")
 			#if !os(tvOS)
 			.navigationDestination(for: Media.self) { MediaDetailView(playlistName: "Favourites", media: $0, epgLink: "") }
 			.navigationTitle("Favourites")
-			.toolbarRole(.browser)
 			.toolbar(id: "favouritesToolbar") {
 				ToolbarItem(id: "groupPicker", placement: placement) {
 					Picker("Select Group", selection: $selectedGroup) {
@@ -65,29 +67,29 @@ struct FavouritesView: View {
 	}
 }
 
-extension FavouritesView {
-	private var placement: ToolbarItemPlacement {
-		#if targetEnvironment(macCatalyst)
+private extension FavouritesView {
+	var placement: ToolbarItemPlacement {
+		#if os(macOS)
 		return .primaryAction
 		#else
 		return .topBarTrailing
 		#endif
 	}
 	
-	private var searchResults: [Media] {
+	var searchResults: [Media] {
 		guard !searchQuery.isEmpty else { return favourites }
 		return favourites.filter { media in
 			media.title.localizedStandardContains(searchQuery)
 		}
 	}
 	
-	private var groups: [String] {
+	var groups: [String] {
 		var allGroups = Set(searchResults.compactMap { $0.attributes["group-title"] })
 		allGroups.insert("All")
 		return allGroups.sorted()
 	}
 	
-	private var filteredMediasForGroup: [Media] {
+	var filteredMediasForGroup: [Media] {
 		guard selectedGroup == "All" else { return searchResults.filter { $0.attributes["group-title"] == selectedGroup } }
 		return searchResults
 	}

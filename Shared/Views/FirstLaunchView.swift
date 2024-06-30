@@ -39,7 +39,7 @@ struct FirstLaunchView: View {
 				}
 				.padding(20)
 				
-				#if targetEnvironment(macCatalyst)
+				#if os(macOS)
 				Text("Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips. You can create a new playlist by clicking \"New Playlist\" in \"File\" in the Menu Bar, or by clicking CMD + N")
 					.multilineTextAlignment(.center)
 					.padding(.horizontal)

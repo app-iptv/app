@@ -39,7 +39,9 @@ struct SingleStreamView: View {
 			
 			TextField("Enter URL", text: $mediaURL)
 				.textFieldStyle(.plain)
+				#if os(iOS)
 				.textInputAutocapitalization(.never)
+				#endif
 				.padding(10)
 				.modifier(ElementViewModifier(for: .content))
 			

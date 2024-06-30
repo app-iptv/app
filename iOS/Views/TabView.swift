@@ -25,6 +25,7 @@ struct TabView: View {
 		}
 	}
 	
+	#if os(iOS)
 	private var placement: ToolbarPlacement {
 		switch sizeClass {
 			case .compact:
@@ -35,6 +36,7 @@ struct TabView: View {
 				return .automatic
 		}
 	}
+	#endif
 	
 	internal init(selectedTab: Binding<Tab>, isRemovingAll: Binding<Bool>) {
 		self._selectedTab = selectedTab
@@ -43,12 +45,10 @@ struct TabView: View {
 
 	var body: some View {
 		SwiftUI.TabView(selection: $selectedTab) {
-			#if targetEnvironment(macCatalyst)
+			#if os(macOS)
 			HomeView()
-				.toolbarBackground(visibility, for: placement)
 				.tabForView(for: .home)
 			FavouritesView()
-				.toolbarBackground(visibility, for: placement)
 				.tabForView(for: .favourites)
 			#else
 			FavouritesView()

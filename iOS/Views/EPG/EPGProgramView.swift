@@ -56,7 +56,7 @@ struct EPGProgramView: View {
 				ProgressView(value: progress, total: 100)
 					.progressViewStyle(SquaredProgressViewStyle())
 					.ignoresSafeArea(.all)
-					#if targetEnvironment(macCatalyst)
+					#if os(macOS)
 					.padding(.bottom, -7)
 					#else
 					.padding(.bottom, -7.5)

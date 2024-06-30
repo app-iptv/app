@@ -40,7 +40,7 @@ struct ContentView: View {
 			}
 			#if os(tvOS)
 			.onAppear { vm.selectedPlaylist = modelPlaylists.first }
-			#elseif targetEnvironment(macCatalyst)
+			#elseif os(macOS)
 			.sheet(isPresented: $isFirstLaunch) { FirstLaunchView(isFirstLaunch: $isFirstLaunch) }
 			#else
 			.fullScreenCover(isPresented: $isFirstLaunch) { OnboardingView().ignoresSafeArea() }

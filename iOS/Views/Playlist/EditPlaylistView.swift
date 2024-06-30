@@ -33,7 +33,9 @@ struct EditPlaylistView: View {
 						.modifier(ElementViewModifier(for: .topLeft))
 					TextField("Playlist Name", text: $newEPG)
 						.textFieldStyle(.plain)
+						#if os(iOS)
 						.textInputAutocapitalization(.never)
+						#endif
 						.textContentType(.URL)
 						.autocorrectionDisabled()
 						.frame(height: 20)

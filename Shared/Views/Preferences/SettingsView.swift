@@ -25,7 +25,7 @@ struct SettingsView: View {
 	}
 	
 	var body: some View {
-		#if targetEnvironment(macCatalyst)
+		#if os(macOS)
 		NavigationStack {
 			content
 		}
@@ -44,7 +44,7 @@ struct SettingsView: View {
 							mode.label.tag(mode)
 						}
 					}
-					#if !targetEnvironment(macCatalyst) && !os(tvOS)
+					#if !os(macOS) && !os(tvOS)
 					NavigationLink {
 						ChangeIconView()
 					} label: {

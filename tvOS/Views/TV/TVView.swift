@@ -51,10 +51,10 @@ struct TVView: View {
 	}
 }
 
-extension TVView {
-	private var medias: [Media]? { modelPlaylists.safelyAccessElement(at: selectedPlaylist)?.medias }
+private extension TVView {
+	var medias: [Media]? { modelPlaylists.safelyAccessElement(at: selectedPlaylist)?.medias }
 	
-	private var groups: [String] {
+	var groups: [String] {
 		var seen = Set<String>()
 		let groups = medias?.compactMap { $0.attributes["group-title"] ?? "Undefined" } ?? []
 		let uniqueGroups = groups.filter { seen.insert($0).inserted }

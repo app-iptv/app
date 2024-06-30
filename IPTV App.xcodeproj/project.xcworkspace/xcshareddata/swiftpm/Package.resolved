@@ -1,52 +1,51 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "BitByteData",
-        "repositoryURL": "https://github.com/tsolomko/BitByteData",
-        "state": {
-          "branch": null,
-          "revision": "cdcdc5177ad536cfb11b95c620f926a81014b7fe",
-          "version": "2.0.4"
-        }
-      },
-      {
-        "package": "SDWebImage",
-        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
-        "state": {
-          "branch": null,
-          "revision": "f6afa0132961d593f07970d84e2d8b588c29ea04",
-          "version": "5.19.1"
-        }
-      },
-      {
-        "package": "SDWebImageSwiftUI",
-        "repositoryURL": "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
-        "state": {
-          "branch": null,
-          "revision": "22423b017b99ab8ac44e29e6372f571f782af6e4",
-          "version": "3.0.2"
-        }
-      },
-      {
-        "package": "SWCompression",
-        "repositoryURL": "https://github.com/tsolomko/SWCompression.git",
-        "state": {
-          "branch": null,
-          "revision": "390e0b0af8dd19a600005a242a89e570ff482e09",
-          "version": "4.8.6"
-        }
-      },
-      {
-        "package": "UIOnboarding",
-        "repositoryURL": "https://github.com/lascic/UIOnboarding.git",
-        "state": {
-          "branch": null,
-          "revision": "efd1e944c399de24c10d9f4947301e1c105dbb9b",
-          "version": "2.0.3"
-        }
+  "originHash" : "1b57124690f74deae3b33d34f11527ba011842eff31401b7f22c109cdd2dc974",
+  "pins" : [
+    {
+      "identity" : "bitbytedata",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tsolomko/BitByteData",
+      "state" : {
+        "revision" : "cdcdc5177ad536cfb11b95c620f926a81014b7fe",
+        "version" : "2.0.4"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "f6afa0132961d593f07970d84e2d8b588c29ea04",
+        "version" : "5.19.1"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
+      "state" : {
+        "revision" : "22423b017b99ab8ac44e29e6372f571f782af6e4",
+        "version" : "3.0.2"
+      }
+    },
+    {
+      "identity" : "swcompression",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tsolomko/SWCompression.git",
+      "state" : {
+        "revision" : "390e0b0af8dd19a600005a242a89e570ff482e09",
+        "version" : "4.8.6"
+      }
+    },
+    {
+      "identity" : "uionboarding",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lascic/UIOnboarding.git",
+      "state" : {
+        "revision" : "efd1e944c399de24c10d9f4947301e1c105dbb9b",
+        "version" : "2.0.3"
+      }
+    }
+  ],
+  "version" : 3
 }

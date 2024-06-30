@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 struct ChangeIconView: View {
 	@State private var errorDidFail: Bool = false
 	@State private var errorDetail: String = ""
@@ -69,6 +70,7 @@ struct ChangeIconView: View {
 		}
 	}
 }
+#endif
 
 enum Icon: Identifiable, CaseIterable {
 	case blue, green, red, yellow, original

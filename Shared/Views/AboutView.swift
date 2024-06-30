@@ -15,7 +15,7 @@ struct AboutView: View {
 	let build = Bundle.main.buildVersionNumber ?? "1"
 	
 	var body: some View {
-		#if targetEnvironment(macCatalyst)
+		#if os(macOS)
 		NavigationStack {
 			HStack { content.fixedSize() }
 		}
@@ -25,7 +25,7 @@ struct AboutView: View {
 	}
 	
 	private var frame: CGFloat {
-		#if targetEnvironment(macCatalyst)
+		#if os(macOS)
 		100
 		#else
 		150

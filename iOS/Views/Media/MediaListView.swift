@@ -46,7 +46,6 @@ struct MediaListView: View {
 						#endif
 					}
 					.id(UUID())
-					.listStyle(.plain)
 				}
 			}
 			.searchable(text: $searchQuery, prompt: "Search")
@@ -59,7 +58,9 @@ struct MediaListView: View {
 			}
 			#if !os(tvOS)
 			.navigationTitle(playlistName)
+			#if os(iOS)
 			.toolbarRole(sizeClass!.toolbarRole)
+			#endif
 			.toolbar(id: "mediasToolbar") {
 				ToolbarItem(id: "groupPicker", placement: placement) {
 					Picker("Select Group", selection: $vm.selectedGroup) {
@@ -76,29 +77,29 @@ struct MediaListView: View {
 	}
 }
 
-extension MediaListView {
-	private var placement: ToolbarItemPlacement {
-		#if targetEnvironment(macCatalyst)
+private extension MediaListView {
+	var placement: ToolbarItemPlacement {
+		#if os(macOS)
 		return .primaryAction
 		#else
 		return .topBarTrailing
 		#endif
 	}
 	
-	private var searchResults: [Media] {
+	var searchResults: [Media] {
 		guard !searchQuery.isEmpty else { return medias }
 		return medias.filter { media in
 			media.title.localizedStandardContains(searchQuery)
 		}
 	}
 	
-	private var groups: [String] {
+	var groups: [String] {
 		var allGroups = Set(searchResults.compactMap { $0.attributes["group-title"] ?? "Undefined" })
 		allGroups.insert("All")
 		return allGroups.sorted()
 	}
 	
-	private var filteredMediasForGroup: [Media] {
+	var filteredMediasForGroup: [Media] {
 		guard vm.selectedGroup == "All" else { return searchResults.filter { ($0.attributes["group-title"] ?? "Undefined") == vm.selectedGroup } }
 		return searchResults
 	}

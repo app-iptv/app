@@ -66,6 +66,11 @@ struct TVMediaItemView: View {
 			currentProgram = filtered?.first
 		}
 		#endif
-		.fullScreenCover(isPresented: $isWatching) { PlayerViewControllerRepresentable(media: media, playlistName: "Movies & TV Shows", currentProgram: $currentProgram).id(currentProgram).ignoresSafeArea() }.id(currentProgram)
+		.fullScreenCover(isPresented: $isWatching) {
+			PlayerViewControllerRepresentable(media: media, playlistName: "Movies & TV Shows", currentProgram: $currentProgram)
+				.id(currentProgram)
+				.ignoresSafeArea()
+		}
+		.id(currentProgram)
 	}
 }

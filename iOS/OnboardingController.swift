@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+#if os(iOS)
 import UIOnboarding
 
 struct OnboardingView: UIViewControllerRepresentable {
@@ -93,3 +94,4 @@ struct OnboardingController {
 					 backgroundColor: .accent)
 	}
 }
+#endif

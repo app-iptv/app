@@ -49,8 +49,8 @@ struct MediaCellView: View {
 	}
 }
 
-extension MediaCellView {
-	private var largeViewingMode: some View {
+private extension MediaCellView {
+	var largeViewingMode: some View {
 		VStack(alignment: .leading, spacing: 5) {
 			Text(media.title)
 				.fontWeight(.semibold)
@@ -62,7 +62,7 @@ extension MediaCellView {
 		}
 	}
 	
-	private var compactViewingMode: some View {
+	var compactViewingMode: some View {
 		HStack {
 			HStack(spacing: 0) {
 				Text(media.title)
@@ -78,7 +78,7 @@ extension MediaCellView {
 		}
 	}
 	
-	private var regularViewingMode: some View {
+	var regularViewingMode: some View {
 		HStack {
 			Text(media.title)
 				.fontWeight(.semibold)
@@ -92,7 +92,7 @@ extension MediaCellView {
 		}
 	}
 	
-	private var contextMenu: some View {
+	var contextMenu: some View {
 		VStack {
 			#if !os(tvOS)
 			ShareLink(item: media.url, preview: SharePreview(media.title))
@@ -107,7 +107,7 @@ extension MediaCellView {
 		}
 	}
 	
-	private var swipeActions: some View {
+	var swipeActions: some View {
 		Button(favourites.contains(media) ? "Un-Favourite" : "Favourite", systemImage: favourites.contains(media) ? "star.slash" : "star") {
 			if favourites.contains(media) {
 				favourites.remove(at: favourites.firstIndex(of: media)!)

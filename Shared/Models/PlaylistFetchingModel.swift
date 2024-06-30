@@ -19,7 +19,9 @@ class PlaylistFetchingModel {
 		guard let url = URL(string: ViewModel.shared.tempPlaylistURL) else { return catchError(error) }
 		
 		do {
-			let m3u = try decoder.decode(Data(contentsOf: url))
+			async let (data, _) = try URLSession.shared.data(from: url)
+			
+			let m3u = try await decoder.decode(data)
 			
 			ViewModel.shared.tempPlaylist = m3u
 		} catch {

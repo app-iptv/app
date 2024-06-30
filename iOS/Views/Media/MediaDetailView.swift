@@ -56,7 +56,7 @@ struct MediaDetailView: View {
 			
 			Divider()
 				.ignoresSafeArea(.all)
-			#if !targetEnvironment(macCatalyst)
+			#if !os(macOS)
 				.shadow(color: .primary, radius: 0.2, x: 0, y: 0.1)
 			#endif
 			
@@ -106,7 +106,9 @@ struct MediaDetailView: View {
 		.navigationTitle(media.title)
 		#endif
 		.toolbarTitleDisplayMode(.inline)
+		#if os(iOS)
 		.toolbarBackground(.visible, for: .navigationBar, .tabBar)
+		#endif
 		.task { await refresh() }
 		.onChange(of: EPGFetchingModel.shared.xmlTV) { Task { await refresh() } }
 	}

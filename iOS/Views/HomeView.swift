@@ -16,7 +16,12 @@ struct HomeView: View {
 			PlaylistsListView()
 		} detail: {
 			DetailView()
+				.onChange(of: ViewModel.shared.selectedPlaylist?.id) {
+					print("changed: \(ViewModel.shared.selectedPlaylist?.name ?? "nil")")
+				}
+				#if os(iOS)
 				.toolbarBackground(.visible, for: .navigationBar)
+				#endif
 		}
 	}
 }

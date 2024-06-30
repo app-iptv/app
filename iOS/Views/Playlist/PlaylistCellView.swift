@@ -22,11 +22,9 @@ struct PlaylistCellView: View {
 	var body: some View {
 		NavigationLink(playlist.name, value: playlist)
 			.contextMenu { deleteButton; editButton }
-		#if !os(tvOS)
 			.swipeActions(edge: .trailing) { deleteButton }
 			.swipeActions(edge: .leading) { editButton }
 			.popover(isPresented: $isEditing) { EditPlaylistView(playlist) }
-		#endif
 	}
 }
 

@@ -46,7 +46,7 @@ struct EPGProgramDetailView: View {
 			}
 			.padding(.horizontal)
 			.navigationTitle(LocalizedStringKey(program.title ?? "Untitled"))
-			#if targetEnvironment(macCatalyst)
+			#if os(macOS)
 			.padding(.top)
 			#endif
 		}

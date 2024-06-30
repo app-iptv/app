@@ -13,7 +13,9 @@ import AVKit
 @main
 struct IPTVApp: App {
 	
+	#if os(iOS)
 	@UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+	#endif
 	
 	#if !os(tvOS)
 	@Environment(\.openWindow) private var openWindow
@@ -40,7 +42,7 @@ struct IPTVApp: App {
 				}.keyboardShortcut("O", modifiers: [.command])
 			}
 			
-			#if targetEnvironment(macCatalyst)
+			#if os(macOS)
 			CommandGroup(replacing: .appInfo) {
 				Button("About IPTV App", systemImage: "info.circle") {
 					openWindow(id: "ABOUT_WINDOW")
@@ -49,7 +51,7 @@ struct IPTVApp: App {
 			
 			CommandGroup(replacing: .appVisibility) {
 				Button("New Window") {
-					openWindow(id: "MainWindow")
+					openWindow(id: "MAIN_WINDOW")
 				}.keyboardShortcut("N", modifiers: [.command, .option])
 			}
 			#endif
@@ -70,11 +72,7 @@ struct IPTVApp: App {
 						isRemovingAll.toggle()
 					}.keyboardShortcut(.delete, modifiers: .all)
 					
-					#if targetEnvironment(macCatalyst)
-//					Button("Tip Jar", systemImage: "hands.clap") {
-//						openWindow(id: "TIP_JAR_WINDOW")
-//					}.keyboardShortcut("T", modifiers: [.command, .shift])
-					
+					#if os(macOS)
 					Button("Open Legacy Settings", systemImage: "gear") {
 						openWindow(id: "SETTINGS_WINDOW")
 					}
@@ -86,7 +84,7 @@ struct IPTVApp: App {
 	#endif
 	
 	var body: some Scene {
-		WindowGroup(id: "MainWindow") {
+		WindowGroup(id: "MAIN_WINDOW") {
 			ContentView(isRemovingAll: $isRemovingAll)
 		}
 		.modelContainer(SwiftDataCoordinator.shared.persistenceContainer)
@@ -103,7 +101,7 @@ struct IPTVApp: App {
 		.commands { commands }
 		#endif
 		
-		#if targetEnvironment(macCatalyst)
+		#if os(macOS)
 		WindowGroup(id: "ABOUT_WINDOW") { AboutView() }
 		
 		WindowGroup("Settings", id: "SETTINGS_WINDOW") { SettingsView(isRemovingAll: $isRemovingAll) }
@@ -111,6 +109,7 @@ struct IPTVApp: App {
 	}
 }
 
+#if os(iOS)
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 		let session = AVAudioSession.sharedInstance()
@@ -124,3 +123,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 }
+#endif

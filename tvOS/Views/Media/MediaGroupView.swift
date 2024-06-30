@@ -38,8 +38,8 @@ struct MediaGroupView: View {
 	}
 }
 
-extension MediaGroupView {
-	private var groupedMedias: [Media] {
+private extension MediaGroupView {
+	var groupedMedias: [Media] {
 		medias?.filter { ($0.attributes["group-title"] ?? "Untitled") == group } ?? []
 	}
 }

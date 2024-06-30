@@ -32,7 +32,9 @@ struct AddPlaylistView: View {
 				#endif
 				TextField("Playlist URL", text: $vm.tempPlaylistURL)
 					.textFieldStyle(.plain)
+					#if os(iOS)
 					.textInputAutocapitalization(.never)
+					#endif
 					.textContentType(.URL)
 					.autocorrectionDisabled()
 					.padding(10)
@@ -41,7 +43,9 @@ struct AddPlaylistView: View {
 				#endif
 				TextField("Playlist EPG (optional)", text: $vm.tempPlaylistEPG)
 					.textFieldStyle(.plain)
+					#if os(iOS)
 					.textInputAutocapitalization(.never)
+					#endif
 					.textContentType(.URL)
 					.autocorrectionDisabled()
 					.padding(10)
@@ -78,9 +82,8 @@ struct AddPlaylistView: View {
 	}
 }
 
-extension AddPlaylistView {
-	
-	private func addPlaylist() {
+private extension AddPlaylistView {
+	func addPlaylist() {
 		Task {
 			vm.isParsing.toggle()
 			await networkModel.parsePlaylist()

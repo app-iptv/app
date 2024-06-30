@@ -96,8 +96,8 @@ struct GuideForMediaView: View {
 	}
 }
 
-extension GuideForMediaView {
-	private func refresh() async {
+private extension GuideForMediaView {
+	func refresh() async {
 		DispatchQueue.main.async {
 			if let xmlTV = epgFetchingModel.xmlTV,
 			   let channel = xmlTV.getChannels().first(where: { $0.id == media.attributes["tvg-id"] })
@@ -107,8 +107,7 @@ extension GuideForMediaView {
 		}
 	}
 	
-	private func fetchCurrentProgram() {
+	func fetchCurrentProgram() {
 		currentProgram = programs?.first(where: EPGFetchingModel.shared.isNowBetweenDates)
-
 	}
 }
