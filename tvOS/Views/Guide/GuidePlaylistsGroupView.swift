@@ -33,10 +33,10 @@ struct GuidePlaylistsGroupView: View {
     }
 }
 
-private extension GuidePlaylistsGroupView {
-	var medias: [Media] { playlist.medias }
+extension GuidePlaylistsGroupView {
+	private var medias: [Media] { playlist.medias }
 	
-	var groups: [String] {
+	private var groups: [String] {
 		var seen = Set<String>()
 		let groups = medias.compactMap { $0.attributes["group-title"] ?? "Undefined" }
 		let uniqueGroups = groups.filter { seen.insert($0).inserted }
@@ -44,7 +44,7 @@ private extension GuidePlaylistsGroupView {
 		return uniqueGroups
 	}
 	
-	func mediasInGroup(for group: String) -> [Media] {
+	private func mediasInGroup(for group: String) -> [Media] {
 		playlist.medias.filter { ($0.attributes["group-title"] ?? "Untitled") == group }
 	}
 }

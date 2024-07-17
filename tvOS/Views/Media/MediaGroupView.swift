@@ -20,26 +20,18 @@ struct MediaGroupView: View {
 	
 	var body: some View {
 		if !groupedMedias.isEmpty {
-			GridRow(alignment: .center) {
-				LazyVStack(alignment: .leading, spacing: 10) {
-					Text(LocalizedStringKey(group))
-						.font(.subheadline)
-					ScrollView([.horizontal]) {
-						HStack {
-							ForEach(groupedMedias) { media in
-								TVMediaItemView(media: media, isTV: isTV, size: .regular)
-							}
-						}
+			ScrollView(.horizontal) {
+				HStack(spacing: 40) {
+					ForEach(groupedMedias) { media in
+						TVMediaItemView(media: media, isTV: isTV)
 					}
-					.safeAreaPadding(.bottom, 40)
 				}
 			}
+			.scrollClipDisabled()
 		}
 	}
 }
 
-private extension MediaGroupView {
-	var groupedMedias: [Media] {
-		medias?.filter { ($0.attributes["group-title"] ?? "Untitled") == group } ?? []
-	}
+extension MediaGroupView {
+	private var groupedMedias: [Media] { medias?.filter { ($0.attributes["group-title"] ?? "Untitled") == group } ?? [] }
 }

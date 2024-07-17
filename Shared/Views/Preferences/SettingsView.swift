@@ -7,16 +7,16 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct SettingsView: View {
+	@Environment(ViewModel.self) private var vm
 	
 	@Query private var modelPlaylists: [Playlist]
 	
 	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = false
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
 	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
-	
-	@State private var vm = ViewModel.shared
 	
 	@Binding private var isRemovingAll: Bool
 	
@@ -25,25 +25,21 @@ struct SettingsView: View {
 	}
 	
 	var body: some View {
-		#if os(macOS)
-		NavigationStack {
-			content
-		}
-		#else
-		content
-		#endif
-	}
-	
-	private var content: some View {
 		NavigationStack {
 			Form {
 				Section {
 					Toggle("Show Wecome Screen Again", systemImage: "rectangle.inset.filled", isOn: $isFirstLaunch)
+					
+					Button("Show Tips Again", systemImage: "lightbulb") {
+						try? Tips.resetDatastore()
+					}
+					
 					Picker("Viewing Mode", systemImage: "list.triangle", selection: $viewingMode) {
 						ForEach(ViewingMode.allCases) { mode in
 							mode.label.tag(mode)
 						}
 					}
+					
 					#if !os(macOS) && !os(tvOS)
 					NavigationLink {
 						ChangeIconView()
@@ -62,7 +58,7 @@ struct SettingsView: View {
 				if !modelPlaylists.isEmpty {
 					Section {
 						ForEach(modelPlaylists) { playlist in
-							Button(playlist.name, systemImage: selectedPlaylist == modelPlaylists.firstIndex(of: playlist) ? "checkmark" : "") { selectedPlaylist = modelPlaylists.firstIndex(of: playlist) ?? 0 }
+							Button(playlist.name, systemImage: selectedPlaylist == modelPlaylists.firstIndex(of: playlist) ? "checkmark" : ""){ selectedPlaylist = modelPlaylists.firstIndex(of: playlist) ?? 0 }
 						}
 					}
 				}
@@ -76,6 +72,9 @@ struct SettingsView: View {
 					NavigationLink { AboutView() } label: { Label("About", systemImage: "info.circle") }
 				}
 			}
+			#if os(macOS)
+			.formStyle(.grouped)
+			#endif
 			#if !os(tvOS)
 			.navigationTitle("Settings")
 			#endif

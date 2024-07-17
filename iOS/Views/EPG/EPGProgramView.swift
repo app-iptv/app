@@ -47,12 +47,12 @@ struct EPGProgramView: View {
 				
 				Text(LocalizedStringKey(program.title ?? "Untitled"))
 					.lineLimit(1)
-					.foregroundStyle(EPGFetchingModel.shared.isNowBetweenDates(program: program) ? .red : .primary)
+					.foregroundStyle(program.isCurrent() ? .red : .primary)
 			}
 			.padding(.vertical, 2.5)
 			.padding(7.5)
 			
-			if EPGFetchingModel.shared.isNowBetweenDates(program: program) {
+			if program.isCurrent() {
 				ProgressView(value: progress, total: 100)
 					.progressViewStyle(SquaredProgressViewStyle())
 					.ignoresSafeArea(.all)

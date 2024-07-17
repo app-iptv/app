@@ -11,16 +11,17 @@ import XMLTV
 import SDWebImageSwiftUI
 
 struct GuideForMediaView: View {
+	@Environment(ViewModel.self) private var vm
+	@Environment(EPGFetchingModel.self) private var epgFetchingModel
+	
 	@Query private var modelPlaylists: [Playlist]
 	
 	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
 	
-	@State private var epgFetchingModel = EPGFetchingModel.shared
 	private var media: Media
 	
 	@State private var isWatching: Bool = false
 	@State private var programs: [TVProgram]? = nil
-	@State private var vm = ViewModel.shared
 	@State private var currentProgram: TVProgram? = nil
 	
 	internal init(media: Media) {
@@ -53,7 +54,7 @@ struct GuideForMediaView: View {
 							if let programs {
 								ForEach(programs) { program in
 									GuideProgramItemView(program: program)
-										.id(EPGFetchingModel.shared.isNowBetweenDates(program: program))
+										.id(program.isCurrent())
 										.focusable()
 								}
 								.onAppear {
@@ -91,13 +92,13 @@ struct GuideForMediaView: View {
 		.task { await refresh(); fetchCurrentProgram() }
 		.onChange(of: epgFetchingModel.xmlTV) { Task { await refresh(); fetchCurrentProgram() } }
 		.fullScreenCover(isPresented: $isWatching) {
-			PlayerViewControllerRepresentable(media: media, playlistName: modelPlaylists.safelyAccessElement(at: selectedPlaylist)?.name ?? "Untitled", currentProgram: $currentProgram).ignoresSafeArea()
+			PlayerViewControllerRepresentable(media: media, playlistName: modelPlaylists.safelyAccessElement(at: selectedPlaylist)?.name ?? "Untitled").ignoresSafeArea()
 		}
 	}
 }
 
-private extension GuideForMediaView {
-	func refresh() async {
+extension GuideForMediaView {
+	private func refresh() async {
 		DispatchQueue.main.async {
 			if let xmlTV = epgFetchingModel.xmlTV,
 			   let channel = xmlTV.getChannels().first(where: { $0.id == media.attributes["tvg-id"] })
@@ -107,7 +108,7 @@ private extension GuideForMediaView {
 		}
 	}
 	
-	func fetchCurrentProgram() {
-		currentProgram = programs?.first(where: EPGFetchingModel.shared.isNowBetweenDates)
+	private func fetchCurrentProgram() {
+		currentProgram = programs?.first { $0.isCurrent() }
 	}
 }

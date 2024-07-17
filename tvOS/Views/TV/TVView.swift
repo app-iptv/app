@@ -18,43 +18,38 @@ struct TVView: View {
 	@Query private var modelPlaylists: [Playlist]
 	
 	var body: some View {
-		VStack {
-			ScrollView {
+		ScrollView(.vertical) {
+			LazyVStack(alignment: .leading, spacing: 26) {
 				InfinitePagingScrollView(items: recents) { media in
-					TVMediaItemView(media: media, isTV: true, size: .large)
+					TVMediaItemView(media: media, isTV: true)
 				}
 				.safeAreaPadding(40)
 				.frame(width: 1760, height: 452)
 				
-				if let medias, !medias.isEmpty {
-					Grid {
-						ForEach(groups, id: \.self) { group in
-							MediaGroupView(medias: medias, group: group, isTV: true)
-						}
+				ForEach(groups, id: \.self) { group in
+					Section(LocalizedStringKey(group)) {
+						MediaGroupView(medias: medias, group: group, isTV: true)
 					}
 				}
 			}
+			.scrollTargetLayout()
 		}
+		.scrollClipDisabled()
+		.scrollTargetBehavior(.viewAligned)
 		.onAppear {
 			if recents.isEmpty {
-				if let first = vm.selectedPlaylist?.medias.first {
-					recents.append(first)
-				}
-				if let second = vm.selectedPlaylist?.medias[1] {
-					recents.append(second)
-				}
-				if let third = vm.selectedPlaylist?.medias[2] {
-					recents.append(third)
-				}
+				if let first = vm.selectedPlaylist?.medias.first { recents.append(first) }
+				if let second = vm.selectedPlaylist?.medias[1] { recents.append(second) }
+				if let third = vm.selectedPlaylist?.medias[2] { recents.append(third) }
 			}
 		}
 	}
 }
 
-private extension TVView {
-	var medias: [Media]? { modelPlaylists.safelyAccessElement(at: selectedPlaylist)?.medias }
+extension TVView {
+	private var medias: [Media]? { modelPlaylists.safelyAccessElement(at: selectedPlaylist)?.medias }
 	
-	var groups: [String] {
+	private var groups: [String] {
 		var seen = Set<String>()
 		let groups = medias?.compactMap { $0.attributes["group-title"] ?? "Undefined" } ?? []
 		let uniqueGroups = groups.filter { seen.insert($0).inserted }

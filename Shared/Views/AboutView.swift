@@ -55,5 +55,5 @@ struct AboutView: View {
 }
 
 #Preview {
-	AboutView()
+	NavigationStack { AboutView() }
 }

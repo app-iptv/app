@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ErrorView: View {
-	@State private var vm = ViewModel.shared
+	@Environment(ViewModel.self) private var vm
 	
 	var body: some View {
 		ContentUnavailableView {

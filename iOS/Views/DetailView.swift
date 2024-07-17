@@ -14,7 +14,7 @@ struct DetailView: View {
 	
 	@Query var modelPlaylists: [Playlist]
 	
-	@State private var vm = ViewModel.shared
+	@Environment(ViewModel.self) private var vm
 	
 	 var body: some View {
 		if let playlist = vm.selectedPlaylist {

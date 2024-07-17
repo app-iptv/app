@@ -83,6 +83,16 @@
         }
       }
     },
+    "Add to Favourites" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar aos Favoritos"
+          }
+        }
+      }
+    },
     "Adding playlist..." : {
       "localizations" : {
         "pt-PT" : {
@@ -155,7 +165,14 @@
       }
     },
     "Continue" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar"
+          }
+        }
+      }
     },
     "Default" : {
       "localizations" : {
@@ -198,7 +215,14 @@
       }
     },
     "Designed with accessibility in mind." : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feito com a acessibilidade em mente."
+          }
+        }
+      }
     },
     "Done" : {
       "localizations" : {
@@ -241,7 +265,14 @@
       }
     },
     "Electronic Program Guide" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guia TV Eletrónico"
+          }
+        }
+      }
     },
     "Enter URL" : {
       "localizations" : {
@@ -264,7 +295,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Os dados do link são invalidos"
+            "value" : "Os dados do link são invalidos."
           }
         }
       }
@@ -355,6 +386,9 @@
         }
       }
     },
+    "Group Picker" : {
+
+    },
     "Guide" : {
       "localizations" : {
         "pt-PT" : {
@@ -397,10 +431,24 @@
       }
     },
     "iCloud Sync" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizado com iCloud"
+          }
+        }
+      }
     },
     "Import your playlists and watch TV and movies wherever you are." : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insira as suas playlists e "
+          }
+        }
+      }
     },
     "Info" : {
       "extractionState" : "manual",
@@ -434,7 +482,34 @@
       }
     },
     "Learn more..." : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saber mais…"
+          }
+        }
+      }
+    },
+    "Loading EPG..." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando EPG…"
+          }
+        }
+      }
+    },
+    "Long-press or swipe to the left to add a media to favourites." : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantenha premido ou deslize para a esquerda para adicionar uma mídia aos favoritos."
+          }
+        }
+      }
     },
     "Movies & Series" : {
       "localizations" : {
@@ -517,6 +592,7 @@
       }
     },
     "Open Legacy Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -666,6 +742,9 @@
         }
       }
     },
+    "Select the desired group using the group picker to only show relevant medias." : {
+
+    },
     "Settings" : {
       "localizations" : {
         "pt-PT" : {
@@ -708,7 +787,14 @@
       }
     },
     "Stay informed with EPG, a digital TV guide for all upcoming programs." : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantenha-se informado com EPG, o guia TV digital para todos os próximos programas."
+          }
+        }
+      }
     },
     "The EPG link provided does not include any program for this channel." : {
       "localizations" : {
@@ -867,19 +953,36 @@
         }
       }
     },
+    "Watch your Movies or TV Channels" : {
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veja os seus Filmes ou Séries"
+          }
+        }
+      }
+    },
     "Welcome" : {
       "extractionState" : "manual",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bem-vindo à IPTV"
+            "value" : "Bem-vindo"
           }
         }
       }
     },
     "Welcome to" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bem-vindo à"
+          }
+        }
+      }
     },
     "Welcome! Enjoy instant access to live TV channels from around the world, right at your fingertips." : {
       "localizations" : {
@@ -901,9 +1004,6 @@
           }
         }
       }
-    },
-    "What your Movies or TV Channels" : {
-
     },
     "Yellow" : {
       "localizations" : {
@@ -936,7 +1036,14 @@
       }
     },
     "Your playlists securely sync across all of your devices using iCloud." : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As suas playlists mantêm-se sincronizadas com segurança em todos os seus dispositivos utilizando o iCloud."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

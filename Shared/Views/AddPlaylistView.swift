@@ -12,12 +12,13 @@ struct AddPlaylistView: View {
 	
 	@Environment(\.modelContext) private var context
 	@Environment(\.dismiss) private var dismiss
+	@Environment(ViewModel.self) private var vm
 	
-	@State private var vm = ViewModel.shared
-	
-	@State private var networkModel = PlaylistFetchingModel()
+	private var networkModel: PlaylistFetchingModel { PlaylistFetchingModel(vm: vm) }
 	
 	var body: some View {
+		@Bindable var vm = vm
+		
 		VStack {
 			Text("Add Playlist")
 				.font(.largeTitle)
@@ -78,12 +79,18 @@ struct AddPlaylistView: View {
 			.padding()
 		}
 		.padding()
-		.sheet(isPresented: $vm.isParsing) { LoadingView() }
+		.sheet(isPresented: $vm.isParsing) {
+			ProgressView("Adding playlist...").padding()
+		}
 	}
 }
 
-private extension AddPlaylistView {
-	func addPlaylist() {
+#Preview {
+	AddPlaylistView()
+}
+
+extension AddPlaylistView {
+	private func addPlaylist() {
 		Task {
 			vm.isParsing.toggle()
 			await networkModel.parsePlaylist()
@@ -91,14 +98,11 @@ private extension AddPlaylistView {
 			
 			if !vm.parserDidFail {
 				context.insert(Playlist(vm.tempPlaylistName, medias: vm.tempPlaylist?.channels ?? [], m3uLink: vm.tempPlaylistURL, epgLink: vm.tempPlaylistEPG))
+				try? context.save()
 			}
 			
 			dismiss()
 			networkModel.cancel()
 		}
 	}
-}
-
-#Preview {
-	AddPlaylistView()
 }

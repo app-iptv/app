@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 import SwiftData
 
 struct MoviesAndTVShowsView: View {
-	@State private var vm = ViewModel.shared
+	@Environment(ViewModel.self) private var vm
 	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
 	@Query private var modelPlaylists: [Playlist]
 	
@@ -20,13 +20,18 @@ struct MoviesAndTVShowsView: View {
 				ContentUnavailableView("No Movies", systemImage: "film.stack", description: Text("Either your playlist doesn't include movies, or you haven't yet added a playlist. You can do so in Settings."))
 					.padding()
 			} else {
-				ScrollView {
-					Grid {
+				ScrollView(.vertical) {
+					LazyVStack(alignment: .leading, spacing: 26) {
 						ForEach(groups, id: \.self) { group in
-							MediaGroupView(medias: filteredMovies, group: group, isTV: false)
+							Section(LocalizedStringKey(group)) {
+								MediaGroupView(medias: filteredMovies, group: group, isTV: false)
+							}
 						}
 					}
+					.scrollTargetLayout()
 				}
+				.scrollClipDisabled()
+				.scrollTargetBehavior(.viewAligned)
 			}
 		}
 	}

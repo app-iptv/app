@@ -14,11 +14,12 @@ struct MediaListView: View {
 	
 	@Environment(\.horizontalSizeClass) private var sizeClass
 	@Environment(\.isSearching) private var searchState
+	@Environment(ViewModel.self) private var vm
 	
 	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
 	
-	@State private var vm = ViewModel.shared
 	@State private var searchQuery: String = ""
+	@State private var groupsTip = GroupsTip()
 	
 	private let medias: [Media]
 	private let playlistName: String
@@ -33,6 +34,8 @@ struct MediaListView: View {
 	}
 	
 	var body: some View {
+		@Bindable var vm = vm
+		
 		NavigationStack {
 			Group {
 				if filteredMediasForGroup.isEmpty {
@@ -43,8 +46,10 @@ struct MediaListView: View {
 						MediaItemView(media: media, playlistName: playlistName)
 						#else
 						MediaItemView(media: media, playlistName: playlistName, epgLink: epgLink, medias: medias)
+							
 						#endif
 					}
+					.listStyle(.plain)
 					.id(UUID())
 				}
 			}
@@ -68,8 +73,10 @@ struct MediaListView: View {
 							Label(LocalizedStringKey(group), systemImage: group == "All" ? "tray.2" : "tray")
 								.tag(group)
 						}
+						.onAppear { groupsTip.invalidate(reason: .actionPerformed) }
 					}
 					.pickerStyle(.menu)
+					.popoverTip(groupsTip)
 				}
 			}
 			#endif
@@ -77,8 +84,8 @@ struct MediaListView: View {
 	}
 }
 
-private extension MediaListView {
-	var placement: ToolbarItemPlacement {
+extension MediaListView {
+	private var placement: ToolbarItemPlacement {
 		#if os(macOS)
 		return .primaryAction
 		#else
@@ -86,20 +93,20 @@ private extension MediaListView {
 		#endif
 	}
 	
-	var searchResults: [Media] {
+	private var searchResults: [Media] {
 		guard !searchQuery.isEmpty else { return medias }
 		return medias.filter { media in
 			media.title.localizedStandardContains(searchQuery)
 		}
 	}
 	
-	var groups: [String] {
+	private var groups: [String] {
 		var allGroups = Set(searchResults.compactMap { $0.attributes["group-title"] ?? "Undefined" })
 		allGroups.insert("All")
 		return allGroups.sorted()
 	}
 	
-	var filteredMediasForGroup: [Media] {
+	private var filteredMediasForGroup: [Media] {
 		guard vm.selectedGroup == "All" else { return searchResults.filter { ($0.attributes["group-title"] ?? "Undefined") == vm.selectedGroup } }
 		return searchResults
 	}

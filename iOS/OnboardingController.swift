@@ -68,7 +68,7 @@ struct OnboardingController {
 	static func setUpFeatures() -> [UIOnboardingFeature] {
 		return .init([
 			.init(icon: .init(systemName: "film.stack")!,
-				  title: String(localized: "What your Movies or TV Channels"),
+				  title: String(localized: "Watch your Movies or TV Channels"),
 				  description: String(localized: "Import your playlists and watch TV and movies wherever you are.")),
 			.init(icon: .init(systemName: "icloud")!,
 				  title: String(localized: "iCloud Sync"),

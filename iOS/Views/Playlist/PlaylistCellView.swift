@@ -12,6 +12,7 @@ import M3UKit
 struct PlaylistCellView: View {
 	
 	@Environment(\.modelContext) private var context
+	@Environment(ViewModel.self) private var vm
 	
 	@Bindable private var playlist: Playlist
 	
@@ -21,6 +22,7 @@ struct PlaylistCellView: View {
 	
 	var body: some View {
 		NavigationLink(playlist.name, value: playlist)
+			.onTapGesture { vm.selectedPlaylist = playlist }
 			.contextMenu { deleteButton; editButton }
 			.swipeActions(edge: .trailing) { deleteButton }
 			.swipeActions(edge: .leading) { editButton }

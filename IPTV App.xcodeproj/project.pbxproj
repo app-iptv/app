@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2F107C532BECC68800648BE8 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F107C522BECC68800648BE8 /* ViewModifiers.swift */; };
+		2F11E1E22C36F06300D49D74 /* FavouritesTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F11E1E12C36F05C00D49D74 /* FavouritesTip.swift */; };
+		2F11E1E32C36F06300D49D74 /* FavouritesTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F11E1E12C36F05C00D49D74 /* FavouritesTip.swift */; };
 		2F197AEB2C137E5800A2E309 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 2F197AEA2C137E5800A2E309 /* UIOnboarding */; };
 		2F197AED2C137E7600A2E309 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F197AEC2C137E7600A2E309 /* OnboardingController.swift */; };
 		2F1D0A3C2C0B8A3300A31C72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEBE2BF92FA900153524 /* ContentView.swift */; };
@@ -21,10 +23,16 @@
 		2F317E4B2BB3F857000FC7A4 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F317E4A2BB3F857000FC7A4 /* TypeAlias.swift */; };
 		2F3BB2132BAE0EE60085CF3A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BB2122BAE0EE60085CF3A /* Array.swift */; };
 		2F402B9A2C2B37B60094EC23 /* PlaylistCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F402B992C2B37B60094EC23 /* PlaylistCellView.swift */; };
+		2F40D6542C3F063F00AE33A6 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD589882B7F804F003228AB /* Launch Screen.storyboard */; };
+		2F40D6552C3F064000AE33A6 /* TVProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF09E5B2BF9CEF700C2CDCA /* TVProgram.swift */; };
 		2F50C4742BCBE9D700AE3E65 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F50C4732BCBE9D600AE3E65 /* View.swift */; };
 		2F5A13FF2B9DF8C9005F270E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */; };
 		2F5FC9FF2BDD0FC900BD67A5 /* SWCompression in Frameworks */ = {isa = PBXBuildFile; productRef = 2F5FC9FE2BDD0FC900BD67A5 /* SWCompression */; };
 		2F64E50D2BDE4E3500844953 /* EPGFetchingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F64E50C2BDE4E3500844953 /* EPGFetchingModel.swift */; };
+		2F65285E2C332FB800302F67 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F65285D2C332FB800302F67 /* M3UKit */; };
+		2F6528612C332FD800302F67 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6528602C332FD800302F67 /* XMLTV */; };
+		2F6528632C332FE500302F67 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6528622C332FE500302F67 /* M3UKit */; };
+		2F6528652C332FE500302F67 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6528642C332FE500302F67 /* XMLTV */; };
 		2F6B1C982BDD754B00D09A6A /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1C972BDD754B00D09A6A /* XMLTV */; };
 		2F6B1C9B2BDD755700D09A6A /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1C9A2BDD755700D09A6A /* XMLTV */; };
 		2F6B1C9E2BDD756400D09A6A /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1C9D2BDD756400D09A6A /* M3UKit */; };
@@ -60,16 +68,11 @@
 		2F9FDED82BF92FA900153524 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEC12BF92FA900153524 /* FavouritesView.swift */; };
 		2F9FDED92BF92FA900153524 /* FirstLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEC22BF92FA900153524 /* FirstLaunchView.swift */; };
 		2F9FDEDA2BF92FA900153524 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEC32BF92FA900153524 /* HomeView.swift */; };
-		2F9FDEDB2BF92FA900153524 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEC42BF92FA900153524 /* LoadingView.swift */; };
 		2F9FDEDC2BF92FA900153524 /* PlayerViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEC52BF92FA900153524 /* PlayerViewControllerRepresentable.swift */; };
 		2F9FDEDD2BF92FA900153524 /* SingleStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEC62BF92FA900153524 /* SingleStreamView.swift */; };
 		2F9FDEDF2BF92FDE00153524 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2F9FDEDE2BF92FDE00153524 /* SDWebImageSwiftUI */; };
 		2F9FDEE12BF92FDE00153524 /* SWCompression in Frameworks */ = {isa = PBXBuildFile; productRef = 2F9FDEE02BF92FDE00153524 /* SWCompression */; };
-		2F9FDEE32BF92FDE00153524 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F9FDEE22BF92FDE00153524 /* XMLTV */; };
-		2F9FDEE52BF92FDE00153524 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F9FDEE42BF92FDE00153524 /* M3UKit */; };
-		2F9FDEE72BF92FDE00153524 /* LightXMLParser in Frameworks */ = {isa = PBXBuildFile; productRef = 2F9FDEE62BF92FDE00153524 /* LightXMLParser */; };
 		2F9FDEFE2BF9313700153524 /* MediaCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEAF2BF92FA900153524 /* MediaCellView.swift */; };
-		2F9FDF022BF9313700153524 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEC42BF92FA900153524 /* LoadingView.swift */; };
 		2F9FDF042BF9313700153524 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5E842B7A510500AB0193 /* ViewModel.swift */; };
 		2F9FDF062BF9313700153524 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FDEBA2BF92FA900153524 /* SettingsView.swift */; };
 		2F9FDF082BF9313700153524 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BB2122BAE0EE60085CF3A /* Array.swift */; };
@@ -100,11 +103,14 @@
 		2FD589892B7F804F003228AB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FD589882B7F804F003228AB /* Launch Screen.storyboard */; platformFilter = ios; };
 		2FE0A5E02C0B901E003D3680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE0A5DF2C0B901E003D3680 /* Assets.xcassets */; };
 		2FE0A5E32C0B9057003D3680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE0A5E12C0B9046003D3680 /* Assets.xcassets */; };
+		2FEDBB1A2C4567D100AADC57 /* GroupsTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEDBB192C4567CE00AADC57 /* GroupsTip.swift */; };
+		2FEDBB1B2C4567D100AADC57 /* GroupsTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEDBB192C4567CE00AADC57 /* GroupsTip.swift */; };
 		2FEF5E852B7A510500AB0193 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5E842B7A510500AB0193 /* ViewModel.swift */; };
-		2FF09E532BF9C0E700C2CDCA /* PosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF09E522BF9C0E700C2CDCA /* PosterView.swift */; };
 		2FF09E552BF9C1F700C2CDCA /* TVMediaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF09E542BF9C1F700C2CDCA /* TVMediaItemView.swift */; };
 		2FF09E5C2BF9CEF700C2CDCA /* TVProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF09E5B2BF9CEF700C2CDCA /* TVProgram.swift */; };
 		2FF09E622BFA189A00C2CDCA /* MoviesAndTVShowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF09E612BFA189A00C2CDCA /* MoviesAndTVShowsView.swift */; };
+		2FFCFA642C3EA93100025322 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFCFA632C3EA93100025322 /* PlayerViewController.swift */; };
+		2FFCFA652C3EA93100025322 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFCFA632C3EA93100025322 /* PlayerViewController.swift */; };
 		2FFDFF562BA342C3001A0166 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +130,7 @@
 /* Begin PBXFileReference section */
 		2F03A4382BF3CF9700A54AC3 /* tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tvOS.entitlements; sourceTree = "<group>"; };
 		2F107C522BECC68800648BE8 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		2F11E1E12C36F05C00D49D74 /* FavouritesTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTip.swift; sourceTree = "<group>"; };
 		2F197AEC2C137E7600A2E309 /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		2F2FD6182C09BBC000482ADD /* SwiftDataCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataCoordinator.swift; sourceTree = "<group>"; };
 		2F317E4A2BB3F857000FC7A4 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
@@ -132,9 +139,6 @@
 		2F50C4732BCBE9D600AE3E65 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2F64E50C2BDE4E3500844953 /* EPGFetchingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGFetchingModel.swift; sourceTree = "<group>"; };
-		2F6B1C932BDD751E00D09A6A /* LightXMLParser */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LightXMLParser; sourceTree = "<group>"; };
-		2F6B1C942BDD751E00D09A6A /* M3UKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = M3UKit; sourceTree = "<group>"; };
-		2F6B1C952BDD751E00D09A6A /* XMLTV */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = XMLTV; sourceTree = "<group>"; };
 		2F6B99002BFA3C7300D3E8DE /* InfinitePagingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinitePagingScrollView.swift; sourceTree = "<group>"; };
 		2F6B99052BFA5F2000D3E8DE /* TVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVView.swift; sourceTree = "<group>"; };
 		2F6B990B2BFA691E00D3E8DE /* MediaGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaGroupView.swift; sourceTree = "<group>"; };
@@ -166,7 +170,6 @@
 		2F9FDEC12BF92FA900153524 /* FavouritesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		2F9FDEC22BF92FA900153524 /* FirstLaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLaunchView.swift; sourceTree = "<group>"; };
 		2F9FDEC32BF92FA900153524 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		2F9FDEC42BF92FA900153524 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		2F9FDEC52BF92FA900153524 /* PlayerViewControllerRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewControllerRepresentable.swift; sourceTree = "<group>"; };
 		2F9FDEC62BF92FA900153524 /* SingleStreamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleStreamView.swift; sourceTree = "<group>"; };
 		2F9FDF252BF931CB00153524 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
@@ -184,12 +187,13 @@
 		2FDD48092B6687A2009D100B /* iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = iOS.plist; sourceTree = "<group>"; };
 		2FE0A5DF2C0B901E003D3680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FE0A5E12C0B9046003D3680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FEDBB192C4567CE00AADC57 /* GroupsTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTip.swift; sourceTree = "<group>"; };
 		2FEF5E842B7A510500AB0193 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2FEFDC6B2BF8FEB70048827E /* IPTV TV App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IPTV TV App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2FF09E522BF9C0E700C2CDCA /* PosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterView.swift; sourceTree = "<group>"; };
 		2FF09E542BF9C1F700C2CDCA /* TVMediaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMediaItemView.swift; sourceTree = "<group>"; };
 		2FF09E5B2BF9CEF700C2CDCA /* TVProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVProgram.swift; sourceTree = "<group>"; };
 		2FF09E612BFA189A00C2CDCA /* MoviesAndTVShowsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesAndTVShowsView.swift; sourceTree = "<group>"; };
+		2FFCFA632C3EA93100025322 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +204,8 @@
 				2F6B1C982BDD754B00D09A6A /* XMLTV in Frameworks */,
 				2F6B1CA12BDD757400D09A6A /* LightXMLParser in Frameworks */,
 				2F6B1C9E2BDD756400D09A6A /* M3UKit in Frameworks */,
+				2F6528612C332FD800302F67 /* XMLTV in Frameworks */,
+				2F65285E2C332FB800302F67 /* M3UKit in Frameworks */,
 				2F6B1C9B2BDD755700D09A6A /* XMLTV in Frameworks */,
 				2F197AEB2C137E5800A2E309 /* UIOnboarding in Frameworks */,
 				2F5FC9FF2BDD0FC900BD67A5 /* SWCompression in Frameworks */,
@@ -211,11 +217,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F9FDEE32BF92FDE00153524 /* XMLTV in Frameworks */,
-				2F9FDEE72BF92FDE00153524 /* LightXMLParser in Frameworks */,
+				2F6528652C332FE500302F67 /* XMLTV in Frameworks */,
 				2F9FDEDF2BF92FDE00153524 /* SDWebImageSwiftUI in Frameworks */,
+				2F6528632C332FE500302F67 /* M3UKit in Frameworks */,
 				2F9FDEE12BF92FDE00153524 /* SWCompression in Frameworks */,
-				2F9FDEE52BF92FDE00153524 /* M3UKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +232,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2F11E1E02C36F05700D49D74 /* Tips */ = {
+			isa = PBXGroup;
+			children = (
+				2FEDBB192C4567CE00AADC57 /* GroupsTip.swift */,
+				2F11E1E12C36F05C00D49D74 /* FavouritesTip.swift */,
+			);
+			path = Tips;
 			sourceTree = "<group>";
 		};
 		2F1D0A382C0B840100A31C72 /* Views */ = {
@@ -280,7 +294,6 @@
 		2F6B99032BFA5EB900D3E8DE /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				2FF09E522BF9C0E700C2CDCA /* PosterView.swift */,
 				2F6B990B2BFA691E00D3E8DE /* MediaGroupView.swift */,
 				2FF09E542BF9C1F700C2CDCA /* TVMediaItemView.swift */,
 			);
@@ -310,6 +323,7 @@
 		2F7AE6632B87B96300F2F8CB /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2F11E1E02C36F05700D49D74 /* Tips */,
 				2F9FDEC72BF92FA900153524 /* Views */,
 				2F48C14D2BF79B0900CF7EDC /* Enums */,
 				2FBE9A162BA09A790090C126 /* Extensions */,
@@ -345,8 +359,9 @@
 		2F9FDEB42BF92FA900153524 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				2F9FDEC52BF92FA900153524 /* PlayerViewControllerRepresentable.swift */,
 				2F9FDEC62BF92FA900153524 /* SingleStreamView.swift */,
+				2FFCFA632C3EA93100025322 /* PlayerViewController.swift */,
+				2F9FDEC52BF92FA900153524 /* PlayerViewControllerRepresentable.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -381,7 +396,6 @@
 				2F1D0A392C0B842800A31C72 /* Media */,
 				2F9FDEB42BF92FA900153524 /* Player */,
 				2F9FDEBB2BF92FA900153524 /* Preferences */,
-				2F9FDEC42BF92FA900153524 /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -427,9 +441,6 @@
 				2F7AE6632B87B96300F2F8CB /* Shared */,
 				2FB75B822B41A9FE00A16501 /* Products */,
 				2F03A41E2BF3BD8700A54AC3 /* Frameworks */,
-				2F6B1C932BDD751E00D09A6A /* LightXMLParser */,
-				2F6B1C942BDD751E00D09A6A /* M3UKit */,
-				2F6B1C952BDD751E00D09A6A /* XMLTV */,
 			);
 			sourceTree = "<group>";
 		};
@@ -505,6 +516,8 @@
 				2F6B1C9D2BDD756400D09A6A /* M3UKit */,
 				2F6B1CA02BDD757400D09A6A /* LightXMLParser */,
 				2F197AEA2C137E5800A2E309 /* UIOnboarding */,
+				2F65285D2C332FB800302F67 /* M3UKit */,
+				2F6528602C332FD800302F67 /* XMLTV */,
 			);
 			productName = IPTV;
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV App.app */;
@@ -526,9 +539,8 @@
 			packageProductDependencies = (
 				2F9FDEDE2BF92FDE00153524 /* SDWebImageSwiftUI */,
 				2F9FDEE02BF92FDE00153524 /* SWCompression */,
-				2F9FDEE22BF92FDE00153524 /* XMLTV */,
-				2F9FDEE42BF92FDE00153524 /* M3UKit */,
-				2F9FDEE62BF92FDE00153524 /* LightXMLParser */,
+				2F6528622C332FE500302F67 /* M3UKit */,
+				2F6528642C332FE500302F67 /* XMLTV */,
 			);
 			productName = IPTVTVApp;
 			productReference = 2FEFDC6B2BF8FEB70048827E /* IPTV TV App.app */;
@@ -555,7 +567,7 @@
 				};
 			};
 			buildConfigurationList = 2FB75B7C2B41A9FE00A16501 /* Build configuration list for PBXProject "IPTV App" */;
-			compatibilityVersion = "Xcode 15.0";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -567,10 +579,9 @@
 			packageReferences = (
 				2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */,
-				2F6B1C992BDD755700D09A6A /* XCLocalSwiftPackageReference "XMLTV" */,
-				2F6B1C9C2BDD756400D09A6A /* XCLocalSwiftPackageReference "M3UKit" */,
-				2F6B1C9F2BDD757400D09A6A /* XCLocalSwiftPackageReference "LightXMLParser" */,
 				2F197AE92C137E5800A2E309 /* XCRemoteSwiftPackageReference "UIOnboarding" */,
+				2F65285C2C332FB800302F67 /* XCRemoteSwiftPackageReference "M3UKit" */,
+				2F65285F2C332FD800302F67 /* XCRemoteSwiftPackageReference "XMLTV" */,
 			);
 			productRefGroup = 2FB75B822B41A9FE00A16501 /* Products */;
 			projectDirPath = "";
@@ -600,6 +611,7 @@
 			files = (
 				2FE0A5E32C0B9057003D3680 /* Assets.xcassets in Resources */,
 				2F9FDF222BF9315A00153524 /* Assets.xcassets in Resources */,
+				2F40D6542C3F063F00AE33A6 /* Launch Screen.storyboard in Resources */,
 				2F6C75482C0F9B6E00B95013 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,7 +626,8 @@
 				2F7614BF2BBC53A900C53564 /* Bundle.swift in Sources */,
 				2F7F832C2BDA9953004A3696 /* PlaylistFetchingModel.swift in Sources */,
 				2F107C532BECC68800648BE8 /* ViewModifiers.swift in Sources */,
-				2F9FDEDB2BF92FA900153524 /* LoadingView.swift in Sources */,
+				2F11E1E22C36F06300D49D74 /* FavouritesTip.swift in Sources */,
+				2F40D6552C3F064000AE33A6 /* TVProgram.swift in Sources */,
 				2F50C4742BCBE9D700AE3E65 /* View.swift in Sources */,
 				2F9FDED82BF92FA900153524 /* FavouritesView.swift in Sources */,
 				2F9FDECD2BF92FA900153524 /* MediaDetailView.swift in Sources */,
@@ -624,10 +637,12 @@
 				2F9FDED72BF92FA900153524 /* ErrorView.swift in Sources */,
 				2FB75B852B41A9FE00A16501 /* IPTVApp.swift in Sources */,
 				2F9FDEC92BF92FA900153524 /* EPGProgramView.swift in Sources */,
+				2FFCFA652C3EA93100025322 /* PlayerViewController.swift in Sources */,
 				2F317E4B2BB3F857000FC7A4 /* TypeAlias.swift in Sources */,
 				2F402B9A2C2B37B60094EC23 /* PlaylistCellView.swift in Sources */,
 				2F9FDED02BF92FA900153524 /* PlaylistsListView.swift in Sources */,
 				2F9FDED32BF92FA900153524 /* AboutView.swift in Sources */,
+				2FEDBB1A2C4567D100AADC57 /* GroupsTip.swift in Sources */,
 				2F9FDF262BF931CB00153524 /* TabView.swift in Sources */,
 				2FBE9A152BA09A6C0090C126 /* Media.swift in Sources */,
 				2F9FDEDD2BF92FA900153524 /* SingleStreamView.swift in Sources */,
@@ -665,7 +680,6 @@
 				2F1D0A412C0B8A5900A31C72 /* ErrorView.swift in Sources */,
 				2F6B99142BFA76CB00D3E8DE /* GuidePlaylistsGroupView.swift in Sources */,
 				2FF09E5C2BF9CEF700C2CDCA /* TVProgram.swift in Sources */,
-				2F9FDF022BF9313700153524 /* LoadingView.swift in Sources */,
 				2FB85E852BFB311E0018723D /* SearchView.swift in Sources */,
 				2F6B990F2BFA745700D3E8DE /* GuideView.swift in Sources */,
 				2F9FDF042BF9313700153524 /* ViewModel.swift in Sources */,
@@ -674,8 +688,10 @@
 				2F6B99062BFA5F2000D3E8DE /* TVView.swift in Sources */,
 				2F9FDF082BF9313700153524 /* Array.swift in Sources */,
 				2F9FDF092BF9313700153524 /* PlaylistFetchingModel.swift in Sources */,
+				2FFCFA642C3EA93100025322 /* PlayerViewController.swift in Sources */,
 				2F9FDF0B2BF9313700153524 /* Bundle.swift in Sources */,
 				2F2FD61A2C09BBC000482ADD /* SwiftDataCoordinator.swift in Sources */,
+				2FEDBB1B2C4567D100AADC57 /* GroupsTip.swift in Sources */,
 				2F1D0A3C2C0B8A3300A31C72 /* ContentView.swift in Sources */,
 				2F9FDF0C2BF9313700153524 /* UserInterfaceSizeClass.swift in Sources */,
 				2F6B99182BFA957F00D3E8DE /* GuideForMediaView.swift in Sources */,
@@ -692,8 +708,8 @@
 				2F9FDF1B2BF9313700153524 /* TypeAlias.swift in Sources */,
 				2F9FDF1D2BF9313700153524 /* ViewingMode.swift in Sources */,
 				2F9FDF1E2BF9313700153524 /* SingleStreamView.swift in Sources */,
+				2F11E1E32C36F06300D49D74 /* FavouritesTip.swift in Sources */,
 				2F9FDF1F2BF9313700153524 /* IPTVApp.swift in Sources */,
-				2FF09E532BF9C0E700C2CDCA /* PosterView.swift in Sources */,
 				2F6B990C2BFA691E00D3E8DE /* MediaGroupView.swift in Sources */,
 				2FF09E552BF9C1F700C2CDCA /* TVMediaItemView.swift in Sources */,
 				2F9FDF212BF9313700153524 /* PlayerViewControllerRepresentable.swift in Sources */,
@@ -1044,21 +1060,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		2F6B1C992BDD755700D09A6A /* XCLocalSwiftPackageReference "XMLTV" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = XMLTV;
-		};
-		2F6B1C9C2BDD756400D09A6A /* XCLocalSwiftPackageReference "M3UKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = M3UKit;
-		};
-		2F6B1C9F2BDD757400D09A6A /* XCLocalSwiftPackageReference "LightXMLParser" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = LightXMLParser;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		2F197AE92C137E5800A2E309 /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -1074,6 +1075,22 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.8.6;
+			};
+		};
+		2F65285C2C332FB800302F67 /* XCRemoteSwiftPackageReference "M3UKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pedrodsac/M3UKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		2F65285F2C332FD800302F67 /* XCRemoteSwiftPackageReference "XMLTV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pedrodsac/XMLTV.git";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 		2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
@@ -1096,6 +1113,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */;
 			productName = SWCompression;
+		};
+		2F65285D2C332FB800302F67 /* M3UKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F65285C2C332FB800302F67 /* XCRemoteSwiftPackageReference "M3UKit" */;
+			productName = M3UKit;
+		};
+		2F6528602C332FD800302F67 /* XMLTV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F65285F2C332FD800302F67 /* XCRemoteSwiftPackageReference "XMLTV" */;
+			productName = XMLTV;
+		};
+		2F6528622C332FE500302F67 /* M3UKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F65285C2C332FB800302F67 /* XCRemoteSwiftPackageReference "M3UKit" */;
+			productName = M3UKit;
+		};
+		2F6528642C332FE500302F67 /* XMLTV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F65285F2C332FD800302F67 /* XCRemoteSwiftPackageReference "XMLTV" */;
+			productName = XMLTV;
 		};
 		2F6B1C972BDD754B00D09A6A /* XMLTV */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1122,21 +1159,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */;
 			productName = SWCompression;
-		};
-		2F9FDEE22BF92FDE00153524 /* XMLTV */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F6B1C992BDD755700D09A6A /* XCLocalSwiftPackageReference "XMLTV" */;
-			productName = XMLTV;
-		};
-		2F9FDEE42BF92FDE00153524 /* M3UKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F6B1C9C2BDD756400D09A6A /* XCLocalSwiftPackageReference "M3UKit" */;
-			productName = M3UKit;
-		};
-		2F9FDEE62BF92FDE00153524 /* LightXMLParser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F6B1C9F2BDD757400D09A6A /* XCLocalSwiftPackageReference "LightXMLParser" */;
-			productName = LightXMLParser;
 		};
 		2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

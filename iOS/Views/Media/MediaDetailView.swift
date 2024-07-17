@@ -13,17 +13,17 @@ import SWCompression
 
 struct MediaDetailView: View {
 	
+	@Environment(EPGFetchingModel.self) var fetchingModel
+	@Environment(ViewModel.self) private var vm
+	
 	@State private var searchQuery: String = ""
 	@State private var isUnsupported: Bool = false
 	@State private var currentProgram: TVProgram? = nil
-	@State private var vm = ViewModel.shared
 	@State private var hasFinishedLoading: Bool = false
 	
 	private let playlistName: String
 	private let media: Media
 	private let epgLink: String
-	
-	@State private var programs: [TVProgram]?
 	
 	internal init(playlistName: String, media: Media, epgLink: String) {
 		self.playlistName = playlistName
@@ -32,9 +32,11 @@ struct MediaDetailView: View {
 	}
 	
 	var body: some View {
+		@Bindable var vm = vm
+		
 		VStack(spacing: 0) {
 			VStack(spacing: 10) {
-				PlayerViewControllerRepresentable(media: media, playlistName: playlistName, currentProgram: .constant(nil))
+				PlayerViewControllerRepresentable(media: media, playlistName: playlistName)
 					.aspectRatio(16/9, contentMode: .fit)
 					.cornerRadius(10)
 					.frame(maxWidth: 400)
@@ -44,6 +46,7 @@ struct MediaDetailView: View {
 							Text(groupTitle)
 								.font(.footnote)
 						}
+						
 						Text(media.title)
 							.font(.headline)
 					}
@@ -63,7 +66,7 @@ struct MediaDetailView: View {
 			if vm.isLoadingEPG {
 				VStack {
 					Spacer()
-					ProgressView()
+					ProgressView("Loading EPG...")
 					Spacer()
 				}
 			} else if let filteredPrograms {
@@ -78,7 +81,7 @@ struct MediaDetailView: View {
 								}
 								.buttonStyle(.borderless)
 								.foregroundStyle(.primary)
-								.id(EPGFetchingModel.shared.isNowBetweenDates(program: program))
+								.id(program.isCurrent())
 							}
 							.onAppear {
 								withAnimation {
@@ -91,7 +94,7 @@ struct MediaDetailView: View {
 				}
 			} else if (filteredPrograms?.isEmpty ?? true) && !(programs?.isEmpty ?? true) {
 				ContentUnavailableView.search(text: searchQuery)
-			} else if let _ = EPGFetchingModel.shared.xmlTV, (programs?.isEmpty ?? true), hasFinishedLoading {
+			} else if let _ = fetchingModel.xmlTV, (programs?.isEmpty ?? true) {
 				VStack {
 					Spacer()
 					ContentUnavailableView("TV Guide is empty", systemImage: "tv.slash", description: Text("The EPG link provided does not include any programs for this channel."))
@@ -101,16 +104,14 @@ struct MediaDetailView: View {
 				Spacer()
 			}
 		}
-		.searchable(text: $searchQuery)
 		#if !os(tvOS)
 		.navigationTitle(media.title)
 		#endif
-		.toolbarTitleDisplayMode(.inline)
 		#if os(iOS)
 		.toolbarBackground(.visible, for: .navigationBar, .tabBar)
 		#endif
-		.task { await refresh() }
-		.onChange(of: EPGFetchingModel.shared.xmlTV) { Task { await refresh() } }
+		.searchable(text: $searchQuery)
+		.toolbarTitleDisplayMode(.inline)
 	}
 }
 
@@ -120,14 +121,10 @@ extension MediaDetailView {
 		return programs?.filter { ($0.title ?? String(localized: "Untitled")).localizedCaseInsensitiveContains(searchQuery) }
 	}
 	
-	private func refresh() async {
-		DispatchQueue.global(qos: .userInteractive).async {
-			if let xmlTV = EPGFetchingModel.shared.xmlTV,
-			   let channel = xmlTV.getChannels().first(where: { $0.id == media.attributes["tvg-id"] })
-			{
-				programs = xmlTV.getPrograms(channel: channel)
-			}
-			hasFinishedLoading = true
-		}
+	private var programs: [TVProgram]? {
+		guard let channel = fetchingModel.xmlTV?.getChannels().first(where: { $0.id == media.attributes["tvg-id"] }),
+			  let programs = fetchingModel.xmlTV?.getPrograms(channel: channel) else { return nil }
+		
+		return programs
 	}
 }

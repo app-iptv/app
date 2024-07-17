@@ -13,18 +13,23 @@ struct PlaylistsListView: View {
 	
 	@Environment(\.horizontalSizeClass) private var sizeClass
 	@Environment(\.modelContext) private var context
+	@Environment(ViewModel.self) private var vm
 	
 	@Query private var modelPlaylists: [Playlist]
 	
-	@State private var vm = ViewModel.shared
-	
 	var body: some View {
-		Group {
+		@Bindable var vm = vm
+		
+		VStack {
 			if modelPlaylists.isEmpty {
 				ContentUnavailableView {
 					Label("No Playlists", systemImage: "list.and.film")
 				} description: {
 					Text("Playlists that you add will appear here.")
+				} actions: {
+					Button("Add Playlist") {
+						vm.isPresented.toggle()
+					}
 				}
 			} else {
 				List(modelPlaylists, selection: $vm.selectedPlaylist) { playlist in

@@ -14,6 +14,7 @@ struct ContentView: View {
 	
 	@Environment(\.modelContext) private var context
 	@Environment(\.horizontalSizeClass) private var sizeClass
+	@Environment(ViewModel.self) private var vm
 	
 	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = true
 	@AppStorage("FAVORITED_mediaS") private var favourites: [Media] = []
@@ -21,13 +22,14 @@ struct ContentView: View {
 	@Binding private var isRemovingAll: Bool
 	
 	@State private var selectedTab: Tab = .home
-	@State private var vm = ViewModel.shared
 	
 	internal init(isRemovingAll: Binding<Bool>) {
 		self._isRemovingAll = isRemovingAll
 	}
 	
 	var body: some View {
+		@Bindable var vm = vm
+		
 		TabView(selectedTab: $selectedTab, isRemovingAll: $isRemovingAll)
 			.sheet(isPresented: $vm.isPresented) { AddPlaylistView().modelContext(context) }
 			.sheet(isPresented: $vm.openedSingleStream) { SingleStreamView() }
@@ -40,9 +42,10 @@ struct ContentView: View {
 			}
 			#if os(tvOS)
 			.onAppear { vm.selectedPlaylist = modelPlaylists.first }
-			#elseif os(macOS)
+			#endif
+			#if os(macOS)
 			.sheet(isPresented: $isFirstLaunch) { FirstLaunchView(isFirstLaunch: $isFirstLaunch) }
-			#else
+			#elseif os(iOS)
 			.fullScreenCover(isPresented: $isFirstLaunch) { OnboardingView().ignoresSafeArea() }
 			#endif
 	}

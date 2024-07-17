@@ -9,6 +9,7 @@ import SwiftUI
 import M3UKit
 import SwiftData
 import AVKit
+import TipKit
 
 @main
 struct IPTVApp: App {
@@ -21,13 +22,16 @@ struct IPTVApp: App {
 	@Environment(\.openWindow) private var openWindow
 	#endif
 	
+	@Query private var playlists: [Playlist]
+	
 	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = true
 	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
 	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
 	
-	@State private var vm = ViewModel.shared
+	@State private var vm = ViewModel()
 	@State private var isRemovingAll: Bool = false
+	@State private var epgFetchingModel: EPGFetchingModel = EPGFetchingModel()
 	
 	#if !os(tvOS)
 	private var commands: some Commands {
@@ -40,6 +44,14 @@ struct IPTVApp: App {
 				Button("Open Single Stream", systemImage: "play") {
 					vm.openedSingleStream.toggle()
 				}.keyboardShortcut("O", modifiers: [.command])
+				
+				#if os(macOS)
+				Divider()
+				
+				Button("New Window") {
+					openWindow(id: "MAIN_WINDOW")
+				}.keyboardShortcut("N", modifiers: [.command, .shift])
+				#endif
 			}
 			
 			#if os(macOS)
@@ -48,37 +60,7 @@ struct IPTVApp: App {
 					openWindow(id: "ABOUT_WINDOW")
 				}.keyboardShortcut("A", modifiers: [.command])
 			}
-			
-			CommandGroup(replacing: .appVisibility) {
-				Button("New Window") {
-					openWindow(id: "MAIN_WINDOW")
-				}.keyboardShortcut("N", modifiers: [.command, .option])
-			}
 			#endif
-			
-			CommandGroup(replacing: .appSettings) {
-				Menu("Settings", systemImage: "gear") {
-					Button("Show Tips Again") {
-						isFirstLaunch.toggle()
-					}.keyboardShortcut("T", modifiers: [.command])
-					
-					Picker("Viewing Mode", systemImage: "list.triangle", selection: $viewingMode) {
-						ForEach(ViewingMode.allCases) { mode in
-							mode.label.tag(mode)
-						}
-					}
-					
-					Button("Reset Favourites", systemImage: "trash", role: .destructive) {
-						isRemovingAll.toggle()
-					}.keyboardShortcut(.delete, modifiers: .all)
-					
-					#if os(macOS)
-					Button("Open Legacy Settings", systemImage: "gear") {
-						openWindow(id: "SETTINGS_WINDOW")
-					}
-					#endif
-				}
-			}
 		}
 	}
 	#endif
@@ -88,24 +70,26 @@ struct IPTVApp: App {
 			ContentView(isRemovingAll: $isRemovingAll)
 		}
 		.modelContainer(SwiftDataCoordinator.shared.persistenceContainer)
-		.onChange(of: selectedPlaylist) { old, new in
-			guard old != new else { return }
-			
-			#if DEBUG
-			print("Reloading: new = \(new), old = \(old)")
-			#endif
-			
-			EPGFetchingModel.shared = EPGFetchingModel()
-		}
+		.environment(epgFetchingModel)
+		.environment(vm)
+		.onChange(of: vm.selectedPlaylist) { epgFetchingModel = EPGFetchingModel(epg: vm.selectedPlaylist?.epgLink, viewModel: vm) }
 		#if !os(tvOS)
 		.commands { commands }
 		#endif
 		
 		#if os(macOS)
-		WindowGroup(id: "ABOUT_WINDOW") { AboutView() }
+		Window("About IPTV App", id: "ABOUT_WINDOW") { AboutView() }
 		
-		WindowGroup("Settings", id: "SETTINGS_WINDOW") { SettingsView(isRemovingAll: $isRemovingAll) }
+		Settings { SettingsView(isRemovingAll: $isRemovingAll) }.windowStyle(.hiddenTitleBar)
 		#endif
+	}
+	
+	init() {
+		do {
+			try Tips.configure()
+		} catch {
+			dump(error)
+		}
 	}
 }
 

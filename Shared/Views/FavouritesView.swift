@@ -67,8 +67,8 @@ struct FavouritesView: View {
 	}
 }
 
-private extension FavouritesView {
-	var placement: ToolbarItemPlacement {
+extension FavouritesView {
+	private var placement: ToolbarItemPlacement {
 		#if os(macOS)
 		return .primaryAction
 		#else
@@ -76,20 +76,20 @@ private extension FavouritesView {
 		#endif
 	}
 	
-	var searchResults: [Media] {
+	private var searchResults: [Media] {
 		guard !searchQuery.isEmpty else { return favourites }
 		return favourites.filter { media in
 			media.title.localizedStandardContains(searchQuery)
 		}
 	}
 	
-	var groups: [String] {
+	private var groups: [String] {
 		var allGroups = Set(searchResults.compactMap { $0.attributes["group-title"] })
 		allGroups.insert("All")
 		return allGroups.sorted()
 	}
 	
-	var filteredMediasForGroup: [Media] {
+	private var filteredMediasForGroup: [Media] {
 		guard selectedGroup == "All" else { return searchResults.filter { $0.attributes["group-title"] == selectedGroup } }
 		return searchResults
 	}

@@ -13,11 +13,13 @@ struct SingleStreamView: View {
 	
 	@State private var mediaURL: String = ""
 	
-	@State private var vm = ViewModel.shared
+	@Environment(ViewModel.self) private var vm
 	
 	@State private var isPresented: Bool = false
 	
 	var body: some View {
+		@Bindable var vm = vm
+		
 		VStack {
 			Text("Open Single Media")
 				.font(.largeTitle)
@@ -67,7 +69,7 @@ struct SingleStreamView: View {
 	
 	private var playerView: some View {
 		VStack {
-			PlayerViewControllerRepresentable(name: String(localized: "Single Stream"), url: mediaURL, group: String(localized: "Single Stream"), playlistName: String(localized: "Single Stream"), currentProgram: .constant(nil))
+			PlayerViewControllerRepresentable(name: String(localized: "Single Stream"), url: mediaURL, group: String(localized: "Single Stream"), playlistName: String(localized: "Single Stream"))
 				.aspectRatio(16/9, contentMode: .fit)
 				.cornerRadius(10)
 				.padding()

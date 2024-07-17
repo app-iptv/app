@@ -7,12 +7,17 @@
 
 import SwiftUI
 import XMLTV
+import TipKit
 
 struct MediaItemView: View {
+	@Environment(EPGFetchingModel.self) private var epgFetchingModel
+	@Environment(ViewModel.self) private var vm
 	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
 	
 	private let media: Media
 	private let playlistName: String
+	
+	private var favouritesTip = FavouritesTip()
 	
 	#if !os(tvOS)
 	private let epgLink: String
@@ -47,20 +52,20 @@ struct MediaItemView: View {
 			MediaCellView(media: media)
 		}
 		.task {
-			let channels = EPGFetchingModel.shared.xmlTV?.getChannels()
+			let channels = epgFetchingModel.xmlTV?.getChannels()
 			let channel = channels?.first { channel in
 				channel.id == media.attributes["tvg-id"]
 			}
 			
 			guard let channel else { return }
 			
-			let programs = EPGFetchingModel.shared.xmlTV?.getPrograms(channel: channel)
-			let filtered = programs?.filter(EPGFetchingModel.shared.isNowBetweenDates)
+			let programs = epgFetchingModel.xmlTV?.getPrograms(channel: channel)
+			let filtered = programs?.filter { $0.isCurrent() }
 			
 			currentProgram = filtered?.first
 		}
 		.fullScreenCover(isPresented: $isViewing) {
-			PlayerViewControllerRepresentable(media: media, playlistName: playlistName, currentProgram: $currentProgram)
+			PlayerViewControllerRepresentable(media: media, playlistName: playlistName)
 				.ignoresSafeArea()
 		}
 		#else
@@ -70,6 +75,7 @@ struct MediaItemView: View {
 			MediaCellView(media: media)
 		}
 		.badge(medias.firstIndex(of: media)!+1)
+		.popoverTip(favouritesTip)
 		#endif
 	}
 }

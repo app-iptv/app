@@ -1,5 +1,5 @@
 {
-  "originHash" : "1b57124690f74deae3b33d34f11527ba011842eff31401b7f22c109cdd2dc974",
+  "originHash" : "9b180845d00d1d909548513d04598c636c50b21fcbf19cee447411aa9a2c7126",
   "pins" : [
     {
       "identity" : "bitbytedata",
@@ -11,12 +11,30 @@
       }
     },
     {
+      "identity" : "lightxmlparser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pedrodsac/LightXMLParser.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "52d8fa2ad6f2924b86b2896b2e2c1a025685e645"
+      }
+    },
+    {
+      "identity" : "m3ukit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pedrodsac/M3UKit.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "4e06ae972d01afd63ba986012d358345a5a3e56e"
+      }
+    },
+    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "f6afa0132961d593f07970d84e2d8b588c29ea04",
-        "version" : "5.19.1"
+        "revision" : "be0bcd7823ce56629948491f2eaeaa19979514f7",
+        "version" : "5.19.4"
       }
     },
     {
@@ -24,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
       "state" : {
-        "revision" : "22423b017b99ab8ac44e29e6372f571f782af6e4",
-        "version" : "3.0.2"
+        "revision" : "b7af5e6bd9c2987e41730400d1baad13d74a141a",
+        "version" : "3.0.4"
       }
     },
     {
@@ -44,6 +62,15 @@
       "state" : {
         "revision" : "efd1e944c399de24c10d9f4947301e1c105dbb9b",
         "version" : "2.0.3"
+      }
+    },
+    {
+      "identity" : "xmltv",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pedrodsac/XMLTV.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "fba26ad92c59278d56ac821e5ec9f6cbffc38e33"
       }
     }
   ],

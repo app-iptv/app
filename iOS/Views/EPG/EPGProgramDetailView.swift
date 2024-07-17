@@ -51,7 +51,9 @@ struct EPGProgramDetailView: View {
 			#endif
 		}
     }
-	
+}
+
+extension EPGProgramDetailView {
 	private func localizedDateString(for date: Date) -> String {
 		let calendar = Calendar.current
 		let today = calendar.startOfDay(for: Date())
@@ -59,7 +61,7 @@ struct EPGProgramDetailView: View {
 		let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
 		
 		if calendar.isDate(date, inSameDayAs: today) {
-			return String(localized: "Today")
+			return date.formatted(.relative(presentation: .named))
 		} else if calendar.isDate(date, inSameDayAs: yesterday) {
 			return String(localized: "Yesterday")
 		} else if calendar.isDate(date, inSameDayAs: tomorrow) {

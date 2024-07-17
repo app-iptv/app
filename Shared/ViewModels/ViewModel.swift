@@ -33,6 +33,4 @@ class ViewModel {
 	
 	var isLoadingEPG: 		Bool = true
 	var epgModelDidFail: 	Bool = false
-	
-	static var shared = ViewModel()
 }

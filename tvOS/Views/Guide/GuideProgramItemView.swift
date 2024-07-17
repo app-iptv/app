@@ -21,7 +21,7 @@ struct GuideProgramItemView: View {
 				Text(program.title ?? "Untitled")
 					.font(.subheadline)
 					.bold()
-					.foregroundStyle(EPGFetchingModel.shared.isNowBetweenDates(program: program) ? .red : .primary)
+					.foregroundStyle(program.isCurrent() ? .red : .primary)
 					.multilineTextAlignment(.leading)
 				if let episode = program.episode {
 					Text(episode)
