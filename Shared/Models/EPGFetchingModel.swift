@@ -19,17 +19,17 @@ class EPGFetchingModel {
 	init(epg: String? = nil, viewModel vm: ViewModel? = nil) {
 		guard let epg, let vm else { return }
 		
-		vm.isLoadingEPG = true
-		
 		Task {
+			vm.isLoadingEPG = true
+			
 			do {
 				xmlTV = try await getPrograms(with: epg)
 			} catch {
 				dump(error)
 			}
+			
+			vm.isLoadingEPG = false
 		}
-		
-		vm.isLoadingEPG = false
 	}
 	
 	func getData(from link: String) async throws -> (Data, URLResponse) {
@@ -54,38 +54,18 @@ class EPGFetchingModel {
 		
 		switch fileType {
 			case "xz":
-				#if DEBUG
-				print("It's an XZ file.")
-				#endif
 				extractedData = try XZArchive.unarchive(archive: data)
 			case "gz":
-				#if DEBUG
-				print("It's a GZip file.")
-				#endif
 				extractedData = try GzipArchive.unarchive(archive: data)
 			case "zlib":
-				#if DEBUG
-				print("It's an Zlib file.")
-				#endif
 				extractedData = try ZlibArchive.unarchive(archive: data)
 			case "xml":
-				#if DEBUG
-				print("It's an XML file.")
-				#endif
 				extractedData = data
 			default:
-				#if DEBUG
-				print("Invalid extension")
-				#endif
-			
 				throw DataFetchingError.invalidExtension
 		}
 		
 		let xmlTV = try XMLTV(data: extractedData)
-		
-		#if DEBUG
-		print("XMLTV created: SUCCESS")
-		#endif
 		
 		return xmlTV
 	}

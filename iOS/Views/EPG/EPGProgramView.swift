@@ -31,11 +31,11 @@ struct EPGProgramView: View {
 	}
 	
 	var body: some View {
-		VStack(alignment: .leading, spacing: 0) {
-			VStack(alignment: .leading) {
-				if let start = program.start, let stop = program.stop {
+        VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading) {
+                if let start = program.start {
 					HStack {
-						Text(start.formatted(date: .omitted, time: .shortened) + " - " + stop.formatted(date: .omitted, time: .shortened))
+                        Text(start.formatted(date: .omitted, time: .shortened) + " - " + (program.stop?.formatted(date: .omitted, time: .shortened) ?? "Undefined"))
 							.font(.caption)
 						
 						Spacer()

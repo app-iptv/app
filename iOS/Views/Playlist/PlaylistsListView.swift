@@ -35,7 +35,9 @@ struct PlaylistsListView: View {
 				List(modelPlaylists, selection: $vm.selectedPlaylist) { playlist in
 					PlaylistCellView(playlist)
 						.tag(playlist)
+                        #if !os(macOS)
 						.badge(playlist.medias.count)
+                        #endif
 				}
 			}
 		}

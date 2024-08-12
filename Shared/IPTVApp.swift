@@ -9,7 +9,6 @@ import SwiftUI
 import M3UKit
 import SwiftData
 import AVKit
-import TipKit
 
 @main
 struct IPTVApp: App {
@@ -26,7 +25,6 @@ struct IPTVApp: App {
 	
 	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = true
 	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
-	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
 	
 	@State private var vm = ViewModel()
@@ -78,18 +76,21 @@ struct IPTVApp: App {
 		#endif
 		
 		#if os(macOS)
-		Window("About IPTV App", id: "ABOUT_WINDOW") { AboutView() }
-		
-		Settings { SettingsView(isRemovingAll: $isRemovingAll) }.windowStyle(.hiddenTitleBar)
-		#endif
-	}
-	
-	init() {
-		do {
-			try Tips.configure()
-		} catch {
-			dump(error)
+		Window("About IPTV App", id: "ABOUT_WINDOW") {
+			AboutView()
+				.padding()
 		}
+		.windowResizability(.contentSize)
+		.windowStyle(.hiddenTitleBar)
+		
+		Settings {
+			SettingsView(isRemovingAll: $isRemovingAll)
+				.frame(width: 500, height: 300)
+		}
+		.environment(epgFetchingModel)
+		.environment(vm)
+		.windowStyle(.hiddenTitleBar)
+		#endif
 	}
 }
 

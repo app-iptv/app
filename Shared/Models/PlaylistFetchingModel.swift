@@ -35,9 +35,9 @@ class PlaylistFetchingModel {
 	}
 	
 	func cancel() {
-		vm.tempPlaylist  		= nil
+		vm.tempPlaylist  	= nil
 		vm.tempPlaylistURL 	= ""
-		vm.tempPlaylistName 	= ""
+		vm.tempPlaylistName = ""
 		vm.tempPlaylistEPG 	= ""
 	}
 	
