@@ -12,7 +12,6 @@ import SwiftUI
 import SwiftData
 
 @Observable
-@MainActor
 class EPGFetchingModel {
 	
 	var xmlTV: XMLTV? = nil
