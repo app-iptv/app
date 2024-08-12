@@ -9,6 +9,7 @@ import SwiftUI
 import M3UKit
 import Foundation
 import XMLTV
+import SDWebImageSwiftUI
 
 struct MediaListView: View {
 	
@@ -19,7 +20,6 @@ struct MediaListView: View {
 	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
 	
 	@State private var searchQuery: String = ""
-	@State private var groupsTip = GroupsTip()
 	
 	private let medias: [Media]
 	private let playlistName: String
@@ -41,16 +41,7 @@ struct MediaListView: View {
 				if filteredMediasForGroup.isEmpty {
 					ContentUnavailableView.search(text: searchQuery)
 				} else {
-					List(filteredMediasForGroup) { media in
-						#if os(tvOS)
-						MediaItemView(media: media, playlistName: playlistName)
-						#else
-						MediaItemView(media: media, playlistName: playlistName, epgLink: epgLink, medias: medias)
-							
-						#endif
-					}
-					.listStyle(.plain)
-					.id(UUID())
+					listView
 				}
 			}
 			.searchable(text: $searchQuery, prompt: "Search")
@@ -71,12 +62,13 @@ struct MediaListView: View {
 					Picker("Select Group", selection: $vm.selectedGroup) {
 						ForEach(groups, id: \.self) { group in
 							Label(LocalizedStringKey(group), systemImage: group == "All" ? "tray.2" : "tray")
+								#if os(macOS)
+								.labelStyle(.titleAndIcon)
+								#endif
 								.tag(group)
 						}
-						.onAppear { groupsTip.invalidate(reason: .actionPerformed) }
 					}
 					.pickerStyle(.menu)
-					.popoverTip(groupsTip)
 				}
 			}
 			#endif
@@ -93,11 +85,45 @@ extension MediaListView {
 		#endif
 	}
 	
+//	private var lazyScrollView: some View {
+//		ScrollView {
+//			LazyVStack {
+//				ForEach(filteredMediasForGroup) { media in
+//					VStack {
+//						MediaItemView(media: media, playlistName: playlistName, epgLink: epgLink, medias: medias)
+//							.buttonStyle(.borderless)
+//
+//						Divider()
+//					}
+//				}
+//			}
+//		}
+//	}
+	
+	private var listView: some View {
+		List(filteredMediasForGroup) { media in
+			#if os(tvOS)
+			MediaItemView(media: media, playlistName: playlistName)
+			#else
+			NavigationLink(value: media) {
+				MediaCellView(media: media)
+			}
+			.badge(medias.firstIndex(of: media)!+1)
+			#endif
+		}
+		.navigationDestination(for: Media.self) { media in
+			MediaDetailView(playlistName: playlistName, media: media, epgLink: epgLink)
+		}
+		.listStyle(.plain)
+	}
+	
 	private var searchResults: [Media] {
 		guard !searchQuery.isEmpty else { return medias }
-		return medias.filter { media in
+		let results = medias.filter { media in
 			media.title.localizedStandardContains(searchQuery)
 		}
+		
+		return results
 	}
 	
 	private var groups: [String] {

@@ -84,6 +84,7 @@
       }
     },
     "Add to Favourites" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -387,7 +388,15 @@
       }
     },
     "Group Picker" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionador de Grupos"
+          }
+        }
+      }
     },
     "Guide" : {
       "localizations" : {
@@ -502,6 +511,7 @@
       }
     },
     "Long-press or swipe to the left to add a media to favourites." : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -743,7 +753,15 @@
       }
     },
     "Select the desired group using the group picker to only show relevant medias." : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleciona o grupo pretendido utilizando o selecionador de grupos para mostrar apenas as mídias relevantes."
+          }
+        }
+      }
     },
     "Settings" : {
       "localizations" : {
@@ -756,6 +774,7 @@
       }
     },
     "Show Tips Again" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {

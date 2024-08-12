@@ -11,8 +11,6 @@ import SwiftData
 struct GuideView: View {
 	@Query private var modelPlaylists: [Playlist]
 	
-	@State private var vm = ViewModel.shared
-	
 	var body: some View {
 		NavigationStack {
 			List(modelPlaylists) { playlist in

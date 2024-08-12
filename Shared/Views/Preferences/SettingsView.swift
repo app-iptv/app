@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import TipKit
 
 struct SettingsView: View {
 	@Environment(ViewModel.self) private var vm
@@ -29,10 +28,6 @@ struct SettingsView: View {
 			Form {
 				Section {
 					Toggle("Show Wecome Screen Again", systemImage: "rectangle.inset.filled", isOn: $isFirstLaunch)
-					
-					Button("Show Tips Again", systemImage: "lightbulb") {
-						try? Tips.resetDatastore()
-					}
 					
 					Picker("Viewing Mode", systemImage: "list.triangle", selection: $viewingMode) {
 						ForEach(ViewingMode.allCases) { mode in

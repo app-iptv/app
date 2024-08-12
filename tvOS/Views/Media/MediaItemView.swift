@@ -15,17 +15,34 @@ struct MediaItemView: View {
 	
 	private let media: Media
 	private let playlistName: String
-    
+	
+	#if !os(tvOS)
+	private let epgLink: String
+	private let medias: [Media]
+	
+	@State private var programs: [TVProgram]? = nil
+	
+	internal init(media: Media, playlistName: String, epgLink: String, medias: [Media], programs: [TVProgram]? = nil) {
+		self.media = media
+		self.playlistName = playlistName
+		self.epgLink = epgLink
+		self.medias = medias
+		self.programs = programs
+		self.isViewing = isViewing
+	}
+	#else
 	@State var currentProgram: TVProgram? = nil
 	
 	internal init(media: Media, playlistName: String) {
 		self.media = media
 		self.playlistName = playlistName
 	}
+	#endif
 	
 	@State private var isViewing: Bool = false
 	
 	var body: some View {
+		#if os(tvOS)
 		Button {
 			isViewing.toggle()
 		} label: {
@@ -48,5 +65,8 @@ struct MediaItemView: View {
 			PlayerViewControllerRepresentable(media: media, playlistName: playlistName)
 				.ignoresSafeArea()
 		}
+		#else
+        MediaCellView(media: media)
+		#endif
 	}
 }

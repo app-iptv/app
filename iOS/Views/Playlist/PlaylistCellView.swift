@@ -22,7 +22,6 @@ struct PlaylistCellView: View {
 	
 	var body: some View {
 		NavigationLink(playlist.name, value: playlist)
-			.onTapGesture { vm.selectedPlaylist = playlist }
 			.contextMenu { deleteButton; editButton }
 			.swipeActions(edge: .trailing) { deleteButton }
 			.swipeActions(edge: .leading) { editButton }
