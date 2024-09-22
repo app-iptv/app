@@ -5,17 +5,17 @@
 //  Created by Pedro Cordeiro on 03/05/2024.
 //
 
+import SDWebImageSwiftUI
 import SwiftUI
 import XMLTV
-import SDWebImageSwiftUI
 
 struct EPGProgramDetailView: View {
 	private let program: TVProgram
-	
+
 	init(for program: TVProgram) {
 		self.program = program
 	}
-	
+
 	var body: some View {
 		ScrollView {
 			VStack(alignment: .leading) {
@@ -24,22 +24,26 @@ struct EPGProgramDetailView: View {
 						image
 							.resizable()
 							.aspectRatio(contentMode: .fit)
-					} placeholder: { Image(systemName: "photo.tv").imageScale(.large) }
-						.frame(width: 150, height: 150)
-					
+					} placeholder: {
+						Image(systemName: "photo.tv").imageScale(.large)
+					}
+					.frame(width: 150, height: 150)
+
 					VStack(alignment: .leading, spacing: 5) {
 						Text(LocalizedStringKey(program.title ?? "Untitled"))
 							.font(.title2)
 							.fontWeight(.semibold)
 						if let start = program.start, let stop = program.stop {
-							Text("\(localizedDateString(for: start)), \(start.formatted(date: .omitted, time: .shortened)) - \(stop.formatted(date: .omitted, time: .shortened))")
-								.font(.caption)
+							Text(
+								"\(localizedDateString(for: start)), \(start.formatted(date: .omitted, time: .shortened)) - \(stop.formatted(date: .omitted, time: .shortened))"
+							)
+							.font(.caption)
 						}
 					}
-					
+
 					Spacer()
 				}
-				
+
 				if let description = program.description {
 					Text(description)
 				}
@@ -47,10 +51,10 @@ struct EPGProgramDetailView: View {
 			.padding(.horizontal)
 			.navigationTitle(LocalizedStringKey(program.title ?? "Untitled"))
 			#if os(macOS)
-			.padding(.top)
+				.padding(.top)
 			#endif
 		}
-    }
+	}
 }
 
 extension EPGProgramDetailView {
@@ -59,7 +63,7 @@ extension EPGProgramDetailView {
 		let today = calendar.startOfDay(for: Date())
 		let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
 		let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
-		
+
 		if calendar.isDate(date, inSameDayAs: today) {
 			return date.formatted(.relative(presentation: .named))
 		} else if calendar.isDate(date, inSameDayAs: yesterday) {

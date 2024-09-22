@@ -11,13 +11,13 @@ struct MediaGroupView: View {
 	private var medias: [Media]?
 	private var group: String
 	private var isTV: Bool
-	
+
 	internal init(medias: [Media]? = nil, group: String, isTV: Bool) {
 		self.medias = medias
 		self.group = group
 		self.isTV = isTV
 	}
-	
+
 	var body: some View {
 		if !groupedMedias.isEmpty {
 			ScrollView(.horizontal) {
@@ -33,5 +33,8 @@ struct MediaGroupView: View {
 }
 
 extension MediaGroupView {
-	private var groupedMedias: [Media] { medias?.filter { ($0.attributes["group-title"] ?? "Untitled") == group } ?? [] }
+	private var groupedMedias: [Media] {
+		medias?.filter { ($0.attributes["group-title"] ?? "Untitled") == group }
+			?? []
+	}
 }

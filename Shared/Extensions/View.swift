@@ -9,7 +9,8 @@ import SwiftUI
 
 extension View {
 	func tabForView(for tab: Tab) -> some View {
-		return self
+		return
+			self
 			.tag(tab)
 			.tabItem { Label(tab.name, systemImage: tab.nonFillImage) }
 	}

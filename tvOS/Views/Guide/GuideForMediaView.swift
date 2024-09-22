@@ -5,29 +5,29 @@
 //  Created by Pedro Cordeiro on 19/05/2024.
 //
 
-import SwiftUI
-import SwiftData
-import XMLTV
 import SDWebImageSwiftUI
+import SwiftData
+import SwiftUI
+import XMLTV
 
 struct GuideForMediaView: View {
 	@Environment(ViewModel.self) private var vm
 	@Environment(EPGFetchingModel.self) private var epgFetchingModel
-	
+
 	@Query private var modelPlaylists: [Playlist]
-	
+
 	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
-	
+
 	private var media: Media
-	
+
 	@State private var isWatching: Bool = false
 	@State private var programs: [TVProgram]? = nil
 	@State private var currentProgram: TVProgram? = nil
-	
+
 	internal init(media: Media) {
 		self.media = media
 	}
-	
+
 	var body: some View {
 		HStack(spacing: 240) {
 			VStack(alignment: .center, spacing: 40) {
@@ -38,10 +38,10 @@ struct GuideForMediaView: View {
 							.fontWeight(.semibold)
 						Text(media.attributes["group-title"] ?? "Untitled")
 					}
-					
+
 					Spacer()
 				}
-				
+
 				if epgFetchingModel.xmlTV == nil {
 					VStack(alignment: .center) {
 						Spacer()
@@ -63,7 +63,13 @@ struct GuideForMediaView: View {
 									}
 								}
 							} else if let programs, programs.isEmpty {
-								ContentUnavailableView("TV Guide is empty", systemImage: "tv.slash", description: Text("The EPG link provided does not include any program for this channel."))
+								ContentUnavailableView(
+									"TV Guide is empty",
+									systemImage: "tv.slash",
+									description: Text(
+										"The EPG link provided does not include any program for this channel."
+									)
+								)
 							}
 						}
 					}
@@ -71,7 +77,8 @@ struct GuideForMediaView: View {
 			}
 			.frame(width: 800)
 			VStack(spacing: 60) {
-				WebImage(url: URL(string: media.attributes["tvg-logo"] ?? "")) { image in
+				WebImage(url: URL(string: media.attributes["tvg-logo"] ?? "")) {
+					image in
 					image
 						.resizable()
 						.scaledToFit()
@@ -83,16 +90,28 @@ struct GuideForMediaView: View {
 				.frame(width: 640, height: 640)
 				.background(.ultraThinMaterial)
 				.clipShape(.rect(cornerRadius: 10))
-				
+
 				Button("Watch", systemImage: "play") { isWatching.toggle() }
 					.labelStyle(.iconOnly)
 			}
 			.frame(width: 640)
 		}
-		.task { await refresh(); fetchCurrentProgram() }
-		.onChange(of: epgFetchingModel.xmlTV) { Task { await refresh(); fetchCurrentProgram() } }
+		.task {
+			await refresh()
+			fetchCurrentProgram()
+		}
+		.onChange(of: epgFetchingModel.xmlTV) {
+			Task {
+				await refresh()
+				fetchCurrentProgram()
+			}
+		}
 		.fullScreenCover(isPresented: $isWatching) {
-			PlayerViewControllerRepresentable(media: media, playlistName: modelPlaylists.safelyAccessElement(at: selectedPlaylist)?.name ?? "Untitled").ignoresSafeArea()
+			PlayerViewControllerRepresentable(
+				media: media,
+				playlistName: modelPlaylists.safelyAccessElement(
+					at: selectedPlaylist)?.name ?? "Untitled"
+			).ignoresSafeArea()
 		}
 	}
 }
@@ -101,13 +120,15 @@ extension GuideForMediaView {
 	private func refresh() async {
 		DispatchQueue.main.async {
 			if let xmlTV = epgFetchingModel.xmlTV,
-			   let channel = xmlTV.getChannels().first(where: { $0.id == media.attributes["tvg-id"] })
+				let channel = xmlTV.getChannels().first(where: {
+					$0.id == media.attributes["tvg-id"]
+				})
 			{
 				programs = xmlTV.getPrograms(channel: channel)
 			}
 		}
 	}
-	
+
 	private func fetchCurrentProgram() {
 		currentProgram = programs?.first { $0.isCurrent() }
 	}

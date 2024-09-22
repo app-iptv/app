@@ -5,81 +5,66 @@
 //  Created by Pedro Cordeiro on 15/02/2024.
 //
 
-import SwiftUI
 import M3UKit
+import SwiftUI
 
 struct AddPlaylistView: View {
-	
+
 	@Environment(\.modelContext) private var context
 	@Environment(\.dismiss) private var dismiss
 	@Environment(ViewModel.self) private var vm
-	
-	private var networkModel: PlaylistFetchingModel { PlaylistFetchingModel(vm: vm) }
-	
+
+	private var networkModel: PlaylistFetchingModel {
+		PlaylistFetchingModel(vm: vm)
+	}
+
 	var body: some View {
-		@Bindable var vm = vm
-		
 		VStack {
 			Text("Add Playlist")
 				.font(.largeTitle)
 				.bold()
-				.padding()			
+				.padding()
 			VStack(spacing: 4) {
-				TextField("Playlist Name", text: $vm.tempPlaylistName)
-					.textFieldStyle(.plain)
-					.padding(10)
-				#if !os(tvOS)
-					.modifier(ElementViewModifier(for: .top))
-				#endif
-				TextField("Playlist URL", text: $vm.tempPlaylistURL)
-					.textFieldStyle(.plain)
-					#if os(iOS)
-					.textInputAutocapitalization(.never)
-					#endif
-					.textContentType(.URL)
-					.autocorrectionDisabled()
-					.padding(10)
-				#if !os(tvOS)
-					.modifier(ElementViewModifier(for: .middle))
-				#endif
-				TextField("Playlist EPG (optional)", text: $vm.tempPlaylistEPG)
-					.textFieldStyle(.plain)
-					#if os(iOS)
-					.textInputAutocapitalization(.never)
-					#endif
-					.textContentType(.URL)
-					.autocorrectionDisabled()
-					.padding(10)
-				#if !os(tvOS)
-					.modifier(ElementViewModifier(for: .bottom))
-				#endif
+				TextField(
+					"Playlist Name",
+					text: Bindable(vm).tempPlaylistName
+				)
+				.textFieldStyle(.roundedBorder)
+				TextField(
+					"Playlist URL",
+					text: Bindable(vm).tempPlaylistURL
+				)
+				.textFieldStyle(.roundedBorder)
+				.textContentType(.URL)
+				.autocorrectionDisabled()
+				TextField(
+					"Playlist EPG (optional)",
+					text: Bindable(vm).tempPlaylistEPG
+				)
+				.textFieldStyle(.roundedBorder)
+				.textContentType(.URL)
+				.autocorrectionDisabled()
 			}
-			
+
 			HStack(spacing: 4) {
 				Button("Add", systemImage: "plus") { addPlaylist() }
-					.disabled(vm.tempPlaylistName.isEmpty || vm.tempPlaylistURL.isEmpty)
-					.buttonStyle(.plain)
-				#if os(tvOS)
-					.padding(15)
-				#else
-					.padding(10)
-				#endif
-					.modifier(ElementViewModifier(for: .left))
+					.disabled(
+						vm.tempPlaylistName.isEmpty
+							|| vm.tempPlaylistURL.isEmpty
+					)
+					.buttonStyle(.borderedProminent)
 					.foregroundStyle(Color.accentColor)
-				Button("Cancel") { dismiss(); networkModel.cancel() }
-					.buttonStyle(.plain)
-				#if os(tvOS)
-					.padding(15)
-				#else
-					.padding(10)
-				#endif
-					.modifier(ElementViewModifier(for: .right))
-					.foregroundStyle(.red)
+				Button("Cancel") {
+					dismiss()
+					networkModel.cancel()
+				}
+				.buttonStyle(.bordered)
+				.foregroundStyle(.red)
 			}
 			.padding()
 		}
 		.padding()
-		.sheet(isPresented: $vm.isParsing) {
+		.sheet(isPresented: Bindable(vm).isParsing) {
 			ProgressView("Adding playlist...").padding()
 		}
 	}
@@ -87,6 +72,7 @@ struct AddPlaylistView: View {
 
 #Preview {
 	AddPlaylistView()
+		.environment(ViewModel())
 }
 
 extension AddPlaylistView {
@@ -95,12 +81,17 @@ extension AddPlaylistView {
 			vm.isParsing.toggle()
 			await networkModel.parsePlaylist()
 			vm.isParsing.toggle()
-			
+
 			if !vm.parserDidFail {
-				context.insert(Playlist(vm.tempPlaylistName, medias: vm.tempPlaylist?.channels ?? [], m3uLink: vm.tempPlaylistURL, epgLink: vm.tempPlaylistEPG))
+				context.insert(
+					Playlist(
+						vm.tempPlaylistName,
+						medias: vm.tempPlaylist?.channels ?? [],
+						m3uLink: vm.tempPlaylistURL, epgLink: vm.tempPlaylistEPG
+					))
 				try? context.save()
 			}
-			
+
 			dismiss()
 			networkModel.cancel()
 		}

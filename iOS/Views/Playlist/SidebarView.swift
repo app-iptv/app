@@ -1,25 +1,23 @@
 //
-//  PlaylistsListView.swift
+//  SidebarView.swift
 //  IPTV
 //
 //  Created by Pedro Cordeiro on 11/02/2024.
 //
 
-import SwiftUI
-import SwiftData
 import M3UKit
+import SwiftData
+import SwiftUI
 
-struct PlaylistsListView: View {
-	
+struct SidebarView: View {
+
 	@Environment(\.horizontalSizeClass) private var sizeClass
 	@Environment(\.modelContext) private var context
 	@Environment(ViewModel.self) private var vm
-	
+
 	@Query private var modelPlaylists: [Playlist]
-	
+
 	var body: some View {
-		@Bindable var vm = vm
-		
 		VStack {
 			if modelPlaylists.isEmpty {
 				ContentUnavailableView {
@@ -32,12 +30,13 @@ struct PlaylistsListView: View {
 					}
 				}
 			} else {
-				List(modelPlaylists, selection: $vm.selectedPlaylist) { playlist in
+				List(modelPlaylists, selection: Bindable(vm).selectedPlaylist) {
+					playlist in
 					PlaylistCellView(playlist)
 						.tag(playlist)
-                        #if !os(macOS)
-						.badge(playlist.medias.count)
-                        #endif
+						#if !os(macOS)
+							.badge(playlist.medias.count)
+						#endif
 				}
 			}
 		}
@@ -45,29 +44,34 @@ struct PlaylistsListView: View {
 		.navigationSplitViewColumnWidth(min: 216, ideal: 216)
 		.toolbar(id: "playlistsToolbar") {
 			ToolbarItem(id: "addPlaylist", placement: placement1) {
-				Button("Add Playlist", systemImage: "plus") { vm.isPresented.toggle() }
+				Button("Add Playlist", systemImage: "plus") {
+					vm.isPresented.toggle()
+				}
 			}
+
 			ToolbarItem(id: "openSingleStream", placement: placement2) {
-				Button("Open Stream", systemImage: "play") { vm.openedSingleStream.toggle() }
+				Button("Open Stream", systemImage: "play") {
+					vm.openedSingleStream.toggle()
+				}
 			}
 		}
 	}
 }
 
-extension PlaylistsListView {
+extension SidebarView {
 	private var placement1: ToolbarItemPlacement {
 		#if os(macOS)
-		.automatic
+			.automatic
 		#else
-		.topBarTrailing
+			.topBarTrailing
 		#endif
 	}
-	
+
 	private var placement2: ToolbarItemPlacement {
 		#if os(macOS)
-		.automatic
+			.automatic
 		#else
-		.topBarLeading
+			.topBarLeading
 		#endif
 	}
 }

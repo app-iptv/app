@@ -84,7 +84,6 @@
       }
     },
     "Add to Favourites" : {
-      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -105,7 +104,6 @@
       }
     },
     "All" : {
-      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -387,6 +385,9 @@
         }
       }
     },
+    "Grid" : {
+
+    },
     "Group Picker" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -499,6 +500,9 @@
           }
         }
       }
+    },
+    "List" : {
+
     },
     "Loading EPG..." : {
       "localizations" : {
@@ -721,6 +725,9 @@
           }
         }
       }
+    },
+    "Reset Tips" : {
+
     },
     "Search" : {
       "localizations" : {
@@ -1043,6 +1050,9 @@
           }
         }
       }
+    },
+    "You can add channels to your favourites by dragging the channel to the left to easily access it later." : {
+
     },
     "You can show this screen again by clicking \"Show Tips Again\" in \"Settings\" in \"IPTV\" in the Menu Bar, or by clicking CMD + T" : {
       "localizations" : {
