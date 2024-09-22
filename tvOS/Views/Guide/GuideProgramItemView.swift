@@ -10,11 +10,11 @@ import XMLTV
 
 struct GuideProgramItemView: View {
 	private var program: TVProgram
-	
+
 	internal init(program: TVProgram) {
 		self.program = program
 	}
-	
+
 	var body: some View {
 		HStack {
 			VStack(alignment: .leading, spacing: 4) {
@@ -32,9 +32,11 @@ struct GuideProgramItemView: View {
 			}
 			Spacer()
 			if let start = program.start, let stop = program.stop {
-				Text("\(start.formatted(date: .abbreviated, time: .shortened)) - \(stop.formatted(date: .omitted, time: .shortened))")
-					.font(.caption)
-					.multilineTextAlignment(.trailing)
+				Text(
+					"\(start.formatted(date: .abbreviated, time: .shortened)) - \(stop.formatted(date: .omitted, time: .shortened))"
+				)
+				.font(.caption)
+				.multilineTextAlignment(.trailing)
 			}
 		}
 		.padding()

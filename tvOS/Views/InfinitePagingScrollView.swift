@@ -11,12 +11,12 @@ struct InfinitePagingScrollView<Content: View, T: Identifiable>: View {
 	@State private var currentPage = 0
 	private let items: [T]
 	private let content: (T) -> Content
-	
+
 	init(items: [T], @ViewBuilder content: @escaping (T) -> Content) {
 		self.items = items
 		self.content = content
 	}
-	
+
 	var body: some View {
 		GeometryReader { geometry in
 			SwiftUI.TabView(selection: $currentPage) {

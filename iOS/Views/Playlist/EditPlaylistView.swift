@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct EditPlaylistView: View {
-	
+
 	@Environment(\.dismiss) private var dismiss
-	
+
 	@Bindable private var playlist: Playlist
-	
+
 	@State private var newName: String = ""
 	@State private var newEPG: String = ""
-	
+
 	init(_ playlist: Playlist) { self.playlist = playlist }
-	
+
 	var body: some View {
 		VStack {
 			Text("Edit \"\(playlist.name)\"")
 				.font(.largeTitle)
 				.bold()
-			
+
 			HStack(spacing: 4) {
 				VStack(spacing: 4) {
 					TextField("Playlist Name", text: $newName)
@@ -34,7 +34,7 @@ struct EditPlaylistView: View {
 					TextField("Playlist Name", text: $newEPG)
 						.textFieldStyle(.plain)
 						#if os(iOS)
-						.textInputAutocapitalization(.never)
+							.textInputAutocapitalization(.never)
 						#endif
 						.textContentType(.URL)
 						.autocorrectionDisabled()
@@ -56,6 +56,9 @@ struct EditPlaylistView: View {
 			}
 		}
 		.padding()
-		.onAppear { newName = playlist.name; newEPG = playlist.epgLink }
-    }
+		.onAppear {
+			newName = playlist.name
+			newEPG = playlist.epgLink
+		}
+	}
 }

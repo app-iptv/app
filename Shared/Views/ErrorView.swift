@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ErrorView: View {
 	@Environment(ViewModel.self) private var vm
-	
+
 	var body: some View {
 		ContentUnavailableView {
 			Label("Error", systemImage: "exclamationmark.triangle")
@@ -21,7 +21,7 @@ struct ErrorView: View {
 			Button("Close") { vm.parserDidFail.toggle() }
 		}
 		#if os(macOS)
-		.frame(width: 200, height: 300)
+			.frame(width: 200, height: 300)
 		#endif
 		.padding()
 	}

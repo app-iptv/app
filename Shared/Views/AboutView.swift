@@ -5,33 +5,33 @@
 //  Created by Pedro Cordeiro on 27/03/2024.
 //
 
-import SwiftUI
 import M3UKit
+import SwiftUI
 
 struct AboutView: View {
-	
+
 	let version = Bundle.main.releaseVersionNumber ?? "1.0"
-	
+
 	let build = Bundle.main.buildVersionNumber ?? "1"
-	
+
 	var body: some View {
 		#if os(macOS)
-		NavigationStack {
-			HStack { content.fixedSize() }
-		}
+			NavigationStack {
+				HStack { content.fixedSize() }
+			}
 		#else
-		return content
+			return content
 		#endif
 	}
-	
+
 	private var frame: CGFloat {
 		#if os(macOS)
-		100
+			100
 		#else
-		150
+			150
 		#endif
 	}
-	
+
 	private var content: some View {
 		Group {
 			Image(.macIcon)
@@ -46,8 +46,11 @@ struct AboutView: View {
 				Text("v\(version) · \(build)")
 					.font(.caption)
 					.padding(.vertical, 1)
-				Label("https://www.github.com/pedrodsac/", systemImage: "ellipsis.curlybraces")
-					.font(.caption2)
+				Label(
+					"https://www.github.com/pedrodsac/",
+					systemImage: "ellipsis.curlybraces"
+				)
+				.font(.caption2)
 			}
 		}
 		.navigationTitle("About IPTV App")

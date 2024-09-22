@@ -15,9 +15,7 @@ final class SwiftDataCoordinator: NSObject {
 	
 	let persistenceContainer: ModelContainer = {
 		print(URL.applicationSupportDirectory.path(percentEncoded: false))
-		let schema = Schema([
-			Playlist.self
-		])
+		let schema = Schema([Playlist.self])
 		
 		let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 		
