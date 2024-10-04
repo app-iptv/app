@@ -52,11 +52,6 @@
 			<false/>
 		</dict>
 	</dict>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict/>
-		<dict/>
-	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>
