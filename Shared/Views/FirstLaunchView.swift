@@ -18,7 +18,6 @@ struct FirstLaunchView: View {
 	var body: some View {
 		ScrollView {
 			VStack(spacing: 20) {
-
 				Spacer()
 
 				Text("Hello 👋")
@@ -74,7 +73,6 @@ struct FirstLaunchView: View {
 		Divider()
 
 		HStack {
-
 			Spacer()
 
 			Button("Get Started") { isFirstLaunch.toggle() }

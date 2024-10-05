@@ -23,39 +23,19 @@ struct SingleStreamView: View {
 				.font(.largeTitle)
 				.bold()
 				.padding()
-
-			//			TextField("Enter URL", text: $mediaURL)
-			//				.textFieldStyle(.roundedBorder)
-			//				.textInputAutocapitalization(.never)
-			//
-			//			HStack(spacing: 10) {
-			//				Button("Open", systemImage: "play") { isPresented.toggle() }
-			//					.disabled(mediaURL.isEmpty)
-			//					.buttonStyle(.borderedProminent)
-			//				Button("Cancel") { vm.openedSingleStream.toggle() }
-			//					.buttonStyle(.bordered)
-			//			}
-			//			.padding()
-
 			TextField("Enter URL", text: $mediaURL)
-				.textFieldStyle(.plain)
+				.textFieldStyle(.roundedBorder)
 				#if os(iOS)
 					.textInputAutocapitalization(.never)
 				#endif
-				.padding(10)
-				.modifier(ElementViewModifier(for: .content))
 
 			HStack(spacing: 4) {
 				Button("Open", systemImage: "play") { isPresented.toggle() }
 					.disabled(mediaURL.isEmpty)
-					.buttonStyle(.plain)
-					.padding(10)
-					.modifier(ElementViewModifier(for: .left))
+					.buttonStyle(.borderedProminent)
 					.foregroundStyle(Color.accentColor)
 				Button("Cancel") { vm.openedSingleStream.toggle() }
-					.buttonStyle(.plain)
-					.padding(10)
-					.modifier(ElementViewModifier(for: .right))
+					.buttonStyle(.bordered)
 					.foregroundStyle(.red)
 			}
 			.padding()

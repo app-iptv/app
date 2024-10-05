@@ -46,6 +46,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2FC69C962CB176E700BAB2E6 /* Exceptions for "Shared" folder in "IPTV TV App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Views/Player/NSPlayerViewController+Representable.swift",
+			);
+			target = 2FEFDC6A2BF8FEB70048827E /* IPTV TV App */;
+		};
 		2FFD067E2CB0257600DBB793 /* Exceptions for "tvOS" folder in "IPTV TV App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -58,12 +65,18 @@
 			membershipExceptions = (
 				iOS.plist,
 			);
+			platformFiltersByRelativePath = {
+				OnboardingController.swift = (ios, );
+			};
 			target = 2FB75B802B41A9FE00A16501 /* IPTV App */;
 		};
 		2FFD07272CB0263200DBB793 /* Exceptions for "Shared" folder in "IPTV App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			platformFiltersByRelativePath = {
+				AppDelegate.swift = (ios, );
 				"Launch Screen.storyboard" = (ios, );
+				"Views/Player/NSPlayerViewController+Representable.swift" = (macos, );
+				"Views/Player/UIPlayerViewController+Representable.swift" = (ios, );
 			};
 			target = 2FB75B802B41A9FE00A16501 /* IPTV App */;
 		};
@@ -90,6 +103,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				2FFD07272CB0263200DBB793 /* Exceptions for "Shared" folder in "IPTV App" target */,
+				2FC69C962CB176E700BAB2E6 /* Exceptions for "Shared" folder in "IPTV TV App" target */,
 			);
 			path = Shared;
 			sourceTree = "<group>";

@@ -73,8 +73,7 @@ struct IPTVApp: App {
 		.environment(epgFetchingModel)
 		.environment(vm)
 		.onChange(of: vm.selectedPlaylist) {
-			epgFetchingModel = EPGFetchingModel(
-				epg: vm.selectedPlaylist?.epgLink, viewModel: vm)
+			epgFetchingModel = EPGFetchingModel(epg: vm.selectedPlaylist?.epgLink, viewModel: vm)
 		}
 		#if !os(tvOS)
 			.commands { commands }
@@ -98,23 +97,3 @@ struct IPTVApp: App {
 		#endif
 	}
 }
-
-#if os(iOS)
-	class AppDelegate: UIResponder, UIApplicationDelegate {
-		func application(
-			_ application: UIApplication,
-			didFinishLaunchingWithOptions launchOptions: [UIApplication
-				.LaunchOptionsKey: Any]? = nil
-		) -> Bool {
-			let session = AVAudioSession.sharedInstance()
-
-			do {
-				try session.setCategory(.playback, mode: .moviePlayback)
-			} catch {
-				print(error.localizedDescription)
-			}
-
-			return true
-		}
-	}
-#endif

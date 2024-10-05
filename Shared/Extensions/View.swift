@@ -11,7 +11,7 @@ extension View {
 	func tabForView(for tab: Tab) -> some View {
 		return
 			self
-			.tag(tab)
-			.tabItem { Label(tab.name, systemImage: tab.nonFillImage) }
+				.tag(tab)
+				.tabItem { Label(tab.name, systemImage: tab.nonFillImage) }
 	}
 }
