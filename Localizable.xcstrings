@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%@ - %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -254,6 +255,7 @@
       }
     },
     "Either your playlist doesn't include movies, or you haven't yet added a playlist. You can do so in Settings." : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -590,6 +592,7 @@
       }
     },
     "No Movies" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -844,6 +847,7 @@
       }
     },
     "The EPG link provided does not include any program for this channel." : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -991,6 +995,7 @@
       }
     },
     "Watch" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {

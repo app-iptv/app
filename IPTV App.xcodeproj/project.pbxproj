@@ -12,15 +12,10 @@
 		2F5FC9FF2BDD0FC900BD67A5 /* SWCompression in Frameworks */ = {isa = PBXBuildFile; productRef = 2F5FC9FE2BDD0FC900BD67A5 /* SWCompression */; };
 		2F65285E2C332FB800302F67 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F65285D2C332FB800302F67 /* M3UKit */; };
 		2F6528612C332FD800302F67 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6528602C332FD800302F67 /* XMLTV */; };
-		2F6528632C332FE500302F67 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6528622C332FE500302F67 /* M3UKit */; };
-		2F6528652C332FE500302F67 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6528642C332FE500302F67 /* XMLTV */; };
 		2F6B1C982BDD754B00D09A6A /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1C972BDD754B00D09A6A /* XMLTV */; };
 		2F6B1C9B2BDD755700D09A6A /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1C9A2BDD755700D09A6A /* XMLTV */; };
 		2F6B1C9E2BDD756400D09A6A /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1C9D2BDD756400D09A6A /* M3UKit */; };
 		2F6B1CA12BDD757400D09A6A /* LightXMLParser in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6B1CA02BDD757400D09A6A /* LightXMLParser */; };
-		2F6C75482C0F9B6E00B95013 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */; };
-		2F9FDEDF2BF92FDE00153524 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2F9FDEDE2BF92FDE00153524 /* SDWebImageSwiftUI */; };
-		2F9FDEE12BF92FDE00153524 /* SWCompression in Frameworks */ = {isa = PBXBuildFile; productRef = 2F9FDEE02BF92FDE00153524 /* SWCompression */; };
 		2FC89E6A2C5FE9B300701595 /* SwiftyXMLParser in Frameworks */ = {isa = PBXBuildFile; productRef = 2FC89E692C5FE9B300701595 /* SwiftyXMLParser */; };
 		2FFDFF562BA342C3001A0166 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2FFDFF552BA342C3001A0166 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
@@ -42,39 +37,18 @@
 		2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2FB07E3B2BC30C54004A6D1B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		2FB75B812B41A9FE00A16501 /* IPTV App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IPTV App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2FEFDC6B2BF8FEB70048827E /* IPTV TV App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IPTV TV App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		2FC69C962CB176E700BAB2E6 /* Exceptions for "Shared" folder in "IPTV TV App" target */ = {
+		2FFD067F2CB0257600DBB793 /* Exceptions for "IPTV App" folder in "IPTV App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"Views/Player/NSPlayerViewController+Representable.swift",
+				Info.plist,
 			);
-			target = 2FEFDC6A2BF8FEB70048827E /* IPTV TV App */;
-		};
-		2FFD067E2CB0257600DBB793 /* Exceptions for "tvOS" folder in "IPTV TV App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				tvOS.plist,
-			);
-			target = 2FEFDC6A2BF8FEB70048827E /* IPTV TV App */;
-		};
-		2FFD067F2CB0257600DBB793 /* Exceptions for "iOS" folder in "IPTV App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				iOS.plist,
-			);
-			platformFiltersByRelativePath = {
-				OnboardingController.swift = (ios, );
-			};
-			target = 2FB75B802B41A9FE00A16501 /* IPTV App */;
-		};
-		2FFD07272CB0263200DBB793 /* Exceptions for "Shared" folder in "IPTV App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			platformFiltersByRelativePath = {
 				AppDelegate.swift = (ios, );
 				"Launch Screen.storyboard" = (ios, );
+				OnboardingController.swift = (ios, );
 				"Views/Player/NSPlayerViewController+Representable.swift" = (macos, );
 				"Views/Player/UIPlayerViewController+Representable.swift" = (ios, );
 			};
@@ -83,29 +57,12 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2FFD06492CB0257500DBB793 /* tvOS */ = {
+		2FFD066E2CB0257500DBB793 /* IPTV App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				2FFD067E2CB0257600DBB793 /* Exceptions for "tvOS" folder in "IPTV TV App" target */,
+				2FFD067F2CB0257600DBB793 /* Exceptions for "IPTV App" folder in "IPTV App" target */,
 			);
-			path = tvOS;
-			sourceTree = "<group>";
-		};
-		2FFD066E2CB0257500DBB793 /* iOS */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				2FFD067F2CB0257600DBB793 /* Exceptions for "iOS" folder in "IPTV App" target */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		2FFD06E82CB0263200DBB793 /* Shared */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				2FFD07272CB0263200DBB793 /* Exceptions for "Shared" folder in "IPTV App" target */,
-				2FC69C962CB176E700BAB2E6 /* Exceptions for "Shared" folder in "IPTV TV App" target */,
-			);
-			path = Shared;
+			path = "IPTV App";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -128,17 +85,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2FEFDC682BF8FEB70048827E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2F6528652C332FE500302F67 /* XMLTV in Frameworks */,
-				2F9FDEDF2BF92FDE00153524 /* SDWebImageSwiftUI in Frameworks */,
-				2F6528632C332FE500302F67 /* M3UKit in Frameworks */,
-				2F9FDEE12BF92FDE00153524 /* SWCompression in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -154,9 +100,7 @@
 			children = (
 				2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */,
 				2FB07E3B2BC30C54004A6D1B /* PrivacyInfo.xcprivacy */,
-				2FFD06492CB0257500DBB793 /* tvOS */,
-				2FFD066E2CB0257500DBB793 /* iOS */,
-				2FFD06E82CB0263200DBB793 /* Shared */,
+				2FFD066E2CB0257500DBB793 /* IPTV App */,
 				2FB75B822B41A9FE00A16501 /* Products */,
 				2F03A41E2BF3BD8700A54AC3 /* Frameworks */,
 			);
@@ -166,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				2FB75B812B41A9FE00A16501 /* IPTV App.app */,
-				2FEFDC6B2BF8FEB70048827E /* IPTV TV App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,8 +131,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				2FFD066E2CB0257500DBB793 /* iOS */,
-				2FFD06E82CB0263200DBB793 /* Shared */,
+				2FFD066E2CB0257500DBB793 /* IPTV App */,
 			);
 			name = "IPTV App";
 			packageProductDependencies = (
@@ -208,33 +150,6 @@
 			productReference = 2FB75B812B41A9FE00A16501 /* IPTV App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2FEFDC6A2BF8FEB70048827E /* IPTV TV App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2FEFDC762BF8FEB90048827E /* Build configuration list for PBXNativeTarget "IPTV TV App" */;
-			buildPhases = (
-				2FEFDC672BF8FEB70048827E /* Sources */,
-				2FEFDC682BF8FEB70048827E /* Frameworks */,
-				2FEFDC692BF8FEB70048827E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				2FFD06492CB0257500DBB793 /* tvOS */,
-				2FFD06E82CB0263200DBB793 /* Shared */,
-			);
-			name = "IPTV TV App";
-			packageProductDependencies = (
-				2F9FDEDE2BF92FDE00153524 /* SDWebImageSwiftUI */,
-				2F9FDEE02BF92FDE00153524 /* SWCompression */,
-				2F6528622C332FE500302F67 /* M3UKit */,
-				2F6528642C332FE500302F67 /* XMLTV */,
-			);
-			productName = IPTVTVApp;
-			productReference = 2FEFDC6B2BF8FEB70048827E /* IPTV TV App.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -249,9 +164,6 @@
 					2FB75B802B41A9FE00A16501 = {
 						CreatedOnToolsVersion = 15.1;
 						LastSwiftMigration = 1520;
-					};
-					2FEFDC6A2BF8FEB70048827E = {
-						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
@@ -278,7 +190,6 @@
 			projectRoot = "";
 			targets = (
 				2FB75B802B41A9FE00A16501 /* IPTV App */,
-				2FEFDC6A2BF8FEB70048827E /* IPTV TV App */,
 			);
 		};
 /* End PBXProject section */
@@ -292,25 +203,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2FEFDC692BF8FEB70048827E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2F6C75482C0F9B6E00B95013 /* Localizable.xcstrings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2FB75B7D2B41A9FE00A16501 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2FEFDC672BF8FEB70048827E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -453,7 +349,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "IPTV App/Entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -464,7 +360,7 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iOS/iOS.plist;
+				INFOPLIST_FILE = "IPTV App/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "IPTV App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -513,7 +409,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "IPTV App/Entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -524,7 +420,7 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iOS/iOS.plist;
+				INFOPLIST_FILE = "IPTV App/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "IPTV App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -565,69 +461,6 @@
 			};
 			name = Release;
 		};
-		2FEFDC772BF8FEB90048827E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = tvOS/tvOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = 9TMMFKS9DW;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = tvOS/tvOS.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "IPTV App";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = me.pedrocordeiro.IPTVapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 17.0;
-			};
-			name = Debug;
-		};
-		2FEFDC782BF8FEB90048827E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = tvOS/tvOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = 9TMMFKS9DW;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = tvOS/tvOS.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "IPTV App";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = me.pedrocordeiro.IPTVapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 17.0;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -645,15 +478,6 @@
 			buildConfigurations = (
 				2FB75B912B41A9FF00A16501 /* Debug */,
 				2FB75B922B41A9FF00A16501 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		2FEFDC762BF8FEB90048827E /* Build configuration list for PBXNativeTarget "IPTV TV App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2FEFDC772BF8FEB90048827E /* Debug */,
-				2FEFDC782BF8FEB90048827E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -732,16 +556,6 @@
 			package = 2F65285F2C332FD800302F67 /* XCRemoteSwiftPackageReference "XMLTV" */;
 			productName = XMLTV;
 		};
-		2F6528622C332FE500302F67 /* M3UKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F65285C2C332FB800302F67 /* XCRemoteSwiftPackageReference "M3UKit" */;
-			productName = M3UKit;
-		};
-		2F6528642C332FE500302F67 /* XMLTV */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F65285F2C332FD800302F67 /* XCRemoteSwiftPackageReference "XMLTV" */;
-			productName = XMLTV;
-		};
 		2F6B1C972BDD754B00D09A6A /* XMLTV */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = XMLTV;
@@ -757,16 +571,6 @@
 		2F6B1CA02BDD757400D09A6A /* LightXMLParser */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LightXMLParser;
-		};
-		2F9FDEDE2BF92FDE00153524 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FFDFF542BA342B1001A0166 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
-		};
-		2F9FDEE02BF92FDE00153524 /* SWCompression */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2F5FC9FD2BDD0FC900BD67A5 /* XCRemoteSwiftPackageReference "SWCompression" */;
-			productName = SWCompression;
 		};
 		2FC89E692C5FE9B300701595 /* SwiftyXMLParser */ = {
 			isa = XCSwiftPackageProductDependency;
