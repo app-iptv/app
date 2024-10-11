@@ -83,58 +83,38 @@ struct MediaDetailView: View {
 				noProgramsForChannelView
 			}
 		}
-		.toolbarBackground(.visible, for: .navigationBar, .tabBar)
 		.navigationTitle(media.title)
 		.onAppear(perform: fetchPrograms)
 		.onChange(of: fetchingModel.xmlTV, fetchPrograms)
 		.toolbarTitleDisplayMode(.inline)
+        #if !os(macOS)
+            .toolbarBackground(.visible, for: .navigationBar, .tabBar)
+        #endif
 	}
 }
 
 extension MediaDetailView {
-	//	private var filteredPrograms: [TVProgram]? {
-	//		guard !searchQuery.isEmpty else { return programs }
-	//		return programs?.filter { ($0.title ?? String(localized: "Untitled")).localizedCaseInsensitiveContains(searchQuery) }
-	//	}
-
-	private func fetchPrograms() {
-		print("refreshing")
-
-		let channelID = media.attributes["tvg-id"]
-
-		print(channelID ?? "no channel id")
-
-		guard let xmlTV = fetchingModel.xmlTV else {
-			print("nil xmltv")
-			vm.isLoadingEPG = false
-			return
-		}
-
-		let channels = xmlTV.getChannels()
-
-		guard !channels.isEmpty else {
-			print("empty channels")
-			vm.isLoadingEPG = false
-			return
-		}
-
-		guard let channel = channels.first(where: { $0.id == channelID }) else {
-			print("no matching channel")
-			vm.isLoadingEPG = false
-			return
-		}
-
-		let programs = xmlTV.getPrograms(channel: channel)
-
-		if programs.isEmpty { print("empty matching programs") }
-
-		self.programs = programs
-
-		vm.isLoadingEPG = false
-
-		print("refreshed")
-		dump(programs)
-	}
+    private func fetchPrograms() {
+        guard let xmlTV = fetchingModel.xmlTV else { return abortFetching() }
+        guard let channelID = media.attributes["tvg-id"] else { return abortFetching() }
+        
+        let channels = xmlTV.getChannels()
+        
+        guard !channels.isEmpty else { return abortFetching() }
+        guard let channel = channels.first(where: { $0.id == channelID }) else { return abortFetching() }
+        
+        let programs = xmlTV.getPrograms(channel: channel)
+        
+        guard !programs.isEmpty else { return abortFetching() }
+        
+        self.programs = programs
+        
+        abortFetching()
+    }
+    
+    private func abortFetching() {
+        vm.isLoadingEPG = false
+    }
 
 	private var noProgramsForChannelView: some View {
 		VStack {
@@ -167,7 +147,9 @@ extension MediaDetailView {
 					}
 				}
 			}
-			.safeAreaPadding(.horizontal, 5)
+            #if !os(macOS)
+                .safeAreaPadding(.horizontal, 5)
+            #endif
 		}
 	}
 }

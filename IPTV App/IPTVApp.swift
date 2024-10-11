@@ -85,7 +85,7 @@ struct IPTVApp: App {
 				SettingsView(isRemovingAll: $isRemovingAll)
 					.frame(width: 500, height: 300)
 			}
-			.environment(epgFetchingModel)
+            .environment(epgFetchingController)
 			.environment(vm)
 			.windowStyle(.hiddenTitleBar)
 		#endif
