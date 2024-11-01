@@ -1,0 +1,87 @@
+{
+  "originHash" : "794710a871096e01b5ab1ca6bafd73118be5b338c380deeaf3fffa8314f7aff8",
+  "pins" : [
+    {
+      "identity" : "bitbytedata",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tsolomko/BitByteData",
+      "state" : {
+        "revision" : "cdcdc5177ad536cfb11b95c620f926a81014b7fe",
+        "version" : "2.0.4"
+      }
+    },
+    {
+      "identity" : "lightxmlparser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pedrodsac/LightXMLParser.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "52d8fa2ad6f2924b86b2896b2e2c1a025685e645"
+      }
+    },
+    {
+      "identity" : "m3ukit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pedrodsac/M3UKit.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "4e06ae972d01afd63ba986012d358345a5a3e56e"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "10d06f6a33bafae8c164fbfd1f03391f6d4692b3",
+        "version" : "5.20.0"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
+      "state" : {
+        "revision" : "5aa947356f4ea49a0c3b9968564267f6ea5abea7",
+        "version" : "3.1.2"
+      }
+    },
+    {
+      "identity" : "swcompression",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tsolomko/SWCompression.git",
+      "state" : {
+        "revision" : "390e0b0af8dd19a600005a242a89e570ff482e09",
+        "version" : "4.8.6"
+      }
+    },
+    {
+      "identity" : "swiftyxmlparser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yahoojapan/SwiftyXMLParser",
+      "state" : {
+        "revision" : "d7a1d23f04c86c1cd2e8f19247dd15d74e0ea8be",
+        "version" : "5.6.0"
+      }
+    },
+    {
+      "identity" : "uionboarding",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lascic/UIOnboarding.git",
+      "state" : {
+        "revision" : "efd1e944c399de24c10d9f4947301e1c105dbb9b",
+        "version" : "2.0.3"
+      }
+    },
+    {
+      "identity" : "xmltv",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pedrodsac/XMLTV.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "3f79c795900b7fc7bfe30dbf4c206f3a82a32770"
+      }
+    }
+  ],
+  "version" : 3
+}
