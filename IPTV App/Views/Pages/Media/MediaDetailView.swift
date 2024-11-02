@@ -39,9 +39,7 @@ struct MediaDetailView: View {
 				)
 				.aspectRatio(16 / 9, contentMode: .fit)
 				.cornerRadius(10)
-				#if !os(macOS)
-					.frame(maxWidth: 400)
-				#endif
+				.frame(maxWidth: 400)
 
 				HStack {
 					VStack(alignment: .leading, spacing: 2.5) {

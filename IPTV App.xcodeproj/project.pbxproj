@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2F197AEB2C137E5800A2E309 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 2F197AEA2C137E5800A2E309 /* UIOnboarding */; };
-		2F5A13FF2B9DF8C9005F270E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */; };
 		2F5FC9FF2BDD0FC900BD67A5 /* SWCompression in Frameworks */ = {isa = PBXBuildFile; productRef = 2F5FC9FE2BDD0FC900BD67A5 /* SWCompression */; };
 		2F65285E2C332FB800302F67 /* M3UKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F65285D2C332FB800302F67 /* M3UKit */; };
 		2F6528612C332FD800302F67 /* XMLTV in Frameworks */ = {isa = PBXBuildFile; productRef = 2F6528602C332FD800302F67 /* XMLTV */; };
@@ -34,8 +33,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		2FB07E3B2BC30C54004A6D1B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		2FB75B812B41A9FE00A16501 /* IPTV App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IPTV App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -44,13 +41,14 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				PrivacyInfo.xcprivacy,
 			);
 			platformFiltersByRelativePath = {
-				AppDelegate.swift = (ios, );
+				"App & Controllers/AppDelegate.swift" = (ios, );
+				"App & Controllers/OnboardingController.swift" = (ios, );
 				"Launch Screen.storyboard" = (ios, );
-				OnboardingController.swift = (ios, );
-				"Views/Player/NSPlayerViewController+Representable.swift" = (macos, );
-				"Views/Player/UIPlayerViewController+Representable.swift" = (ios, );
+				"Views/Components/Player/NSPlayerViewController+Representable.swift" = (macos, );
+				"Views/Components/Player/UIPlayerViewController+Representable.swift" = (ios, );
 			};
 			target = 2FB75B802B41A9FE00A16501 /* IPTV App */;
 		};
@@ -98,8 +96,6 @@
 		2FB75B782B41A9FE00A16501 = {
 			isa = PBXGroup;
 			children = (
-				2F5A13FC2B9DF601005F270E /* Localizable.xcstrings */,
-				2FB07E3B2BC30C54004A6D1B /* PrivacyInfo.xcprivacy */,
 				2FFD066E2CB0257500DBB793 /* IPTV App */,
 				2FB75B822B41A9FE00A16501 /* Products */,
 				2F03A41E2BF3BD8700A54AC3 /* Frameworks */,
@@ -199,7 +195,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F5A13FF2B9DF8C9005F270E /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
