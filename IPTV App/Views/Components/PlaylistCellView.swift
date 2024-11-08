@@ -1,6 +1,6 @@
 //
-//  PlaylistListItem.swift
-//  IPTV
+//  PlaylistCellView.swift
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 17/03/2024.
 //
@@ -12,7 +12,7 @@ import SwiftUI
 struct PlaylistCellView: View {
 
 	@Environment(\.modelContext) private var context
-	@Environment(ViewModel.self) private var vm
+	@Environment(AppState.self) private var appState
 
 	@Bindable private var playlist: Playlist
 

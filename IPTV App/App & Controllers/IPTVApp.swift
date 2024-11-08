@@ -1,6 +1,6 @@
 //
 //  IPTVApp.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 31/12/2023.
 //
@@ -20,13 +20,13 @@ struct IPTVApp: App {
 
 	@Environment(\.openWindow) private var openWindow
 
-	@Query private var playlists: [Playlist]
-
 	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = true
 	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
 
-	@State private var vm = ViewModel()
+	@Query private var playlists: [Playlist]
+	
+	@State private var appState = AppState()
 	@State private var isRemovingAll: Bool = false
 	@State private var epgFetchingController: EPGFetchingController = EPGFetchingController()
 
@@ -34,11 +34,11 @@ struct IPTVApp: App {
 		Group {
 			CommandGroup(replacing: .newItem) {
 				Button("New Playlist", systemImage: "plus") {
-					vm.isPresented.toggle()
+					appState.isAddingPlaylist.toggle()
 				}.keyboardShortcut("N", modifiers: [.command])
 				
 				Button("Open Single Stream", systemImage: "play") {
-					vm.openedSingleStream.toggle()
+					appState.openedSingleStream.toggle()
 				}.keyboardShortcut("O", modifiers: [.command])
 				
 				#if os(macOS)
@@ -67,11 +67,9 @@ struct IPTVApp: App {
 		}
 		.modelContainer(SwiftDataController.shared.persistenceContainer)
 		.environment(epgFetchingController)
-		.environment(vm)
+		.environment(appState)
 		.commands { commands }
-		.onChange(of: vm.selectedPlaylist) {
-			epgFetchingController = EPGFetchingController(epg: vm.selectedPlaylist?.epgLink, viewModel: vm)
-		}
+		.onChange(of: appState.selectedPlaylist) { epgFetchingController = EPGFetchingController(epg: appState.selectedPlaylist?.epgLink, appState: appState) }
 
 		#if os(macOS)
 			Window("About IPTV App", id: "ABOUT_WINDOW") {
@@ -86,7 +84,7 @@ struct IPTVApp: App {
 					.frame(width: 500, height: 300)
 			}
             .environment(epgFetchingController)
-			.environment(vm)
+			.environment(appState)
 			.windowStyle(.hiddenTitleBar)
 		#endif
 	}

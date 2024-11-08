@@ -1,6 +1,6 @@
 //
-//  mediaDetailView.swift
-//  IPTV
+//  MediaDetailView.swift
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 11/02/2024.
 //
@@ -14,7 +14,7 @@ import XMLTV
 struct MediaDetailView: View {
 
 	@Environment(EPGFetchingController.self) var fetchingModel
-	@Environment(ViewModel.self) private var vm
+	@Environment(AppState.self) private var appState
 
 	@State private var isUnsupported: Bool = false
 	@State private var currentProgram: TVProgram? = nil
@@ -67,7 +67,7 @@ struct MediaDetailView: View {
 
 			if epgLink.isEmpty {
 				Spacer()
-			} else if vm.isLoadingEPG {
+			} else if appState.isLoadingEPG {
 				VStack {
 					Spacer()
 					ProgressView("Loading EPG...")
@@ -111,7 +111,7 @@ extension MediaDetailView {
     }
     
     private func abortFetching() {
-        vm.isLoadingEPG = false
+        appState.isLoadingEPG = false
     }
 
 	private var noProgramsForChannelView: some View {

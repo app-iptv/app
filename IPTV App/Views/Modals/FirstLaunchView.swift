@@ -1,6 +1,6 @@
 //
 //  FirstLaunchView.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 09/03/2024.
 //

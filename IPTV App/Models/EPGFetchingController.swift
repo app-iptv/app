@@ -17,11 +17,11 @@ class EPGFetchingController {
 	
 	var xmlTV: XMLTV? = nil
 	
-	init(epg: String? = nil, viewModel vm: ViewModel? = nil) {
-		guard let epg, let vm else { return }
+	init(epg: String? = nil, appState: AppState? = nil) {
+		guard let epg, let appState else { return }
 		
 		Task {
-			vm.isLoadingEPG = true
+			appState.isLoadingEPG = true
 			
 			do {
 				xmlTV = try await getPrograms(with: epg)
@@ -29,7 +29,7 @@ class EPGFetchingController {
 				dump(error)
 			}
 			
-			vm.isLoadingEPG = false
+			appState.isLoadingEPG = false
 		}
 	}
 	

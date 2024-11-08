@@ -32,7 +32,9 @@ struct OnboardingView: UIViewControllerRepresentable {
 	
 	func updateUIViewController(
 		_ uiViewController: UIViewControllerType, context: Context
-	) {}
+	) { }
+	
+	func makeCoordinator() -> Coordinator { return .init() }
 	
 	class Coordinator: NSObject, @preconcurrency UIOnboardingViewControllerDelegate {
 		@MainActor func didFinishOnboarding(
@@ -43,10 +45,6 @@ struct OnboardingView: UIViewControllerRepresentable {
 				UserDefaults.standard.set(false, forKey: "FIRST_LAUNCH")
 			}
 		}
-	}
-	
-	func makeCoordinator() -> Coordinator {
-		return .init()
 	}
 }
 

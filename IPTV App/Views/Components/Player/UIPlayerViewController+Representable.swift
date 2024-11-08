@@ -38,56 +38,55 @@ class PlayerViewController: UIViewController {
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 
-		player?.pause()
+		self.player?.pause()
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		
 		guard let url = URL(string: url) else { return }
-
+		
 		let playerItem = AVPlayerItem(url: url)
 		let playerController = AVPlayerViewController()
 		let player = AVPlayer(playerItem: playerItem)
-
+		
 		playerController.allowsPictureInPicturePlayback = true
 		playerController.entersFullScreenWhenPlaybackBegins = true
 		playerController.canStartPictureInPictureAutomaticallyFromInline = true
 		playerController.exitsFullScreenWhenPlaybackEnds = true
-
+		
 		player.usesExternalPlaybackWhileExternalScreenIsActive = true
 		player.allowsExternalPlayback = true
-
+		
 		let group = group ?? String(localized: "Untitled")
-
+		
 		let titleItem = createMetadataItem(
 			for: .commonIdentifierTitle, value: name)
-
+		
 		let subTitleItem = createMetadataItem(
 			for: .iTunesMetadataTrackSubTitle, value: group)
-
+		
 		let albumItem = createMetadataItem(
 			for: .commonIdentifierAlbumName, value: group)
-
+		
 		let artistItem = createMetadataItem(
 			for: .commonIdentifierArtist, value: playlistName)
-
-		playerItem.externalMetadata = [
-			titleItem, subTitleItem, artistItem, albumItem,
-		]
-
+		
+		playerItem.externalMetadata = [titleItem, subTitleItem, artistItem, albumItem]
+		
 		self.player = player
 		playerController.player = self.player
-		self.player?.play()
-
+		
 		// First, add the view of the child to the view of the parent
 		self.view.addSubview(playerController.view)
-
+		
 		// Then, add the child to the parent
 		self.addChild(playerController)
-
+		
 		// Finally, notify the child that it was moved to a parent
 		playerController.didMove(toParent: self)
+		
+		self.player?.play()
 	}
 
 	private func createMetadataItem(

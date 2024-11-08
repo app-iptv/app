@@ -1,6 +1,6 @@
 //
 //  SingleStreamView.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 16/02/2024.
 //
@@ -10,10 +10,9 @@ import M3UKit
 import SwiftUI
 
 struct SingleStreamView: View {
-
+	@Environment(AppState.self) private var appState
+	
 	@State private var mediaURL: String = ""
-
-	@Environment(ViewModel.self) private var vm
 
 	@State private var isPresented: Bool = false
 
@@ -34,7 +33,7 @@ struct SingleStreamView: View {
 					.disabled(mediaURL.isEmpty)
 					.buttonStyle(.borderedProminent)
 					.foregroundStyle(Color.accentColor)
-				Button("Cancel") { vm.openedSingleStream.toggle() }
+				Button("Cancel") { appState.openedSingleStream.toggle() }
 					.buttonStyle(.bordered)
 					.foregroundStyle(.red)
 			}

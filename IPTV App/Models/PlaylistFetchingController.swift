@@ -13,40 +13,38 @@ import M3UKit
 class PlaylistFetchingController {
 	var playlist: Playlist? = nil
 	var error: Error? = nil
-	var vm: ViewModel
+	var viewModel: AddPlaylistViewModel
 	
-	init(vm: ViewModel) {
-		self.vm = vm
+	init(viewModel: AddPlaylistViewModel) {
+		self.viewModel = viewModel
 	}
 	
 	func parsePlaylist() async {
 		let decoder = M3UDecoder()
 		
-		guard let url = URL(string: vm.tempPlaylistURL) else { return catchError(error) }
+		guard let url = URL(string: viewModel.tempPlaylistURL) else { return catchError(error) }
 		
 		do {
 			async let (data, _) = try URLSession.shared.data(from: url)
 			
 			let m3u = try await decoder.decode(data)
 			
-			vm.tempPlaylist = m3u
+			viewModel.tempPlaylist = m3u
 		} catch {
 			catchError(error)
 		}
 	}
 	
 	func cancel() {
-		vm.tempPlaylist  	= nil
-		vm.tempPlaylistURL 	= ""
-		vm.tempPlaylistName = ""
-		vm.tempPlaylistEPG 	= ""
+		viewModel.tempPlaylist  	= nil
+		viewModel.tempPlaylistURL 	= ""
+		viewModel.tempPlaylistName = ""
+		viewModel.tempPlaylistEPG 	= ""
 	}
 	
 	private func catchError(_ error: Error?) {
-		#if DEBUG
-		if let desc = error?.localizedDescription { print(desc) }
-		#endif
-		vm.parserError = error
-		vm.parserDidFail = true
+		viewModel.parserError = error
+		viewModel.parserDidFail = true
+		viewModel.isParsing = false
 	}
 }

@@ -1,33 +1,37 @@
 //
 //  FavouritesView.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 19/03/2024.
 //
 
 import M3UKit
 import SwiftUI
+import SwiftData
 
 struct FavouritesView: View {
 
+	@Environment(EPGFetchingController.self) private var epgFetchingController
+	@Environment(AppState.self) private var appState
+	
 	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
 
+	@Query private var playlists: [Playlist]
+	
 	@State private var isDeletingAll: Bool = false
-
 	@State private var searchQuery: String = ""
-
 	@State private var selectedGroup: String = "All"
 
 	var body: some View {
+		@Bindable var epgFetchingController = epgFetchingController
+		
 		NavigationStack {
 			Group {
 				if favourites.isEmpty {
 					ContentUnavailableView {
 						Label("No Favourited Medias", systemImage: "star.slash")
 					} description: {
-						Text(
-							"The medias you favourites will appear here. To add some favourites, click on the star symbol next to a media."
-						)
+						Text("The medias you favourites will appear here. To add some favourites, click on the star symbol next to a media.")
 					}
 				} else if filteredMediasForGroup.isEmpty {
 					ContentUnavailableView.search(text: searchQuery)
@@ -72,6 +76,18 @@ struct FavouritesView: View {
 						}
 					}
 					.pickerStyle(.menu)
+				}
+				ToolbarItem(id: "epgPicker", placement: placement) {
+					Menu("Select EPG") {
+						ForEach(playlists) { playlist in
+							Button("From \(playlist.name)") {
+								epgFetchingController = EPGFetchingController(epg: playlist.epgLink, appState: appState)
+							}
+						}
+					}
+					.onAppear {
+						epgFetchingController = EPGFetchingController(epg: playlists.first?.epgLink, appState: appState)
+					}
 				}
 			}
 		}

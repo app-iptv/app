@@ -1,6 +1,6 @@
 //
 //  DetailView.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 23/03/2024.
 //
@@ -11,17 +11,14 @@ import SwiftUI
 import XMLTV
 
 struct DetailView: View {
-
-	@Query var modelPlaylists: [Playlist]
-
-	@Environment(ViewModel.self) private var vm
+	
+	@Environment(AppState.self) private var appState
+	
+	@Query var playlists: [Playlist]
 
 	var body: some View {
-		if let playlist = vm.selectedPlaylist {
-			MediaListView(
-				medias: playlist.medias, playlistName: playlist.name,
-				epgLink: playlist.epgLink,
-				index: modelPlaylists.firstIndex(of: playlist)!)
+		if let playlist = appState.selectedPlaylist {
+			MediaListView(playlist)
 		} else {
 			ContentUnavailableView {
 				Label("No Medias", systemImage: "list.and.film")

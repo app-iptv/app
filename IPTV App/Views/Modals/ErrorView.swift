@@ -1,6 +1,6 @@
 //
 //  ErrorView.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 15/02/2024.
 //
@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct ErrorView: View {
-	@Environment(ViewModel.self) private var vm
+	@Bindable private var viewModel: AddPlaylistViewModel
+	
+	internal init(viewModel: AddPlaylistViewModel) {
+		self.viewModel = viewModel
+	}
 
 	var body: some View {
 		ContentUnavailableView {
 			Label("Error", systemImage: "exclamationmark.triangle")
 		} description: {
-			if let error = vm.parserError {
+			if let error = viewModel.parserError {
 				Text(error.localizedDescription)
 			}
 		} actions: {
-			Button("Close") { vm.parserDidFail.toggle() }
+			Button("Close") { viewModel.parserDidFail.toggle() }
 		}
 		#if os(macOS)
 			.frame(width: 200, height: 300)

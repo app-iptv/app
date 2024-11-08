@@ -1,6 +1,6 @@
 //
 //  TVProgram.swift
-//  IPTV TV App
+//  IPTV App TV App
 //
 //  Created by Pedro Cordeiro on 19/05/2024.
 //

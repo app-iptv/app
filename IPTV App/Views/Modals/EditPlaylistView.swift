@@ -1,6 +1,6 @@
 //
 //  EditPlaylistView.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 15/02/2024.
 //

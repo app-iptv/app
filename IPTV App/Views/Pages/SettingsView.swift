@@ -1,6 +1,6 @@
 //
 //  SettingsView.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 24/03/2024.
 //
@@ -10,13 +10,12 @@ import SwiftUI
 import TipKit
 
 struct SettingsView: View {
-	@Environment(ViewModel.self) private var vm
+	@Environment(AppState.self) private var appState
 
-	@Query private var modelPlaylists: [Playlist]
+	@Query private var playlists: [Playlist]
 
 	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = false
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
-	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
 
 	@Binding private var isRemovingAll: Bool
 

@@ -41,6 +41,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Localizable.xcstrings,
 				PrivacyInfo.xcprivacy,
 			);
 			platformFiltersByRelativePath = {
@@ -49,6 +50,7 @@
 				"Launch Screen.storyboard" = (ios, );
 				"Views/Components/Player/NSPlayerViewController+Representable.swift" = (macos, );
 				"Views/Components/Player/UIPlayerViewController+Representable.swift" = (ios, );
+				Views/Pages/MainView.swift = (ios, );
 			};
 			target = 2FB75B802B41A9FE00A16501 /* IPTV App */;
 		};

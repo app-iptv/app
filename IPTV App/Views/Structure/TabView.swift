@@ -54,13 +54,19 @@ struct TabView: View {
 				FavouritesView()
 					.toolbarBackground(visibility, for: placement)
 					.tabForView(for: .favourites)
+					.environment(\.horizontalSizeClass, sizeClass)
 				HomeView()
 					.toolbarBackground(visibility, for: placement)
 					.tabForView(for: .home)
+					.environment(\.horizontalSizeClass, sizeClass)
 				SettingsView(isRemovingAll: $isRemovingAll)
 					.toolbarBackground(visibility, for: placement)
 					.tabForView(for: .settings)
+					.environment(\.horizontalSizeClass, sizeClass)
 			#endif
 		}
+		#if os(iOS)
+		.environment(\.horizontalSizeClass, .compact)
+		#endif
 	}
 }

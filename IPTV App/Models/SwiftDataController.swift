@@ -13,6 +13,10 @@ final class SwiftDataController: NSObject {
 	
 	static let shared = SwiftDataController()
 	
+	private override init() {
+		super.init()
+	}
+	
 	let persistenceContainer: ModelContainer = {
 		print(URL.applicationSupportDirectory.path(percentEncoded: false))
 		let schema = Schema([Playlist.self])

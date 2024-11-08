@@ -1,6 +1,6 @@
 //
 //  AddPlaylistView.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 15/02/2024.
 //
@@ -12,10 +12,12 @@ struct AddPlaylistView: View {
 
 	@Environment(\.modelContext) private var context
 	@Environment(\.dismiss) private var dismiss
-	@Environment(ViewModel.self) private var vm
+	@Environment(AppState.self) private var appState
+	
+	@State private var viewModel = AddPlaylistViewModel()
 
 	private var networkModel: PlaylistFetchingController {
-		PlaylistFetchingController(vm: vm)
+		PlaylistFetchingController(viewModel: viewModel)
 	}
 
 	var body: some View {
@@ -24,39 +26,47 @@ struct AddPlaylistView: View {
 				.font(.largeTitle)
 				.bold()
 				.padding()
-			VStack(spacing: 4) {
-				TextField(
-					"Playlist Name",
-					text: Bindable(vm).tempPlaylistName
-				)
-				.textFieldStyle(.roundedBorder)
-				TextField(
-					"Playlist URL",
-					text: Bindable(vm).tempPlaylistURL
-				)
-				.textFieldStyle(.roundedBorder)
-				.textContentType(.URL)
-				.autocorrectionDisabled()
-				TextField(
-					"Playlist EPG (optional)",
-					text: Bindable(vm).tempPlaylistEPG
-				)
-				.textFieldStyle(.roundedBorder)
-				.textContentType(.URL)
-				.autocorrectionDisabled()
-			}
+			
+			TextField(
+				"Playlist Name",
+				text: $viewModel.tempPlaylistName
+			)
+			.textFieldStyle(.roundedBorder)
+			
+			TextField(
+				"Playlist URL",
+				text: $viewModel.tempPlaylistURL
+			)
+			.textFieldStyle(.roundedBorder)
+			.textContentType(.URL)
+			.autocorrectionDisabled()
+			#if os(iOS)
+			.autocapitalization(.none)
+			#endif
+			
+			TextField(
+				"Playlist EPG (optional)",
+				text: $viewModel.tempPlaylistEPG
+			)
+			.textFieldStyle(.roundedBorder)
+			.textContentType(.URL)
+			.autocorrectionDisabled()
+			#if os(iOS)
+			.autocapitalization(.none)
+			#endif
 
-			HStack(spacing: 4) {
-				Button("Add", systemImage: "plus") {
-					Task {
-						await addPlaylist()
-					}
+			HStack {
+				AsyncButton("Add", systemImage: "plus") {
+					await addPlaylist()
 				}
 				.disabled(
-					vm.tempPlaylistName.isEmpty || vm.tempPlaylistURL.isEmpty
+					viewModel.tempPlaylistName.isEmpty ||
+					viewModel.tempPlaylistURL.isEmpty
 				)
 				.buttonStyle(.borderedProminent)
-				.foregroundStyle(Color.accentColor)
+				
+				Divider()
+					.frame(height: 20)
 				
 				Button("Cancel") {
 					dismiss()
@@ -65,34 +75,35 @@ struct AddPlaylistView: View {
 				.buttonStyle(.bordered)
 				.foregroundStyle(.red)
 			}
+			.frame(maxWidth: .infinity)
 			.padding()
 		}
 		.padding()
-		.sheet(isPresented: Bindable(vm).isParsing) {
-			ProgressView("Adding playlist...").padding()
-		}
+		.sheet(isPresented: $viewModel.isParsing) { ProgressView("Adding playlist...").padding() }
+		.sheet(isPresented: $viewModel.parserDidFail) { ErrorView(viewModel: viewModel) }
 	}
 }
 
 #Preview {
 	AddPlaylistView()
-		.environment(ViewModel())
+		.environment(AppState())
 }
 
 extension AddPlaylistView {
 	private func addPlaylist() async {
-		vm.isParsing.toggle()
+		viewModel.isParsing = true
 		await networkModel.parsePlaylist()
-		vm.isParsing.toggle()
+		viewModel.isParsing = false
 		
-		if !vm.parserDidFail {
+		if viewModel.parserError == nil {
 			context.insert(
 				Playlist(
-					vm.tempPlaylistName,
-					medias: vm.tempPlaylist?.channels ?? [],
-					m3uLink: vm.tempPlaylistURL, epgLink: vm.tempPlaylistEPG
-				))
-			try? context.save()
+					viewModel.tempPlaylistName,
+					medias: viewModel.tempPlaylist?.channels ?? [],
+					m3uLink: viewModel.tempPlaylistURL,
+					epgLink: viewModel.tempPlaylistEPG
+				)
+			)
 		}
 		
 		dismiss()

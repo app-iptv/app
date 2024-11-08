@@ -1,6 +1,6 @@
 //
-//  mediaRowView.swift
-//  IPTV
+//  MediaCellView.swift
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 08/02/2024.
 //
@@ -21,8 +21,7 @@ struct MediaCellView: View {
 
 	var body: some View {
 		HStack {
-			WebImage(url: URL(string: media.attributes["tvg-logo"] ?? "")) {
-				image in
+			WebImage(url: URL(string: media.attributes["tvg-logo"] ?? "")) { image in
 				image
 					.resizable()
 					.aspectRatio(contentMode: .fit)
@@ -42,11 +41,7 @@ struct MediaCellView: View {
 				compactViewingMode
 			}
 		}
-		.swipeActions(edge: .leading) {
-			ShareLink(item: media.url, preview: SharePreview(media.title))
-			.tint(.pink)
-		}
-		.swipeActions(edge: .trailing) { swipeActions }
+		.swipeActions(edge: .leading) { contextMenu }
 		.contextMenu { contextMenu }
 	}
 }
@@ -57,13 +52,13 @@ extension MediaCellView {
 			Text(media.title)
 				.fontWeight(.semibold)
 				.lineLimit(1)
-
+			
 			Text(media.attributes["group-title"] ?? "Undefined")
 				.font(.caption)
 				.lineLimit(1)
 		}
 	}
-
+	
 	private var compactViewingMode: some View {
 		HStack {
 			HStack(spacing: 0) {
@@ -71,37 +66,37 @@ extension MediaCellView {
 					.fontWeight(.semibold)
 					.lineLimit(1)
 			}
-
+			
 			Spacer()
-
+			
 			Text(media.attributes["group-title"] ?? "Undefined")
 				.font(.caption)
 				.lineLimit(1)
 		}
 	}
-
+	
 	private var regularViewingMode: some View {
 		HStack {
 			Text(media.title)
 				.fontWeight(.semibold)
 				.lineLimit(1)
-
+			
 			Spacer()
-
+			
 			Text(media.attributes["group-title"] ?? "Undefined")
 				.font(.caption)
 				.lineLimit(1)
 		}
 	}
-
+	
 	private var contextMenu: some View {
 		VStack {
 			ShareLink(item: media.url, preview: SharePreview(media.title))
+				.tint(.pink)
 			
 			Button(
 				favourites.contains(media) ? "Un-Favourite" : "Favourite",
-				systemImage: favourites.contains(media)
-					? "star.slash.fill" : "star",
+				systemImage: favourites.contains(media) ? "star.slash.fill" : "star",
 				role: favourites.contains(media) ? .destructive : nil
 			) {
 				if favourites.contains(media) {
@@ -109,29 +104,12 @@ extension MediaCellView {
 				} else {
 					favourites.append(media)
 				}
-
+				
 				Task {
 					await FavouritesTip.setFavouriteEvent.donate()
 				}
 			}
+			.tint(.yellow)
 		}
-	}
-
-	private var swipeActions: some View {
-		Button(
-			favourites.contains(media) ? "Un-Favourite" : "Favourite",
-			systemImage: favourites.contains(media) ? "star.slash" : "star"
-		) {
-			if favourites.contains(media) {
-				favourites.remove(at: favourites.firstIndex(of: media)!)
-			} else {
-				favourites.append(media)
-			}
-
-			Task {
-				await FavouritesTip.setFavouriteEvent.donate()
-			}
-		}
-		.tint(favourites.contains(media) ? .indigo : .yellow)
 	}
 }

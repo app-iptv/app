@@ -1,6 +1,6 @@
 //
 //  mediaListView.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 11/02/2024.
 //
@@ -16,100 +16,99 @@ struct MediaListView: View {
 
 	@Environment(\.horizontalSizeClass) private var sizeClass
 	@Environment(\.isSearching) private var searchState
-	@Environment(ViewModel.self) private var vm
-
-	@AppStorage("SELECTED_PLAYLIST_INDEX") private var selectedPlaylist: Int = 0
+	@Environment(AppState.self) private var appState
 
 	@State private var searchQuery: String = ""
 	@State private var favouritesTip: FavouritesTip = .init()
-
-	private let medias: [Media]
-	private let playlistName: String
-	private let epgLink: String
-	private let index: Int
-
-	internal init(
-		medias: [Media], playlistName: String, epgLink: String, index: Int
-	) {
-		self.medias = medias
-		self.playlistName = playlistName
-		self.epgLink = epgLink
-		self.index = index
+	
+	@Bindable private var playlist: Playlist
+	
+	internal init(_ playlist: Playlist) {
+		self.playlist = playlist
 	}
-
+	
 	var body: some View {
 		NavigationStack {
 			Group {
 				if filteredMediasForGroup.isEmpty {
 					ContentUnavailableView.search(text: searchQuery)
 				} else {
-					listView
+					List {
+						TipView(favouritesTip)
+							.task { await FavouritesTip.showTipEvent.donate() }
+
+						ForEach(filteredMediasForGroup) { media in
+							NavigationLink(value: media) {
+								MediaCellView(media: media)
+							}
+							.badge(playlist.medias.firstIndex(of: media)! + 1)
+						}
+						.onDelete { indexSet in
+							playlist.medias.remove(atOffsets: indexSet)
+						}
+						.onMove { source, destination in
+							playlist.medias.move(fromOffsets: source, toOffset: destination)
+						}
+					}
+					.listStyle(.plain)
 				}
 			}
 			.searchable(text: $searchQuery, prompt: "Search")
 			.navigationDestination(for: Media.self) { media in
 				MediaDetailView(
-					playlistName: vm.selectedPlaylist!.name, media: media,
-					epgLink: vm.selectedPlaylist!.epgLink)
+					playlistName: appState.selectedPlaylist!.name, media: media,
+					epgLink: appState.selectedPlaylist!.epgLink
+				)
 			}
-			.onAppear { selectedPlaylist = index }
-			.navigationTitle(playlistName)
+			.navigationTitle(playlist.name)
 			#if os(iOS)
-				.toolbarRole(sizeClass!.toolbarRole)
-			#endif
-			.toolbar(id: "mediasToolbar") {
-				ToolbarItem(id: "groupPicker", placement: placement) {
+			.toolbarRole(sizeClass!.toolbarRole)
+			.toolbar {
+				ToolbarItem {
 					Picker(
 						"Select Group",
-						selection: Bindable(vm).selectedGroup
+						selection: Bindable(appState).selectedGroup
 					) {
 						Label("All", systemImage: "tray.2")
-							#if os(macOS)
-								.labelStyle(.titleAndIcon)
-							#endif
+							.labelStyle(.iconOnly)
 						.tag("All")
 						ForEach(groups, id: \.self) { group in
 							Label(group, systemImage: "tray")
-								#if os(macOS)
-									.labelStyle(.titleAndIcon)
-								#endif
-							.tag(group)
+								.tag(group)
+						}
+					}
+					.pickerStyle(.menu)
+				}
+				ToolbarItem { EditButton() }
+			}
+			#else
+			.toolbar(id: "mediasToolbar") {
+				ToolbarItem(id: "groupPicker") {
+					Picker(
+						"Select Group",
+						selection: Bindable(appState).selectedGroup
+					) {
+						Label("All", systemImage: "tray.2")
+							.labelStyle(.titleAndIcon)
+							.tag("All")
+						ForEach(groups, id: \.self) { group in
+							Label(group, systemImage: "tray")
+								.labelStyle(.titleAndIcon)
+								.tag(group)
 						}
 					}
 					.pickerStyle(.menu)
 				}
 			}
+			#endif
 		}
 	}
 }
 
 extension MediaListView {
-	private var placement: ToolbarItemPlacement {
-		#if os(macOS)
-			return .primaryAction
-		#else
-			return .topBarTrailing
-		#endif
-	}
-
-	private var listView: some View {
-		List {
-			TipView(favouritesTip)
-				.task { await FavouritesTip.showTipEvent.donate() }
-
-			ForEach(filteredMediasForGroup) { media in
-				NavigationLink(value: media) {
-					MediaCellView(media: media)
-				}
-				.badge(medias.firstIndex(of: media)! + 1)
-			}
-		}
-		.listStyle(.plain)
-	}
-
 	private var searchResults: [Media] {
-		guard !searchQuery.isEmpty else { return medias }
-		let results = medias.filter { media in
+		guard !searchQuery.isEmpty else { return playlist.medias }
+		let results = playlist.medias.filter { media in
 			media.title.localizedStandardContains(searchQuery)
 		}
 
@@ -125,10 +124,10 @@ extension MediaListView {
 	}
 
 	private var filteredMediasForGroup: [Media] {
-		guard vm.selectedGroup == "All" else {
+		guard appState.selectedGroup == "All" else {
 			return searchResults.filter {
 				($0.attributes["group-title"] ?? "Undefined")
-					== vm.selectedGroup
+					== appState.selectedGroup
 			}
 		}
 		return searchResults

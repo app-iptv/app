@@ -17,9 +17,7 @@ struct FavouritesTip: Tip {
 	}
 
 	var message: Text? {
-		Text(
-			"You can add channels to your favourites by dragging the channel to the left to easily access it later."
-		)
+		Text("You can add channels to your favourites by dragging the channel to the left to easily access it later.")
 	}
 
 	var image: Image? {

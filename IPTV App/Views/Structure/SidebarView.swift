@@ -1,6 +1,6 @@
 //
 //  SidebarView.swift
-//  IPTV
+//  IPTV App
 //
 //  Created by Pedro Cordeiro on 11/02/2024.
 //
@@ -13,7 +13,7 @@ struct SidebarView: View {
 
 	@Environment(\.horizontalSizeClass) private var sizeClass
 	@Environment(\.modelContext) private var context
-	@Environment(ViewModel.self) private var vm
+	@Environment(AppState.self) private var appState
 
 	@Query private var modelPlaylists: [Playlist]
 
@@ -26,11 +26,11 @@ struct SidebarView: View {
 					Text("Playlists that you add will appear here.")
 				} actions: {
 					Button("Add Playlist") {
-						vm.isPresented.toggle()
+						appState.isAddingPlaylist.toggle()
 					}
 				}
 			} else {
-				List(modelPlaylists, selection: Bindable(vm).selectedPlaylist) {
+				List(modelPlaylists, selection: Bindable(appState).selectedPlaylist) {
 					playlist in
 					PlaylistCellView(playlist)
 						.tag(playlist)
@@ -43,35 +43,17 @@ struct SidebarView: View {
 		.navigationTitle("Playlists")
 		.navigationSplitViewColumnWidth(min: 216, ideal: 216)
 		.toolbar(id: "playlistsToolbar") {
-			ToolbarItem(id: "addPlaylist", placement: placement1) {
+			ToolbarItem(id: "addPlaylist") {
 				Button("Add Playlist", systemImage: "plus") {
-					vm.isPresented.toggle()
+					appState.isAddingPlaylist.toggle()
 				}
 			}
 
-			ToolbarItem(id: "openSingleStream", placement: placement2) {
+			ToolbarItem(id: "openSingleStream") {
 				Button("Open Stream", systemImage: "play") {
-					vm.openedSingleStream.toggle()
+					appState.openedSingleStream.toggle()
 				}
 			}
 		}
-	}
-}
-
-extension SidebarView {
-	private var placement1: ToolbarItemPlacement {
-		#if os(macOS)
-			.automatic
-		#else
-			.topBarTrailing
-		#endif
-	}
-
-	private var placement2: ToolbarItemPlacement {
-		#if os(macOS)
-			.automatic
-		#else
-			.topBarLeading
-		#endif
 	}
 }
