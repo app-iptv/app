@@ -40,7 +40,7 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 - [V] Multi-language support
 - [V] Picture-in-Picture (PiP) mode
 
-# **Packages Used in the IPTV App**
+## **Packages Used in the IPTV App**
 
 Below is a list of third-party packages used in the IPTV app and their purposes:
 
