@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ElementViewModifier: ViewModifier {
-
 	let type: ElementType
 
 	init(for type: ElementType) {
@@ -25,7 +24,9 @@ struct ElementViewModifier: ViewModifier {
 						cornerRadii: RectangleCornerRadii(
 							topLeading: 8, bottomLeading: 2.5,
 							bottomTrailing: 2.5, topTrailing: 8),
-						style: .circular))
+						style: .circular
+					)
+				)
 		case .bottom:
 			content
 				.background(
@@ -34,7 +35,9 @@ struct ElementViewModifier: ViewModifier {
 						cornerRadii: RectangleCornerRadii(
 							topLeading: 2.5, bottomLeading: 8,
 							bottomTrailing: 8, topTrailing: 2.5),
-						style: .circular))
+						style: .circular
+					)
+				)
 		case .right:
 			content
 				.background(
@@ -43,7 +46,8 @@ struct ElementViewModifier: ViewModifier {
 						cornerRadii: RectangleCornerRadii(
 							topLeading: 2.5, bottomLeading: 2.5,
 							bottomTrailing: 8, topTrailing: 8), style: .circular
-					))
+					)
+				)
 		case .left:
 			content
 				.background(
@@ -52,7 +56,9 @@ struct ElementViewModifier: ViewModifier {
 						cornerRadii: RectangleCornerRadii(
 							topLeading: 8, bottomLeading: 8,
 							bottomTrailing: 2.5, topTrailing: 2.5),
-						style: .circular))
+						style: .circular
+					)
+				)
 		case .topLeft:
 			content
 				.background(
@@ -61,7 +67,9 @@ struct ElementViewModifier: ViewModifier {
 						cornerRadii: RectangleCornerRadii(
 							topLeading: 8, bottomLeading: 2.5,
 							bottomTrailing: 2.5, topTrailing: 2.5),
-						style: .circular))
+						style: .circular
+					)
+				)
 		case .topRight:
 			content
 				.background(
@@ -70,7 +78,9 @@ struct ElementViewModifier: ViewModifier {
 						cornerRadii: RectangleCornerRadii(
 							topLeading: 2.5, bottomLeading: 2.5,
 							bottomTrailing: 2.5, topTrailing: 8),
-						style: .circular))
+						style: .circular
+					)
+				)
 		case .bottomLeft:
 			content
 				.background(
@@ -79,7 +89,9 @@ struct ElementViewModifier: ViewModifier {
 						cornerRadii: RectangleCornerRadii(
 							topLeading: 2.5, bottomLeading: 8,
 							bottomTrailing: 2.5, topTrailing: 2.5),
-						style: .circular))
+						style: .circular
+					)
+				)
 		case .bottomRight:
 			content
 				.background(
@@ -88,7 +100,9 @@ struct ElementViewModifier: ViewModifier {
 						cornerRadii: RectangleCornerRadii(
 							topLeading: 2.5, bottomLeading: 2.5,
 							bottomTrailing: 8, topTrailing: 2.5),
-						style: .circular))
+						style: .circular
+					)
+				)
 		case .middle:
 			content
 				.background(
@@ -97,7 +111,9 @@ struct ElementViewModifier: ViewModifier {
 						cornerRadii: RectangleCornerRadii(
 							topLeading: 2.5, bottomLeading: 2.5,
 							bottomTrailing: 2.5, topTrailing: 2.5),
-						style: .circular))
+						style: .circular
+					)
+				)
 		case .content:
 			content
 				.background(

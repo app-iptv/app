@@ -30,8 +30,7 @@ struct SidebarView: View {
 					}
 				}
 			} else {
-				List(modelPlaylists, selection: Bindable(appState).selectedPlaylist) {
-					playlist in
+				List(modelPlaylists, selection: Bindable(appState).selectedPlaylist) { playlist in
 					PlaylistCellView(playlist)
 						.tag(playlist)
 						#if !os(macOS)

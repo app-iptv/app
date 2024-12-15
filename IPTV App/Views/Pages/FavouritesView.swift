@@ -81,12 +81,12 @@ struct FavouritesView: View {
 					Menu("Select EPG") {
 						ForEach(playlists) { playlist in
 							Button("From \(playlist.name)") {
-								epgFetchingController = EPGFetchingController(epg: playlist.epgLink, appState: appState)
+								Task { await epgFetchingController.load(epg: playlist.epgLink, appState: appState) }
 							}
 						}
 					}
-					.onAppear {
-						epgFetchingController = EPGFetchingController(epg: playlists.first?.epgLink, appState: appState)
+					.task {
+						await epgFetchingController.load(epg: playlists.first?.epgLink, appState: appState)
 					}
 				}
 			}

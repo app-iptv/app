@@ -15,8 +15,7 @@ struct MediaGridItemView: View {
 	var body: some View {
 		GroupBox {
 			VStack(spacing: 5) {
-				WebImage(url: URL(string: media.attributes["tvg-logo"] ?? "")) {
-					image in
+				WebImage(url: URL(string: media.attributes["tvg-logo"] ?? "")) { image in
 					image
 						.resizable()
 						.scaledToFit()
@@ -29,15 +28,19 @@ struct MediaGridItemView: View {
 				Divider()
 
 				HStack {
-					Text(media.title)
-
-					if let groupTitle = media.attributes["group-title"] {
-						Spacer()
-
-						Text(groupTitle)
-							.font(.caption)
+					VStack(spacing: 2.5) {
+						Text(media.title)
+						
+						if let groupTitle = media.attributes["group-title"] {
+							Text(groupTitle)
+								.font(.caption)
+						}
 					}
 
+					Spacer()
+					
+					Divider()
+					
 					Spacer()
 
 					Text(String(index))

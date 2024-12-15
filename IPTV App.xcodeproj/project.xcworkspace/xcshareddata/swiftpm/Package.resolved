@@ -1,5 +1,5 @@
 {
-  "originHash" : "9b71c655b1e0642c5fc81df4bf695b99a1d80f30d3fe1795d58df05759adac6f",
+  "originHash" : "c5f11decf0fd123acbda86d428ca01efd4bf9be5021c164394a58267bff0ccd5",
   "pins" : [
     {
       "identity" : "bitbytedata",
@@ -22,7 +22,7 @@
     {
       "identity" : "m3ukit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pedrodsac/M3UKit.git",
+      "location" : "https://github.com/iptvapp-proj/M3UKit.git",
       "state" : {
         "branch" : "master",
         "revision" : "4e06ae972d01afd63ba986012d358345a5a3e56e"
@@ -76,7 +76,7 @@
     {
       "identity" : "xmltv",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pedrodsac/XMLTV.git",
+      "location" : "https://github.com/iptvapp-proj/XMLTV.git",
       "state" : {
         "branch" : "master",
         "revision" : "3f79c795900b7fc7bfe30dbf4c206f3a82a32770"

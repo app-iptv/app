@@ -22,21 +22,27 @@ struct SingleStreamView: View {
 				.font(.largeTitle)
 				.bold()
 				.padding()
+			
 			TextField("Enter URL", text: $mediaURL)
 				.textFieldStyle(.roundedBorder)
 				#if os(iOS)
 					.textInputAutocapitalization(.never)
 				#endif
-
-			HStack(spacing: 4) {
+			
+			HStack {
 				Button("Open", systemImage: "play") { isPresented.toggle() }
 					.disabled(mediaURL.isEmpty)
 					.buttonStyle(.borderedProminent)
 					.foregroundStyle(Color.accentColor)
+				
+				Divider()
+					.frame(height: 20)
+				
 				Button("Cancel") { appState.openedSingleStream.toggle() }
 					.buttonStyle(.bordered)
 					.foregroundStyle(.red)
 			}
+			.frame(maxWidth: .infinity)
 			.padding()
 		}
 		.navigationTitle("Open Single Media")

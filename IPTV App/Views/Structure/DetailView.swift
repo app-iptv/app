@@ -18,7 +18,7 @@ struct DetailView: View {
 
 	var body: some View {
 		if let playlist = appState.selectedPlaylist {
-			MediaListView(playlist)
+			MediasView(playlist)
 		} else {
 			ContentUnavailableView {
 				Label("No Medias", systemImage: "list.and.film")

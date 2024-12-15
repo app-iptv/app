@@ -13,22 +13,30 @@ import TipKit
 
 @main
 struct IPTVApp: App {
-
-	#if os(iOS)
-		@UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-	#endif
-
 	@Environment(\.openWindow) private var openWindow
 
 	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = true
 	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
+	@AppStorage("MEDIA_DISPLAY_MODE") private var mediaDisplayMode: MediaDisplayMode = .list
 
 	@Query private var playlists: [Playlist]
 	
 	@State private var appState = AppState()
 	@State private var isRemovingAll: Bool = false
 	@State private var epgFetchingController: EPGFetchingController = EPGFetchingController()
+	
+	#if !os(macOS)
+	init() {
+		let session = AVAudioSession.sharedInstance()
+		
+		do {
+			try session.setCategory(.playback, mode: .moviePlayback)
+		} catch {
+			print(error.localizedDescription)
+		}
+	}
+	#endif
 
 	private var commands: some Commands {
 		Group {
@@ -66,10 +74,10 @@ struct IPTVApp: App {
 				.task { try? Tips.configure() }
 		}
 		.modelContainer(SwiftDataController.shared.persistenceContainer)
+		.onChange(of: appState.selectedPlaylist, resetEPG)
 		.environment(epgFetchingController)
 		.environment(appState)
 		.commands { commands }
-		.onChange(of: appState.selectedPlaylist) { epgFetchingController = EPGFetchingController(epg: appState.selectedPlaylist?.epgLink, appState: appState) }
 
 		#if os(macOS)
 			Window("About IPTV App", id: "ABOUT_WINDOW") {
@@ -87,5 +95,13 @@ struct IPTVApp: App {
 			.environment(appState)
 			.windowStyle(.hiddenTitleBar)
 		#endif
+	}
+}
+
+extension IPTVApp {
+	private func resetEPG() {
+		Task {
+			await epgFetchingController.load(epg: appState.selectedPlaylist?.epgLink, appState: appState)
+		}
 	}
 }

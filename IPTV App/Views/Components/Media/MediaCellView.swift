@@ -14,7 +14,6 @@ import XMLTV
 struct MediaCellView: View {
 
 	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
-
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
 
 	let media: Media

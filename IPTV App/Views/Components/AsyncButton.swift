@@ -7,28 +7,28 @@
 
 import SwiftUI
 
-struct AsyncButton: View {
+struct AsyncButton<Content: View>: View {
 	var action: () async -> Void
-	var label: () -> any View
+	var label: () -> Content
 	
-	init(action: @escaping () async -> Void, label: @escaping () -> any View) {
+	init(action: @escaping () async -> Void, label: @escaping () -> Content) {
 		self.action = action
 		self.label = label
 	}
 	
 	var body: some View {
 		Button {
-			Task { await action() }
+			Task(operation: action)
 		} label: {
-			AnyView(label())
+			label()
 		}
 	}
 }
 
-extension AsyncButton {
+extension AsyncButton where Content == Label<Text, Image> {
 	init(_ titleKey: LocalizedStringKey, systemImage: String, action: @escaping () async -> Void) {
 		self.init(action: action) {
-			SwiftUI.Label(titleKey, systemImage: systemImage)
+			Label(titleKey, systemImage: systemImage)
 		}
 	}
 }

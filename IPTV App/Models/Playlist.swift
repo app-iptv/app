@@ -23,7 +23,7 @@ class Playlist: Identifiable {
 		_ name: String,
 		medias: [Media],
 		m3uLink: String,
-		epgLink: String
+		epgLink: String = ""
 	) {
 		self.name = name
 		self.medias = medias

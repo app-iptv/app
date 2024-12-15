@@ -18,10 +18,13 @@ struct MainView: View {
 	@Environment(\.isSearching) private var searchState
 	@Environment(AppState.self) private var appState
 	
+	@AppStorage("MEDIA_DISPLAY_MODE") private var mediaDisplayMode: MediaDisplayMode = .list
+	
 	@Query private var playlists: [Playlist]
 
 	@State private var searchQuery: String = ""
-	@State private var favouritesTip: FavouritesTip = .init()
+	@State private var favouritesTip: FavouritesTip = FavouritesTip()
+	@State private var viewModel: MediasViewModel = MediasViewModel()
 	
 	var body: some View {
 		NavigationStack {
@@ -29,27 +32,8 @@ struct MainView: View {
 				if let playlist = appState.selectedPlaylist {
 					mediaListView(for: playlist)
 						.navigationTitle(playlist.name)
+						.toolbar(id: "mediasToolbar") { MediasToolbar(groups: viewModel.groups(for: playlist)) }
 						.searchable(text: $searchQuery, prompt: "Search")
-						.toolbar(id: "mediasToolbar") {
-							ToolbarItem(id: "groupPicker") {
-								Picker(
-									"Select Group",
-									selection: Bindable(appState).selectedGroup
-								) {
-									Label("All", systemImage: "tray.2")
-										.labelStyle(.iconOnly)
-										.tag("All")
-									
-									ForEach(groups(for: playlist), id: \.self) { group in
-										Label(group, systemImage: "tray")
-											.tag(group)
-									}
-								}
-								.pickerStyle(.menu)
-							}
-							
-							ToolbarItem(id: "edit") { EditButton() }
-						}
 				} else {
 					ContentUnavailableView {
 						Label("No Playlist", systemImage: "list.bullet")
@@ -92,58 +76,32 @@ struct MainView: View {
 extension MainView {
 	private func mediaListView(for playlist: Playlist) -> some View {
 		Group {
-			if filteredMediasForGroup(for: playlist).isEmpty {
+			if viewModel.filteredMediasForGroup(appState.selectedGroup, playlist: playlist).isEmpty {
 				ContentUnavailableView.search(text: searchQuery)
-			} else {
-				List {
-					TipView(favouritesTip)
-						.task { await FavouritesTip.showTipEvent.donate() }
-					
-					ForEach(filteredMediasForGroup(for: playlist)) { media in
-						NavigationLink(value: media) {
-							MediaCellView(media: media)
-						}
-						.badge(playlist.medias.firstIndex(of: media)! + 1)
-					}
-					.onDelete { indexSet in
-						playlist.medias.remove(atOffsets: indexSet)
-					}
-					.onMove { source, destination in
-						playlist.medias.move(fromOffsets: source, toOffset: destination)
-					}
-				}
-				.listStyle(.plain)
+			} else /*if mediaDisplayMode == .grid*/ {
+//				List {
+//					TipView(favouritesTip)
+//						.task { await FavouritesTip.showTipEvent.donate() }
+//					
+//					ForEach(filteredMediasForGroup(for: playlist)) { media in
+//						NavigationLink(value: media) {
+//							MediaCellView(media: media)
+//						}
+//						.badge(playlist.medias.firstIndex(of: media)! + 1)
+//					}
+//					.onDelete { indexSet in
+//						playlist.medias.remove(atOffsets: indexSet)
+//					}
+//					.onMove { source, destination in
+//						playlist.medias.move(fromOffsets: source, toOffset: destination)
+//					}
+//				}
+//				.listStyle(.plain)
+				
+//				MediasGridView(vm: viewModel, playlist: playlist)
+//			} else {
+				MediasListView(vm: viewModel, playlist: playlist)
 			}
 		}
-	}
-	
-	private func searchResults(for playlist: Playlist) -> [Media] {
-		guard !searchQuery.isEmpty else { return playlist.medias }
-		let results = playlist.medias.filter { media in
-			media.title.localizedStandardContains(searchQuery)
-		}
-
-		return results
-	}
-
-	private func groups(for playlist: Playlist) -> [String] {
-		let allGroups = Set(
-			searchResults(for: playlist).compactMap {
-				$0.attributes["group-title"] ?? "Undefined"
-			}
-		)
-		
-		return allGroups.sorted()
-	}
-
-	private func filteredMediasForGroup(for playlist: Playlist) -> [Media] {
-		guard appState.selectedGroup == "All" else {
-			return searchResults(for: playlist).filter {
-				($0.attributes["group-title"] ?? "Undefined")
-					== appState.selectedGroup
-			}
-		}
-		
-		return searchResults(for: playlist)
 	}
 }

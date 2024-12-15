@@ -85,35 +85,35 @@ struct MediaDetailView: View {
 		.onAppear(perform: fetchPrograms)
 		.onChange(of: fetchingModel.xmlTV, fetchPrograms)
 		.toolbarTitleDisplayMode(.inline)
-        #if !os(macOS)
-            .toolbarBackground(.visible, for: .navigationBar, .tabBar)
-        #endif
+		#if !os(macOS)
+		.toolbarBackground(.visible, for: .navigationBar, .tabBar)
+		#endif
 	}
 }
 
 extension MediaDetailView {
-    private func fetchPrograms() {
-        guard let xmlTV = fetchingModel.xmlTV else { return abortFetching() }
-        guard let channelID = media.attributes["tvg-id"] else { return abortFetching() }
-        
-        let channels = xmlTV.getChannels()
-        
-        guard !channels.isEmpty else { return abortFetching() }
-        guard let channel = channels.first(where: { $0.id == channelID }) else { return abortFetching() }
-        
-        let programs = xmlTV.getPrograms(channel: channel)
-        
-        guard !programs.isEmpty else { return abortFetching() }
-        
-        self.programs = programs
-        
-        abortFetching()
-    }
-    
-    private func abortFetching() {
-        appState.isLoadingEPG = false
-    }
-
+	private func fetchPrograms() {
+		guard let xmlTV = fetchingModel.xmlTV else { return abortFetching() }
+		guard let channelID = media.attributes["tvg-id"] else { return abortFetching() }
+		
+		let channels = xmlTV.getChannels()
+		
+		guard !channels.isEmpty else { return abortFetching() }
+		guard let channel = channels.first(where: { $0.id == channelID }) else { return abortFetching() }
+		
+		let programs = xmlTV.getPrograms(channel: channel)
+		
+		guard !programs.isEmpty else { return abortFetching() }
+		
+		self.programs = programs
+		
+		abortFetching()
+	}
+	
+	private func abortFetching() {
+		appState.isLoadingEPG = false
+	}
+	
 	private var noProgramsForChannelView: some View {
 		VStack {
 			Spacer()

@@ -8,6 +8,6 @@
 import Foundation
 import M3UKit
 
-extension Media: Identifiable {
+extension Media: @retroactive Identifiable {
 	public var id: UUID { UUID() }
 }

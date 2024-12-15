@@ -8,7 +8,7 @@
 import Foundation
 import XMLTV
 
-extension TVProgram: Identifiable {
+extension TVProgram: @retroactive Identifiable {
 	public var id: UUID { UUID() }
 
 	public func isCurrent() -> Bool {

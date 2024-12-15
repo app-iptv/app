@@ -26,6 +26,14 @@ struct SettingsView: View {
 	var body: some View {
 		NavigationStack {
 			Form {
+				#if os(iOS)
+					Section("Edit Playlists") {
+						ForEach(playlists) { playlist in
+							NavigationLink(playlist.name, value: playlist)
+						}
+					}
+				#endif
+				
 				Section {
 					Toggle(
 						"Show Wecome Screen Again",
@@ -70,6 +78,9 @@ struct SettingsView: View {
 				}
 			}
 			.navigationTitle("Settings")
+			.navigationDestination(for: Playlist.self) { playlist in
+				EditPlaylistView(playlist)
+			}
 			#if os(macOS)
 				.formStyle(.grouped)
 			#endif

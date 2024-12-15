@@ -45,7 +45,6 @@
 				PrivacyInfo.xcprivacy,
 			);
 			platformFiltersByRelativePath = {
-				"App & Controllers/AppDelegate.swift" = (ios, );
 				"App & Controllers/OnboardingController.swift" = (ios, );
 				"Launch Screen.storyboard" = (ios, );
 				"Views/Components/Player/NSPlayerViewController+Representable.swift" = (macos, );
@@ -500,7 +499,7 @@
 		};
 		2F65285C2C332FB800302F67 /* XCRemoteSwiftPackageReference "M3UKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pedrodsac/M3UKit.git";
+			repositoryURL = "https://github.com/iptvapp-proj/M3UKit.git";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -508,7 +507,7 @@
 		};
 		2F65285F2C332FD800302F67 /* XCRemoteSwiftPackageReference "XMLTV" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pedrodsac/XMLTV.git";
+			repositoryURL = "https://github.com/iptvapp-proj/XMLTV.git";
 			requirement = {
 				branch = master;
 				kind = branch;

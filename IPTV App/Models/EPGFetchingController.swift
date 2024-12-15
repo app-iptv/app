@@ -15,22 +15,27 @@ import SwiftData
 @Observable
 class EPGFetchingController {
 	
+	var id: UUID
 	var xmlTV: XMLTV? = nil
 	
-	init(epg: String? = nil, appState: AppState? = nil) {
+	init() {
+		id = UUID()
+	}
+	
+	func load(epg: String? = nil, appState: AppState? = nil) async {
+		id = UUID()
+		
 		guard let epg, let appState else { return }
 		
-		Task {
-			appState.isLoadingEPG = true
-			
-			do {
-				xmlTV = try await getPrograms(with: epg)
-			} catch {
-				dump(error)
-			}
-			
-			appState.isLoadingEPG = false
+		appState.isLoadingEPG = true
+		
+		do {
+			xmlTV = try await getPrograms(with: epg)
+		} catch {
+			dump(error)
 		}
+		
+		appState.isLoadingEPG = false
 	}
 	
 	func getData(from link: String) async throws -> (Data, URLResponse) {
