@@ -10,8 +10,6 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 - 🎨 **Customizable UI**: Adjust themes, layouts, and user preferences.  
 - 🔒 **Secure Streaming**: Ensures encrypted and private content playback.  
 
----
-
 ## **Getting Started**  
 
 ### **Installation**  
@@ -22,14 +20,10 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
    - Add your IPTV provider’s M3U playlist URL.  
    - Configure EPG URLs if required.  
 
----
-
 ### **Requirements**  
 - **macOS**: Version 14.0 or later
 - **iOS**: Version 17.0 or later
 - Active IPTV subscription with a playlist URL
-
----
 
 ## **How to Use**
 1. **Add Your Playlist**
@@ -40,15 +34,11 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 2. **Watch**
    - Choose your Playlist from the menu and you're ready to watch!
 
----
-
 ## **Roadmap**  
 - [V] Add AirPlay support
 - [ ] Offline playback for on-demand content
 - [V] Multi-language support
 - [V] Picture-in-Picture (PiP) mode
-
----
 
 ## **Contributing**  
 We welcome contributions! Please follow these steps:
@@ -58,13 +48,9 @@ We welcome contributions! Please follow these steps:
 4. Push to the branch (`git push origin feature-name`).
 5. Create a Pull Request.
 
----
-
 ## **Support**
 If you encounter any issues, please contact us:
 - 📧 Email: [marianaduartesilva425@gmail.com](mailto:marianaduartesilva425@gmail.com)
-
----
 
 ## **License**  
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
