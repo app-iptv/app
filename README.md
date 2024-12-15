@@ -40,6 +40,37 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 - [V] Multi-language support
 - [V] Picture-in-Picture (PiP) mode
 
+# **Packages Used in the IPTV App**
+
+Below is a list of third-party packages used in the IPTV app and their purposes:
+
+### **1. M3UKit**  
+**Description**: A library for parsing and handling M3U playlists.  
+**Purpose**: Enables the app to import and manage IPTV playlists.  
+
+### **2. SDWebImageSwiftUI**  
+**Description**: SwiftUI bindings for SDWebImage.  
+**Purpose**: Handles image downloading and caching efficiently, providing smooth and optimized UI rendering for channel logos and thumbnails.  
+
+### **3. SWCompression**  
+**Description**: A compression framework for Swift.  
+**Purpose**: Used for decompressing or handling compressed files, such as EPG data or bundled playlists.  
+
+### **4. SwiftyXMLParser**  
+**Description**: A lightweight XML parser for Swift.  
+**Purpose**: Parses XML data, such as EPG files, to display program information.  
+
+### **5. UIOnboarding**  
+**Description**: A Swift package for creating onboarding screens.  
+**Purpose**: Provides a user-friendly onboarding experience for first-time users of the app.  
+
+### **6. XMLTV**  
+**Description**: A library for handling XMLTV files.  
+**Purpose**: Processes TV program schedules from XMLTV sources for use in the Electronic Program Guide (EPG).  
+
+## **Acknowledgments**
+We are grateful to the developers of these open-source packages for their contributions to the community. Their work has significantly enhanced the functionality and performance of our IPTV app.
+
 ## **Contributing**  
 We welcome contributions! Please follow these steps:
 1. Fork this repository.
