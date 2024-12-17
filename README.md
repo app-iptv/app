@@ -35,10 +35,11 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
    - Choose your Playlist from the menu and you're ready to watch!
 
 ## **Roadmap**  
-- [V] Add AirPlay support
+- [x] Add AirPlay support
 - [ ] Offline playback for on-demand content
-- [V] Multi-language support
-- [V] Picture-in-Picture (PiP) mode
+- [ ] Import playlists by uploading M3U files
+- [x] Multi-language support
+- [x] Picture-in-Picture (PiP) mode
 
 ## **Packages Used in the IPTV App**
 
