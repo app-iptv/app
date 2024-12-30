@@ -9,13 +9,10 @@ import SwiftData
 import Foundation
 
 @MainActor
-final class SwiftDataController: NSObject {
-	
+final class SwiftDataController {
 	static let shared = SwiftDataController()
 	
-	private override init() {
-		super.init()
-	}
+	private init() { }
 	
 	let persistenceContainer: ModelContainer = {
 		print(URL.applicationSupportDirectory.path(percentEncoded: false))

@@ -8,12 +8,13 @@
 import M3UKit
 import SwiftData
 import SwiftUI
+import XMLTV
 
 struct SidebarView: View {
-
 	@Environment(\.horizontalSizeClass) private var sizeClass
 	@Environment(\.modelContext) private var context
 	@Environment(AppState.self) private var appState
+	@Environment(SceneState.self) private var sceneState
 
 	@Query private var modelPlaylists: [Playlist]
 
@@ -25,12 +26,10 @@ struct SidebarView: View {
 				} description: {
 					Text("Playlists that you add will appear here.")
 				} actions: {
-					Button("Add Playlist") {
-						appState.isAddingPlaylist.toggle()
-					}
+					Button("Add Playlist") { appState.isAddingPlaylist.toggle() }
 				}
 			} else {
-				List(modelPlaylists, selection: Bindable(appState).selectedPlaylist) { playlist in
+				List(modelPlaylists, selection: Bindable(sceneState).selectedPlaylist) { playlist in
 					PlaylistCellView(playlist)
 						.tag(playlist)
 						#if !os(macOS)
@@ -39,20 +38,8 @@ struct SidebarView: View {
 				}
 			}
 		}
+		.toolbar(id: "playlistsToolbar") { PlaylistsToolbar() }
 		.navigationTitle("Playlists")
-		.navigationSplitViewColumnWidth(min: 216, ideal: 216)
-		.toolbar(id: "playlistsToolbar") {
-			ToolbarItem(id: "addPlaylist") {
-				Button("Add Playlist", systemImage: "plus") {
-					appState.isAddingPlaylist.toggle()
-				}
-			}
-
-			ToolbarItem(id: "openSingleStream") {
-				Button("Open Stream", systemImage: "play") {
-					appState.openedSingleStream.toggle()
-				}
-			}
-		}
+		.navigationSplitViewColumnWidth(216)
 	}
 }

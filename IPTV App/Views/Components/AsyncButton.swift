@@ -2,33 +2,34 @@
 //  AsyncButton.swift
 //  IPTV App
 //
-//  Created by Pedro Cordeiro on 08/11/2024.
+//  Created by Pedro Cordeiro on 23/12/2024.
 //
 
 import SwiftUI
 
-struct AsyncButton<Content: View>: View {
-	var action: () async -> Void
-	var label: () -> Content
+struct AsyncButton<Label: View>: View {
+	@State private var task: Task<(), Never>? = nil
 	
-	init(action: @escaping () async -> Void, label: @escaping () -> Content) {
+	let action: () async -> Void
+	let label: (Bool) -> Label
+	
+	init(action: @escaping () async -> Void, label: @escaping (Bool) -> Label) {
 		self.action = action
 		self.label = label
 	}
-	
+
 	var body: some View {
 		Button {
-			Task(operation: action)
+			task = Task { @MainActor in
+				await action()
+				task = nil
+			}
 		} label: {
-			label()
+			label(task != nil)
 		}
-	}
-}
-
-extension AsyncButton where Content == Label<Text, Image> {
-	init(_ titleKey: LocalizedStringKey, systemImage: String, action: @escaping () async -> Void) {
-		self.init(action: action) {
-			Label(titleKey, systemImage: systemImage)
+		.onDisappear {
+			task?.cancel()
+			task = nil
 		}
 	}
 }

@@ -10,6 +10,7 @@ import TipKit
 
 struct MediasListView: View {
 	@Environment(AppState.self) private var appState
+	@Environment(SceneState.self) private var sceneState
 	
 	@Bindable private var viewModel: MediasViewModel
 	@Bindable private var playlist: Playlist
@@ -30,12 +31,8 @@ struct MediasListView: View {
 				}
 				.badge(playlist.medias.firstIndex(of: media)! + 1)
 			}
-			.onDelete { indexSet in
-				playlist.medias.remove(atOffsets: indexSet)
-			}
-			.onMove { source, destination in
-				playlist.medias.move(fromOffsets: source, toOffset: destination)
-			}
+			.onDelete { playlist.medias.remove(atOffsets: $0) }
+			.onMove { playlist.medias.move(fromOffsets: $0, toOffset: $1) }
 		}
 		.listStyle(.plain)
 	}
@@ -44,6 +41,6 @@ struct MediasListView: View {
 extension MediasListView {
 	private var searchResults: [Media] { viewModel.searchResults(playlist) }
 	private var groups: [String] { viewModel.groups(for: playlist) }
-	private var selectedGroup: String { appState.selectedGroup }
+	private var selectedGroup: String { sceneState.selectedGroup }
 	private var mediasForGroup: [Media] { viewModel.filteredMediasForGroup(selectedGroup, playlist: playlist) }
 }

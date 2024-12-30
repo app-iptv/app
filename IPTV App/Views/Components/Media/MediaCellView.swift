@@ -12,7 +12,6 @@ import SwiftUI
 import XMLTV
 
 struct MediaCellView: View {
-
 	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
 
@@ -93,22 +92,34 @@ extension MediaCellView {
 			ShareLink(item: media.url, preview: SharePreview(media.title))
 				.tint(.pink)
 			
-			Button(
-				favourites.contains(media) ? "Un-Favourite" : "Favourite",
-				systemImage: favourites.contains(media) ? "star.slash.fill" : "star",
-				role: favourites.contains(media) ? .destructive : nil
-			) {
+			AsyncButton {
 				if favourites.contains(media) {
 					favourites.remove(at: favourites.firstIndex(of: media)!)
 				} else {
 					favourites.append(media)
 				}
 				
-				Task {
-					await FavouritesTip.setFavouriteEvent.donate()
-				}
+				await FavouritesTip.setFavouriteEvent.donate()
+			} label: { _ in
+				Label(favouriteMediaButtonText, systemImage: favouriteMediaButtonImage)
 			}
 			.tint(.yellow)
+		}
+	}
+	
+	private var favouriteMediaButtonText: LocalizedStringKey {
+		if favourites.contains(media) {
+			return "Un-Favourite"
+		} else {
+			return "Favourite"
+		}
+	}
+	
+	private var favouriteMediaButtonImage: String {
+		if favourites.contains(media) {
+			return "star.slash.fill"
+		} else {
+			return "star"
 		}
 	}
 }

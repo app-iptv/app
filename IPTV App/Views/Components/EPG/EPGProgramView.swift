@@ -17,9 +17,11 @@ struct EPGProgramView: View {
 	}
 
 	private let currentInterval = Date().timeIntervalSinceReferenceDate
+	
 	private var startInterval: TimeInterval {
 		program.start?.timeIntervalSinceReferenceDate ?? 0
 	}
+	
 	private var endInterval: TimeInterval {
 		program.stop?.timeIntervalSinceReferenceDate ?? 0
 	}

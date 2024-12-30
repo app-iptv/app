@@ -17,6 +17,7 @@ struct MainView: View {
 	@Environment(\.horizontalSizeClass) private var sizeClass
 	@Environment(\.isSearching) private var searchState
 	@Environment(AppState.self) private var appState
+	@Environment(SceneState.self) private var sceneState
 	
 	@AppStorage("MEDIA_DISPLAY_MODE") private var mediaDisplayMode: MediaDisplayMode = .list
 	
@@ -29,7 +30,7 @@ struct MainView: View {
 	var body: some View {
 		NavigationStack {
 			Group {
-				if let playlist = appState.selectedPlaylist {
+				if let playlist = sceneState.selectedPlaylist {
 					mediaListView(for: playlist)
 						.navigationTitle(playlist.name)
 						.toolbar(id: "mediasToolbar") { MediasToolbar(groups: viewModel.groups(for: playlist)) }
@@ -42,12 +43,12 @@ struct MainView: View {
 					}
 				}
 			}
-			.navigationTitle(appState.selectedPlaylist?.name ?? "IPTV App")
+			.navigationTitle(sceneState.selectedPlaylist?.name ?? "IPTV App")
 			.toolbarTitleDisplayMode(.inline)
 			.toolbarTitleMenu {
 				ForEach(playlists) { playlist in
 					Button(playlist.name) {
-						appState.selectedPlaylist = playlist
+						sceneState.selectedPlaylist = playlist
 					}
 				}
 				
@@ -59,9 +60,11 @@ struct MainView: View {
 			}
 			.navigationDestination(for: Media.self) { media in
 				MediaDetailView(
-					playlistName: appState.selectedPlaylist!.name, media: media,
-					epgLink: appState.selectedPlaylist!.epgLink)
+					playlistName: sceneState.selectedPlaylist!.name, media: media,
+					epgLink: sceneState.selectedPlaylist!.epgLink
+				)
 			}
+			.navigationDestination(for: TVProgram.self) { EPGProgramDetailView(for: $0) }
 			.toolbar(id: "main") {
 				ToolbarItem(id: "openSingleStream", placement: .topBarLeading) {
 					Button("Open Stream", systemImage: "play") {
@@ -76,7 +79,7 @@ struct MainView: View {
 extension MainView {
 	private func mediaListView(for playlist: Playlist) -> some View {
 		Group {
-			if viewModel.filteredMediasForGroup(appState.selectedGroup, playlist: playlist).isEmpty {
+			if viewModel.filteredMediasForGroup(sceneState.selectedGroup, playlist: playlist).isEmpty {
 				ContentUnavailableView.search(text: searchQuery)
 			} else /*if mediaDisplayMode == .grid*/ {
 //				List {

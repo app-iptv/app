@@ -14,13 +14,10 @@ import SwiftData
 @MainActor
 @Observable
 class EPGFetchingController {
-	
 	var id: UUID
 	var xmlTV: XMLTV? = nil
 	
-	init() {
-		id = UUID()
-	}
+	init() { id = UUID() }
 	
 	func load(epg: String? = nil, appState: AppState? = nil) async {
 		id = UUID()

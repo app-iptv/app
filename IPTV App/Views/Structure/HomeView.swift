@@ -23,17 +23,8 @@ struct HomeView: View {
 		} else {
 			NavigationSplitView {
 				SidebarView()
-					.navigationDestination(for: TVProgram.self) { program in
-						EPGProgramDetailView(for: program)
-					}
 			} detail: {
 				DetailView()
-					.onChange(of: appState.selectedPlaylist?.id) {
-						print("changed: \(appState.selectedPlaylist?.name ?? "nil")")
-					}
-					#if os(iOS)
-					.toolbarBackground(.visible, for: .navigationBar)
-					#endif
 			}
 		}
 	}

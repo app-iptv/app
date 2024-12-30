@@ -12,7 +12,6 @@ import M3UKit
 @Observable
 class PlaylistFetchingController {
 	var playlist: Playlist? = nil
-	var error: Error? = nil
 	var viewModel: AddPlaylistViewModel
 	
 	init(viewModel: AddPlaylistViewModel) {
@@ -22,7 +21,7 @@ class PlaylistFetchingController {
 	func parsePlaylist() async {
 		let decoder = M3UDecoder()
 		
-		guard let url = URL(string: viewModel.tempPlaylistURL) else { return catchError(error) }
+		guard let url = URL(string: viewModel.tempPlaylistURL) else { return catchError(ParserError.invalidURL) }
 		
 		do {
 			async let (data, _) = try URLSession.shared.data(from: url)
@@ -33,6 +32,14 @@ class PlaylistFetchingController {
 		} catch {
 			catchError(error)
 		}
+	}
+	
+	func addPlaylistFromFile(data: Data) async {
+		let decoder = M3UDecoder()
+		
+		let m3u = decoder.decode(data)
+			
+		viewModel.tempPlaylist = m3u
 	}
 	
 	func cancel() {

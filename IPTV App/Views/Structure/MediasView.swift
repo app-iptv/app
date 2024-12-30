@@ -18,6 +18,7 @@ struct MediasView: View {
 	@Environment(\.horizontalSizeClass) private var sizeClass
 	@Environment(\.isSearching) private var searchState
 	@Environment(AppState.self) private var appState
+	@Environment(SceneState.self) private var sceneState
 	
 	@State private var viewModel: MediasViewModel = MediasViewModel()
 	
@@ -41,11 +42,12 @@ struct MediasView: View {
 			.searchable(text: $viewModel.searchQuery, prompt: "Search")
 			.navigationDestination(for: Media.self) { media in
 				MediaDetailView(
-					playlistName: appState.selectedPlaylist!.name,
+					playlistName: sceneState.selectedPlaylist!.name,
 					media: media,
-					epgLink: appState.selectedPlaylist!.epgLink
+					epgLink: sceneState.selectedPlaylist!.epgLink
 				)
 			}
+			.navigationDestination(for: TVProgram.self) { EPGProgramDetailView(for: $0) }
 			.navigationTitle(playlist.name)
 			.toolbar(id: "mediasToolbar") { MediasToolbar(groups: groups) }
 			#if os(iOS)
@@ -58,6 +60,6 @@ struct MediasView: View {
 extension MediasView {
 	private var searchResults: [Media] { viewModel.searchResults(playlist) }
 	private var groups: [String] { viewModel.groups(for: playlist) }
-	private var selectedGroup: String { appState.selectedGroup }
+	private var selectedGroup: String { sceneState.selectedGroup }
 	private var mediasForGroup: [Media] { viewModel.filteredMediasForGroup(selectedGroup, playlist: playlist) }
 }

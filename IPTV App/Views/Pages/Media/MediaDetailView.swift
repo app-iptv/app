@@ -12,14 +12,10 @@ import SwiftUI
 import XMLTV
 
 struct MediaDetailView: View {
-
-	@Environment(EPGFetchingController.self) var fetchingModel
+	@Environment(EPGFetchingController.self) private var fetchingModel
 	@Environment(AppState.self) private var appState
 
-	@State private var isUnsupported: Bool = false
-	@State private var currentProgram: TVProgram? = nil
-	@State private var hasFinishedLoading: Bool = false
-	@State private var programs: [TVProgram]? = nil
+	@State private var viewModel: MediaDetailViewModel = MediaDetailViewModel()
 
 	private let playlistName: String
 	private let media: Media
@@ -73,17 +69,14 @@ struct MediaDetailView: View {
 					ProgressView("Loading EPG...")
 					Spacer()
 				}
-			} else if let programs, !programs.isEmpty {
-				epgListView(programs)
-			} else if programs == nil {
-				Spacer()
-			} else {
-				noProgramsForChannelView
+			} else if let programs = viewModel.programs, !programs.isEmpty {
+				viewModel.epgListView(programs)
+			} else if viewModel.programs == nil {
+				viewModel.noProgramsForChannelView
 			}
 		}
 		.navigationTitle(media.title)
-		.onAppear(perform: fetchPrograms)
-		.onChange(of: fetchingModel.xmlTV, fetchPrograms)
+		.task(id: fetchingModel.xmlTV, fetchPrograms)
 		.toolbarTitleDisplayMode(.inline)
 		#if !os(macOS)
 		.toolbarBackground(.visible, for: .navigationBar, .tabBar)
@@ -92,62 +85,7 @@ struct MediaDetailView: View {
 }
 
 extension MediaDetailView {
-	private func fetchPrograms() {
-		guard let xmlTV = fetchingModel.xmlTV else { return abortFetching() }
-		guard let channelID = media.attributes["tvg-id"] else { return abortFetching() }
-		
-		let channels = xmlTV.getChannels()
-		
-		guard !channels.isEmpty else { return abortFetching() }
-		guard let channel = channels.first(where: { $0.id == channelID }) else { return abortFetching() }
-		
-		let programs = xmlTV.getPrograms(channel: channel)
-		
-		guard !programs.isEmpty else { return abortFetching() }
-		
-		self.programs = programs
-		
-		abortFetching()
-	}
-	
-	private func abortFetching() {
-		appState.isLoadingEPG = false
-	}
-	
-	private var noProgramsForChannelView: some View {
-		VStack {
-			Spacer()
-			ContentUnavailableView(
-				"TV Guide is empty", systemImage: "tv.slash",
-				description: Text(
-					"The EPG link provided does not include any programs for this channel."
-				))
-			Spacer()
-		}
-	}
-
-	private func epgListView(_ programs: [TVProgram]) -> some View {
-		ScrollView {
-			ScrollViewReader { reader in
-				VStack(alignment: .leading, spacing: 0) {
-					ForEach(programs, id: \.self) { program in
-						NavigationLink(value: program) {
-							EPGProgramView(for: program)
-						}
-						.buttonStyle(.borderless)
-						.foregroundStyle(.primary)
-						.id(program.isCurrent())
-					}
-					.onAppear {
-						withAnimation {
-							reader.scrollTo(true, anchor: .center)
-						}
-					}
-				}
-			}
-            #if !os(macOS)
-                .safeAreaPadding(.horizontal, 5)
-            #endif
-		}
+	@Sendable private func fetchPrograms() async {
+		await viewModel.fetchPrograms(for: media, with: fetchingModel, and: appState)
 	}
 }

@@ -10,7 +10,6 @@ import SwiftUI
 import SwiftData
 
 struct FavouritesView: View {
-
 	@Environment(EPGFetchingController.self) private var epgFetchingController
 	@Environment(AppState.self) private var appState
 	
@@ -23,8 +22,6 @@ struct FavouritesView: View {
 	@State private var selectedGroup: String = "All"
 
 	var body: some View {
-		@Bindable var epgFetchingController = epgFetchingController
-		
 		NavigationStack {
 			Group {
 				if favourites.isEmpty {
@@ -46,10 +43,6 @@ struct FavouritesView: View {
 					.listStyle(.plain)
 				}
 			}
-			#if os(iOS)
-				.toolbarBackground(.visible, for: .navigationBar)
-				.toolbarRole(.browser)
-			#endif
 			.searchable(text: $searchQuery, prompt: "Search Favourites")
 			.navigationDestination(for: Media.self) {
 				MediaDetailView(
@@ -57,36 +50,41 @@ struct FavouritesView: View {
 			}
 			.navigationTitle("Favourites")
 			.toolbar(id: "favouritesToolbar") {
-				ToolbarItem(id: "groupPicker", placement: placement) {
-					Picker("Select Group", selection: $selectedGroup) {
-						ForEach(groups, id: \.self) { group in
-							Label("All", systemImage: "tray.2")
-								#if os(macOS)
-									.labelStyle(.titleAndIcon)
-								#endif
-							.tag("All")
-							
+				if !groups.isEmpty {
+					ToolbarItem(id: "groupPicker", placement: placement) {
+						Picker("Select Group", selection: $selectedGroup) {
 							ForEach(groups, id: \.self) { group in
-								Label(group, systemImage: "tray")
-									#if os(macOS)
+								Label("All", systemImage: "tray.2")
+									.labelStyle(.titleAndIcon)
+									.tag("All")
+								
+								Divider()
+								
+								ForEach(groups, id: \.self) { group in
+									Label(group, systemImage: "tray")
 										.labelStyle(.titleAndIcon)
-									#endif
-								.tag(group)
+										.tag(group)
+								}
 							}
 						}
+						.pickerStyle(.menu)
 					}
-					.pickerStyle(.menu)
 				}
-				ToolbarItem(id: "epgPicker", placement: placement) {
-					Menu("Select EPG") {
-						ForEach(playlists) { playlist in
-							Button("From \(playlist.name)") {
-								Task { await epgFetchingController.load(epg: playlist.epgLink, appState: appState) }
+				
+				if !playlists.isEmpty {
+					ToolbarItem(id: "epgPicker", placement: placement) {
+						Menu("Select EPG") {
+							ForEach(playlists) { playlist in
+								AsyncButton {
+									await epgFetchingController.load(epg: playlist.epgLink, appState: appState)
+								} label: { _ in
+									Text("From \(playlist.name)")
+								}
 							}
 						}
-					}
-					.task {
-						await epgFetchingController.load(epg: playlists.first?.epgLink, appState: appState)
+						.task {
+							await epgFetchingController.load(epg: playlists.first?.epgLink, appState: appState)
+						}
 					}
 				}
 			}

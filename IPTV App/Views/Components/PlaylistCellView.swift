@@ -10,15 +10,14 @@ import M3UKit
 import SwiftUI
 
 struct PlaylistCellView: View {
-
 	@Environment(\.modelContext) private var context
 	@Environment(AppState.self) private var appState
 
 	@Bindable private var playlist: Playlist
 
-	init(_ playlist: Playlist) { self.playlist = playlist }
-
 	@State private var isEditing: Bool = false
+
+	init(_ playlist: Playlist) { self.playlist = playlist }
 
 	var body: some View {
 		NavigationLink(value: playlist) {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MediasToolbar: CustomizableToolbarContent {
 	@Environment(AppState.self) private var appState
+	@Environment(SceneState.self) private var sceneState
 	
 	@AppStorage("MEDIA_DISPLAY_MODE") private var mediaDisplayMode: MediaDisplayMode = .list
 	
@@ -19,19 +20,23 @@ struct MediasToolbar: CustomizableToolbarContent {
 	}
 	
 	var body: some CustomizableToolbarContent {
-		ToolbarItem(id: "groupPicker") {
-			Picker("Select Group", selection: Bindable(appState).selectedGroup) {
-				Label("All", systemImage: "tray.2")
-					.labelStyle(.titleAndIcon)
-					.tag("All")
-				
-				ForEach(groups, id: \.self) { group in
-					Label(group, systemImage: "tray")
+		if !groups.isEmpty {
+			ToolbarItem(id: "groupPicker") {
+				Picker("Select Group", selection: Bindable(sceneState).selectedGroup) {
+					Label("All", systemImage: "tray.2")
 						.labelStyle(.titleAndIcon)
-						.tag(group)
+						.tag("All")
+					
+					Divider()
+					
+					ForEach(groups, id: \.self) { group in
+						Label(group, systemImage: "tray")
+							.labelStyle(.titleAndIcon)
+							.tag(group)
+					}
 				}
+				.pickerStyle(.menu)
 			}
-			.pickerStyle(.menu)
 		}
 		
 //		ToolbarItem(id: "displayModePicker") {

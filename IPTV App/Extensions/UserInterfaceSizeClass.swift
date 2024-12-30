@@ -7,22 +7,20 @@
 
 import SwiftUI
 
-#if os(iOS)
-	extension UserInterfaceSizeClass {
-		var toolbarRole: ToolbarRole {
-			if self == .compact {
-				return ToolbarRole.automatic
-			} else {
-				return ToolbarRole.browser
-			}
-		}
-
-		var toolbarTitleDisplayMode: ToolbarTitleDisplayMode {
-			if self == .compact {
-				return ToolbarTitleDisplayMode.inline
-			} else {
-				return ToolbarTitleDisplayMode.inlineLarge
-			}
+extension UserInterfaceSizeClass {
+	var toolbarRole: ToolbarRole {
+		if self == .compact {
+			return ToolbarRole.automatic
+		} else {
+			return ToolbarRole.browser
 		}
 	}
-#endif
+	
+	var toolbarTitleDisplayMode: ToolbarTitleDisplayMode {
+		if self == .compact {
+			return ToolbarTitleDisplayMode.inline
+		} else {
+			return ToolbarTitleDisplayMode.inlineLarge
+		}
+	}
+}

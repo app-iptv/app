@@ -11,7 +11,8 @@ import TipKit
 
 struct SettingsView: View {
 	@Environment(AppState.self) private var appState
-
+	@Environment(\.modelContext) private var context
+	
 	@Query private var playlists: [Playlist]
 
 	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = false
@@ -24,66 +25,77 @@ struct SettingsView: View {
 	}
 
 	var body: some View {
-		NavigationStack {
-			Form {
+		#if os(macOS)
+		SwiftUI.TabView {
+			NavigationStack {
+				form.formStyle(.grouped)
+			}
+			.tabItem { Label("Settings", systemImage: "gear") }
+		}
+		#else
+		NavigationStack { form }
+		#endif
+	}
+	
+	var form: some View {
+		Form {
+			#if os(iOS)
+				Section("Edit Playlists") {
+					ForEach(playlists) { playlist in
+						NavigationLink(playlist.name, value: playlist)
+							.swipeActions {
+								Button("Delete", systemImage: "trash", role: .destructive) { context.delete(playlist) }
+							}
+					}
+				}
+			#endif
+			
+			Section("Customization") {
+				Toggle(
+					"Show Wecome Screen Again",
+					systemImage: "rectangle.inset.filled",
+					isOn: $isFirstLaunch)
+
+				Button("Reset Tips", systemImage: "lightbulb.max") {
+					try? Tips.resetDatastore()
+				}
+
+				Picker(
+					"Viewing Mode", systemImage: "list.triangle",
+					selection: $viewingMode
+				) {
+					ForEach(ViewingMode.allCases) { mode in
+						mode.label.tag(mode)
+					}
+				}
+
 				#if os(iOS)
-					Section("Edit Playlists") {
-						ForEach(playlists) { playlist in
-							NavigationLink(playlist.name, value: playlist)
-						}
+					NavigationLink {
+						ChangeIconView()
+					} label: {
+						Label("Change App Icon", systemImage: "app.dashed")
 					}
 				#endif
-				
-				Section {
-					Toggle(
-						"Show Wecome Screen Again",
-						systemImage: "rectangle.inset.filled",
-						isOn: $isFirstLaunch)
+			}
 
-					Button("Reset Tips", systemImage: "lightbulb.max") {
-						try? Tips.resetDatastore()
-					}
+			Section {
+				Button(
+					"Reset Favourites", systemImage: "trash",
+					role: .destructive
+				) { isRemovingAll.toggle() }.foregroundStyle(.red)
+			}
 
-					Picker(
-						"Viewing Mode", systemImage: "list.triangle",
-						selection: $viewingMode
-					) {
-						ForEach(ViewingMode.allCases) { mode in
-							mode.label.tag(mode)
-						}
-					}
-
-					#if os(iOS)
-						NavigationLink {
-							ChangeIconView()
-						} label: {
-							Label("Change App Icon", systemImage: "app.dashed")
-						}
-					#endif
-				}
-
-				Section {
-					Button(
-						"Reset Favourites", systemImage: "trash",
-						role: .destructive
-					) { isRemovingAll.toggle() }.foregroundStyle(.red)
-				}
-
-				Section {
-					NavigationLink {
-						AboutView()
-					} label: {
-						Label("About", systemImage: "info.circle")
-					}
+			Section {
+				NavigationLink {
+					AboutView()
+				} label: {
+					Label("About", systemImage: "info.circle")
 				}
 			}
-			.navigationTitle("Settings")
-			.navigationDestination(for: Playlist.self) { playlist in
-				EditPlaylistView(playlist)
-			}
-			#if os(macOS)
-				.formStyle(.grouped)
-			#endif
+		}
+		.navigationTitle("Settings")
+		.navigationDestination(for: Playlist.self) { playlist in
+			EditPlaylistView(playlist)
 		}
 	}
 }

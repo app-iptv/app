@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MediasGridView: View {
 	@Environment(AppState.self) private var appState
+	@Environment(SceneState.self) private var sceneState
 	
 	@Bindable private var viewModel: MediasViewModel
 	@Bindable private var playlist: Playlist
@@ -38,7 +39,7 @@ struct MediasGridView: View {
 extension MediasGridView {
 	private var searchResults: [Media] { viewModel.searchResults(playlist) }
 	private var groups: [String] { viewModel.groups(for: playlist) }
-	private var selectedGroup: String { appState.selectedGroup }
+	private var selectedGroup: String { sceneState.selectedGroup }
 	private var mediasForGroup: [Media] { viewModel.filteredMediasForGroup(selectedGroup, playlist: playlist) }
 }
 

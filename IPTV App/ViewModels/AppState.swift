@@ -11,14 +11,10 @@ import SwiftData
 import SwiftUI
 
 @Observable
-class AppState {
+final class AppState {
 	var isAddingPlaylist: Bool = false
 	var openedSingleStream: Bool = false
 
-	var selectedPlaylist: Playlist? = nil
-	var selectedMedia: Media? = nil
-	var selectedGroup: String = "All"
-	
 	var isLoadingEPG: Bool = true
 	var epgModelDidFail: Bool = false
 }

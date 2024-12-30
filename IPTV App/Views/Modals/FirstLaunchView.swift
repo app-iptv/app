@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct FirstLaunchView: View {
-
 	@Binding private var isFirstLaunch: Bool
 
 	internal init(isFirstLaunch: Binding<Bool>) {

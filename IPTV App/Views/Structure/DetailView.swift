@@ -11,20 +11,25 @@ import SwiftUI
 import XMLTV
 
 struct DetailView: View {
-	
 	@Environment(AppState.self) private var appState
+	@Environment(SceneState.self) private var sceneState
 	
 	@Query var playlists: [Playlist]
 
 	var body: some View {
-		if let playlist = appState.selectedPlaylist {
-			MediasView(playlist)
-		} else {
-			ContentUnavailableView {
-				Label("No Medias", systemImage: "list.and.film")
-			} description: {
-				Text("The selected playlist's medias will appear here.")
+		Group {
+			if let playlist = sceneState.selectedPlaylist {
+				MediasView(playlist)
+			} else {
+				ContentUnavailableView {
+					Label("No Medias", systemImage: "list.and.film")
+				} description: {
+					Text("The selected playlist's medias will appear here.")
+				}
 			}
 		}
+		#if os(iOS)
+		.toolbarBackground(.visible, for: .navigationBar)
+		#endif
 	}
 }

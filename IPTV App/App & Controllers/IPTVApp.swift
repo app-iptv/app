@@ -24,7 +24,6 @@ struct IPTVApp: App {
 	
 	@State private var appState = AppState()
 	@State private var isRemovingAll: Bool = false
-	@State private var epgFetchingController: EPGFetchingController = EPGFetchingController()
 	
 	#if !os(macOS)
 	init() {
@@ -69,14 +68,13 @@ struct IPTVApp: App {
 	}
 
 	var body: some Scene {
-		WindowGroup(id: "MAIN_WINDOW") {
+		WindowGroup("IPTV App", id: "MAIN_WINDOW") {
 			ContentView(isRemovingAll: $isRemovingAll)
 				.task { try? Tips.configure() }
 		}
 		.modelContainer(SwiftDataController.shared.persistenceContainer)
-		.onChange(of: appState.selectedPlaylist, resetEPG)
-		.environment(epgFetchingController)
 		.environment(appState)
+		.environment(EPGFetchingController())
 		.commands { commands }
 
 		#if os(macOS)
@@ -91,17 +89,8 @@ struct IPTVApp: App {
 				SettingsView(isRemovingAll: $isRemovingAll)
 					.frame(width: 500, height: 300)
 			}
-            .environment(epgFetchingController)
 			.environment(appState)
 			.windowStyle(.hiddenTitleBar)
 		#endif
-	}
-}
-
-extension IPTVApp {
-	private func resetEPG() {
-		Task {
-			await epgFetchingController.load(epg: appState.selectedPlaylist?.epgLink, appState: appState)
-		}
 	}
 }

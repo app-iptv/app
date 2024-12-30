@@ -118,8 +118,7 @@ struct PlayerViewControllerRepresentable: UIViewControllerRepresentable {
 	}
 
 	func makeUIViewController(context: Context) -> some UIViewController {
-		return PlayerViewController(
-			name: name, url: url, group: group, playlistName: playlistName)
+		return PlayerViewController(name: name, url: url, group: group, playlistName: playlistName)
 	}
 
 	func updateUIViewController(
