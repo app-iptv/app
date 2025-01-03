@@ -31,10 +31,7 @@ struct MainView: View {
 		NavigationStack {
 			Group {
 				if let playlist = sceneState.selectedPlaylist {
-					mediaListView(for: playlist)
-						.navigationTitle(playlist.name)
-						.toolbar(id: "mediasToolbar") { MediasToolbar(groups: viewModel.groups(for: playlist)) }
-						.searchable(text: $searchQuery, prompt: "Search")
+					MediasView(playlist)
 				} else {
 					ContentUnavailableView {
 						Label("No Playlist", systemImage: "list.bullet")
@@ -45,66 +42,8 @@ struct MainView: View {
 			}
 			.navigationTitle(sceneState.selectedPlaylist?.name ?? "IPTV App")
 			.toolbarTitleDisplayMode(.inline)
-			.toolbarTitleMenu {
-				ForEach(playlists) { playlist in
-					Button(playlist.name) {
-						sceneState.selectedPlaylist = playlist
-					}
-				}
-				
-				Divider()
-				
-				Button("Add Playlist", systemImage: "plus") {
-					appState.isAddingPlaylist = true
-				}
-			}
-			.navigationDestination(for: Media.self) { media in
-				MediaDetailView(
-					playlistName: sceneState.selectedPlaylist!.name, media: media,
-					epgLink: sceneState.selectedPlaylist!.epgLink
-				)
-			}
-			.navigationDestination(for: TVProgram.self) { EPGProgramDetailView(for: $0) }
-			.toolbar(id: "main") {
-				ToolbarItem(id: "openSingleStream", placement: .topBarLeading) {
-					Button("Open Stream", systemImage: "play") {
-						appState.openedSingleStream.toggle()
-					}
-				}
-			}
-		}
-	}
-}
-
-extension MainView {
-	private func mediaListView(for playlist: Playlist) -> some View {
-		Group {
-			if viewModel.filteredMediasForGroup(sceneState.selectedGroup, playlist: playlist).isEmpty {
-				ContentUnavailableView.search(text: searchQuery)
-			} else /*if mediaDisplayMode == .grid*/ {
-//				List {
-//					TipView(favouritesTip)
-//						.task { await FavouritesTip.showTipEvent.donate() }
-//					
-//					ForEach(filteredMediasForGroup(for: playlist)) { media in
-//						NavigationLink(value: media) {
-//							MediaCellView(media: media)
-//						}
-//						.badge(playlist.medias.firstIndex(of: media)! + 1)
-//					}
-//					.onDelete { indexSet in
-//						playlist.medias.remove(atOffsets: indexSet)
-//					}
-//					.onMove { source, destination in
-//						playlist.medias.move(fromOffsets: source, toOffset: destination)
-//					}
-//				}
-//				.listStyle(.plain)
-				
-//				MediasGridView(vm: viewModel, playlist: playlist)
-//			} else {
-				MediasListView(vm: viewModel, playlist: playlist)
-			}
+			.toolbarTitleMenu { MainViewTitleMenu() }
+			.toolbar(id: "main") { PlaylistsToolbar(main: true) }
 		}
 	}
 }

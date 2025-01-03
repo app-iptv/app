@@ -97,5 +97,5 @@ struct PlayerViewControllerRepresentable: NSViewControllerRepresentable {
 	
 	func updateNSViewController(
 		_ nsViewController: NSViewControllerType, context: Context
-	) {}
+	) { }
 }

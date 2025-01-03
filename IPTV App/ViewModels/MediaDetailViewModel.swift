@@ -42,21 +42,22 @@ final class MediaDetailViewModel {
 	var noProgramsForChannelView: some View {
 		VStack {
 			Spacer()
-			ContentUnavailableView(
-				"TV Guide is empty",
-				systemImage: "tv.slash",
-				description: Text(
-					"The EPG link provided does not include any programs for this channel."
-				))
+			
+			ContentUnavailableView {
+				Label("TV Guide is empty", systemImage: "tv.slash")
+			} description: {
+				Text("The EPG link provided does not include any programs for this channel.")
+			}
+			
 			Spacer()
 		}
 	}
 
-	func epgListView(_ programs: [TVProgram]) -> some View {
+	var epgListView: some View {
 		ScrollView {
 			ScrollViewReader { reader in
 				VStack(alignment: .leading, spacing: 0) {
-					ForEach(programs, id: \.self) { program in
+					ForEach(self.programs ?? [], id: \.self) { program in
 						NavigationLink(value: program) {
 							EPGProgramView(for: program)
 						}
@@ -72,7 +73,7 @@ final class MediaDetailViewModel {
 				}
 			}
 			#if !os(macOS)
-				.safeAreaPadding(.horizontal, 5)
+			.safeAreaPadding(.horizontal, 5)
 			#endif
 		}
 	}

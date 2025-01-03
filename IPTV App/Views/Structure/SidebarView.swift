@@ -38,7 +38,7 @@ struct SidebarView: View {
 				}
 			}
 		}
-		.toolbar(id: "playlistsToolbar") { PlaylistsToolbar() }
+		.toolbar(id: "playlistsToolbar") { PlaylistsToolbar(main: false) }
 		.navigationTitle("Playlists")
 		.navigationSplitViewColumnWidth(216)
 	}

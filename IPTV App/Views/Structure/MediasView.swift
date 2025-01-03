@@ -29,31 +29,23 @@ struct MediasView: View {
 	}
 	
 	var body: some View {
-		NavigationStack {
-			Group {
-				if mediasForGroup.isEmpty {
-					ContentUnavailableView.search(text: viewModel.searchQuery)
-				} else /*if mediaDisplayMode == .grid*/ {
-//					MediasGridView(vm: viewModel, playlist: playlist)
-//				} else {
-					MediasListView(vm: viewModel, playlist: playlist)
-				}
+		Group {
+			if mediasForGroup.isEmpty {
+				ContentUnavailableView.search(text: viewModel.searchQuery)
+			} else /*if mediaDisplayMode == .grid*/ {
+//				MediasGridView(vm: viewModel, playlist: playlist)
+//			} else {
+				MediasListView(vm: viewModel, playlist: playlist)
 			}
-			.searchable(text: $viewModel.searchQuery, prompt: "Search")
-			.navigationDestination(for: Media.self) { media in
-				MediaDetailView(
-					playlistName: sceneState.selectedPlaylist!.name,
-					media: media,
-					epgLink: sceneState.selectedPlaylist!.epgLink
-				)
-			}
-			.navigationDestination(for: TVProgram.self) { EPGProgramDetailView(for: $0) }
-			.navigationTitle(playlist.name)
-			.toolbar(id: "mediasToolbar") { MediasToolbar(groups: groups) }
-			#if os(iOS)
-			.toolbarRole(sizeClass!.toolbarRole)
-			#endif
 		}
+		.searchable(text: $viewModel.searchQuery, prompt: "Search")
+		.navigationDestination(for: Media.self) { MediaDetailView(media: $0) }
+		.navigationDestination(for: TVProgram.self) { EPGProgramDetailView(for: $0) }
+		.navigationTitle(playlist.name)
+		.toolbar(id: "mediasToolbar") { MediasToolbar(groups: groups) }
+		#if os(iOS)
+		.toolbarRole(sizeClass!.toolbarRole)
+		#endif
 	}
 }
 

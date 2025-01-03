@@ -14,24 +14,21 @@ import XMLTV
 struct MediaDetailView: View {
 	@Environment(EPGFetchingController.self) private var fetchingModel
 	@Environment(AppState.self) private var appState
+	@Environment(SceneState.self) private var sceneState
 
 	@State private var viewModel: MediaDetailViewModel = MediaDetailViewModel()
 
-	private let playlistName: String
 	private let media: Media
-	private let epgLink: String
 
-	internal init(playlistName: String, media: Media, epgLink: String) {
-		self.playlistName = playlistName
+	internal init(media: Media) {
 		self.media = media
-		self.epgLink = epgLink
 	}
 
 	var body: some View {
 		VStack(spacing: 0) {
 			VStack(spacing: 10) {
 				PlayerViewControllerRepresentable(
-					media: media, playlistName: playlistName
+					media: media, playlistName: sceneState.selectedPlaylist?.name ?? "Playlist Name"
 				)
 				.aspectRatio(16 / 9, contentMode: .fit)
 				.cornerRadius(10)
@@ -61,7 +58,7 @@ struct MediaDetailView: View {
 					.shadow(color: .primary, radius: 0.2, x: 0, y: 0.1)
 				#endif
 
-			if epgLink.isEmpty {
+			if sceneState.selectedPlaylist?.epgLink.isEmpty ?? true {
 				Spacer()
 			} else if appState.isLoadingEPG {
 				VStack {
@@ -70,7 +67,7 @@ struct MediaDetailView: View {
 					Spacer()
 				}
 			} else if let programs = viewModel.programs, !programs.isEmpty {
-				viewModel.epgListView(programs)
+				viewModel.epgListView
 			} else if viewModel.programs == nil {
 				viewModel.noProgramsForChannelView
 			}

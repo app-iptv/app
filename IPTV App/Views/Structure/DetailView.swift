@@ -17,7 +17,7 @@ struct DetailView: View {
 	@Query var playlists: [Playlist]
 
 	var body: some View {
-		Group {
+		NavigationStack {
 			if let playlist = sceneState.selectedPlaylist {
 				MediasView(playlist)
 			} else {

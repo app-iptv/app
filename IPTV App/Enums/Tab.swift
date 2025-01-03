@@ -12,58 +12,37 @@ enum Tab: String, CaseIterable {
 
 	var fillImage: String {
 		switch self {
-		case .favourites:
-			"star.fill"
-		case .home:
-			"play.house.fill"
-		case .settings:
-			"gear"
-		case .guide:
-			"list.bullet.below.rectangle"
-		case .movies:
-			"movieclapper.fill"
-		case .search:
-			"magnifyingglass"
-		case .tv:
-			"play.tv.fill"
+			case .favourites: "star.fill"
+			case .home: "play.house.fill"
+			case .settings: "gear"
+			case .guide: "list.bullet.below.rectangle"
+			case .movies: "movieclapper.fill"
+			case .search: "magnifyingglass"
+			case .tv: "play.tv.fill"
 		}
 	}
 
 	var nonFillImage: String {
 		switch self {
-		case .favourites:
-			"star"
-		case .home:
-			"play.house"
-		case .settings:
-			"gear"
-		case .guide:
-			"list.bullet.below.rectangle"
-		case .movies:
-			"movieclapper"
-		case .search:
-			"magnifyingglass"
-		case .tv:
-			"play.tv"
+			case .favourites: "star"
+			case .home: "play.house"
+			case .settings: "gear"
+			case .guide: "list.bullet.below.rectangle"
+			case .movies: "movieclapper"
+			case .search: "magnifyingglass"
+			case .tv:"play.tv"
 		}
 	}
 
 	var name: LocalizedStringKey {
 		switch self {
-		case .favourites:
-			"Favourites"
-		case .home:
-			"Home"
-		case .settings:
-			"Settings"
-		case .guide:
-			"Guide"
-		case .movies:
-			"Movies & Series"
-		case .search:
-			"Search"
-		case .tv:
-			"TV"
+			case .favourites: "Favourites"
+			case .home: "Home"
+			case .settings: "Settings"
+			case .guide: "Guide"
+			case .movies: "Movies & Series"
+			case .search: "Search"
+			case .tv: "TV"
 		}
 	}
 }
@@ -94,20 +73,13 @@ extension Tab: RawRepresentable {
 
 	var rawValue: RawValue {
 		switch self {
-		case .favourites:
-			return "favourites"
-		case .home:
-			return "home"
-		case .settings:
-			return "settings"
-		case .guide:
-			return "guide"
-		case .movies:
-			return "movies"
-		case .search:
-			return "search"
-		case .tv:
-			return "tv"
+			case .favourites: "favourites"
+			case .home: "home"
+			case .settings: "settings"
+			case .guide: "guide"
+			case .movies: "movies"
+			case .search: "search"
+			case .tv: "tv"
 		}
 	}
 }

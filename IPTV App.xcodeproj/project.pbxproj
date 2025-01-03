@@ -171,6 +171,7 @@
 			knownRegions = (
 				en,
 				"pt-PT",
+				Base,
 			);
 			mainGroup = 2FB75B782B41A9FE00A16501;
 			packageReferences = (
@@ -351,7 +352,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 56;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9TMMFKS9DW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -411,7 +412,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 56;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9TMMFKS9DW;
 				ENABLE_HARDENED_RUNTIME = YES;

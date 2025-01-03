@@ -13,10 +13,8 @@ enum ParserError: Error {
 	
 	var localizedDescription: String {
 		switch self {
-			case .invalidURL:
-				return "Invalid URL"
-			case .invalidData:
-				return "Invalid Data"
+			case .invalidURL: "Invalid URL"
+			case .invalidData: "Invalid Data"
 		}
 	}
 }

@@ -10,7 +10,9 @@ import XMLTV
 
 extension TVProgram: @retroactive Identifiable {
 	public var id: UUID { UUID() }
+}
 
+extension TVProgram {
 	public func isCurrent() -> Bool {
 		let now = Date()
 

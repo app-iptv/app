@@ -15,7 +15,6 @@ extension View {
 	}
 	
 	func withOnboardingView(isFirstLaunch: Binding<Bool>) -> some View {
-		return self
-			.modifier(OnboardingViewModifier(isFirstLaunch: isFirstLaunch))
+		return self.modifier(OnboardingViewModifier(isFirstLaunch: isFirstLaunch))
 	}
 }

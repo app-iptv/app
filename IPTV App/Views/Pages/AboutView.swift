@@ -9,37 +9,36 @@ import M3UKit
 import SwiftUI
 
 struct AboutView: View {
-	@Environment(\.horizontalSizeClass) private var sizeClass
+	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
+	@Environment(\.verticalSizeClass) private var verticalSizeClass
 	
 	let version = Bundle.main.releaseVersionNumber ?? "1.0"
 
 	let build = Bundle.main.buildVersionNumber ?? "1"
 
 	var body: some View {
-		if sizeClass == .regular {
-			NavigationStack {
-				HStack {
-					content.fixedSize()
+		NavigationStack {
+			Group {
+				if horizontalSizeClass == .regular || verticalSizeClass == .compact {
+					HStack {
+						content.fixedSize()
+					}
+					.padding()
+				} else {
+					content
 				}
-				.padding()
-				.navigationTitle("About IPTV App")
 			}
-		} else {
-			content
+			.navigationTitle("About")
 		}
 	}
 }
 
 extension AboutView {
 	private var size: CGFloat {
-		switch sizeClass {
+		switch horizontalSizeClass {
 			case .compact:
 				return 250
-			case .regular:
-				return 110
-			case .none:
-				return 110
-			case .some(_):
+			default:
 				return 110
 		}
 	}

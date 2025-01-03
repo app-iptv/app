@@ -16,19 +16,15 @@ enum MediaDisplayMode: String, CaseIterable, Identifiable {
 
 	var name: LocalizedStringKey {
 		switch self {
-		case .list:
-			"List"
-		case .grid:
-			"Grid"
+			case .list: "List"
+			case .grid: "Grid"
 		}
 	}
 
 	var systemImage: String {
 		switch self {
-		case .list:
-			"rectangle.grid.1x2"
-		case .grid:
-			"rectangle.grid.2x2"
+			case .list: "rectangle.grid.1x2"
+			case .grid: "rectangle.grid.2x2"
 		}
 	}
 

@@ -123,5 +123,5 @@ struct PlayerViewControllerRepresentable: UIViewControllerRepresentable {
 
 	func updateUIViewController(
 		_ uiViewController: UIViewControllerType, context: Context
-	) {}
+	) { }
 }

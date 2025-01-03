@@ -10,8 +10,6 @@ import Foundation
 
 @MainActor
 final class SwiftDataController {
-	static let shared = SwiftDataController()
-	
 	private init() { }
 	
 	let persistenceContainer: ModelContainer = {
@@ -27,7 +25,7 @@ final class SwiftDataController {
 		}
 	}()
 	
-	var modelContext: ModelContext {
-		persistenceContainer.mainContext
-	}
+	var modelContext: ModelContext { persistenceContainer.mainContext }
+	
+	static let main = SwiftDataController()
 }

@@ -21,14 +21,14 @@ class PlaylistFetchingController {
 	func parsePlaylist() async {
 		let decoder = M3UDecoder()
 		
-		guard let url = URL(string: viewModel.tempPlaylistURL) else { return catchError(ParserError.invalidURL) }
+		guard let url = URL(string: viewModel.playlist.m3uLink) else { return catchError(ParserError.invalidURL) }
 		
 		do {
 			async let (data, _) = try URLSession.shared.data(from: url)
 			
 			let m3u = try await decoder.decode(data)
 			
-			viewModel.tempPlaylist = m3u
+			viewModel.playlist.medias = m3u?.channels ?? []
 		} catch {
 			catchError(error)
 		}
@@ -39,14 +39,11 @@ class PlaylistFetchingController {
 		
 		let m3u = decoder.decode(data)
 			
-		viewModel.tempPlaylist = m3u
+		viewModel.playlist.medias = m3u?.channels ?? []
 	}
 	
 	func cancel() {
-		viewModel.tempPlaylist  	= nil
-		viewModel.tempPlaylistURL 	= ""
-		viewModel.tempPlaylistName = ""
-		viewModel.tempPlaylistEPG 	= ""
+		viewModel.playlist = Playlist("", medias: [], m3uLink: "", epgLink: "")
 	}
 	
 	private func catchError(_ error: Error?) {

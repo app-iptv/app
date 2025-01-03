@@ -17,38 +17,29 @@ enum ViewingMode: String, CaseIterable, Identifiable {
 
 	var name: LocalizedStringKey {
 		switch self {
-		case .large:
-			return "Large"
-		case .regular:
-			return "Regular"
-		case .compact:
-			return "Compact"
+			case .large: "Large"
+			case .regular: "Regular"
+			case .compact: "Compact"
 		}
 	}
 
 	var logo: String {
 		switch self {
-		case .large:
-			return "square.fill.text.grid.1x2"
-		case .regular:
-			return "rectangle.grid.1x2"
-		case .compact:
-			return "list.dash"
+			case .large: "square.fill.text.grid.1x2"
+			case .regular: "rectangle.grid.1x2"
+			case .compact: "list.dash"
 		}
 	}
 
 	var photoSize: CGFloat {
 		switch self {
-		case .large:
-			return 70
-		case .regular:
-			return 50
-		case .compact:
-			return 30
+			case .large: 70
+			case .regular: 50
+			case .compact: 30
 		}
 	}
 
-	var label: some View {
+	var label: Text {
 		Text(self.name)
 	}
 }

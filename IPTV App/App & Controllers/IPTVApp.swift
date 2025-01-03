@@ -72,7 +72,7 @@ struct IPTVApp: App {
 			ContentView(isRemovingAll: $isRemovingAll)
 				.task { try? Tips.configure() }
 		}
-		.modelContainer(SwiftDataController.shared.persistenceContainer)
+		.modelContainer(SwiftDataController.main.persistenceContainer)
 		.environment(appState)
 		.environment(EPGFetchingController())
 		.commands { commands }

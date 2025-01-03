@@ -95,6 +95,7 @@
       }
     },
     "Adding playlist..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -406,6 +407,9 @@
           }
         }
       }
+    },
+    "FILE ADDED" : {
+
     },
     "From %@" : {
       "localizations" : {

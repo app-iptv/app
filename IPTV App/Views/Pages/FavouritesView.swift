@@ -44,10 +44,7 @@ struct FavouritesView: View {
 				}
 			}
 			.searchable(text: $searchQuery, prompt: "Search Favourites")
-			.navigationDestination(for: Media.self) {
-				MediaDetailView(
-					playlistName: "Favourites", media: $0, epgLink: "")
-			}
+			.navigationDestination(for: Media.self) { MediaDetailView(media: $0) }
 			.navigationTitle("Favourites")
 			.toolbar(id: "favouritesToolbar") {
 				if !groups.isEmpty {

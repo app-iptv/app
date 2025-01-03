@@ -13,8 +13,7 @@ struct AddPlaylistView: View {
 	@Environment(\.dismiss) private var dismiss
 	@Environment(AppState.self) private var appState
 	
-	@State private var viewModel = AddPlaylistViewModel()
-	@State private var isAddingFile: Bool = false
+	@State private var viewModel: AddPlaylistViewModel = AddPlaylistViewModel()
 	
 	private var networkModel: PlaylistFetchingController {
 		PlaylistFetchingController(viewModel: viewModel)
@@ -29,44 +28,52 @@ struct AddPlaylistView: View {
 						.bold()
 						.padding()
 					
-					TextField(
-						"Playlist Name",
-						text: $viewModel.tempPlaylistName
-					)
-					.textFieldStyle(.roundedBorder)
+					TextField("Playlist Name", text: $viewModel.playlist.name)
+						.textFieldStyle(.roundedBorder)
+						
+					if let _ = viewModel.fileData {
+						HStack {
+							VStack { Divider() }
+							
+							Text("FILE ADDED")
+								.font(.caption)
+								.foregroundStyle(.secondary)
+							
+							VStack { Divider() }
+						}
+						.frame(maxWidth: .infinity)
+					} else {
+						TextField("Playlist URL", text: $viewModel.playlist.m3uLink)
+							.textFieldStyle(.roundedBorder)
+							.textContentType(.URL)
+							.autocorrectionDisabled()
+							#if os(iOS)
+							.autocapitalization(.none)
+							#endif
+					}
 					
-					TextField(
-						"Playlist URL",
-						text: $viewModel.tempPlaylistURL
-					)
-					.textFieldStyle(.roundedBorder)
-					.textContentType(.URL)
-					.autocorrectionDisabled()
-					#if os(iOS)
-					.autocapitalization(.none)
-					#endif
-					
-					TextField(
-						"Playlist EPG (optional)",
-						text: $viewModel.tempPlaylistEPG
-					)
-					.textFieldStyle(.roundedBorder)
-					.textContentType(.URL)
-					.autocorrectionDisabled()
-					#if os(iOS)
-					.autocapitalization(.none)
-					#endif
+					TextField("Playlist EPG (optional)", text: $viewModel.playlist.epgLink)
+						.textFieldStyle(.roundedBorder)
+						.textContentType(.URL)
+						.autocorrectionDisabled()
+						#if os(iOS)
+						.autocapitalization(.none)
+						#endif
 				}
 				
 				HStack {
 					AsyncButton {
-						await addPlaylist(with: nil)
-					} label: { _ in
-						Label("Add", systemImage: "plus")
+						await addPlaylist(with: viewModel.fileData)
+					} label: { isLoading in
+						if isLoading {
+							return AnyView(ProgressView())
+						} else {
+							return AnyView(Label("Add", systemImage: "plus"))
+						}
 					}
 					.disabled(
-						viewModel.tempPlaylistName.isEmpty ||
-						viewModel.tempPlaylistURL.isEmpty
+						viewModel.playlist.name.isEmpty ||
+						(viewModel.fileData == nil ? viewModel.playlist.m3uLink.isEmpty : false)
 					)
 					.buttonStyle(.borderedProminent)
 					
@@ -94,15 +101,14 @@ struct AddPlaylistView: View {
 				.frame(maxWidth: .infinity)
 				
 				Button("Import from File") {
-					isAddingFile.toggle()
+					viewModel.isAddingFile.toggle()
 				}
 				.buttonStyle(.borderless)
-				.disabled(viewModel.tempPlaylistName.isEmpty)
+				.foregroundStyle(.accent)
 			}
 			.padding()
 			.frame(maxWidth: 500)
-			.fileImporter(isPresented: $isAddingFile, allowedContentTypes: [.m3uPlaylist], onCompletion: handleResult)
-			.sheet(isPresented: $viewModel.isParsing) { ProgressView("Adding playlist...").padding() }
+			.fileImporter(isPresented: $viewModel.isAddingFile, allowedContentTypes: [.m3uPlaylist], onCompletion: handleResult)
 			.sheet(isPresented: $viewModel.parserDidFail) { ErrorView(viewModel: viewModel) }
 		}
 	}
@@ -114,72 +120,35 @@ struct AddPlaylistView: View {
 }
 
 extension AddPlaylistView {
-	private func handleResult(_ result: Result<URL, any Error>) {
+	private func handleResult(_ result: Result<URL, Error>) {
 		Task {
-			switch result {
-				case .success(let url):
-					do {
-						if url.startAccessingSecurityScopedResource() {
-							let (data, _) = try await URLSession.shared.data(from: url)
-									
-							await addPlaylist(with: data)
-									
-							do { url.stopAccessingSecurityScopedResource() }
-						} else {
-							// Handle error
-						}
-					} catch {
-						print("Unable to read file contents")
-						print(error.localizedDescription)
-						
-						handleError(error)
-					}
-				case .failure(let error):
-					handleError(error)
+			do {
+				try await viewModel.handleResult(result)
+			} catch {
+				viewModel.handleError(error)
 			}
 		}
 	}
 	
-	private func handleError(_ error: Error?) {
-		viewModel.parserError = error
-		viewModel.parserDidFail = true
-	}
-	
 	private func addPlaylistFromURL() async {
-		viewModel.isParsing = true
 		await networkModel.parsePlaylist()
 		
-		guard viewModel.parserError == nil, let tempPlaylist = viewModel.tempPlaylist else { return }
+		guard viewModel.parserError == nil else { return }
 		
-		context.insert(
-			Playlist(
-				viewModel.tempPlaylistName,
-				medias: tempPlaylist.channels,
-				m3uLink: viewModel.tempPlaylistURL,
-				epgLink: viewModel.tempPlaylistEPG
-			)
-		)
+		context.insert(viewModel.playlist)
 		
 		dismiss()
 		networkModel.cancel()
 	}
 	
 	private func addPlaylist(with data: Data?) async {
-		guard let data = data else { await addPlaylistFromURL(); return }
+		guard let data else { await addPlaylistFromURL(); return }
 		
-		viewModel.isParsing = true
 		await networkModel.addPlaylistFromFile(data: data)
 		
-		guard viewModel.parserError == nil, let tempPlaylist = viewModel.tempPlaylist else { return }
+		guard viewModel.parserError == nil else { return }
 		
-		context.insert(
-			Playlist(
-				viewModel.tempPlaylistName,
-				medias: tempPlaylist.channels,
-				m3uLink: viewModel.tempPlaylistURL,
-				epgLink: viewModel.tempPlaylistEPG
-			)
-		)
+		context.insert(viewModel.playlist)
 		
 		dismiss()
 		networkModel.cancel()
