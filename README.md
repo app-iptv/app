@@ -37,7 +37,7 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 ## **Roadmap**  
 - [x] Add AirPlay support
 - [ ] Offline playback for on-demand content
-- [ ] Import playlists by uploading M3U files
+- [x] Import playlists by uploading M3U files
 - [x] Multi-language support
 - [x] Picture-in-Picture (PiP) mode
 
