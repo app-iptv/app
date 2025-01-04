@@ -23,10 +23,20 @@ struct PlaylistsToolbar: CustomizableToolbarContent {
 			}
 		}
 
-		ToolbarItem(id: "openSingleStream", placement: main ? .topBarLeading : .automatic) {
+		ToolbarItem(id: "openSingleStream", placement: main ? placement : .automatic) {
 			Button("Open Stream", systemImage: "play") {
 				appState.openedSingleStream.toggle()
 			}
 		}
+	}
+}
+
+extension PlaylistsToolbar {
+	private var placement: ToolbarItemPlacement {
+		#if os(macOS)
+		return .automatic
+		#else
+		return .topBarLeading
+		#endif
 	}
 }

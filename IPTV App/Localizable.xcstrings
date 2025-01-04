@@ -409,7 +409,14 @@
       }
     },
     "FILE ADDED" : {
-
+      "localizations" : {
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FICHEIRO ADICIONADO"
+          }
+        }
+      }
     },
     "From %@" : {
       "localizations" : {
