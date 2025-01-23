@@ -34,12 +34,44 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 2. **Watch**
    - Choose your Playlist from the menu and you're ready to watch!
 
-## **Roadmap**  
-- [x] Add AirPlay support
-- [ ] Offline playback for on-demand content
-- [x] Import playlists by uploading M3U files
-- [x] Multi-language support
-- [x] Picture-in-Picture (PiP) mode
+## Feature List
+
+### Core Features
+- [x] **Live TV Streaming**  
+  - [x] Access to live TV channels across various genres (sports, news, entertainment, etc.).
+  - [x] High-definition (HD), Full HD, and 4K streaming support.
+- [x] **Electronic Program Guide (EPG)**  
+  - [x] Interactive EPG for browsing current and upcoming shows.
+  - [ ] Detailed show descriptions and schedules.
+- [x] **Video on Demand (VOD)**  
+  - [x] Access to movies, series, and other on-demand content.
+  - [x] Categorized content for easier navigation.
+- [ ] **Multi-Screen Support**  
+  - [ ] Compatibility with TVs, smartphones, tablets, and desktops.
+  - [x] Cross-device synchronization for saved content and preferences.
+
+### User Features
+- [ ] **Favorites & Watchlist**  
+  - [x] Save channels, shows, or movies to a favorites list.
+  - [ ] Add content to a personalized watchlist.
+- [ ] **Parental Controls**  
+  - [ ] Restrict access to age-inappropriate content.
+  - [ ] PIN protection for specific categories or channels.
+- [x] **Multi-Language Support**  
+  - [x] Change app interface language.
+- [x] **Search Functionality**  
+  - [x] Search for channels, shows, movies, or actors.
+  - [x] Filter results by genre, release year, or popularity.
+
+## Playback Features
+- [x] **Time-Shift Functionality**  
+  - [x] Pause, rewind, or fast-forward live TV streams.
+- [x] **Adaptive Bitrate Streaming (ABR)**  
+  - [x] Automatically adjust video quality based on internet speed (integrated into AVPlayer).
+- [x] **Picture-in-Picture Mode**  
+  - [x] Watch TV or movies in a small window while using other apps.
+- [ ] **Resume Playback**  
+  - [ ] Continue watching where you left off on any device.
 
 ## **Packages Used in the IPTV App**
 
