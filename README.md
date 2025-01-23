@@ -40,7 +40,7 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 - [x] **Live TV Streaming**  
   - [x] Access to live TV channels across various genres (sports, news, entertainment, etc.).
   - [x] High-definition (HD), Full HD, and 4K streaming support.
-- [x] **Electronic Program Guide (EPG)**  
+- [ ] **Electronic Program Guide (EPG)**  
   - [x] Interactive EPG for browsing current and upcoming shows.
   - [ ] Detailed show descriptions and schedules.
 - [x] **Video on Demand (VOD)**  
@@ -63,7 +63,7 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
   - [x] Search for channels, shows, movies, or actors.
   - [x] Filter results by genre, release year, or popularity.
 
-## Playback Features
+### Playback Features
 - [x] **Time-Shift Functionality**  
   - [x] Pause, rewind, or fast-forward live TV streams.
 - [x] **Adaptive Bitrate Streaming (ABR)**  
