@@ -70,8 +70,6 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
   - [x] Automatically adjust video quality based on internet speed (integrated into AVPlayer).
 - [x] **Picture-in-Picture Mode**  
   - [x] Watch TV or movies in a small window while using other apps.
-- [ ] **Resume Playback**  
-  - [ ] Continue watching where you left off on any device.
 
 ## **Packages Used in the IPTV App**
 
