@@ -12,17 +12,14 @@ final class MediasViewModel {
 	var searchQuery: String = ""
 	var favouritesTip: FavouritesTip = .init()
 	
-	func searchResults(_ playlist: Playlist) -> [Media] {
-		guard !searchQuery.isEmpty else { return playlist.medias }
-		let results = playlist.medias.filter { media in
-			media.title.localizedStandardContains(searchQuery)
-		}
-
-		return results
+	func searchResults(_ medias: [Media]) -> [Media] {
+		guard !searchQuery.isEmpty else { return medias }
+		
+		return medias.filter { $0.title.localizedStandardContains(searchQuery) }
 	}
 
-	func groups(for playlist: Playlist) -> [String] {
-		let searchResults = self.searchResults(playlist)
+	func groups(for medias: [Media]) -> [String] {
+		let searchResults = self.searchResults(medias)
 		
 		let allGroups = Set(
 			searchResults.compactMap {
@@ -33,8 +30,8 @@ final class MediasViewModel {
 		return allGroups.sorted()
 	}
 
-	func filteredMediasForGroup(_ group: String, playlist: Playlist) -> [Media] {
-		let searchResults = self.searchResults(playlist)
+	func filteredMediasForGroup(_ group: String, medias: [Media]) -> [Media] {
+		let searchResults = self.searchResults(medias)
 		
 		guard group == "All" else {
 			return searchResults.filter {

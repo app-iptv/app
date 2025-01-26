@@ -175,6 +175,9 @@
         }
       }
     },
+    "Create" : {
+
+    },
     "Customization" : {
       "localizations" : {
         "pt-PT" : {
@@ -490,6 +493,9 @@
         }
       }
     },
+    "Hello, world!" : {
+
+    },
     "Home" : {
       "localizations" : {
         "pt-PT" : {
@@ -519,6 +525,9 @@
           }
         }
       }
+    },
+    "Import" : {
+
     },
     "Import from File" : {
       "localizations" : {

@@ -15,10 +15,20 @@ struct MainViewTitleMenu: View {
 	@Query private var playlists: [Playlist]
 	
 	var body: some View {
-		ForEach(playlists) { playlist in
+		ForEach(importedPlaylists) { playlist in
 			Button(playlist.name) {
 				sceneState.selectedPlaylist = playlist
 			}
+			.badge(playlist.medias.count)
+		}
+		
+		Divider()
+		
+		ForEach(createdPlaylists) { playlist in
+			Button(playlist.name) {
+				sceneState.selectedPlaylist = playlist
+			}
+			.badge(playlist.medias.count)
 		}
 		
 		Divider()
@@ -26,5 +36,15 @@ struct MainViewTitleMenu: View {
 		Button("Add Playlist", systemImage: "plus") {
 			appState.isAddingPlaylist = true
 		}
+	}
+}
+
+extension MainViewTitleMenu {
+	private var createdPlaylists: [Playlist] {
+		return playlists.filter { $0.kind == .custom }
+	}
+	
+	private var importedPlaylists: [Playlist] {
+		return playlists.filter { $0.kind == .imported }
 	}
 }

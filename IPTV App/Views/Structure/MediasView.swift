@@ -50,8 +50,10 @@ struct MediasView: View {
 }
 
 extension MediasView {
-	private var searchResults: [Media] { viewModel.searchResults(playlist) }
-	private var groups: [String] { viewModel.groups(for: playlist) }
+	private var searchResults: [Media] { viewModel.searchResults(medias) }
+	private var groups: [String] { viewModel.groups(for: medias) }
 	private var selectedGroup: String { sceneState.selectedGroup }
-	private var mediasForGroup: [Media] { viewModel.filteredMediasForGroup(selectedGroup, playlist: playlist) }
+	private var mediasForGroup: [Media] { viewModel.filteredMediasForGroup(selectedGroup, medias: medias) }
+	
+	private var medias: [Media] { playlist.medias }
 }

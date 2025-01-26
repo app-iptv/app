@@ -31,12 +31,9 @@ struct MediaCellView: View {
 			.padding(.trailing, 5)
 
 			switch viewingMode {
-			case .large:
-				largeViewingMode
-			case .regular:
-				regularViewingMode
-			case .compact:
-				compactViewingMode
+				case .large: largeViewingMode
+				case .regular: regularViewingMode
+				case .compact: compactViewingMode
 			}
 		}
 		.swipeActions(edge: .leading) { contextMenu }

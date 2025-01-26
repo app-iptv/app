@@ -25,7 +25,7 @@ struct ErrorView: View {
 			Button("Close") { viewModel.parserDidFail.toggle() }
 		}
 		#if os(macOS)
-			.frame(width: 200, height: 300)
+		.frame(width: 200, height: 300)
 		#endif
 		.padding()
 	}

@@ -43,7 +43,7 @@ struct EPGProgramDetailView: View {
 
 					Spacer()
 				}
-
+				
 				if let description = program.description {
 					Text(description)
 				}

@@ -1,7 +1,7 @@
-# **IPTV App**
+# IPTV App
 A modern, intuitive, and customizable application for streaming live TV, movies, and series via IPTV.
 
-## **Features**
+## Features
 - 📺 **Live TV**: Stream live channels with smooth playback.
 - 🎥 **On-Demand Content**: Access movies, series, and recorded programs.
 - 🔍 **EPG (Electronic Program Guide)**: View detailed program schedules.
@@ -10,9 +10,9 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 - 🎨 **Customizable UI**: Adjust themes, layouts, and user preferences.
 - 🔒 **Secure Streaming**: Ensures encrypted and private content playback.
 
-## **Getting Started**
+## Getting Started
 
-### **Installation**
+### Installation
 1. **Download the App**
    - [Apple App Store](https://apps.apple.com/lu/app/iptv-app/id6480924954)
 
@@ -20,12 +20,12 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
    - Add your IPTV provider’s M3U playlist URL.
    - Configure EPG URLs if required.
 
-### **Requirements**
+### Requirements
 - **macOS**: Version 14.0 or later
 - **iOS & iPad OS**: Version 17.0 or later
 - **VisionOS**: Version 1.0 or later
 
-## **How to Use**
+## How to Use
 1. **Add Your Playlist**
    - Click on the menu labeled "IPTV App" on the main page.
    - Press "Add Playlist.
@@ -46,9 +46,9 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 - [x] **Video on Demand (VOD)**  
   - [x] Access to movies, series, and other on-demand content.
   - [x] Categorized content for easier navigation.
-- [ ] **Multi-Screen Support**  
-  - [ ] Compatibility with TVs, smartphones, tablets, and desktops.
-  - [x] Cross-device synchronization for saved content and preferences.
+- [x] **Multi-Screen Support**  
+  - [ ] Place multiple streams in a grid to watch them at the same time.
+  - [x] Cross-device synchronisation for saved content and preferences.
 
 ### User Features
 - [ ] **Favorites & Watchlist**  
@@ -71,38 +71,38 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 - [x] **Picture-in-Picture Mode**  
   - [x] Watch TV or movies in a small window while using other apps.
 
-## **Packages Used in the IPTV App**
+## Packages Used in the IPTV App
 
 Below is a list of third-party packages used in the IPTV app and their purposes:
 
-### **1. M3UKit**
+### 1. [https://github.com/app-iptv/M3UKit](M3UKit)
 **Description**: A library for parsing and handling M3U playlists.
 **Purpose**: Enables the app to import and manage IPTV playlists.
 
-### **2. SDWebImageSwiftUI**
+### 2. [https://github.com/app-iptv/SDWebImageSwiftUI](SDWebImageSwiftUI)
 **Description**: SwiftUI bindings for SDWebImage.
 **Purpose**: Handles image downloading and caching efficiently, providing smooth and optimized UI rendering for channel logos and thumbnails.
 
-### **3. SWCompression**
+### 3. [https://github.com/app-iptv/SWCompression](SWCompression)
 **Description**: A compression framework for Swift.
 **Purpose**: Used for decompressing or handling compressed files, such as EPG data or bundled playlists.
 
-### **4. SwiftyXMLParser**
+### 4. [https://github.com/app-iptv/SwiftyXMLParser](SwiftyXMLParser)
 **Description**: A lightweight XML parser for Swift.
 **Purpose**: Parses XML data, such as EPG files, to display program information.
 
-### **5. UIOnboarding**
+### 5. [https://github.com/app-iptv/UIOnboarding](UIOnboarding)
 **Description**: A Swift package for creating onboarding screens.
 **Purpose**: Provides a user-friendly onboarding experience for first-time users of the app.
 
-### **6. XMLTV**
+### 6. [https://github.com/app-iptv/XMLTV](XMLTV)
 **Description**: A library for handling XMLTV files.
 **Purpose**: Processes TV program schedules from XMLTV sources for use in the Electronic Program Guide (EPG).
 
-## **Acknowledgments**
+## Acknowledgments
 We are grateful to the developers of these open-source packages for their contributions to the community. Their work has significantly facilitated the development of IPTV App and enhanced its functionality and performance.
 
-## **Contributing**  
+## Contributing
 We welcome contributions! Please follow these steps:
 1. Fork this repository.
 2. Create a feature branch (`git checkout -b feature-name`).
@@ -110,9 +110,9 @@ We welcome contributions! Please follow these steps:
 4. Push to the branch (`git push origin feature-name`).
 5. Create a Pull Request.
 
-## **Support**
+## Support
 If you encounter any issues, please contact us:
 - 📧 Email: [marianaduartesilva425@gmail.com](mailto:marianaduartesilva425@gmail.com)
 
-## **License**  
+## License
 This project is licensed under the MIT License. See [LICENSE](LICENSE) file for details.

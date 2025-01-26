@@ -18,11 +18,13 @@ class Playlist: Identifiable {
 	var medias: [Media] = [Media]()
 	var m3uLink: String = ""
 	var epgLink: String = ""
+	var kind: PlaylistKind = PlaylistKind.imported
 
 	init(
-		_ name: String,
-		medias: [Media],
-		m3uLink: String,
+		_ name: String = "",
+		medias: [Media] = [],
+		m3uLink: String = "",
+		kind: PlaylistKind = .imported,
 		epgLink: String = ""
 	) {
 		self.name = name
@@ -30,4 +32,8 @@ class Playlist: Identifiable {
 		self.m3uLink = m3uLink
 		self.epgLink = epgLink
 	}
+}
+
+extension Playlist {
+	static var favourites: Playlist = Playlist("Favourites", kind: .favourites)
 }

@@ -37,6 +37,45 @@ struct IPTVApp: App {
 	}
 	#endif
 
+	var body: some Scene {
+		WindowGroup("IPTV App", id: "MAIN_WINDOW") {
+			ContentView(isRemovingAll: $isRemovingAll)
+				.task { try? Tips.configure() }
+				.task { loadFavouritesPlaylist() }
+		}
+		.modelContainer(SwiftDataController.main.persistenceContainer)
+		.environment(appState)
+		.environment(EPGFetchingController())
+		.commands { commands }
+
+		#if os(macOS)
+			Window("About IPTV App", id: "ABOUT_WINDOW") {
+				AboutView()
+					.padding()
+			}
+			.windowResizability(.contentSize)
+			.windowStyle(.hiddenTitleBar)
+
+			Settings {
+				SettingsView(isRemovingAll: $isRemovingAll)
+					.frame(width: 500, height: 300)
+			}
+			.environment(appState)
+			.windowStyle(.hiddenTitleBar)
+		#endif
+	}
+}
+
+extension IPTVApp {
+	private func loadFavouritesPlaylist() {
+		let favouritesPlaylist = playlists.first { $0.kind == .favourites }
+		
+		guard let favouritesPlaylist else {
+			SwiftDataController.main.modelContext.insert(Playlist.favourites)
+			return
+		}
+	}
+	
 	private var commands: some Commands {
 		Group {
 			CommandGroup(replacing: .newItem) {
@@ -65,32 +104,5 @@ struct IPTVApp: App {
 				}
 			#endif
 		}
-	}
-
-	var body: some Scene {
-		WindowGroup("IPTV App", id: "MAIN_WINDOW") {
-			ContentView(isRemovingAll: $isRemovingAll)
-				.task { try? Tips.configure() }
-		}
-		.modelContainer(SwiftDataController.main.persistenceContainer)
-		.environment(appState)
-		.environment(EPGFetchingController())
-		.commands { commands }
-
-		#if os(macOS)
-			Window("About IPTV App", id: "ABOUT_WINDOW") {
-				AboutView()
-					.padding()
-			}
-			.windowResizability(.contentSize)
-			.windowStyle(.hiddenTitleBar)
-
-			Settings {
-				SettingsView(isRemovingAll: $isRemovingAll)
-					.frame(width: 500, height: 300)
-			}
-			.environment(appState)
-			.windowStyle(.hiddenTitleBar)
-		#endif
 	}
 }
