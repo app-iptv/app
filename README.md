@@ -75,27 +75,27 @@ A modern, intuitive, and customizable application for streaming live TV, movies,
 
 Below is a list of third-party packages used in the IPTV app and their purposes:
 
-### 1. [https://github.com/app-iptv/M3UKit](M3UKit)
+### 1. [M3UKit](https://github.com/app-iptv/M3UKit)
 **Description**: A library for parsing and handling M3U playlists.
 **Purpose**: Enables the app to import and manage IPTV playlists.
 
-### 2. [https://github.com/app-iptv/SDWebImageSwiftUI](SDWebImageSwiftUI)
+### 2. [SDWebImageSwiftUI](https://github.com/app-iptv/SDWebImageSwiftUI)
 **Description**: SwiftUI bindings for SDWebImage.
 **Purpose**: Handles image downloading and caching efficiently, providing smooth and optimized UI rendering for channel logos and thumbnails.
 
-### 3. [https://github.com/app-iptv/SWCompression](SWCompression)
+### 3. [SWCompression](https://github.com/app-iptv/SWCompression)
 **Description**: A compression framework for Swift.
 **Purpose**: Used for decompressing or handling compressed files, such as EPG data or bundled playlists.
 
-### 4. [https://github.com/app-iptv/SwiftyXMLParser](SwiftyXMLParser)
+### 4. [SwiftyXMLParser](https://github.com/app-iptv/SwiftyXMLParser)
 **Description**: A lightweight XML parser for Swift.
 **Purpose**: Parses XML data, such as EPG files, to display program information.
 
-### 5. [https://github.com/app-iptv/UIOnboarding](UIOnboarding)
+### 5. [UIOnboarding](https://github.com/app-iptv/UIOnboarding)
 **Description**: A Swift package for creating onboarding screens.
 **Purpose**: Provides a user-friendly onboarding experience for first-time users of the app.
 
-### 6. [https://github.com/app-iptv/XMLTV](XMLTV)
+### 6. [XMLTV](https://github.com/app-iptv/XMLTV)
 **Description**: A library for handling XMLTV files.
 **Purpose**: Processes TV program schedules from XMLTV sources for use in the Electronic Program Guide (EPG).
 
