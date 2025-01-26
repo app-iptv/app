@@ -79,19 +79,19 @@ Below is a list of third-party packages used in the IPTV app and their purposes:
 **Description**: A library for parsing and handling M3U playlists.
 **Purpose**: Enables the app to import and manage IPTV playlists.
 
-### 2. [SDWebImageSwiftUI](https://github.com/app-iptv/SDWebImageSwiftUI)
+### 2. [SDWebImageSwiftUI](https://github.com/SDWebImage/SDWebImage)
 **Description**: SwiftUI bindings for SDWebImage.
 **Purpose**: Handles image downloading and caching efficiently, providing smooth and optimized UI rendering for channel logos and thumbnails.
 
-### 3. [SWCompression](https://github.com/app-iptv/SWCompression)
+### 3. [SWCompression](https://github.com/tsolomko/SWCompression)
 **Description**: A compression framework for Swift.
 **Purpose**: Used for decompressing or handling compressed files, such as EPG data or bundled playlists.
 
-### 4. [SwiftyXMLParser](https://github.com/app-iptv/SwiftyXMLParser)
+### 4. [SwiftyXMLParser](https://github.com/yahoojapan/SwiftyXMLParser)
 **Description**: A lightweight XML parser for Swift.
 **Purpose**: Parses XML data, such as EPG files, to display program information.
 
-### 5. [UIOnboarding](https://github.com/app-iptv/UIOnboarding)
+### 5. [UIOnboarding](https://github.com/lascic/UIOnboarding)
 **Description**: A Swift package for creating onboarding screens.
 **Purpose**: Provides a user-friendly onboarding experience for first-time users of the app.
 
