@@ -12,10 +12,12 @@ struct MainViewTitleMenu: View {
 	@Environment(AppState.self) private var appState
 	@Environment(SceneState.self) private var sceneState
 	
+	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
+	
 	@Query private var playlists: [Playlist]
 	
 	var body: some View {
-		ForEach(importedPlaylists) { playlist in
+		ForEach(playlists) { playlist in
 			Button(playlist.name) {
 				sceneState.selectedPlaylist = playlist
 			}
@@ -24,11 +26,8 @@ struct MainViewTitleMenu: View {
 		
 		Divider()
 		
-		ForEach(createdPlaylists) { playlist in
-			Button(playlist.name) {
-				sceneState.selectedPlaylist = playlist
-			}
-			.badge(playlist.medias.count)
+		Button("Favourites", systemImage: "star") {
+			sceneState.selectedPlaylist = Playlist(String(localized: "Favourites"), medias: favourites)
 		}
 		
 		Divider()
@@ -36,15 +35,5 @@ struct MainViewTitleMenu: View {
 		Button("Add Playlist", systemImage: "plus") {
 			appState.isAddingPlaylist = true
 		}
-	}
-}
-
-extension MainViewTitleMenu {
-	private var createdPlaylists: [Playlist] {
-		return playlists.filter { $0.kind == .custom }
-	}
-	
-	private var importedPlaylists: [Playlist] {
-		return playlists.filter { $0.kind == .imported }
 	}
 }

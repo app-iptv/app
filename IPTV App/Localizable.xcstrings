@@ -84,6 +84,9 @@
         }
       }
     },
+    "Add Stream" : {
+
+    },
     "Add to Favourites" : {
       "localizations" : {
         "pt-PT" : {
@@ -422,6 +425,7 @@
       }
     },
     "From %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -652,6 +656,7 @@
       }
     },
     "No Favourited Medias" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -874,6 +879,7 @@
       }
     },
     "Search Favourites" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -894,6 +900,7 @@
       }
     },
     "Select EPG" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {
@@ -998,6 +1005,7 @@
       }
     },
     "The medias you favourites will appear here. To add some favourites, click on the star symbol next to a media." : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-PT" : {
           "stringUnit" : {

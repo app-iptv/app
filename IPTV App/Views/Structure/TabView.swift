@@ -44,28 +44,19 @@ struct TabView: View {
 	}
 
 	var body: some View {
+		#if os(macOS)
+		HomeView()
+		#else
 		SwiftUI.TabView(selection: $selectedTab) {
-			#if os(macOS)
-				HomeView()
-					.tabForView(for: .home)
-				FavouritesView()
-					.tabForView(for: .favourites)
-			#else
-				FavouritesView()
-					.toolbarBackground(visibility, for: placement)
-					.tabForView(for: .favourites)
-					.environment(\.horizontalSizeClass, sizeClass)
-				HomeView()
-					.toolbarBackground(visibility, for: placement)
-					.tabForView(for: .home)
-					.environment(\.horizontalSizeClass, sizeClass)
-				SettingsView(isRemovingAll: $isRemovingAll)
-					.toolbarBackground(visibility, for: placement)
-					.tabForView(for: .settings)
-					.environment(\.horizontalSizeClass, sizeClass)
-			#endif
+			HomeView()
+				.toolbarBackground(visibility, for: placement)
+				.tabForView(for: .home)
+				.environment(\.horizontalSizeClass, sizeClass)
+			SettingsView(isRemovingAll: $isRemovingAll)
+				.toolbarBackground(visibility, for: placement)
+				.tabForView(for: .settings)
+				.environment(\.horizontalSizeClass, sizeClass)
 		}
-		#if os(iOS)
 		.environment(\.horizontalSizeClass, .compact)
 		#endif
 	}

@@ -19,6 +19,7 @@ struct IPTVApp: App {
 	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
 	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
 	@AppStorage("MEDIA_DISPLAY_MODE") private var mediaDisplayMode: MediaDisplayMode = .list
+	@AppStorage("RESET_FAVORITES") private var isResetingFavourites: Bool = false
 
 	@Query private var playlists: [Playlist]
 	
@@ -41,7 +42,7 @@ struct IPTVApp: App {
 		WindowGroup("IPTV App", id: "MAIN_WINDOW") {
 			ContentView(isRemovingAll: $isRemovingAll)
 				.task { try? Tips.configure() }
-				.task { loadFavouritesPlaylist() }
+				.task(id: isResetingFavourites) { resetFavourites() }
 		}
 		.modelContainer(SwiftDataController.main.persistenceContainer)
 		.environment(appState)
@@ -67,13 +68,13 @@ struct IPTVApp: App {
 }
 
 extension IPTVApp {
-	private func loadFavouritesPlaylist() {
-		let favouritesPlaylist = playlists.first { $0.kind == .favourites }
-		
-		guard let favouritesPlaylist else {
-			SwiftDataController.main.modelContext.insert(Playlist.favourites)
+	private func resetFavourites() {
+		guard isResetingFavourites else {
+			print("didnt reset favourites")
 			return
 		}
+		
+		print("reset favourites")
 	}
 	
 	private var commands: some Commands {

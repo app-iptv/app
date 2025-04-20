@@ -20,30 +20,6 @@ class AddPlaylistViewModel {
 	var fileData: Data? = nil
 	var fileName: String = ""
 	
-//	func handleResult(_ result: Result<URL, any Error>) async {
-//		switch result {
-//			case .success(let url):
-//				do {
-//					if url.startAccessingSecurityScopedResource() {
-//						let (data, _) = try await URLSession.shared.data(from: url)
-//								
-//						fileData = data
-//								
-//						do { url.stopAccessingSecurityScopedResource() }
-//					} else {
-//						// Handle error
-//					}
-//				} catch {
-//					print("Unable to read file contents")
-//					print(error.localizedDescription)
-//					
-//					handleError(error)
-//				}
-//			case .failure(let error):
-//				handleError(error)
-//		}
-//	}
-	
 	func handleResult(_ result: Result<URL, any Error>) async throws {
 		let url = try result.get()
 		
