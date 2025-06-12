@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import SwiftData
 
+@MainActor
 @Observable
 class AddPlaylistViewModel {
 	var playlist: Playlist = Playlist("", medias: [], m3uLink: "", epgLink: "")
@@ -20,23 +22,62 @@ class AddPlaylistViewModel {
 	var fileData: Data? = nil
 	var fileName: String = ""
 	
-	func handleResult(_ result: Result<URL, any Error>) async throws {
-		let url = try result.get()
-		
-		guard url.startAccessingSecurityScopedResource() else {
-			// Handle error
-			return
+	private var networkModel: PlaylistFetchingController {
+		PlaylistFetchingController(viewModel: self)
+	}
+	
+	private var context: ModelContext {
+		SwiftDataController.main.modelContext
+	}
+	
+	func handleResult(_ result: Result<URL, any Error>) {
+		Task {
+			do {
+				let url = try result.get()
+				
+				guard url.startAccessingSecurityScopedResource() else {
+					// Handle error
+					return
+				}
+				
+				let (data, _) = try await URLSession.shared.data(from: url)
+				
+				fileData = data
+				
+				url.stopAccessingSecurityScopedResource()
+			} catch {
+				handleError(error)
+			}
 		}
+	}
+	
+	func addPlaylistFromURL() async {
+		await networkModel.parsePlaylist()
 		
-		let (data, _) = try await URLSession.shared.data(from: url)
+		guard parserError == nil else { return }
 		
-		fileData = data
+		context.insert(playlist)
 		
-		url.stopAccessingSecurityScopedResource()
+		networkModel.cancel()
+	}
+	
+	func cancel() {
+		networkModel.cancel()
 	}
 	
 	func handleError(_ error: Error?) {
 		parserError = error
 		parserDidFail = true
+	}
+	
+	func addPlaylist(with data: Data?) async {
+		guard let data else { await addPlaylistFromURL(); return }
+		
+		await networkModel.addPlaylistFromFile(data: data)
+		
+		guard parserError == nil else { return }
+		
+		context.insert(playlist)
+		networkModel.cancel()
 	}
 }

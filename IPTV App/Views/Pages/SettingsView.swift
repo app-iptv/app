@@ -26,14 +26,17 @@ struct SettingsView: View {
 
 	var body: some View {
 		#if os(macOS)
-		SwiftUI.TabView {
-			NavigationStack {
-				form.formStyle(.grouped)
+		TabView {
+			Tab("Settings", systemImage: "gear") {
+				NavigationStack {
+					form.formStyle(.grouped)
+				}
 			}
-			.tabItem { Label("Settings", systemImage: "gear") }
 		}
 		#else
-		NavigationStack { form }
+		NavigationStack {
+			form.navigationDestination(for: Playlist.self) { EditPlaylistView($0) }
+		}
 		#endif
 	}
 	
@@ -94,8 +97,5 @@ struct SettingsView: View {
 			}
 		}
 		.navigationTitle("Settings")
-		.navigationDestination(for: Playlist.self) { playlist in
-			EditPlaylistView(playlist)
-		}
 	}
 }

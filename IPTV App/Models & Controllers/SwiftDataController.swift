@@ -16,12 +16,27 @@ final class SwiftDataController {
 		print(URL.applicationSupportDirectory.path(percentEncoded: false))
 		let schema = Schema([Playlist.self])
 		
-		let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+		let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 		
 		do {
-			return try ModelContainer(for: schema, configurations: [modelConfiguration])
+			return try ModelContainer(for: schema, configurations: [config])
 		} catch {
 			fatalError("Could not create ModelContainer: \(error)")
+		}
+	}()
+	
+	let previewContainer: ModelContainer = {
+		do {
+			let schema = Schema([Playlist.self])
+			
+			let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+			
+			let container = try ModelContainer(for: schema, configurations: [config])
+			container.mainContext.insert(Playlist.preview)
+			
+			return container
+		} catch {
+			fatalError("Could not create preview container: \(error)")
 		}
 	}()
 	

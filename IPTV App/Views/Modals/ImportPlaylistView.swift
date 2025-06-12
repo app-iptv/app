@@ -15,10 +15,6 @@ struct ImportPlaylistView: View {
 	
 	@State private var viewModel: AddPlaylistViewModel = AddPlaylistViewModel()
 	
-	private var networkModel: PlaylistFetchingController {
-		PlaylistFetchingController(viewModel: viewModel)
-	}
-	
 	var body: some View {
 		NavigationStack {
 			VStack(spacing: 15) {
@@ -63,7 +59,8 @@ struct ImportPlaylistView: View {
 				
 				HStack {
 					AsyncButton {
-						await addPlaylist(with: viewModel.fileData)
+						await viewModel.addPlaylist(with: viewModel.fileData)
+						dismiss()
 					} label: { isLoading in
 						if isLoading {
 							return AnyView(ProgressView())
@@ -82,7 +79,7 @@ struct ImportPlaylistView: View {
 					
 					Button("Cancel") {
 						dismiss()
-						networkModel.cancel()
+						viewModel.cancel()
 					}
 					.buttonStyle(.bordered)
 					.foregroundStyle(.red)
@@ -108,7 +105,7 @@ struct ImportPlaylistView: View {
 			}
 			.padding()
 			.frame(maxWidth: 500)
-			.fileImporter(isPresented: $viewModel.isAddingFile, allowedContentTypes: [.m3uPlaylist], onCompletion: handleResult)
+			.fileImporter(isPresented: $viewModel.isAddingFile, allowedContentTypes: [.m3uPlaylist], onCompletion: viewModel.handleResult)
 			.sheet(isPresented: $viewModel.parserDidFail) { ErrorView(viewModel: viewModel) }
 		}
 	}
@@ -117,40 +114,4 @@ struct ImportPlaylistView: View {
 #Preview {
 	ImportPlaylistView()
 		.environment(AppState())
-}
-
-extension ImportPlaylistView {
-	private func handleResult(_ result: Result<URL, Error>) {
-		Task {
-			do {
-				try await viewModel.handleResult(result)
-			} catch {
-				viewModel.handleError(error)
-			}
-		}
-	}
-	
-	private func addPlaylistFromURL() async {
-		await networkModel.parsePlaylist()
-		
-		guard viewModel.parserError == nil else { return }
-		
-		context.insert(viewModel.playlist)
-		
-		dismiss()
-		networkModel.cancel()
-	}
-	
-	private func addPlaylist(with data: Data?) async {
-		guard let data else { await addPlaylistFromURL(); return }
-		
-		await networkModel.addPlaylistFromFile(data: data)
-		
-		guard viewModel.parserError == nil else { return }
-		
-		context.insert(viewModel.playlist)
-		
-		dismiss()
-		networkModel.cancel()
-	}
 }

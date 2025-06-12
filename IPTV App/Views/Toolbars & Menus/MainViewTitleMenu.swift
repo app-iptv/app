@@ -18,10 +18,19 @@ struct MainViewTitleMenu: View {
 	
 	var body: some View {
 		ForEach(playlists) { playlist in
-			Button(playlist.name) {
+			Button {
 				sceneState.selectedPlaylist = playlist
+			} label: {
+				HStack {
+					Text(playlist.name)
+					
+					Spacer()
+					
+					Text(playlist.medias.count.formatted())
+						.font(.caption)
+				}
 			}
-			.badge(playlist.medias.count)
+			.bold(sceneState.selectedPlaylist?.id == playlist.id)
 		}
 		
 		Divider()

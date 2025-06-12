@@ -74,7 +74,7 @@ extension IPTVApp {
 			return
 		}
 		
-		print("reset favourites")
+		favourites.removeAll()
 	}
 	
 	private var commands: some Commands {

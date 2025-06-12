@@ -30,11 +30,15 @@ struct MediasView: View {
 	
 	var body: some View {
 		Group {
-			if mediasForGroup.isEmpty {
+			if mediasForGroup.isEmpty && !viewModel.searchQuery.isEmpty {
 				ContentUnavailableView.search(text: viewModel.searchQuery)
-			} else /*if mediaDisplayMode == .grid*/ {
-//				MediasGridView(vm: viewModel, playlist: playlist)
-//			} else {
+			} else if mediasForGroup.isEmpty && viewModel.searchQuery.isEmpty {
+				ContentUnavailableView {
+					Text("No Medias")
+				} description: {
+					Text("This playlist does not have any medias.")
+				}
+			} else {
 				MediasListView(vm: viewModel, playlist: playlist)
 			}
 		}

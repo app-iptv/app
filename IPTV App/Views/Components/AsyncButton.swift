@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct AsyncButton<Label: View>: View {
+struct AsyncButton<Content: View>: View {
 	@State private var task: Task<(), Never>? = nil
 	
 	let action: () async -> Void
-	let label: (Bool) -> Label
+	let label: (Bool) -> Content
 	
-	init(action: @escaping () async -> Void, label: @escaping (Bool) -> Label) {
+	init(action: @escaping () async -> Void, label: @escaping (Bool) -> Content) {
 		self.action = action
 		self.label = label
 	}

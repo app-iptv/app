@@ -13,7 +13,7 @@
     {
       "identity" : "lightxmlparser",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pedrodsac/LightXMLParser.git",
+      "location" : "https://github.com/iptvapp-proj/LightXMLParser.git",
       "state" : {
         "branch" : "master",
         "revision" : "52d8fa2ad6f2924b86b2896b2e2c1a025685e645"
@@ -25,7 +25,7 @@
       "location" : "https://github.com/iptvapp-proj/M3UKit.git",
       "state" : {
         "branch" : "master",
-        "revision" : "4e06ae972d01afd63ba986012d358345a5a3e56e"
+        "revision" : "5a2f762663ab41afc739623d2d62d2b4b185ae4b"
       }
     },
     {
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "86e9185ef41c4238a93ad8efe61ddeb701e80bbf",
-        "version" : "5.19.5"
+        "revision" : "b62cb63bf4ed1f04c961a56c9c6c9d5ab8524ec6",
+        "version" : "5.21.1"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/lascic/UIOnboarding.git",
       "state" : {
-        "revision" : "efd1e944c399de24c10d9f4947301e1c105dbb9b",
-        "version" : "2.0.3"
+        "revision" : "88d304a0a78b608fd993c9065bb86631f962aaf9",
+        "version" : "2.0.4"
       }
     },
     {
@@ -79,7 +79,7 @@
       "location" : "https://github.com/iptvapp-proj/XMLTV.git",
       "state" : {
         "branch" : "master",
-        "revision" : "3f79c795900b7fc7bfe30dbf4c206f3a82a32770"
+        "revision" : "65ecdeddf2f8ecf25ea9f25d155ba113dc48e263"
       }
     }
   ],

@@ -30,15 +30,34 @@ struct ContentView: View {
 	}
 
 	var body: some View {
-		TabView(selectedTab: $selectedTab, isRemovingAll: $isRemovingAll)
-			.onChange(of: sceneState.selectedPlaylist, resetEPG)
-			.environment(sceneState)
-			.environment(epgFetchingController)
-			.sheet(isPresented: Bindable(appState).isAddingPlaylist) { AddPlaylistView() }
-			.sheet(isPresented: Bindable(appState).openedSingleStream) { SingleStreamView() }
-			.alert("Delete All Favorited Medias?", isPresented: $isRemovingAll) { deleteMediasAlert } message: { deleteMediasMessage }
-			.withOnboardingView(isFirstLaunch: $isFirstLaunch)
+		Group {
+			#if os(macOS)
+			HomeView()
+			#else
+			TabView {
+				HomeView().tabForView(for: .home)
+				
+				SettingsView(isRemovingAll: $isRemovingAll).tabForView(for: .home)
+			}
+			.toolbarBackground(visibility, for: placement)
+			#endif
+		}
+		.onChange(of: sceneState.selectedPlaylist, resetEPG)
+		.environment(sceneState)
+		.environment(epgFetchingController)
+		.sheet(isPresented: Bindable(appState).isAddingPlaylist) { AddPlaylistView() }
+		.sheet(isPresented: Bindable(appState).openedSingleStream) { SingleStreamView() }
+		.alert("Delete All Favorited Medias?", isPresented: $isRemovingAll) { deleteMediasAlert } message: { deleteMediasMessage }
+		.withOnboardingView(isFirstLaunch: $isFirstLaunch)
 	}
+}
+
+#Preview {
+	@Previewable @State var isRemovingAll: Bool = false
+	@Previewable @State var appState: AppState = AppState()
+	
+	ContentView(isRemovingAll: $isRemovingAll)
+		.environment(appState)
 }
 
 extension ContentView {
@@ -60,4 +79,28 @@ extension ContentView {
 	private var deleteMediasMessage: Text {
 		Text("WARNING: You are about to delete all favorited medias. If you have deleted the source playlist for a media, you will have to add the playlist again to reclaim it.")
 	}
+	
+	private var visibility: Visibility {
+		switch sizeClass {
+		case .compact:
+			return .automatic
+		case .regular:
+			return .visible
+		default:
+			return .automatic
+		}
+	}
+
+	#if os(iOS)
+		private var placement: ToolbarPlacement {
+			switch sizeClass {
+			case .compact:
+				return .automatic
+			case .regular:
+				return .tabBar
+			default:
+				return .automatic
+			}
+		}
+	#endif
 }
