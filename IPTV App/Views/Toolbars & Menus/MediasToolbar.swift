@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct MediasToolbar: CustomizableToolbarContent {
-	@Environment(AppState.self) private var appState
-	@Environment(SceneState.self) private var sceneState
+	@Environment(AppState.self) var appState
+	@Environment(SceneState.self) var sceneState
 	
-	@AppStorage("MEDIA_DISPLAY_MODE") private var mediaDisplayMode: MediaDisplayMode = .list
+	@AppStorage("MEDIA_DISPLAY_MODE") var mediaDisplayMode: MediaDisplayMode = .list
 	
-	private let groups: [String]
+	let groups: [String]
 	
 	internal init(groups: [String]) {
 		self.groups = groups

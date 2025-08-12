@@ -10,11 +10,11 @@ import M3UKit
 import SwiftUI
 
 struct SingleStreamView: View {
-	@Environment(AppState.self) private var appState
+	@Environment(AppState.self) var appState
 	
-	@State private var mediaURL: String = ""
+	@State var mediaURL: String = ""
 
-	@State private var isPresented: Bool = false
+	@State var isPresented: Bool = false
 
 	var body: some View {
 		VStack {
@@ -50,7 +50,7 @@ struct SingleStreamView: View {
 		.padding()
 	}
 
-	private var playerView: some View {
+	var playerView: some View {
 		VStack {
 			PlayerViewControllerRepresentable(
 				name: String(localized: "Single Stream"), url: mediaURL,

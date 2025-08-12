@@ -9,14 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct EditPlaylistView: View {
-	@Environment(\.dismiss) private var dismiss
-	@Environment(\.modelContext) private var modelContext
+	@Environment(\.dismiss) var dismiss
+	@Environment(\.modelContext) var modelContext
 	
-	@Bindable private var playlist: Playlist
+	@Bindable var playlist: Playlist
 
-	@State private var newName: String = ""
-	@State private var newEPG: String = ""
-	@State private var isPresented: Bool = false
+	@State var newName: String = ""
+	@State var newEPG: String = ""
+	@State var isPresented: Bool = false
 
 	init(_ playlist: Playlist) { self.playlist = playlist }
 

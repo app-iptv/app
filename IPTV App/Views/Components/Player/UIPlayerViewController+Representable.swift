@@ -10,10 +10,10 @@ import M3UKit
 import SwiftUI
 
 class PlayerViewController: UIViewController {
-	private var name: String
-	private var url: String
-	private var group: String?
-	private var playlistName: String
+	var name: String
+	var url: String
+	var group: String?
+	var playlistName: String
 
 	init(name: String, url: String, group: String?, playlistName: String) {
 		self.name = name
@@ -89,7 +89,7 @@ class PlayerViewController: UIViewController {
 		self.player?.play()
 	}
 
-	private func createMetadataItem(
+	func createMetadataItem(
 		for identifier: AVMetadataIdentifier,
 		value: Any
 	) -> AVMetadataItem {
@@ -103,10 +103,10 @@ class PlayerViewController: UIViewController {
 }
 
 struct PlayerViewControllerRepresentable: UIViewControllerRepresentable {
-	private let name: String
-	private let url: String
-	private let group: String?
-	private let playlistName: String
+	let name: String
+	let url: String
+	let group: String?
+	let playlistName: String
 
 	internal init(
 		name: String, url: String, group: String?, playlistName: String

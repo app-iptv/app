@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ChangeIconView: View {
-	@State private var errorDidFail: Bool = false
-	@State private var errorDetail: String = ""
+	@State var errorDidFail: Bool = false
+	@State var errorDetail: String = ""
 	
-	@AppStorage("SELECTED_ICON") private var selectedIcon: Icon = .original
+	@AppStorage("SELECTED_ICON") var selectedIcon: Icon = .original
 	
 	let icons: [Icon] = [.blue, .red, .green, .yellow]
 	
@@ -43,7 +43,7 @@ struct ChangeIconView: View {
 		.navigationTitle("Change App Icon")
 	}
 	
-	private func setIcon(_ icon: Icon) {
+	func setIcon(_ icon: Icon) {
 		Task {
 			do {
 				try await UIApplication.shared.setAlternateIconName(icon.iconName)
@@ -55,7 +55,7 @@ struct ChangeIconView: View {
 		}
 	}
 	
-	private func iconLabel(for icon: Icon) -> some View {
+	func iconLabel(for icon: Icon) -> some View {
 		HStack(spacing: 5) {
 			Image(icon.iconImage)
 				.resizable()

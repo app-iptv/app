@@ -46,7 +46,7 @@ class PlaylistFetchingController {
 		viewModel.playlist = Playlist("", medias: [], m3uLink: "", epgLink: "")
 	}
 	
-	private func catchError(_ error: Error?) {
+	func catchError(_ error: Error?) {
 		viewModel.parserError = error
 		viewModel.parserDidFail = true
 		viewModel.isParsing = false

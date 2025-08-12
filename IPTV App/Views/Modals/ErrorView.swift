@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ErrorView: View {
-	@Bindable private var viewModel: AddPlaylistViewModel
+	@Bindable var viewModel: AddPlaylistViewModel
 	
 	internal init(viewModel: AddPlaylistViewModel) {
 		self.viewModel = viewModel

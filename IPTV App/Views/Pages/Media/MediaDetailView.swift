@@ -12,13 +12,13 @@ import SwiftUI
 import XMLTV
 
 struct MediaDetailView: View {
-	@Environment(EPGFetchingController.self) private var fetchingModel
-	@Environment(AppState.self) private var appState
-	@Environment(SceneState.self) private var sceneState
+	@Environment(EPGFetchingController.self) var fetchingModel
+	@Environment(AppState.self) var appState
+	@Environment(SceneState.self) var sceneState
 
-	@State private var viewModel: MediaDetailViewModel = MediaDetailViewModel()
+	@State var viewModel: MediaDetailViewModel = MediaDetailViewModel()
 
-	private let media: Media
+	let media: Media
 
 	internal init(media: Media) {
 		self.media = media
@@ -27,12 +27,10 @@ struct MediaDetailView: View {
 	var body: some View {
 		VStack(spacing: 0) {
 			VStack(spacing: 10) {
-				PlayerViewControllerRepresentable(
-					media: media, playlistName: sceneState.selectedPlaylist?.name ?? "Playlist Name"
-				)
-				.aspectRatio(16 / 9, contentMode: .fit)
-				.cornerRadius(10)
-				.frame(maxWidth: 400)
+				PlayerViewControllerRepresentable(media: media, playlistName: playlistName)
+					.aspectRatio(16 / 9, contentMode: .fit)
+					.cornerRadius(10)
+					.frame(maxWidth: 400)
 
 				HStack {
 					VStack(alignment: .leading, spacing: 2.5) {
@@ -58,7 +56,7 @@ struct MediaDetailView: View {
 					.shadow(color: .primary, radius: 0.2, x: 0, y: 0.1)
 				#endif
 
-			if sceneState.selectedPlaylist?.epgLink.isEmpty ?? true {
+			if epgLink.isEmpty {
 				Spacer()
 			} else if appState.isLoadingEPG {
 				VStack {
@@ -82,7 +80,21 @@ struct MediaDetailView: View {
 }
 
 extension MediaDetailView {
-	@Sendable private func fetchPrograms() async {
+	@Sendable func fetchPrograms() async {
 		await viewModel.fetchPrograms(for: media, with: fetchingModel, and: appState)
+	}
+	
+	var playlistName: String {
+		switch sceneState.selectedTab {
+			case .playlist(let playlist): return playlist.name
+			default: return "Unknown Playlist Name"
+		}
+	}
+	
+	var epgLink: String {
+		switch sceneState.selectedTab {
+			case .playlist(let playlist): return playlist.epgLink
+			default: return ""
+		}
 	}
 }

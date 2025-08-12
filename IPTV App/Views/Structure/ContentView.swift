@@ -9,66 +9,99 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-	@Environment(\.modelContext) private var context
-	@Environment(\.horizontalSizeClass) private var sizeClass
-	@Environment(AppState.self) private var appState
+	@Environment(\.modelContext) var context
+	@Environment(\.horizontalSizeClass) var sizeClass
+	@Environment(AppState.self) var appState
 	
-	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = true
-	@AppStorage("FAVORITED_mediaS") private var favourites: [Media] = []
+	@AppStorage("FIRST_LAUNCH") var isFirstLaunch: Bool = true
+	@AppStorage("FAVORITED_MEDIAS") var favourites: [Media] = []
 	
-	@Query private var playlists: [Playlist]
+	@Query var playlists: [Playlist]
 	
-	@Binding private var isRemovingAll: Bool
-	
-	@State private var epgFetchingController: EPGFetchingController = EPGFetchingController()
-	@State private var sceneState: SceneState = SceneState()
-	
-	@State private var selectedTab: Tab = .home
-
-	internal init(isRemovingAll: Binding<Bool>) {
-		self._isRemovingAll = isRemovingAll
-	}
-
+	@State var epgFetchingController: EPGFetchingController = EPGFetchingController()
+	@State var sceneState: SceneState = SceneState()
+    
 	var body: some View {
-		Group {
-			#if os(macOS)
-			HomeView()
-			#else
-			TabView {
-				HomeView().tabForView(for: .home)
-				
-				SettingsView(isRemovingAll: $isRemovingAll).tabForView(for: .home)
+		@Bindable var appState = self.appState
+		
+		TabView(selection: $sceneState.selectedTab) {
+			Tab(MediaTab.search.title, systemImage: MediaTab.search.systemImage, value: .search, role: .search) {
+				Text("hello")
 			}
-			.toolbarBackground(visibility, for: placement)
-			#endif
+			
+			Tab(MediaTab.favourites.title, systemImage: MediaTab.favourites.systemImage, value: .favourites) {
+				MediasView(Playlist(MediaTab.favourites.title, medias: favourites))
+			}
+						
+			Tab(MediaTab.settings.title, systemImage: MediaTab.settings.systemImage, value: .settings) {
+				SettingsView()
+			}
+			
+			TabSection("Playlists") {
+				ForEach(playlists) { playlist in
+					Tab(playlist.name, systemImage: MediaTab.playlist(playlist).systemImage, value: MediaTab.playlist(playlist)) {
+						NavigationStack {
+							MediasView(playlist)
+						}
+					}
+				}
+			}
+			.sectionActions {
+				Button("Add Playlist", systemImage: "plus") {
+					appState.isAddingPlaylist.toggle()
+				}
+			}
+			.hidden(sizeClass == .compact)
+			
+			Tab(MediaTab.playlists.title, systemImage: MediaTab.playlists.systemImage, value: .playlists) {
+				PlaylistsView()
+			}
+			.hidden(sizeClass != .compact)
 		}
-		.onChange(of: sceneState.selectedPlaylist, resetEPG)
+		.tabViewStyle(.sidebarAdaptable)
+		.onChange(of: sceneState.selectedTab, resetEPG)
 		.environment(sceneState)
 		.environment(epgFetchingController)
-		.sheet(isPresented: Bindable(appState).isAddingPlaylist) { AddPlaylistView() }
-		.sheet(isPresented: Bindable(appState).openedSingleStream) { SingleStreamView() }
-		.alert("Delete All Favorited Medias?", isPresented: $isRemovingAll) { deleteMediasAlert } message: { deleteMediasMessage }
-		.withOnboardingView(isFirstLaunch: $isFirstLaunch)
+		.sheet(isPresented: $appState.isAddingPlaylist) { AddPlaylistView() }
+		.sheet(isPresented: $appState.openedSingleStream) { SingleStreamView() }
+		.onboardingView(isFirstLaunch: $isFirstLaunch)
+		.alert("Delete All Favorited Medias?", isPresented: $appState.isRemovingAll) {
+			deleteMediasAlert
+		} message: {
+			deleteMediasMessage
+		}
 	}
 }
 
 #Preview {
-	@Previewable @State var isRemovingAll: Bool = false
 	@Previewable @State var appState: AppState = AppState()
 	
-	ContentView(isRemovingAll: $isRemovingAll)
+	ContentView()
 		.environment(appState)
 }
 
 extension ContentView {
-	private func resetEPG() {
-		Task { await epgFetchingController.load(epg: sceneState.selectedPlaylist?.epgLink, appState: appState) }
+	func resetEPG() {
+		Task {
+			switch sceneState.selectedTab {
+				case .favourites:
+					return
+				case .settings:
+					return
+				case .search:
+					return
+				case .playlists:
+					return
+				case .playlist(let playlist):
+					await epgFetchingController.load(epg: playlist.epgLink, appState: appState)
+			}
+		}
 	}
 	
-	private var deleteMediasAlert: some View {
+	var deleteMediasAlert: some View {
 		Group {
 			Button("Cancel", systemImage: "xmark.circle", role: .cancel) {
-				isRemovingAll.toggle()
+				appState.isRemovingAll.toggle()
 			}
 			Button("DELETE ALL", systemImage: "trash", role: .destructive) {
 				favourites.removeAll()
@@ -76,23 +109,23 @@ extension ContentView {
 		}
 	}
 	
-	private var deleteMediasMessage: Text {
+	var deleteMediasMessage: Text {
 		Text("WARNING: You are about to delete all favorited medias. If you have deleted the source playlist for a media, you will have to add the playlist again to reclaim it.")
 	}
 	
-	private var visibility: Visibility {
+	var visibility: Visibility {
 		switch sizeClass {
-		case .compact:
-			return .automatic
-		case .regular:
-			return .visible
-		default:
-			return .automatic
+			case .compact:
+				return .automatic
+			case .regular:
+				return .visible
+			default:
+				return .automatic
 		}
 	}
 
 	#if os(iOS)
-		private var placement: ToolbarPlacement {
+		var placement: ToolbarPlacement {
 			switch sizeClass {
 			case .compact:
 				return .automatic

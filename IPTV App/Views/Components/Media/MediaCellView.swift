@@ -12,8 +12,8 @@ import SwiftUI
 import XMLTV
 
 struct MediaCellView: View {
-	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
-	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
+	@AppStorage("FAVORITED_CHANNELS") var favourites: [Media] = []
+	@AppStorage("VIEWING_MODE") var viewingMode: ViewingMode = .regular
 
 	let media: Media
 
@@ -42,7 +42,7 @@ struct MediaCellView: View {
 }
 
 extension MediaCellView {
-	private var largeViewingMode: some View {
+	var largeViewingMode: some View {
 		VStack(alignment: .leading, spacing: 5) {
 			Text(media.title)
 				.fontWeight(.semibold)
@@ -54,7 +54,7 @@ extension MediaCellView {
 		}
 	}
 	
-	private var compactViewingMode: some View {
+	var compactViewingMode: some View {
 		HStack {
 			HStack(spacing: 0) {
 				Text(media.title)
@@ -70,7 +70,7 @@ extension MediaCellView {
 		}
 	}
 	
-	private var regularViewingMode: some View {
+	var regularViewingMode: some View {
 		HStack {
 			Text(media.title)
 				.fontWeight(.semibold)
@@ -84,7 +84,7 @@ extension MediaCellView {
 		}
 	}
 	
-	private var contextMenu: some View {
+	var contextMenu: some View {
 		VStack {
 			ShareLink(item: media.url, preview: SharePreview(media.title))
 				.tint(.pink)
@@ -104,7 +104,7 @@ extension MediaCellView {
 		}
 	}
 	
-	private var favouriteMediaButtonText: LocalizedStringKey {
+	var favouriteMediaButtonText: LocalizedStringKey {
 		if favourites.contains(media) {
 			return "Un-Favourite"
 		} else {
@@ -112,7 +112,7 @@ extension MediaCellView {
 		}
 	}
 	
-	private var favouriteMediaButtonImage: String {
+	var favouriteMediaButtonImage: String {
 		if favourites.contains(media) {
 			return "star.slash.fill"
 		} else {

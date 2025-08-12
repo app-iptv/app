@@ -17,4 +17,6 @@ final class AppState {
 
 	var isLoadingEPG: Bool = true
 	var epgModelDidFail: Bool = false
+	
+	var isRemovingAll: Bool = false
 }

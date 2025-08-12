@@ -13,18 +13,18 @@ import TipKit
 
 @main
 struct IPTVApp: App {
-	@Environment(\.openWindow) private var openWindow
+	@Environment(\.openWindow) var openWindow
 
-	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = true
-	@AppStorage("FAVORITED_CHANNELS") private var favourites: [Media] = []
-	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
-	@AppStorage("MEDIA_DISPLAY_MODE") private var mediaDisplayMode: MediaDisplayMode = .list
-	@AppStorage("RESET_FAVORITES") private var isResetingFavourites: Bool = false
+	@AppStorage("FIRST_LAUNCH") var isFirstLaunch: Bool = true
+	@AppStorage("FAVORITED_CHANNELS") var favourites: [Media] = []
+	@AppStorage("VIEWING_MODE") var viewingMode: ViewingMode = .regular
+	@AppStorage("MEDIA_DISPLAY_MODE") var mediaDisplayMode: MediaDisplayMode = .list
+	@AppStorage("RESET_FAVORITES") var isResetingFavourites: Bool = false
 
-	@Query private var playlists: [Playlist]
+	@Query var playlists: [Playlist]
 	
-	@State private var appState = AppState()
-	@State private var isRemovingAll: Bool = false
+	@State var appState = AppState()
+	@State var isRemovingAll: Bool = false
 	
 	#if !os(macOS)
 	init() {
@@ -40,7 +40,7 @@ struct IPTVApp: App {
 
 	var body: some Scene {
 		WindowGroup("IPTV App", id: "MAIN_WINDOW") {
-			ContentView(isRemovingAll: $isRemovingAll)
+			ContentView()
 				.task { try? Tips.configure() }
 				.task(id: isResetingFavourites) { resetFavourites() }
 		}
@@ -58,7 +58,7 @@ struct IPTVApp: App {
 			.windowStyle(.hiddenTitleBar)
 
 			Settings {
-				SettingsView(isRemovingAll: $isRemovingAll)
+				SettingsView()
 					.frame(width: 500, height: 300)
 			}
 			.environment(appState)
@@ -68,7 +68,7 @@ struct IPTVApp: App {
 }
 
 extension IPTVApp {
-	private func resetFavourites() {
+	func resetFavourites() {
 		guard isResetingFavourites else {
 			print("didnt reset favourites")
 			return
@@ -77,7 +77,7 @@ extension IPTVApp {
 		favourites.removeAll()
 	}
 	
-	private var commands: some Commands {
+	var commands: some Commands {
 		Group {
 			CommandGroup(replacing: .newItem) {
 				Button("New Playlist", systemImage: "plus") {

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MediasGridView: View {
-	@Environment(AppState.self) private var appState
-	@Environment(SceneState.self) private var sceneState
+	@Environment(AppState.self) var appState
+	@Environment(SceneState.self) var sceneState
 	
-	@Bindable private var viewModel: MediasViewModel
-	@Bindable private var playlist: Playlist
+	@Bindable var viewModel: MediasViewModel
+	@Bindable var playlist: Playlist
 	
-	private let columns = [
+	let columns = [
 		GridItem(.adaptive(minimum: 80))
 	]
 	
@@ -37,11 +37,10 @@ struct MediasGridView: View {
 }
 
 extension MediasGridView {
-	private var searchResults: [Media] { viewModel.searchResults(medias) }
-	private var groups: [String] { viewModel.groups(for: medias) }
-	private var selectedGroup: String { sceneState.selectedGroup }
-	private var mediasForGroup: [Media] { viewModel.filteredMediasForGroup(selectedGroup, medias: medias) }
+	var groups: [String] { viewModel.groups(for: medias) }
+	var selectedGroup: String { sceneState.selectedGroup }
+	var mediasForGroup: [Media] { viewModel.filteredMediasForGroup(selectedGroup, medias: medias) }
 	
-	private var medias: [Media] { playlist.medias }
+	var medias: [Media] { playlist.medias }
 }
 

@@ -10,34 +10,19 @@ import SwiftUI
 import TipKit
 
 struct SettingsView: View {
-	@Environment(AppState.self) private var appState
-	@Environment(\.modelContext) private var context
+	@Environment(AppState.self) var appState
+	@Environment(\.modelContext) var context
 	
-	@Query private var playlists: [Playlist]
+	@Query var playlists: [Playlist]
 
-	@AppStorage("FIRST_LAUNCH") private var isFirstLaunch: Bool = false
-	@AppStorage("VIEWING_MODE") private var viewingMode: ViewingMode = .regular
-
-	@Binding private var isRemovingAll: Bool
-
-	internal init(isRemovingAll: Binding<Bool>) {
-		self._isRemovingAll = isRemovingAll
-	}
+	@AppStorage("FIRST_LAUNCH") var isFirstLaunch: Bool = false
+	@AppStorage("VIEWING_MODE") var viewingMode: ViewingMode = .regular
 
 	var body: some View {
-		#if os(macOS)
-		TabView {
-			Tab("Settings", systemImage: "gear") {
-				NavigationStack {
-					form.formStyle(.grouped)
-				}
-			}
-		}
-		#else
 		NavigationStack {
-			form.navigationDestination(for: Playlist.self) { EditPlaylistView($0) }
+			form
+				.navigationDestination(for: Playlist.self) { EditPlaylistView($0) }
 		}
-		#endif
 	}
 	
 	var form: some View {
@@ -85,7 +70,7 @@ struct SettingsView: View {
 				Button(
 					"Reset Favourites", systemImage: "trash",
 					role: .destructive
-				) { isRemovingAll.toggle() }.foregroundStyle(.red)
+				) { appState.isRemovingAll.toggle() }.foregroundStyle(.red)
 			}
 
 			Section {

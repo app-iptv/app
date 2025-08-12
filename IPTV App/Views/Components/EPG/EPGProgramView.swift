@@ -16,7 +16,7 @@ struct EPGProgramView: View {
 		self.program = program
 	}
 	
-	private let currentInterval = Date().timeIntervalSinceReferenceDate
+	let currentInterval = Date().timeIntervalSinceReferenceDate
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
@@ -83,7 +83,7 @@ extension EPGProgramView {
 		}
 	}
 	
-	private func localizedDateString(for date: Date) -> String {
+	func localizedDateString(for date: Date) -> String {
 		let calendar = Calendar.current
 		let today = calendar.startOfDay(for: Date())
 		let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
@@ -100,20 +100,20 @@ extension EPGProgramView {
 		}
 	}
 	
-	private var startInterval: TimeInterval {
+	var startInterval: TimeInterval {
 		program.start?.timeIntervalSinceReferenceDate ?? 0
 	}
 	
-	private var endInterval: TimeInterval {
+	var endInterval: TimeInterval {
 		program.stop?.timeIntervalSinceReferenceDate ?? 0
 	}
 
-	private var progress: Double {
+	var progress: Double {
 		((currentInterval - startInterval) / (endInterval - startInterval))
 			* 100
 	}
 
-	private var formatter: RelativeDateTimeFormatter {
+	var formatter: RelativeDateTimeFormatter {
 		let formatter = RelativeDateTimeFormatter()
 		formatter.dateTimeStyle = .numeric
 		formatter.unitsStyle = .short

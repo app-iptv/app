@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AsyncButton<Content: View>: View {
-	@State private var task: Task<(), Never>? = nil
+	@State var task: Task<(), Never>? = nil
 	
 	let action: () async -> Void
 	let label: (Bool) -> Content

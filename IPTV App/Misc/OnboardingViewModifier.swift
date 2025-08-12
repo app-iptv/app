@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnboardingViewModifier: ViewModifier {
-	@Binding private var isFirstLaunch: Bool
+	@Binding var isFirstLaunch: Bool
 	
 	internal init(isFirstLaunch: Binding<Bool>) {
 		self._isFirstLaunch = isFirstLaunch

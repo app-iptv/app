@@ -9,7 +9,7 @@ import Foundation
 
 @Observable
 final class SceneState {
-	var selectedPlaylist: Playlist? = nil
 	var selectedMedia: Media? = nil
 	var selectedGroup: String = "All"
+	var selectedTab: MediaTab = .favourites
 }

@@ -10,7 +10,7 @@ import SwiftUI
 import XMLTV
 
 struct EPGProgramDetailView: View {
-	private let program: TVProgram
+	let program: TVProgram
 
 	init(for program: TVProgram) {
 		self.program = program
@@ -58,7 +58,7 @@ struct EPGProgramDetailView: View {
 }
 
 extension EPGProgramDetailView {
-	private func localizedDateString(for date: Date) -> String {
+	func localizedDateString(for date: Date) -> String {
 		let calendar = Calendar.current
 		let today = calendar.startOfDay(for: Date())
 		let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!

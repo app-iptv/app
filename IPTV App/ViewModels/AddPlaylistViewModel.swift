@@ -22,11 +22,11 @@ class AddPlaylistViewModel {
 	var fileData: Data? = nil
 	var fileName: String = ""
 	
-	private var networkModel: PlaylistFetchingController {
+	var networkModel: PlaylistFetchingController {
 		PlaylistFetchingController(viewModel: self)
 	}
 	
-	private var context: ModelContext {
+	var context: ModelContext {
 		SwiftDataController.main.modelContext
 	}
 	

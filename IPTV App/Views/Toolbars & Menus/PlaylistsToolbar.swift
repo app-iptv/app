@@ -8,22 +8,16 @@
 import SwiftUI
 
 struct PlaylistsToolbar: CustomizableToolbarContent {
-	@Environment(AppState.self) private var appState
-	
-	private var main: Bool
-	
-	internal init(main: Bool) { self.main = main }
+	@Environment(AppState.self) var appState
 	
 	var body: some CustomizableToolbarContent {
-		if !main {
-			ToolbarItem(id: "addPlaylist") {
-				Button("Add Playlist", systemImage: "plus") {
-					appState.isAddingPlaylist.toggle()
-				}
+		ToolbarItem(id: "addPlaylist") {
+			Button("Add Playlist", systemImage: "plus") {
+				appState.isAddingPlaylist.toggle()
 			}
 		}
 
-		ToolbarItem(id: "openSingleStream", placement: main ? placement : .automatic) {
+		ToolbarItem(id: "openSingleStream") {
 			Button("Open Stream", systemImage: "play") {
 				appState.openedSingleStream.toggle()
 			}
@@ -32,7 +26,7 @@ struct PlaylistsToolbar: CustomizableToolbarContent {
 }
 
 extension PlaylistsToolbar {
-	private var placement: ToolbarItemPlacement {
+	var placement: ToolbarItemPlacement {
 		#if os(macOS)
 		return .automatic
 		#else

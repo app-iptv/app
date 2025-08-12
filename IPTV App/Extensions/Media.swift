@@ -1,5 +1,5 @@
 //
-//  Playlist.media.swift
+//  Media.swift
 //  IPTV App
 //
 //  Created by Pedro Cordeiro on 01/03/2024.

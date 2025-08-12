@@ -8,13 +8,7 @@
 import SwiftUI
 
 extension View {
-	func tabForView(for tab: Tab) -> some View {
-		return self
-			.tag(tab)
-			.tabItem { Label(tab.name, systemImage: tab.nonFillImage) }
-	}
-	
-	func withOnboardingView(isFirstLaunch: Binding<Bool>) -> some View {
+	func onboardingView(isFirstLaunch: Binding<Bool>) -> some View {
 		return self.modifier(OnboardingViewModifier(isFirstLaunch: isFirstLaunch))
 	}
 }

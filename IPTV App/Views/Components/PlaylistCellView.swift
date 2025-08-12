@@ -10,12 +10,12 @@ import M3UKit
 import SwiftUI
 
 struct PlaylistCellView: View {
-	@Environment(\.modelContext) private var context
-	@Environment(AppState.self) private var appState
+	@Environment(\.modelContext) var context
+	@Environment(AppState.self) var appState
 
-	@Bindable private var playlist: Playlist
+	@Bindable var playlist: Playlist
 
-	@State private var isEditing: Bool = false
+	@State var isEditing: Bool = false
 
 	init(_ playlist: Playlist) { self.playlist = playlist }
 
@@ -37,13 +37,13 @@ struct PlaylistCellView: View {
 }
 
 extension PlaylistCellView {
-	private var deleteButton: some View {
+	var deleteButton: some View {
 		Button("Delete", systemImage: "trash", role: .destructive) {
 			context.delete(playlist)
 		}
 	}
 
-	private var editButton: some View {
+	var editButton: some View {
 		Button("Edit Playlist", systemImage: "pencil") { isEditing.toggle() }
 			.tint(.accentColor)
 	}

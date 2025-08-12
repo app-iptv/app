@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FirstLaunchView: View {
-	@Binding private var isFirstLaunch: Bool
+	@Binding var isFirstLaunch: Bool
 
 	internal init(isFirstLaunch: Binding<Bool>) {
 		self._isFirstLaunch = isFirstLaunch
@@ -40,6 +40,7 @@ struct FirstLaunchView: View {
 					.padding(.trailing, 30)
 			}
 		}
+		.padding(.top)
 		
 		Divider()
 

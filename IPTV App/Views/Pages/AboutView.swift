@@ -9,8 +9,8 @@ import M3UKit
 import SwiftUI
 
 struct AboutView: View {
-	@Environment(\.horizontalSizeClass) private var horizontalSizeClass
-	@Environment(\.verticalSizeClass) private var verticalSizeClass
+	@Environment(\.horizontalSizeClass) var horizontalSizeClass
+	@Environment(\.verticalSizeClass) var verticalSizeClass
 	
 	let version = Bundle.main.releaseVersionNumber ?? "1.0"
 
@@ -34,7 +34,7 @@ struct AboutView: View {
 }
 
 extension AboutView {
-	private var size: CGFloat {
+	var size: CGFloat {
 		switch horizontalSizeClass {
 			case .compact:
 				return 250
@@ -43,7 +43,7 @@ extension AboutView {
 		}
 	}
 	
-	private var content: some View {
+	var content: some View {
 		Group {
 			Image(.macIcon)
 				.resizable()
@@ -71,5 +71,5 @@ extension AboutView {
 }
 
 #Preview {
-	NavigationStack { AboutView() }
+	AboutView()
 }

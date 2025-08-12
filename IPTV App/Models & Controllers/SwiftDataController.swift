@@ -10,7 +10,7 @@ import Foundation
 
 @MainActor
 final class SwiftDataController {
-	private init() { }
+	init() { }
 	
 	let persistenceContainer: ModelContainer = {
 		print(URL.applicationSupportDirectory.path(percentEncoded: false))
@@ -25,20 +25,20 @@ final class SwiftDataController {
 		}
 	}()
 	
-	let previewContainer: ModelContainer = {
-		do {
-			let schema = Schema([Playlist.self])
-			
-			let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-			
-			let container = try ModelContainer(for: schema, configurations: [config])
-			container.mainContext.insert(Playlist.preview)
-			
-			return container
-		} catch {
-			fatalError("Could not create preview container: \(error)")
-		}
-	}()
+//	let previewContainer: ModelContainer = {
+//		do {
+//			let schema = Schema([Playlist.self])
+//			
+//			let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+//			
+//			let container = try ModelContainer(for: schema, configurations: [config])
+//			container.mainContext.insert(Playlist.preview)
+//			
+//			return container
+//		} catch {
+//			fatalError("Could not create preview container: \(error)")
+//		}
+//	}()
 	
 	var modelContext: ModelContext { persistenceContainer.mainContext }
 	
