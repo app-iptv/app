@@ -19,6 +19,7 @@ struct MediasView: View {
 	@Environment(\.isSearching) var searchState
 	@Environment(AppState.self) var appState
 	@Environment(SceneState.self) var sceneState
+	@Environment(EPGFetchingController.self) var controller
 	
 	@State var viewModel: MediasViewModel = MediasViewModel()
 	
@@ -56,6 +57,7 @@ struct MediasView: View {
 			}
 		}
 		.navigationTitle(playlist.name)
+		.task { }
 		.toolbar(id: "mediasToolbar") { MediasToolbar(groups: groups) }
 		#if os(iOS)
 		.toolbarRole(sizeClass!.toolbarRole)

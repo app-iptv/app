@@ -26,7 +26,7 @@ struct ContentView: View {
 		
 		TabView(selection: $sceneState.selectedTab) {
 			Tab(MediaTab.search.title, systemImage: MediaTab.search.systemImage, value: .search, role: .search) {
-				Text("hello")
+				SearchView()
 			}
 			
 			Tab(MediaTab.favourites.title, systemImage: MediaTab.favourites.systemImage, value: .favourites) {

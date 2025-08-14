@@ -12,7 +12,7 @@ import SwiftUI
 import XMLTV
 
 struct MediaDetailView: View {
-	@Environment(EPGFetchingController.self) var fetchingModel
+	@Environment(EPGFetchingController.self) var controller
 	@Environment(AppState.self) var appState
 	@Environment(SceneState.self) var sceneState
 
@@ -71,7 +71,7 @@ struct MediaDetailView: View {
 			}
 		}
 		.navigationTitle(media.title)
-		.task(id: fetchingModel.xmlTV, fetchPrograms)
+		.task(id: controller.xmlTV, fetchPrograms)
 		.toolbarTitleDisplayMode(.inline)
 		#if !os(macOS)
 		.toolbarBackground(.visible, for: .navigationBar, .tabBar)
@@ -81,7 +81,7 @@ struct MediaDetailView: View {
 
 extension MediaDetailView {
 	@Sendable func fetchPrograms() async {
-		await viewModel.fetchPrograms(for: media, with: fetchingModel, and: appState)
+		await viewModel.fetchPrograms(for: media, with: controller, and: appState)
 	}
 	
 	var playlistName: String {
